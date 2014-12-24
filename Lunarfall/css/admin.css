@@ -53,13 +53,6 @@ h3.catbg #quick_search form {
 	padding-top: 2px;
 	font-size: 0.9em;
 }
-h3.catbg #quick_search form input, h3.catbg #quick_search form select, h3.catbg #quick_search form .button_submit {
-	margin: 0 3px !important;
-	padding: 4px 3px 3px 3px;
-	border-radius: 4px;
-	border: 1px solid #777;
-	vertical-align: top;
-}
 h3.catbg #quick_search form select {
 	font-size: 0.9em;
 	margin: -1px 0 0 0;
@@ -71,9 +64,6 @@ h3.catbg #quick_search form select option {
 h3.catbg #quick_search form .button_submit {
 	font-weight: bold;
 	padding: 3px 6px 2px 6px;
-}
-h3.catbg #quick_search form .button_submit:hover {
-	background: #fff;
 }
 
 /* Browser tweaks. */
@@ -144,7 +134,7 @@ body#chrome #quick_search form input {
 	border-top: 1px solid #bf6900;
 }
 #smfAnnouncements dt a {
-	color: #bf6900;
+	color: #A85400;
 	font-weight: bold;
 	display: block;
 }
@@ -159,6 +149,7 @@ fieldset.admin_group legend {
 	border: 1px solid #cacdd3;
 	padding: 1px 5px;
 	border-radius: 3px;
+	color: #000;
 }
 fieldset.admin_group a {
 	display: inline-block;
@@ -724,4 +715,13 @@ h3.config_hd {
 
 #manage_boards .button_submit {
 	margin: 5px 0;
+}
+
+#donate_cat {
+	padding: 5px;
+	margin-bottom: 5px;
+	font-size: 1em;
+}
+#donate_cat a:after {
+	content: "Consider Donating?";
 }

@@ -184,7 +184,8 @@
 .fa-star-o:before {
   content: "\f006";
 }
-.fa-user:before {
+.fa-user:before,
+.fa-members:before {
   content: "\f007";
 }
 .fa-film:before {
@@ -205,7 +206,8 @@
 .fa-remove:before,
 .fa-close:before,
 .fa-times:before,
-.button_delete:before {
+.button_delete:before,
+.fa-members_delete:before {
   content: "\f00d";
 }
 .fa-search-plus:before {
@@ -262,7 +264,8 @@
 .fa-refresh:before {
   content: "\f021";
 }
-.fa-list-alt:before {
+.fa-list-alt:before,
+.fa-boards:before {
   content: "\f022";
 }
 .fa-lock:before,
@@ -296,7 +299,8 @@
 .fa-tags:before {
   content: "\f02c";
 }
-.fa-book:before {
+.fa-book:before,
+.fa-reports:before {
   content: "\f02d";
 }
 .fa-bookmark:before {
@@ -373,7 +377,8 @@
   content: "\f043";
 }
 .fa-edit:before,
-.fa-pencil-square-o:before {
+.fa-pencil-square-o:before,
+.fa-posts:before {
   content: "\f044";
 }
 .fa-share-square-o:before {
@@ -562,11 +567,13 @@
 .fa-camera-retro:before {
   content: "\f083";
 }
-.fa-key:before {
+.fa-key:before,
+.fa-permissions:before {
   content: "\f084";
 }
 .fa-gears:before,
-.fa-cogs:before {
+.fa-cogs:before,
+.fa-features:before {
   content: "\f085";
 }
 .fa-comments:before,
@@ -600,7 +607,8 @@
 .fa-external-link:before {
   content: "\f08e";
 }
-.fa-sign-in:before {
+.fa-sign-in:before,
+.fa-regcenter:before {
   content: "\f090";
 }
 .fa-trophy:before {
@@ -686,7 +694,8 @@
   content: "\f0ac";
 }
 .fa-wrench:before,
-.fa-source:before {
+.fa-source:before,
+.fa-maintain:before {
   content: "\f0ad";
 }
 .fa-tasks:before {
@@ -704,7 +713,7 @@
 .fa-group:before,
 .fa-users:before,
 .fa-mlist:before,
-.fa-members:before {
+.fa-membergroups:before {
   content: "\f0c0";
 }
 .fa-chain:before,
@@ -840,7 +849,8 @@
 .fa-sitemap:before {
   content: "\f0e8";
 }
-.fa-umbrella:before {
+.fa-umbrella:before,
+.fa-security:before {
   content: "\f0e9";
 }
 .fa-paste:before,
@@ -1042,7 +1052,8 @@
 .fa-eraser:before {
   content: "\f12d";
 }
-.fa-puzzle-piece:before {
+.fa-puzzle-piece:before,
+.fa-modifications:before {
   content: "\f12e";
 }
 .fa-microphone:before {
@@ -1566,7 +1577,8 @@
 .fa-paper-plane-o:before {
   content: "\f1d9";
 }
-.fa-history:before {
+.fa-history:before,
+.fa-logs:before {
   content: "\f1da";
 }
 .fa-circle-thin:before {
@@ -1665,7 +1677,9 @@
 .fa-eyedropper:before {
   content: "\f1fb";
 }
-.fa-paint-brush:before {
+.fa-paint-brush:before,
+.fa-current_theme:before,
+.fa-themes:before {
   content: "\f1fc";
 }
 .fa-birthday-cake:before {

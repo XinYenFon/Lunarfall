@@ -190,8 +190,7 @@ a.new_posts, span.new_posts {
 	color: #fff;
 	font-weight: bold;
 	line-height: 1.12px;
-	background: orange;
-	color: #fff;
+	background: #A85400;
 }
 span.new_posts {
 	display: inline;
@@ -409,7 +408,7 @@ a img {
 /* Highlighted text - such as search results. */
 .highlight {
 	font-weight: bold;
-	color: #ff7200 !important;
+	color: #A85400 !important;
 	font-size: 1.1em;
 }
 
@@ -442,7 +441,7 @@ div.pagesection div.floatright input, div.pagesection div.floatright select {
 }
 .current_page {
 	padding: 0 4px 0 2px;
-	color: #E87F0C;
+	color: #A85400;
 	font-family: verdana, sans-serif;
 	font-weight: bold;
 }
@@ -594,8 +593,9 @@ table.table_grid {
 	margin: 1px 0 5px 0;
 	width: 100%;
 }
-table.table_grid td {
+table.table_grid td, table.table_grid th {
 	padding: 3px;
+	border-right: 1px solid #2E3E4C;
 }
 .title_bar th {
 	padding: 4px 3px 3px 8px;
@@ -1044,12 +1044,8 @@ img.sort, .sort {
 	min-width: 30em;
 }
 #search_form .input_text, #search_form select, #search_form .button_submit {
-	color: #FFF;
 	padding: 2px;
 	margin: 2px;
-	border: 1px solid #ddd;
-	border-left: 1px solid #bbb;
-	border-top: 1px solid #aaa;
 }
 #search_form select, #language_select {
 	color: #000;
@@ -1060,7 +1056,6 @@ img.sort, .sort {
 	padding: 2px 5px;
 }
 #search_form .button_submit:hover {
-	color: #a85400;
 	text-decoration: none;
 }
 /* The logo and slogan. */
@@ -2334,6 +2329,12 @@ dl {
 
 /* Styles for the statistics center.
 ------------------------------------------------- */
+#statistics .titlebg {
+	color: #FFF;
+}
+#statistics .roundframe {
+	margin: 0;
+}
 dl.stats dt {
 	width: 50%;
 	float: left;
@@ -2396,6 +2397,17 @@ dl.stats dd span {
 }
 #stats th.first_th {
 	padding-left: 8px;
+}
+#stats tr.windowbg th.lefttext {
+	text-align: left;
+}
+#stats tr.windowbg th.stats_month {
+	text-align: left;
+	padding: 0px 2em;
+}
+#stats tr.windowbg td.stats_day {
+	padding: 0px 3.5em;
+	text-align: left;
 }
 
 /* Styles for the personal messages section.
@@ -3116,7 +3128,7 @@ div#pollmoderation {
 .poster h4, .poster h4 a, .poster li:hover h4 a, .poster h4 a:hover .poster li h4 a, .poster h4 a:focus {
 	margin: 0;
 	padding: 0;
-	color: #E87F0C;
+	color: #A85400;
 }
 
 .poster .profile .profile_icons li, .poster .im_icons li {
@@ -3172,7 +3184,7 @@ div#pollmoderation {
 	font-size: 0.9em;
 }
 .keyinfo h5 a, .keyinfo h5 a strong {
-	color: #E87F0C;
+	color: #A85400;
 }
 .keyinfo h5 a.floatright {
 	padding: 0 12px 0 0; /* Deprecated? */
@@ -3438,8 +3450,8 @@ h3.catbg .icon {
 }
 /* TitleBar & SubBar */
 .title_bar {
-	border-left: 1px solid #2E3E4C;
-	border-right: 1px solid #2E3E4C;
+	border: 1px solid #2E3E4C;
+	border-top: none;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
 	color: #666;
 	text-align: left;
