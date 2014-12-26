@@ -325,7 +325,7 @@ function template_body_below()
 	// There is now a global "Go to top" link at the right.
 		echo '
 			<ul class="floatright">
-				<li><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="'. $scripturl. '?action=help;sa=rules">'. $txt['terms_and_rules']. '</a>' : '', ' <a href="#top_section"><i class="fa fa-arrow-up fa-lg"></i></a></li>
+				<li id="f_buttons"><a href="', $scripturl, '?action=help"><i class="fa fa-support fa-lg"></i><span class="button_text">', $txt['help'], '</span></a> ', (!empty($modSettings['requireAgreement'])) ? '<a href="'. $scripturl. '?action=help;sa=rules"><i class="fa fa-book fa-lg"></i><span class="button_text">'. $txt['terms_and_rules']. '</span></a>' : '', ' <a href="#top_section"><i class="fa fa-arrow-up fa-lg"></i></a></li>
 			</ul>
 			<ul class="reset">
 				<li class="copyright">', theme_copyright(), ' <i class="fa fa-paw fa-lg" title="Made with Paws"></i></li>

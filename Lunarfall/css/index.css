@@ -3735,3 +3735,6 @@ i {
 .fa-google-plus {
 	color: #dd4b39;
 }
+#f_buttons a {
+	margin: 0 0 0 7px;
+}

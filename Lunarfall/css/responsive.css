@@ -196,6 +196,12 @@
 	#pm_menu {
 		margin: 0 0 0 -85px;
 	}
+	#footer_section ul {
+		display: block;
+		width: 100%;
+		margin: 5px;
+		float: none;
+	}
 	/* BoardIndex */
 	div.icon {
 		width: 15% !important;
@@ -420,6 +426,11 @@
 	.dropmenu li {
 		width: 100%;
 		border-right: none;
+	}
+	.dropmenu li ul {
+		top: 5em !important;
+		left: 3em;
+		position: fixed;
 	}
 	.dropmenu li a {
 		width: 85%;
