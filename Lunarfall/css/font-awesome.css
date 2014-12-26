@@ -236,7 +236,8 @@
 .fa-file-o:before {
   content: "\f016";
 }
-.fa-clock-o:before {
+.fa-clock-o:before,
+.fa-time_online:before {
   content: "\f017";
 }
 .fa-road:before {
@@ -611,7 +612,8 @@
 .fa-regcenter:before {
   content: "\f090";
 }
-.fa-trophy:before {
+.fa-trophy:before,
+.fa-posters:before {
   content: "\f091";
 }
 .fa-github-square:before {
@@ -713,7 +715,8 @@
 .fa-group:before,
 .fa-users:before,
 .fa-mlist:before,
-.fa-membergroups:before {
+.fa-membergroups:before,
+.fa-starters:before {
   content: "\f0c0";
 }
 .fa-chain:before,
@@ -1210,7 +1213,9 @@
 .fa-sort-amount-asc:before {
   content: "\f160";
 }
-.fa-sort-amount-desc:before {
+.fa-sort-amount-desc:before,
+.fa-topics_replies:before,
+.fa-topics_views:before {
   content: "\f161";
 }
 .fa-sort-numeric-asc:before {
@@ -1219,7 +1224,9 @@
 .fa-sort-numeric-desc:before {
   content: "\f163";
 }
-.fa-thumbs-up:before {
+.fa-thumbs-up:before,
+.fa-liked_messages:before,
+.fa-liked_users:before {
   content: "\f164";
 }
 .fa-thumbs-down:before {

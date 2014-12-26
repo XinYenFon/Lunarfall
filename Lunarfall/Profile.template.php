@@ -723,8 +723,8 @@ function template_editIgnoreList()
 	echo '
 	<div id="edit_buddies">
 		<div class="cat_bar">
-			<h3 class="catbg profile_hd">
-				', $txt['editIgnoreList'], '
+			<h3 class="catbg">
+				<i class="fa fa-user fa-lg"></i>', $txt['editIgnoreList'], '
 			</h3>
 		</div>
 		<table class="table_grid">
@@ -952,8 +952,8 @@ function template_showPermissions()
 
 	echo '
 		<div class="cat_bar">
-			<h3 class="catbg profile_hd">
-				', $txt['showPermissions'], '
+			<h3 class="catbg">
+				<i class="fa fa-user fa-lg"></i>', $txt['showPermissions'], '
 			</h3>
 		</div>';
 
@@ -1253,7 +1253,7 @@ function template_edit_options()
 		<form action="', (!empty($context['profile_custom_submit_url']) ? $context['profile_custom_submit_url'] : $scripturl . '?action=profile;area=' . $context['menu_item_selected'] . ';u=' . $context['id_member']), '" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator" enctype="multipart/form-data"', ($context['menu_item_selected'] == 'account' ? ' autocomplete="off"' : ''), '>
 			<div style="position:absolute; top:-100px;"><input type="text" id="autocompleteFakeName"/><input type="password" id="autocompleteFakePassword"/></div>
 			<div class="cat_bar">
-				<h3 class="catbg profile_hd">';
+				<h3 class="catbg">';
 
 		// Don't say "Profile" if this isn't the profile...
 		if (!empty($context['profile_header_text']))
@@ -1261,7 +1261,7 @@ function template_edit_options()
 					', $context['profile_header_text'];
 		else
 			echo '
-					', $txt['profile'];
+					<i class="fa fa-user fa-lg"></i>', $txt['profile'];
 
 		echo '
 				</h3>
@@ -1876,8 +1876,8 @@ function template_groupMembership()
 	echo '
 		<form action="', $scripturl, '?action=profile;area=groupmembership;save" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator">
 			<div class="cat_bar">
-				<h3 class="catbg profile_hd">
-					', $txt['profile'], '
+				<h3 class="catbg">
+					<i class="fa fa-user fa-lg"></i>', $txt['profile'], '
 				</h3>
 			</div>
 			<p class="information">', $txt['groupMembership_info'], '</p>';
@@ -2016,8 +2016,8 @@ function template_ignoreboards()
 	echo '
 	<form action="', $scripturl, '?action=profile;area=ignoreboards;save" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator">
 		<div class="cat_bar">
-			<h3 class="catbg profile_hd">
-				', $txt['profile'], '
+			<h3 class="catbg">
+				<i class="fa fa-user fa-lg"></i>', $txt['profile'], '
 			</h3>
 		</div>
 		<p class="information">', $txt['ignoreboards_info'], '</p>
@@ -2110,8 +2110,8 @@ function template_viewWarning()
 
 	echo '
 		<div class="cat_bar">
-			<h3 class="catbg profile_hd">
-				', sprintf($txt['profile_viewwarning_for_user'], $context['member']['name']), '
+			<h3 class="catbg">
+				<i class="fa fa-user fa-lg"></i>', sprintf($txt['profile_viewwarning_for_user'], $context['member']['name']), '
 			</h3>
 		</div>
 		<p class="information">', $txt['viewWarning_help'], '</p>
@@ -2209,8 +2209,8 @@ function template_issueWarning()
 	echo '
 	<form action="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=issuewarning" method="post" class="flow_hidden" accept-charset="', $context['character_set'], '">
 		<div class="cat_bar">
-			<h3 class="catbg profile_hd">
-				', $context['user']['is_owner'] ? $txt['profile_warning_level'] : $txt['profile_issue_warning'], '
+			<h3 class="catbg">
+				<i class="fa fa-user fa-lg"></i>', $context['user']['is_owner'] ? $txt['profile_warning_level'] : $txt['profile_issue_warning'], '
 			</h3>
 		</div>';
 
@@ -2377,8 +2377,8 @@ function template_deleteAccount()
 	echo '
 		<form action="', $scripturl, '?action=profile;area=deleteaccount;save" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator">
 			<div class="cat_bar">
-				<h3 class="catbg profile_hd">
-					', $txt['deleteAccount'], '
+				<h3 class="catbg">
+					<i class="fa fa-user fa-lg"></i>', $txt['deleteAccount'], '
 				</h3>
 			</div>';
 

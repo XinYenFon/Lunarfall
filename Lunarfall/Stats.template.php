@@ -89,7 +89,7 @@ function template_main()
 			<div class="half_content">
 				<div class="title_bar">
 					<h4 class="titlebg">
-						<span class="generic_icons ', $name, '"></span> ', $txt['top_' . $name], '
+						<i class="fa fa-', $name, ' fa-lg"></i> ', $txt['top_' . $name], '
 					</h4>
 				</div>
 					<dl class="stats">';
@@ -105,13 +105,13 @@ function template_main()
 			if (!empty($item['percent']))
 				echo '
 							<div class="bar" style="width: ', $item['percent'], '%;">
+								<span class="righttext">', $item['num'], '</span>
 							</div>';
 			else
 				echo '
-							<div class="bar empty"></div>';
+							<div class="bar empty"><span class="righttext">', $item['num'], '</span></div>';
 
 			echo '
-							<span class="righttext">', $item['num'], '</span>
 						</dd>';
 		}
 

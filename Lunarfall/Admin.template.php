@@ -30,7 +30,7 @@ function template_admin()
 
 	// Display the "live news" from simplemachines.org.
 	echo '
-							<div id="donate_cat" class="floatright"><h1><a href="#"><i class="fa fa-paypal fa-2x"></i></h1></div>
+							<div id="donate_cat" class="floatright"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NWVNGBNKH3LLG"><i class="fa fa-paypal fa-2x"></i></a></h1></div>
 							<br class="clear">
 							<div id="live_news" class="floatleft">
 								<div class="cat_bar">
