@@ -2,11 +2,6 @@
 .action_admin .generic_list {
 	overflow: auto;
 }
-#admin_content .windowbg {
-	margin: 5px 0 5px 0;
-	box-shadow: none;
-}
-
 tr.windowbg {
 	border-top: 0;
 }
@@ -168,116 +163,6 @@ fieldset.admin_group .inactive {
 #update_section {
 	margin: 6px 0;
 }
-
-/* The icons. */
-.large_admin_menu_icon_file {
-	margin: 0 auto;
-	display: block;
-	width: 32px;
-	height: 32px;
-}
-.large_admin_menu_icon {
-	background: url(../images/icons/admin_icons_hd.png) no-repeat  -5px -47px;
-	margin: 0 auto;
-	display: block;
-	content: '';
-	width: 32px;
-	height: 32px;
-}
-.large_admin_menu_icon.attachment {
-	background-position: -5px -5px;
-}
-.large_admin_menu_icon.ban {
-	background-position: -47px -5px;
-}
-.large_admin_menu_icon.boards {
-	background-position: -89px -5px;
-}
-.large_admin_menu_icon.calendar {
-	background-position: -131px -5px;
-}
-.large_admin_menu_icon.current_theme {
-	background-position: -173px -5px;
-}
-.large_admin_menu_icon.default {
-	background-position: -5px -47px;
-}
-.large_admin_menu_icon.engines {
-	background-position: -47px -47px;
-}
-.large_admin_menu_icon.exit {
-	background-position: -89px -47px;
-}
-.large_admin_menu_icon.features {
-	background-position: -131px -47px;
-}
-.large_admin_menu_icon.languages {
-	background-position: -173px -47px;
-}
-.large_admin_menu_icon.logs {
-	background-position: -5px -89px;
-}
-.large_admin_menu_icon.mail {
-	background-position: -47px -89px;
-}
-.large_admin_menu_icon.maintain {
-	background-position: -89px -89px;
-}
-.large_admin_menu_icon.membergroups {
-	background-position: -131px -89px;
-}
-.large_admin_menu_icon.members {
-	background-position: -173px -89px;
-}
-.large_admin_menu_icon.modifications {
-	background-position: -5px -131px;
-}
-.large_admin_menu_icon.news {
-	background-position: -47px -131px;
-}
-.large_admin_menu_icon.packages {
-	background-position: -89px -131px;
-}
-.large_admin_menu_icon.paid {
-	background-position: -131px -131px;
-}
-.large_admin_menu_icon.permissions {
-	background-position: -173px -131px;
-}
-.large_admin_menu_icon.posts {
-	background-position: -5px -173px;
-}
-.large_admin_menu_icon.regcenter {
-	background-position: -47px -173px;
-}
-.large_admin_menu_icon.reports {
-	background-position: -89px -173px;
-}
-.large_admin_menu_icon.scheduled {
-	background-position: -131px -173px;
-}
-.large_admin_menu_icon.search {
-	background-position: -173px -173px;
-}
-.large_admin_menu_icon.security {
-	background-position: -215px -5px;
-}
-.large_admin_menu_icon.server {
-	background-position: -215px -47px;
-}
-.large_admin_menu_icon.smiley {
-	background-position: -215px -89px;
-}
-.large_admin_menu_icon.support {
-	background-position: -215px -131px;
-}
-.large_admin_menu_icon.themes {
-	background-position: -215px -173px;
-}
-.large_admin_menu_icon.warning {
-	background-position: -5px -215px;
-}
-
 /* Styles for the support and credits page.
 /* Hey, people might actually want to put their names on it now!
 /* Only a couple of trivial markup hacks that wont break any mods or themes.
@@ -548,6 +433,9 @@ ul.pending_payments li {
 }
 .perm_groups {
 	background-color: #fff;
+}
+#pack_permissions .table_grid {
+	margin: 0;
 }
 table.table_grid.perm_grid {
 	margin: 0.2em;

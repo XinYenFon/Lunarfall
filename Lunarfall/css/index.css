@@ -3454,7 +3454,7 @@ h3.catbg .icon {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
 	color: #666;
 	text-align: left;
-	margin: 5px 0 0 0;
+	margin: 5px 0;
 }
 .sub_bar {
 	text-shadow: none;
@@ -3737,4 +3737,12 @@ i {
 }
 #f_buttons a {
 	margin: 0 0 0 7px;
+}
+
+/* Keep this here if I forgot something */
+.large_admin_menu_icon {
+	background: url(../images/missing.png) no-repeat;
+	display: block;
+	width: 16px;
+	height: 16px;
 }

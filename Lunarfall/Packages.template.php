@@ -1476,7 +1476,7 @@ function template_file_permissions()
 		</div>
 	</div>
 
-	<form action="', $scripturl, '?action=admin;area=packages;sa=perms;', $context['session_var'], '=', $context['session_id'], '" method="post" accept-charset="', $context['character_set'], '">
+	<form action="', $scripturl, '?action=admin;area=packages;sa=perms;', $context['session_var'], '=', $context['session_id'], '" method="post" accept-charset="', $context['character_set'], '" id="pack_permissions">
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<span class="floatleft">', $txt['package_file_perms'], '</span><span class="fperm floatright">', $txt['package_file_perms_new_status'], '</span>
@@ -1504,7 +1504,7 @@ function template_file_permissions()
 
 				if (!empty($dir['type']) && ($dir['type'] == 'dir' || $dir['type'] == 'dir_recursive'))
 					echo '
-						<img src="', $settings['default_images_url'], '/board.png" alt="*">';
+						<i class="fa fa-folder fa-lg"></i>';
 
 				echo '
 						', $name, '
@@ -1609,7 +1609,7 @@ function template_permission_show_contents($ident, $contents, $level, $has_more 
 					', (!empty($dir['type']) && $dir['type'] == 'dir_recursive') || !empty($dir['list_contents']) ? '<a id="link_' . $cur_ident . '" href="' . $scripturl . '?action=admin;area=packages;sa=perms;find=' . base64_encode($ident . '/' . $name) . ';back_look=' . $context['back_look_data'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '#fol_' . $cur_ident . '" onclick="return expandFolder(\'' . $cur_ident . '\', \'' . addcslashes($ident . '/' . $name, "'\\") . '\');">' : '';
 
 			if (!empty($dir['type']) && ($dir['type'] == 'dir' || $dir['type'] == 'dir_recursive'))
-				echo '<img src="', $settings['default_images_url'], '/board.png" alt="*">';
+				echo '<i class="fa fa-folder fa-lg"></i>';
 
 			echo '
 					', $name, '
