@@ -8,20 +8,9 @@ tr.windowbg {
 .action_admin .generic_list .flow_auto {
 	padding: 4px 2px;
 }
-.windowbg.nopadding {
-	margin: 0 !important;
-	padding: 0;
-}
 .windowbg ol {
 	margin-top: 0;
 	margin-bottom: 0;
-}
-a.help .icon {
-	margin: 0;
-	padding: 0 4px 0 0;
-}
-.catbg a.help .icon {
-	margin: -4px 0 0 0;
 }
 .table_caption, tr.table_caption td {
 	font-size: 10px;

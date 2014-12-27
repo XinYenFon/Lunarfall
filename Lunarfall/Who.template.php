@@ -42,9 +42,9 @@ function template_main()
 				<table class="table_grid">
 					<thead>
 						<tr class="title_bar">
-							<th scope="col" class="lefttext first_th" width="40%"><a href="', $scripturl, '?action=who;start=', $context['start'], ';show=', $context['show_by'], ';sort=user', $context['sort_direction'] != 'down' && $context['sort_by'] == 'user' ? '' : ';asc', '" rel="nofollow">', $txt['who_user'], $context['sort_by'] == 'user' ? '<i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a></th>
+							<th scope="col" class="lefttext" width="40%"><a href="', $scripturl, '?action=who;start=', $context['start'], ';show=', $context['show_by'], ';sort=user', $context['sort_direction'] != 'down' && $context['sort_by'] == 'user' ? '' : ';asc', '" rel="nofollow">', $txt['who_user'], $context['sort_by'] == 'user' ? '<i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a></th>
 							<th scope="col" class="lefttext time" width="10%"><a href="', $scripturl, '?action=who;start=', $context['start'], ';show=', $context['show_by'], ';sort=time', $context['sort_direction'] == 'down' && $context['sort_by'] == 'time' ? ';asc' : '', '" rel="nofollow">', $txt['who_time'], $context['sort_by'] == 'time' ? '<i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a></th>
-							<th scope="col" class="lefttext last_th half_table">', $txt['who_action'], '</th>
+							<th scope="col" class="lefttext half_table">', $txt['who_action'], '</th>
 						</tr>
 					</thead>
 					<tbody>';

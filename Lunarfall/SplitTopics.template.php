@@ -295,7 +295,7 @@ function template_merge()
 			}
 			echo '
 							</select>
-							<input type="submit" value="', $txt['go'], '" class="">
+							<input type="submit" value="', $txt['go'], '">
 						</form>)';
 
 		}
@@ -359,11 +359,11 @@ function template_merge_extra_options()
 			<table class="bordercolor table_grid">
 				<thead>
 					<tr class="title_bar">
-						<th scope="col" class="first_th" width="10px">', $txt['merge_check'], '</th>
+						<th scope="col" width="10px">', $txt['merge_check'], '</th>
 						<th scope="col" class="lefttext">', $txt['subject'], '</th>
 						<th scope="col" class="lefttext">', $txt['started_by'], '</th>
 						<th scope="col" class="lefttext">', $txt['last_post'], '</th>
-						<th scope="col" class="last_th" width="20px">' . $txt['merge_include_notifications'] . '</th>
+						<th scope="col" width="20px">' . $txt['merge_include_notifications'] . '</th>
 					</tr>
 				</thead>
 				<tbody>';

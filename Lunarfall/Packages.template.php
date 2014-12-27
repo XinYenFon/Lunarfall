@@ -131,11 +131,11 @@ function template_view_package()
 			<table class="table_grid">
 			<thead>
 				<tr class="title_bar">
-					<th class="first_th" scope="col" width="20"></th>
+					<th scope="col" width="20"></th>
 					<th scope="col" width="30"></th>
 					<th scope="col" class="lefttext">', $txt['package_install_type'], '</th>
 					<th scope="col" class="lefttext" width="50%">', $txt['package_install_action'], '</th>
-					<th class="last_th lefttext" scope="col" width="20%">', $txt['package_install_desc'], '</th>
+					<th class="lefttext" scope="col" width="20%">', $txt['package_install_desc'], '</th>
 				</tr>
 			</thead>
 			<tbody>';
@@ -1485,13 +1485,13 @@ function template_file_permissions()
 		<table class="table_grid">
 			<thead>
 				<tr class="title_bar">
-					<th class="first_th lefttext" width="30%">&nbsp;', $txt['package_file_perms_name'], '&nbsp;</th>
+					<th class="lefttext" width="30%">&nbsp;', $txt['package_file_perms_name'], '&nbsp;</th>
 					<th width="30%" class="lefttext">', $txt['package_file_perms_status'], '</th>
 					<th width="8%"><span class="filepermissions">', $txt['package_file_perms_status_read'], '</span></th>
 					<th width="8%"><span class="filepermissions">', $txt['package_file_perms_status_write'], '</span></th>
 					<th width="8%"><span class="filepermissions">', $txt['package_file_perms_status_execute'], '</span></th>
 					<th width="8%"><span class="filepermissions">', $txt['package_file_perms_status_custom'], '</span></th>
-					<th class="last_th" width="8%"><span class="filepermissions">', $txt['package_file_perms_status_no_change'], '</span></th>
+					<th width="8%"><span class="filepermissions">', $txt['package_file_perms_status_no_change'], '</span></th>
 				</tr>
 			</thead>
 			<tbody>';

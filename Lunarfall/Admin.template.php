@@ -38,7 +38,7 @@ function template_admin()
 										<a href="', $scripturl, '?action=helpadmin;help=live_news" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'],'"></i></a> ', $txt['live'], '
 									</h3>
 								</div>
-								<div class="windowbg nopadding">
+								<div class="windowbg">
 									<div id="smfAnnouncements">', $txt['lfyi'], '</div>
 								</div>
 							</div>';
@@ -51,7 +51,7 @@ function template_admin()
 										<a href="', $scripturl, '?action=admin;area=credits">', $txt['support_title'], '</a>
 									</h3>
 								</div>
-								<div class="windowbg nopadding">
+								<div class="windowbg">
 									<div id="version_details" class="padding">
 										<strong>', $txt['support_versions'], ':</strong><br>
 										', $txt['support_versions_forum'], ':
@@ -1455,9 +1455,9 @@ function template_php_info()
 						<table id="', str_replace(' ', '_', $area), '" class="table_grid">
 							<thead>
 								<tr class="title_bar">
-									<th class="first_th" scope="col" width="33%"></th>
+									<th scope="col" width="33%"></th>
 									<th scope="col" width="33%" class="centercol"><strong>', $area, '</strong></th>
-									<th class="last_th" scope="col" width="33%"></th>
+									<th scope="col" width="33%"></th>
 								</tr>
 							</thead>
 							<tbody>';

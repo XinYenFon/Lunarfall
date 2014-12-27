@@ -1992,7 +1992,6 @@ tr.windowbg td, .table_grid tr td {
 }
 /* Styles for (fatal) errors.
 ------------------------------------------------- */
-
 #fatal_error {
 	width: 80%;
 	margin: auto;
@@ -2394,9 +2393,6 @@ dl.stats dd span {
 	padding: 4px;
 	text-align: center;
 }
-#stats th.first_th {
-	padding-left: 8px;
-}
 #stats tr.windowbg th.lefttext {
 	text-align: left;
 }
@@ -2411,7 +2407,6 @@ dl.stats dd span {
 
 /* Styles for the personal messages section.
 ------------------------------------------------- */
-
 #personal_messages h3 span#author, #personal_messages h3 span#topic_title {
 	float: left;
 }

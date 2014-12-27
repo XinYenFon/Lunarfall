@@ -618,7 +618,7 @@ function template_editBuddies()
 		</div>
 		<table class="table_grid">
 			<tr class="title_bar">
-				<th class="first_th" scope="col" width="15%">', $txt['name'], '</th>
+				<th scope="col" width="15%">', $txt['name'], '</th>
 				<th scope="col">', $txt['status'], '</th>';
 
 	if (allowedTo('moderate_forum'))
@@ -630,7 +630,7 @@ function template_editBuddies()
 				echo '<th scope="col">', $column['label'], '</th>';
 
 	echo '
-				<th class="last_th" scope="col">', $txt['remove'], '</th>
+				<th scope="col">', $txt['remove'], '</th>
 			</tr>';
 
 	// If they don't have any buddies don't list them!
@@ -729,7 +729,7 @@ function template_editIgnoreList()
 		</div>
 		<table class="table_grid">
 			<tr class="title_bar">
-				<th class="first_th" scope="col" width="20%">', $txt['name'], '</th>
+				<th scope="col" width="20%">', $txt['name'], '</th>
 				<th scope="col">', $txt['status'], '</th>';
 
 	if (allowedTo('moderate_forum'))
@@ -737,7 +737,7 @@ function template_editIgnoreList()
 				<th scope="col">', $txt['email'], '</th>';
 
 	echo '
-				<th class="last_th" scope="col">', $txt['ignore_remove'] ,'</th>
+				<th scope="col">', $txt['ignore_remove'] ,'</th>
 			</tr>';
 
 	// If they don't have anyone on their ignore list, don't list it!
@@ -917,8 +917,8 @@ function template_trackIP()
 		<table class="table_grid">
 			<thead>
 				<tr class="title_bar">
-					<th class="first_th" scope="col">', $txt['ip_address'], '</th>
-					<th class="last_th" scope="col">', $txt['display_name'], '</th>
+					<th scope="col">', $txt['ip_address'], '</th>
+					<th scope="col">', $txt['display_name'], '</th>
 				</tr>
 			</thead>
 			<tbody>';
@@ -995,8 +995,8 @@ function template_showPermissions()
 					<table class="table_grid">
 						<thead>
 							<tr class="title_bar">
-								<th class="lefttext first_th" scope="col" width="50%">', $txt['showPermissions_permission'], '</th>
-								<th class="lefttext last_th" scope="col" width="50%">', $txt['showPermissions_status'], '</th>
+								<th class="lefttext" scope="col" width="50%">', $txt['showPermissions_permission'], '</th>
+								<th class="lefttext" scope="col" width="50%">', $txt['showPermissions_status'], '</th>
 							</tr>
 						</thead>
 						<tbody>';
@@ -1059,8 +1059,8 @@ function template_showPermissions()
 				<table class="table_grid">
 					<thead>
 						<tr class="title_bar">
-							<th class="lefttext first_th" scope="col" width="50%">', $txt['showPermissions_permission'], '</th>
-							<th class="lefttext last_th" scope="col" width="50%">', $txt['showPermissions_status'], '</th>
+							<th class="lefttext" scope="col" width="50%">', $txt['showPermissions_permission'], '</th>
+							<th class="lefttext" scope="col" width="50%">', $txt['showPermissions_status'], '</th>
 						</tr>
 					</thead>
 					<tbody>';

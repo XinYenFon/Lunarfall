@@ -41,7 +41,7 @@ function template_permission_index()
 			<table class="table_grid">
 				<thead>
 					<tr class="title_bar">
-						<th class="first_th">', $txt['membergroups_name'], '</th>
+						<th>', $txt['membergroups_name'], '</th>
 						<th width="10%" style="text-align:center">', $txt['membergroups_members_top'], '</th>';
 
 			if (empty($modSettings['permission_enable_deny']))
@@ -54,7 +54,7 @@ function template_permission_index()
 
 			echo '
 						<th width="10%" style="text-align:center">', $context['can_modify'] ? $txt['permissions_modify'] : $txt['permissions_view'], '</th>
-						<th class="last_th" width="4%" style="text-align: center">
+						<th width="4%" style="text-align: center">
 							', $context['can_modify'] ? '<input type="checkbox" class="input_check" onclick="invertAll(this, this.form, \'group\');">' : '', '
 						</th>
 					</tr>
@@ -360,9 +360,9 @@ function template_edit_profiles()
 			<table class="table_grid">
 				<thead>
 					<tr class="title_bar">
-						<th class="first_th">', $txt['permissions_profile_name'], '</th>
-						<th', !empty($context['show_rename_boxes']) ? ' class="last_th"' : '', '>', $txt['permissions_profile_used_by'], '</th>
-						<th class="last_th"', !empty($context['show_rename_boxes']) ? ' style="display:none"' : '', ' width="5%">', $txt['delete'], '</th>
+						<th>', $txt['permissions_profile_name'], '</th>
+						<th', !empty($context['show_rename_boxes']) ? '' : '', '>', $txt['permissions_profile_used_by'], '</th>
+						<th ', !empty($context['show_rename_boxes']) ? ' style="display:none"' : '', ' width="5%">', $txt['delete'], '</th>
 					</tr>
 				</thead>
 				<tbody>';
@@ -795,7 +795,7 @@ function template_postmod_permissions()
 							<table class="table_grid" id="postmod">
 								<thead>
 									<tr class="title_bar">
-										<th class="first_th"></th>
+										<th></th>
 										<th class="centercol" colspan="3">
 											', $txt['permissions_post_moderation_new_topics'], '
 										</th>
@@ -808,7 +808,7 @@ function template_postmod_permissions()
 
 		if ($modSettings['attachmentEnable'] == 1)
 			echo '
-										<th class="last_th centercol" colspan="3">
+										<th class="centercol" colspan="3">
 											', $txt['permissions_post_moderation_attachments'], '
 										</th>';
 
