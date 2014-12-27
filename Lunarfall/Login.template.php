@@ -64,18 +64,26 @@ function template_login()
 						setTimeout(function() {
 							document.getElementById("', !empty($context['from_ajax']) ? 'ajax_' : '', isset($context['default_username']) && $context['default_username'] != '' ? 'loginpass' : 'loginuser', '").focus();
 						}, 150);';
-	if (!empty($context['from_ajax']))
+	if (!empty($context['from_ajax']) && (empty($modSettings['force_ssl']) || $modSettings['force_ssl'] == 2))
 		echo '
 						form = $("#frmLogin");
 						form.submit(function(e) {
 							e.preventDefault();
 							e.stopPropagation();
 
-							$.post(form.prop("action"), form.serialize(), function(data) {
-								if (data.indexOf("<bo" + "dy") > -1)
+							$.ajax({
+								url: form.prop("action"),
+								method: "POST",
+								data: form.serialize(),
+								success: function(data) {
+									if (data.indexOf("<bo" + "dy") > -1)
+										document.location = ', JavaScriptEscape(!empty($_SESSION['login_url']) ? $_SESSION['login_url'] : $scripturl), ';
+									else {
+										form.parent().html($(data).find(".roundframe").html());
+									}
+								},
+								error: function() {
 									document.location = ', JavaScriptEscape(!empty($_SESSION['login_url']) ? $_SESSION['login_url'] : $scripturl), ';
-								else {
-									form.parent().html($(data).find(".roundframe").html());
 								}
 							});
 
@@ -113,20 +121,20 @@ function template_login_tfa()
 		echo '
 				<div class="error">', $txt['tfa_' . (!empty($context['tfa_error']) ? 'code_' : 'backup_') . 'invalid'], '</div>';
 	echo '
-				<form action="', $scripturl, '?action=logintfa" method="post" id="frmTfa">
+				<form action="', $context['tfa_url'], '" method="post" id="frmTfa">
 					<div id="tfaCode">
-						', $txt['tfa_login_desc'], '<br />
+						', $txt['tfa_login_desc'], '<br>
 						<strong>', $txt['tfa_code'], ':</strong>
-						<input type="text" class="input_text" name="tfa_code" style="width: 150px;" value="', !empty($context['tfa_value']) ? $context['tfa_value'] : '', '" />
-						<input type="submit" class="button_submit" name="submit" value="', $txt['login'], '"  />
+						<input type="text" class="input_text" name="tfa_code" style="width: 150px;" value="', !empty($context['tfa_value']) ? $context['tfa_value'] : '', '">
+						<input type="submit" class="button_submit" name="submit" value="', $txt['login'], '">
 						<hr />
-						<input type="button" class="button_submit" name="backup" value="', $txt['tfa_backup'], '" style="float: none; margin: 0;" />
+						<input type="button" class="button_submit" name="backup" value="', $txt['tfa_backup'], '" style="float: none; margin: 0;">
 					</div>
 					<div id="tfaBackup" style="display: none;">
-						', $txt['tfa_backup_desc'], '<br />
+						', $txt['tfa_backup_desc'], '<br>
 						<strong>', $txt['tfa_backup_code'], ': </strong>
-						<input type="text" class="input_text" name="tfa_backup" style="width: 150px;" value="', !empty($context['tfa_backup']) ? $context['tfa_backup'] : '', '"  />
-						<input type="submit" class="button_submit" name="submit" value="', $txt['login'], '" />
+						<input type="text" class="input_text" name="tfa_backup" style="width: 150px;" value="', !empty($context['tfa_backup']) ? $context['tfa_backup'] : '', '">
+						<input type="submit" class="button_submit" name="submit" value="', $txt['login'], '">
 					</div>
 				</form>
 				<script type="text/javascript">

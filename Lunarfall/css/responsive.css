@@ -5,9 +5,6 @@
 		display: inline-block;
 		margin: 5px 7px 0 0;
 	}
-	input.input_check, input.input_radio {
-		width: 10%;
-	}
 	#registration .field_icons {
 		float: left;
 		margin: 5px 0 0 3px;
@@ -149,6 +146,12 @@
 	#main_content_section .navigate_section, a.topbottom, .pagesection.top, .time {
 		display: none !important;
 	}
+
+	/* Admin */
+	#permissions table.table_grid.perm_grid {
+		margin: 0 !important;
+		width: 100% !important;
+	}
 }
 
 /* I have a Lumia with 480px screen... so ^^ */
@@ -271,7 +274,17 @@
 	img#icons {
 		margin: 0 0 0 5px;
 	}
-
+	#quickReplyOptions #postmodify {
+		width: 100%;
+	}
+	/* Poll */
+	#poll_options dl.options {
+		padding: 0;
+	}
+	#poll_options dl.options dt,
+	#poll_options dl.options dd {
+		width: 100%;
+	}
 	/* Stats Center */
 	.half_content {
 		width: 100%;
@@ -346,6 +359,21 @@
 	.action_admin .navigate_section {
 		display: none;
 	}
+	/* Menu tests */
+	#adm_submenus {
+		padding: 0;
+	}
+	#adm_submenus .dropmenu li {
+		float: left;
+		margin: 0;
+	}
+	/* 3rd level menu tests */
+	.dropmenu li ul ul {
+		margin: 0 !important;
+	}
+	.dropmenu li li:hover ul, .dropmenu li li ul {
+		left: 1px !important;
+	}
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
@@ -397,16 +425,19 @@
 }
 
 /* Still not enough data or people to test this... */
-@media (min-width: 721px) and (max-width: 1023px) {
-	#messageindex .lastpost {
-		width: 20% !important;
-		margin: 3px 0 0 5px;
+/* This needs more data and this range is probably for iPad Air (alike) tablets... */
+@media (min-width: 721px) and (max-width: 855px) {
+	div.lastpost {
+		margin: 0 0 0 20px !important;
+	}
+	div.stats {
+		display: none;
 	}
 }
 
-@media (min-width: 1024px) {
-/* I need to hide them from you desktop people... */
-	#messageindex .lastpost {
+/* Some very big stuff? Dunno... */
+@media (min-width: 856px) and (max-width: 1024px) {
+	div.lastpost {
 		width: 20% !important;
 		margin: 3px 0 0 5px;
 	}
@@ -423,38 +454,7 @@
 	#notify_dropdown {
 		margin: 5px 0 0 2px;
 	}
-	.dropmenu li {
-		width: 100%;
-		border-right: none;
-	}
-	.dropmenu li ul {
-		top: 5em !important;
-		left: 3em;
-		position: fixed;
-	}
 	.dropmenu li a {
-		width: 85%;
-		margin: 0 auto;
-	}
-	.dropmenu ul li a {
-		width: auto !important;
-	}
-	#menu_nav {
-		padding: 0;
-	}
-	#menu_nav li {
-		border-bottom: 1px solid #000;
-	}
-	#menu_nav li ul li {
-		border-bottom: none;
-	}
-	/* Poll tests */
-	/* 0.o beta inside beta!! I feel like I'm playing dota2 test only if you know what I mean... */
-	#poll_options dl.options {
-		padding: 0;
-	}
-	#poll_options dl.options dt,
-	#poll_options dl.options dd {
-		width: 100%;
+		width: 80%;
 	}
 }

@@ -39,7 +39,7 @@ function template_profile_below()
 {
 }
 
-// Tempate for showing off the spiffy popup of the menu
+// Template for showing off the spiffy popup of the menu
 function template_profile_popup()
 {
 	global $context, $scripturl;
@@ -479,44 +479,44 @@ function template_showAlerts()
 			</div>';
 
 	echo '
-		<div class="cat_bar">
-			<h3 class="catbg">
-				', $txt['alerts'], ' - ', $context['member']['name'], '
-			</h3>
-		</div>';
+		<table id="alerts" class="table_grid">
+			<tr class="title_bar">
+				<th>', $txt['alerts'], ' - ', $context['member']['name'], '</th>
+			</tr>';
 
 	if (empty($context['alerts']))
 		echo '
-		<div class="tborder windowbg centertext">
-			', $txt['alerts_none'], '
-		</div>';
+			<tr>
+				<td class="windowbg2 centertext">
+					', $txt['alerts_none'], '
+				</td>
+			</tr>';
 	else
 	{
 		// Start the form.
 		echo '
-		<form action="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;save" method="post" accept-charset="', $context['character_set'], '" id="mark_all">
-			<table id="alerts" class="table_grid">';
+		<form action="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;save" method="post" accept-charset="', $context['character_set'], '" id="mark_all">';
 
 		$counter = 1;
 		foreach ($context['alerts'] as $id => $alert)
 		{
 			echo '
-				<tr class="windowbg">
-					<td>', $alert['text'], '</td>
-					<td>', $alert['time'], '</td>
-					<td>
-						<ul class="quickbuttons">
-							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', $txt['delete'] ,'</a></li>
-							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read') ,';aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']),'</a></li>
-							<li><input type="checkbox" name="mark[', $id ,']" value="', $id ,'"></li>
-						</ul>
-					</td>
-				</tr>';
+			<tr class="', $alt ? 'windowbg' : 'windowbg2', '">
+				<td>', $alert['text'], '</td>
+				<td>', $alert['time'], '</td>
+				<td>
+					<ul class="quickbuttons">
+						<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', $txt['delete'] ,'</a></li>
+						<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read') ,';aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']),'</a></li>
+						<li><input type="checkbox" name="mark[', $id ,']" value="', $id ,'"></li>
+					</ul>
+				</td>
+			</tr>';
 		}
 
 		echo '
-			</table>
-			<div class="roundframe">
+		</table>
+			<div class="pagesection">
 				<div class="floatleft">
 					', $context['pagination'] ,'
 				</div>
@@ -871,7 +871,7 @@ function template_trackIP()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['trackIP'], '</h3>
 		</div>
-		<div class="roundframe">
+		<div class="windowbg">
 			<form action="', $context['base_url'], '" method="post" accept-charset="', $context['character_set'], '">
 				<dl class="settings">
 					<dt>
@@ -1245,12 +1245,15 @@ function template_statPanel()
 // Template for editing profile options.
 function template_edit_options()
 {
-	global $context, $scripturl, $txt;
+	global $context, $scripturl, $txt, $modSettings;
 
 	// The main header!
-        // because some browsers ignore autocomplete=off and fill username in display name and/ or email field, fake them out.
+	// because some browsers ignore autocomplete=off and fill username in display name and/ or email field, fake them out.
+	$url = !empty($context['profile_custom_submit_url']) ? $context['profile_custom_submit_url'] : $scripturl . '?action=profile;area=' . $context['menu_item_selected'] . ';u=' . $context['id_member'];
+	$url = $context['require_password'] && !empty($modSettings['force_ssl']) && $modSettings['force_ssl'] < 2 ? strtr($url, array('http://' => 'https://')) : $url;
+
 	echo '
-		<form action="', (!empty($context['profile_custom_submit_url']) ? $context['profile_custom_submit_url'] : $scripturl . '?action=profile;area=' . $context['menu_item_selected'] . ';u=' . $context['id_member']), '" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator" enctype="multipart/form-data"', ($context['menu_item_selected'] == 'account' ? ' autocomplete="off"' : ''), '>
+		<form action="', $url, '" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator" enctype="multipart/form-data"', ($context['menu_item_selected'] == 'account' ? ' autocomplete="off"' : ''), '>
 			<div style="position:absolute; top:-100px;"><input type="text" id="autocompleteFakeName"/><input type="password" id="autocompleteFakePassword"/></div>
 			<div class="cat_bar">
 				<h3 class="catbg">';
@@ -2654,7 +2657,7 @@ function template_profile_avatar_select()
 	echo '
 							<dt>
 								<strong id="personal_picture"><label for="avatar_upload_box">', $txt['personal_picture'], '</label></strong>
-								<input type="radio" onclick="swap_avatar(this); return true;" name="avatar_choice" id="avatar_choice_none" value="none"' . ($context['member']['avatar']['choice'] == 'none' ? ' checked="checked"' : '') . ' class="input_radio" /><label for="avatar_choice_none"' . (isset($context['modify_error']['bad_avatar']) ? ' class="error"' : '') . '>' . $txt['no_avatar'] . '</label><br />
+								', empty($modSettings['gravatarOverride']) ? '<input type="radio" onclick="swap_avatar(this); return true;" name="avatar_choice" id="avatar_choice_none" value="none"' . ($context['member']['avatar']['choice'] == 'none' ? ' checked="checked"' : '') . ' class="input_radio" /><label for="avatar_choice_none"' . (isset($context['modify_error']['bad_avatar']) ? ' class="error"' : '') . '>' . $txt['no_avatar'] . '</label><br />' : '', '
 								', !empty($context['member']['avatar']['allow_server_stored']) ? '<input type="radio" onclick="swap_avatar(this); return true;" name="avatar_choice" id="avatar_choice_server_stored" value="server_stored"' . ($context['member']['avatar']['choice'] == 'server_stored' ? ' checked="checked"' : '') . ' class="input_radio" /><label for="avatar_choice_server_stored"' . (isset($context['modify_error']['bad_avatar']) ? ' class="error"' : '') . '>' . $txt['choose_avatar_gallery'] . '</label><br />' : '', '
 								', !empty($context['member']['avatar']['allow_external']) ? '<input type="radio" onclick="swap_avatar(this); return true;" name="avatar_choice" id="avatar_choice_external" value="external"' . ($context['member']['avatar']['choice'] == 'external' ? ' checked="checked"' : '') . ' class="input_radio" /><label for="avatar_choice_external"' . (isset($context['modify_error']['bad_avatar']) ? ' class="error"' : '') . '>' . $txt['my_own_pic'] . '</label><br />' : '', '
 								', !empty($context['member']['avatar']['allow_upload']) ? '<input type="radio" onclick="swap_avatar(this); return true;" name="avatar_choice" id="avatar_choice_upload" value="upload"' . ($context['member']['avatar']['choice'] == 'upload' ? ' checked="checked"' : '') . ' class="input_radio" /><label for="avatar_choice_upload"' . (isset($context['modify_error']['bad_avatar']) ? ' class="error"' : '') . '>' . $txt['avatar_will_upload'] . '</label><br />' : '', '
@@ -2669,7 +2672,7 @@ function template_profile_avatar_select()
 								<div id="avatar_server_stored">
 									<div>
 										<select name="cat" id="cat" size="10" onchange="changeSel(\'\');" onfocus="selectRadioByName(document.forms.creator.avatar_choice, \'server_stored\');">';
-		// This lists all the file catergories.
+		// This lists all the file categories.
 		foreach ($context['avatars'] as $avatar)
 			echo '
 											<option value="', $avatar['filename'] . ($avatar['is_dir'] ? '/' : ''), '"', ($avatar['checked'] ? ' selected' : ''), '>', $avatar['name'], '</option>';
@@ -2937,7 +2940,7 @@ function template_tfasetup_backup()
 
 function template_profile_tfa()
 {
-	global $context, $txt, $scripturl;
+	global $context, $txt, $scripturl, $modSettings;
 
 	echo '
 							<dt>
@@ -2947,7 +2950,7 @@ function template_profile_tfa()
 							<dd>';
 	if (!$context['tfa_enabled'] && $context['user']['is_owner'])
 		echo '
-								<a href="', $scripturl, '?action=profile;area=tfasetup" id="enable_tfa" onclick="return reqOverlayDiv(this.href, ', JavaScriptEscape($txt['tfa_profile_enable']), ');">', $txt['tfa_profile_enable'], '</a>';
+								<a href="', !empty($modSettings['force_ssl']) && $modSettings['force_ssl'] < 2 ? strtr($scripturl, array('http://' => 'https://')) : $scripturl, '?action=profile;area=tfasetup" id="enable_tfa">', $txt['tfa_profile_enable'], '</a>';
 	elseif (!$context['tfa_enabled'])
 		echo '
 								', $txt['tfa_profile_disabled'];

@@ -56,7 +56,7 @@ function template_init()
 	// Set the following variable to true is this theme wants to display the avatar of the user that posted the last post on the board index and message index.
 	$settings['avatars_on_indexes'] = false;
 
-	// This defines the formatting for the page indexes used throughout the forumm.
+	// This defines the formatting for the page indexes used throughout the forum.
 	$settings['page_index'] = array(
 		'extra_before' => '<span class="pages">' . $txt['pages'] . ': </span>',
 		'previous_page' => '<i class="fa fa-arrow-left fa-lg"></i>',
@@ -193,7 +193,7 @@ function template_body_above()
 		// Thirdly, alerts
 		echo '
 				<li>
-					<a href="', $scripturl, '?action=profile;area=showalerts"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', $txt['alerts'], !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
+					<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'] ,'"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', $txt['alerts'], !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
 					<div id="alerts_menu" class="top_menu scrollable"></div>
 				</li>';
 
@@ -344,7 +344,7 @@ function template_body_below()
 
 function template_html_below()
 {
-	// load in any javascipt that could be defered to the end of the page
+	// load in any javascipt that could be deferred to the end of the page
 	template_javascript(true);
 
 	echo '
