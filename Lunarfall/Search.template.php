@@ -443,7 +443,6 @@ function template_results()
 
 			if ($topic['can_reply'])
 				echo '
-					<div class="quickbuttons_wrap">
 						<ul class="reset smalltext quickbuttons">';
 
 				// If they *can* reply?
@@ -458,8 +457,7 @@ function template_results()
 
 			if ($topic['can_reply'])
 				echo '
-						</ul>
-					</div>';
+						</ul>';
 			echo '
 					<br class="clear">
 				</div>
@@ -500,7 +498,7 @@ function template_results()
 			if (typeof(window.XMLHttpRequest) != "undefined")
 				aJumpTo[aJumpTo.length] = new JumpTo({
 					sContainerId: "search_jump_to",
-					sJumpToTemplate: "<label class=\"smalltext\" for=\"%select_id%\">', $context['jump_to']['label'], ':<" + "/label> %dropdown_list%",
+					sJumpToTemplate: "<label class=\"smalltext jump_to\" for=\"%select_id%\">', $context['jump_to']['label'], '<" + "/label> %dropdown_list%",
 					iCurBoardId: 0,
 					iCurBoardChildLevel: 0,
 					sCurBoardName: "', $context['jump_to']['board_name'], '",

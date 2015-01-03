@@ -51,7 +51,6 @@ function template_main()
 
 	foreach ($context['members'] as $member)
 	{
-
 		echo '
 						<tr class="windowbg">
 							<td>';
@@ -79,7 +78,6 @@ function template_main()
 							<td class="time">', $member['time'], '</td>
 							<td>', $member['action'], '</td>
 						</tr>';
-
 	}
 
 	// No members?

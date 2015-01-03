@@ -166,10 +166,7 @@ fieldset.admin_group .inactive {
 	right: 10px;
 	top: 9px;
 }
-#support_credits img.icon {
-	vertical-align: middle;
-}
-#latestSupport{
+#latestSupport {
 	padding: 0 25px 15px 25px;
 }
 #support_credits dl {
@@ -194,13 +191,6 @@ fieldset.admin_group .inactive {
 	margin-left: 50px;
 	border: none;
 }
-#package_list ol ul, #package_list ol ul li {
-	margin-left: 0;
-	list-style: none;
-}
-#package_list {
-	list-style-type: none;
-}
 #package_list li {
 	border: 1px solid #cacdd3;
 	padding: 0.2em;
@@ -209,35 +199,8 @@ fieldset.admin_group .inactive {
 .package_section {
 	border: 1px solid #cacdd3;
 }
-ul.packages li {
-	border: none !important;
-	list-style: none;
-}
-code#find_code, code#replace_code {
-	display: block;
-	font-family: "dejavu sans mono", "monaco", "lucida console", "courier new", monospace;
-	font-size: 0.9em;
-	background: #eef;
-	border-top: 2px solid #999;
-	border-bottom: 2px solid #999;
-	margin: 1px 0 6px 0;
-	padding: 3px 12px;
-	overflow: auto;
-	white-space: nowrap;
-	/* Show a scrollbar after about 6 lines. */
-	/* This is much better than the old max-height css. */
-	height: 10em;
-	resize: vertical;
-}
 span.package_server {
 	padding: 0 3em;
-}
-ul.package_servers {
-	margin: 0;
-	padding: 0;
-}
-ul.package_servers li {
-	list-style-type: none;
 }
 pre.file_content {
 	overflow: auto;
@@ -300,10 +263,6 @@ pre.file_content {
 #manage_boards li.windowbg:hover {
 	background: #D0E7F8;
 }
-#manage_boards li img {
-	vertical-align: middle;
-	padding: 0 6px 3px 6px;
-}
 #manage_boards li .floatleft {
 	font-weight: bold;
 	padding: 0 6px;
@@ -311,7 +270,7 @@ pre.file_content {
 #manage_boards li#recycle_board {
 	background-color: #dee;
 }
-#manage_boards li.redirect_board {
+#manage_boards li.redirect_board, #manage_boards li.redirect_board:hover {
 	background-color: #eed;
 }
 .move_links {
@@ -352,21 +311,7 @@ fieldset.qa_fieldset {
 	display: none;
 }
 
-/* Styles for the manage calendar section. */
-dl.settings dt.small_caption {
-	width: 20%;
-}
-dl.settings dd.small_caption {
-	width: 79%;
-}
-
 /* Styles for the manage search section. */
-dl.settings dt.large_caption {
-	width: 70%;
-}
-dl.settings dd.large_caption {
-	width: 29%;
-}
 span.search_weight {
 	width: 40px;
 	padding: 0 0.5em;
@@ -394,13 +339,6 @@ span.search_weight {
 #fixed_area {
 	width: 97%;
 }
-ul.pending_payments {
-	margin: 0;
-	padding: 0;
-}
-ul.pending_payments li {
-	list-style-type: none;
-}
 
 /* Styles for the manage permissions section. */
 .perm_name, .perm_profile, .perm_board {
@@ -422,32 +360,6 @@ ul.pending_payments li {
 }
 .perm_groups {
 	background-color: #fff;
-}
-#pack_permissions .table_grid {
-	margin: 0;
-}
-table.table_grid.perm_grid {
-	margin: 0.2em;
-	width: 49%;
-}
-.perm_grid img {
-	vertical-align: middle;
-	width: 16px;
-}
-dl.admin_permissions dt {
-	width: 35%;
-}
-dl.admin_permissions dd {
-	width: 64%;
-}
-.permission_groups {
-	padding: 0;
-	margin: 0;
-}
-.permission_groups li {
-	list-style-type: none;
-	padding: 0.2em;
-	margin: 1px;
 }
 .perms {
 	width: 20px;
@@ -573,12 +485,6 @@ h3.config_hd {
 	margin: 0;
 }
 
-.half_table {
-	width: 50%;
-}
-.quarter_table {
-	width: 25%;
-}
 #versions .table_grid {
 	margin: 0;
 }

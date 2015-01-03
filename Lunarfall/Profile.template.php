@@ -486,10 +486,8 @@ function template_showAlerts()
 
 	if (empty($context['alerts']))
 		echo '
-			<tr>
-				<td class="windowbg2 centertext">
-					', $txt['alerts_none'], '
-				</td>
+			<tr class="windowbg2 centertext">
+				<td>', $txt['alerts_none'], '</td>
 			</tr>';
 	else
 	{
@@ -501,7 +499,7 @@ function template_showAlerts()
 		foreach ($context['alerts'] as $id => $alert)
 		{
 			echo '
-			<tr class="', $alt ? 'windowbg' : 'windowbg2', '">
+			<tr class="windowbg">
 				<td>', $alert['text'], '</td>
 				<td>', $alert['time'], '</td>
 				<td>
@@ -663,7 +661,6 @@ function template_editBuddies()
 			echo '
 					<td><a href="', $scripturl, '?action=profile;area=lists;sa=buddies;u=', $context['id_member'], ';remove=', $buddy['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons delete" title="', $txt['buddy_remove'], '"></span></a></td>
 				</tr>';
-
 		}
 	}
 
@@ -926,9 +923,9 @@ function template_trackIP()
 		// Loop through each of the members and display them.
 		foreach ($context['ips'] as $ip => $memberlist)
 			echo '
-				<tr>
-					<td class="windowbg"><a href="', $context['base_url'], ';searchip=', $ip, '">', $ip, '</a></td>
-					<td class="windowbg">', implode(', ', $memberlist), '</td>
+				<tr class="windowbg">
+					<td><a href="', $context['base_url'], ';searchip=', $ip, '">', $ip, '</a></td>
+					<td>', implode(', ', $memberlist), '</td>
 				</tr>';
 
 		echo '
@@ -1004,11 +1001,11 @@ function template_showPermissions()
 			foreach ($context['member']['permissions']['general'] as $permission)
 			{
 				echo '
-							<tr>
-								<td class="windowbg" title="', $permission['id'], '">
+							<tr class="windowbg">
+								<td title="', $permission['id'], '">
 									', $permission['is_denied'] ? '<del>' . $permission['name'] . '</del>' : $permission['name'], '
 								</td>
-								<td class="windowbg smalltext">';
+								<td class="smalltext">';
 
 				if ($permission['is_denied'])
 					echo '
@@ -1067,11 +1064,11 @@ function template_showPermissions()
 			foreach ($context['member']['permissions']['board'] as $permission)
 			{
 				echo '
-						<tr>
-							<td class="windowbg" title="', $permission['id'], '">
+						<tr class="windowbg">
+							<td title="', $permission['id'], '">
 								', $permission['is_denied'] ? '<del>' . $permission['name'] . '</del>' : $permission['name'], '
 							</td>
-							<td class="windowbg smalltext">';
+							<td class="smalltext">';
 
 				if ($permission['is_denied'])
 				{
@@ -1736,7 +1733,6 @@ function template_alert_configuration()
 					<td>', $txt['receive_alert'], '</td>
 					<td>', $txt['receive_mail'], '</td>
 				</tr>';
-	$use_bg2 = true;
 
 	foreach ($context['alert_types'] as $alert_group => $alerts)
 	{
@@ -1789,8 +1785,8 @@ function template_alert_configuration()
 		foreach ($alerts as $alert_id => $alert_details)
 		{
 			echo '
-				<tr class="windowbg', $use_bg2 ? '2' : '', '">
-					<td>', $txt['alert_' . $alert_id], isset($alert_details['help']) ? '<a href="' . $scripturl . '?action=helpadmin;help=' . $alert_details['help'] . '" onclick="return reqOverlayDiv(this.href);" class="help floatright"><i class="fa fa-question-circle fa-lg" title="'. $txt['help'].'"></i>' : '', '</td>';
+				<tr class="windowbg">
+					<td>', $txt['alert_' . $alert_id], isset($alert_details['help']) ? '<a href="' . $scripturl . '?action=helpadmin;help=' . $alert_details['help'] . '" onclick="return reqOverlayDiv(this.href);" class="help floatright"><span class="generic_icons help" title="'. $txt['help'].'"></span>' : '', '</td>';
 
 			foreach ($context['alert_bits'] as $type => $bitmask)
 			{
@@ -1818,8 +1814,6 @@ function template_alert_configuration()
 
 			echo '
 				</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 	}
 
@@ -1905,7 +1899,7 @@ function template_groupMembership()
 				</div>
 				<div class="roundframe">
 					', $txt['request_group_membership_desc'], ':
-					<textarea name="reason" rows="4" style="' . (isBrowser('is_ie8') ? 'width: 635px; max-width: 99%; min-width: 99%' : 'width: 99%') . ';"></textarea>
+					<textarea name="reason" rows="4" style="width: 99%;"></textarea>
 					<div class="righttext" style="margin: 0.5em 0.5% 0 0.5%;">
 						<input type="hidden" name="gid" value="', $context['group_request']['id'], '">
 						<input type="submit" name="req" value="', $txt['submit_request'], '" class="button_submit">
@@ -2059,7 +2053,7 @@ function template_ignoreboards()
 
 			echo '
 							<li class="board" style="margin-', $context['right_to_left'] ? 'right' : 'left', ': ', $board['child_level'], 'em;">
-								<label for="ignore_brd', $board['id'], '"><input type="checkbox" id="ignore_brd', $board['id'], '" name="ignore_brd[', $board['id'], ']" value="', $board['id'], '"', $board['selected'] ? ' checked' : '', ' class="input_check"> ', $board['name'], '</label>
+								<label for="ignore_brd', $board['id'], '"><input type="checkbox" id="brd', $board['id'], '" name="ignore_brd[', $board['id'], ']" value="', $board['id'], '"', $board['selected'] ? ' checked' : '', ' class="input_check"> ', $board['name'], '</label>
 							</li>';
 
 			$i++;

@@ -213,10 +213,9 @@ function template_folder()
 
 		while ($message = $context['get_pmessage']('message'))
 		{
-			$window_class = 'windowbg';
 
 			echo '
-	<div class="', $window_class, '">
+	<div class="windowbg">
 		<div class="poster">';
 
 		// Are there any custom fields above the member name?
@@ -1475,7 +1474,7 @@ function template_report_message()
 					<strong>', $txt['pm_report_reason'], ':</strong>
 				</dt>
 				<dd>
-					<textarea name="reason" rows="4" cols="70" style="' . (isBrowser('is_ie8') ? 'width: 635px; max-width: 80%; min-width: 80%' : 'width: 80%') . ';"></textarea>
+					<textarea name="reason" rows="4" cols="70" style="width: 80%;"></textarea>
 				</dd>
 			</dl>
 			<div class="righttext">

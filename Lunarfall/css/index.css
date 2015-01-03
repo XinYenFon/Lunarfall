@@ -152,7 +152,7 @@ ul#likes li span.description {
 }
 
 /* I think the reset class can be deprecated. */
-/* Must test interitance thoroughly to be sure. */
+/* Must test inheritance thoroughly to be sure. */
 /* A quick reset list class. */
 ul.reset, ul.reset li {
 	padding: 0;
@@ -161,7 +161,7 @@ ul.reset, ul.reset li {
 }
 
 /* Buttons should be styled a bit differently, in order to make them look more button'ish. */
-#frmLogin input.button_submit, #guest_form input.button_submit, #calendar_navigation input.button_submit {
+#frmLogin input.button_submit, #guest_form input.button_submit, #calendar_navigation input.button_submit, #mergeSelectBoard input.button_submit {
 	float: none;
 	margin-left: inherit;
 }
@@ -270,27 +270,32 @@ h3.largetext {
 }
 .half_content {
 	box-sizing: border-box;
-	margin: 0 0 0 -2px;
-	padding: 0 0.05%;
+	padding: 0 0.3%;
 	width: 50%;
 	display: inline-block;
 	vertical-align: top;
 }
+.half_content:nth-of-type(even) {
+	margin: 0 -0.25em 0 0;
+}
+.half_content:nth-of-type(odd) {
+	margin: 0 0 0 -0.25em;
+}
 
 /* BBC */
 /* A quote, perhaps from another post. */
-.bbc_standard_quote:before, .bbc_alternate_quote:before {
+.bbc_standard_quote::before, .bbc_alternate_quote::before {
 	color: #aaa;
 	font-size: 22px;
 	content: '\275D';
 	margin: -5px 5px 0 -5px;
 }
 /* Remove the difference IE/Opera/Chrome/Firefox etc... */
-#firefox .bbc_standard_quote:before, #firefox .bbc_alternate_quote:before {
+#firefox .bbc_standard_quote::before, #firefox .bbc_alternate_quote::before {
 	font-size: 30px;
 }
-#firefox .bbc_standard_quote:before, #firefox .bbc_alternate_quote:before,
-#chrome .bbc_standard_quote:before, #chrome .bbc_alternate_quote:before {
+#firefox .bbc_standard_quote::before, #firefox .bbc_alternate_quote::before,
+#chrome .bbc_standard_quote::before, #chrome .bbc_alternate_quote::before {
 	vertical-align: middle;
 	margin: 0 5px 0 0;
 }
@@ -420,6 +425,9 @@ a img {
 	margin: 0;
 	clear: both;
 }
+.pages::after, .jump_to::after {
+	content: ": ";
+}
 #main_content_section .pagesection {
 	margin: 4px 0 0 0;
 }
@@ -460,7 +468,7 @@ div.pagesection div.floatright input, div.pagesection div.floatright select {
 }
 
 /* Posts and personal messages displayed throughout the forum. */
-.post, .personalmessage {
+.post {
 	overflow: auto;
 	line-height: 1.4em;
 	padding: 1px 0;
@@ -505,11 +513,6 @@ div.pagesection div.floatright input, div.pagesection div.floatright select {
 a.moderation_link, a.moderation_link:visited {
 	color: red;
 	font-weight: bold;
-}
-
-.openid_login {
-	background: white url(../images/openid.png) no-repeat 5px 5px;
-	padding-left: 18px;
 }
 
 p.para2 {
@@ -593,10 +596,23 @@ table.table_grid {
 	margin: 1px 0 5px 0;
 	width: 100%;
 }
-table.table_grid td, table.table_grid th {
+table.table_grid td {
 	padding: 3px;
-	border-right: 1px solid #2E3E4C;
 }
+.table_grid.half_content {
+	width: 50%;
+}
+/* Some predefined widths (mostly for tables) */
+.half_table {
+	width: 50%;
+}
+.equal_table {
+	width: 33%;
+}
+.quarter_table {
+	width: 25%;
+}
+
 .title_bar th {
 	padding: 4px 3px 3px 8px;
 }
@@ -661,7 +677,8 @@ img.sort, .sort {
 	padding: 0 40px 0 0;
 }
 /* Level 1 button background. */
-#top_info > li {
+.dropmenu li, #top_info > li {
+	margin: 0 2px 0 1px;
 	padding: 0 0 0.3em 0;
 	float: left;
 	font-size: 0.9em;
@@ -688,7 +705,7 @@ img.sort, .sort {
 	background: #67C1F5;
 }
 /* For cases where we want to spotlight something specific to an item, e.g. an amount */
-.dropmenu li .amt, #top_info li .amt {
+.amt {
 	margin-left: 3px;
 	padding: 0 5px;
 	color: white;
@@ -715,9 +732,8 @@ img.sort, .sort {
 	padding: 0 7px 0 7px;
 	margin: 0;
 	display: block;
-}
-#top_info > li > a {
-	border-right: 1px solid #171A21;
+	border: 1px solid transparent;
+	border-radius: 4px;
 }
 /* Level 1 active button. */
 .dropmenu li a.active, #top_info li a.active {
@@ -731,7 +747,6 @@ img.sort, .sort {
 	text-decoration: none;
 	box-shadow: 0 4px 4px rgba(255,255,255,0.1) inset;
 }
-
 /* User information. */
 #profile_menu a.avatar {
 	float: left;
@@ -906,7 +921,7 @@ img.sort, .sort {
 .dropmenu li li:hover ul, .dropmenu li li ul {
 	left: -14px;
 }
-.dropmenu li li.subsections > a:after {
+.dropmenu li li.subsections > a::after {
 	position: absolute;
 	top: 0.7em;
 	right: 2px;
@@ -1006,7 +1021,7 @@ img.sort, .sort {
 #top_section .frame{
 	clear: both;
 }
-#top_section .frame:after {
+#top_section .frame::after {
 	content:"";
 	display: block;
 	clear: both;
@@ -1062,7 +1077,7 @@ img.sort, .sort {
 #header {
 	padding: 2px 2px 12px 2px;
 }
-#header:after {
+#header::after {
 	content:"";
 	display: block;
 	clear: both;
@@ -1111,7 +1126,7 @@ img#smflogo {
 #inner_section {
 	padding: 12px 10px 2px 10px;
 }
-#inner_section:after {
+#inner_section::after {
 	content:"";
 	display: block;
 	clear: both;
@@ -1209,7 +1224,7 @@ ul li.greeting {
 #main_content_section {
 	padding: 5px 12px 16px 12px;
 }
-#main_content_section:after {
+#main_content_section::after {
 	content:"";
 	display: block;
 	clear: both;
@@ -1270,81 +1285,82 @@ ul li.greeting {
 }
 
 /* The quick buttons */
-div.quickbuttons_wrap {
-	padding: 2px 0;
-	width: 100%;
-	float: left;
-}
-
-ul.quickbuttons {
+.quickbuttons {
 	margin: 11px 0 0 0;
 	padding: 0 0 4px 0;
 	clear: right;
 	float: right;
 	text-align: right;
 }
-ul.quickbuttons li {
+.quickbuttons li {
 	float: left;
 	display: inline;
 	margin: 0;
 	font-size: 0.9em;
 }
-ul.quickbuttons li a {
+.quickbuttons li a {
 	padding: 0 4px 0 5px;
 	display: block;
 	line-height: 1.9em;
 	float: left;
-	color: #FFF;
+	background: url(../images/quickbuttons.png) no-repeat 0 -1px;
 }
-ul.quickbuttons li a img {
+.quickbuttons li a img {
 	padding-bottom: 2px;
 }
-ul.quickbuttons li input {
+.quickbuttons li input {
 	margin-top: 4px;
 }
-ul.quickbuttons li a.quote_button {
-	background: url(../images/quickbuttons.png) no-repeat 0 -1px;
+.quickbuttons a:hover {
+	color: #a70;
+}
+.quickbuttons li a.quote_button {
+	background-position: 0 -1px;
 	padding: 0 2px 0 20px;
 }
-ul.quickbuttons li a.modifybutton {
-	background: url(../images/quickbuttons.png) no-repeat 0 -59px;
+/* Fix for quote on reply box */
+#post_modify {
+	border-radius: 4px;
+}
+.quickbuttons li a.modifybutton {
+	background-position: 0 -59px;
 	padding: 0 2px 0 20px;
 }
-ul.quickbuttons li a.remove_button {
-	background: url(../images/quickbuttons.png) no-repeat 2px -29px;
+.quickbuttons li a.remove_button {
+	background-position: 2px -29px;
 	padding: 0 2px 0 25px;
 }
-ul.quickbuttons li a.modify_button {
-	background: url(../images/quickbuttons.png) no-repeat 2px -59px;
+.quickbuttons li a.modify_button {
+	background-position: 2px -59px;
 }
-ul.quickbuttons li a.approve_button {
-	background: url(../images/quickbuttons.png) no-repeat 2px -88px;
+.quickbuttons li a.approve_button {
+	background-position: 2px -88px;
 }
-ul.quickbuttons li a.restore_button {
-	background: url(../images/quickbuttons.png) no-repeat 0 -120px;
+.quickbuttons li a.restore_button {
+	background-position: 0 -120px;
 }
-ul.quickbuttons li a.split_button {
-	background: url(../images/quickbuttons.png) no-repeat 2px -149px;
+.quickbuttons li a.split_button {
+	background-position: 2px -149px;
 }
-ul.quickbuttons li a.reply_button {
-	background: url(../images/quickbuttons.png) no-repeat 0 -180px;
+.quickbuttons li a.reply_button {
+	background-position: 0 -180px;
 	padding: 0px 4px 0px 22px;
 }
-ul.quickbuttons li a.reply_all_button {
-	background: url(../images/quickbuttons.png) no-repeat 0 -180px;
+.quickbuttons li a.reply_all_button {
+	background-position: 0 -180px;
 	padding: 0px 4px 0px 22px;
 }
-ul.quickbuttons li a.notify_button {
-	background: url(../images/quickbuttons.png) no-repeat 1px -210px;
+.quickbuttons li a.notify_button {
+	background-position: 1px -210px;
 	padding: 0 4px 0 22px;
 }
-ul.quickbuttons li a.unapprove_button {
-	background: url(../images/quickbuttons.png) no-repeat 2px -238px;
+.quickbuttons li a.unapprove_button {
+	background-position: 2px -238px;
 }
-ul.quickbuttons li a.warn_button {
-	background: url(../images/quickbuttons.png) no-repeat 2px -270px;
+.quickbuttons li a.warn_button {
+	background-position: 2px -270px;
 }
-ul.quickbuttons li.inline_mod_check {
+.quickbuttons li.inline_mod_check {
 	padding: 1px 1px 1px 1px;
 }
 .quickbuttons li {
@@ -1394,7 +1410,7 @@ ul.quickbuttons li.inline_mod_check {
 .quickbuttons li:hover ul {
 	display: block;
 }
-.quickbuttons li ul li, .quickbuttons li:hover ul li{
+.quickbuttons li ul li, .quickbuttons li:hover ul li {
 	display: block;
 	background: none;
 	border: none;
@@ -1996,7 +2012,7 @@ tr.windowbg td, .table_grid tr td {
 	width: 80%;
 	margin: auto;
 }
-.errorbox:before, .noticebox:before, .infobox:before {
+.errorbox::before, .noticebox::before, .infobox::before {
 	width: 16px;
 	height: 16px;
 	background: url(../images/generic_icons.png) no-repeat 0px -80px;
@@ -2186,7 +2202,6 @@ dl {
 }
 .activity_stats li div.bar div {
 	background: #6294CE;
-	background: orange;
 	box-shadow: 4px -4px 4px rgba(0,0,0,0.1) inset, 4px 4px 4px rgba(255,255,255,0.3) inset;
 }
 .activity_stats li div.bar span {
@@ -2328,12 +2343,6 @@ dl {
 
 /* Styles for the statistics center.
 ------------------------------------------------- */
-#statistics .titlebg {
-	color: #FFF;
-}
-#statistics .roundframe {
-	margin: 0;
-}
 dl.stats dt {
 	width: 50%;
 	float: left;
@@ -2381,13 +2390,9 @@ dl.stats dd span {
 	top: 0;
 	z-index: 2;
 	white-space: pre;
-	color: #000;
 }
 
 /* Forum history table. */
-#stats, #alerts {
-	width: 100%;
-}
 #stats td, #stats th {
 	width: 15%;
 	padding: 4px;
@@ -2613,11 +2618,9 @@ dl.addrules dt.floatleft {
 	background: none;
 }
 .popup_content {
-	/* @todo Can't really see any reason for pop-up text to be smaller than standard body text.*/
-	/* Perhaps we should just remove the descritpion class from the div in the template. */
-	font-size: 1.11em;
+	color: #222;
 	line-height: 1.6em;
-	max-height: 20em;
+	max-height: 30em;
 	overflow: auto;
 	margin: 0;
 	padding: 10px 8px;
@@ -2644,7 +2647,7 @@ dl.addrules dt.floatleft {
 	position: relative;
 	box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
-.progress_bar div.full_bar {
+.progress_bar.full_bar {
 	padding-top: 1pt;
 	width: 100%;
 	color: black;
@@ -2653,13 +2656,13 @@ dl.addrules dt.floatleft {
 	font-weight: bold;
 	z-index: 2;
 }
-.progress_bar div.green_percent {
+.progress_bar.green_percent {
 	height: 15pt;
 	background-color: #c1ffc1;
 	background-image: linear-gradient(to bottom, #c1ffc1, green);
 	z-index: 1;
 }
-.progress_bar div.blue_percent {
+.progress_bar.blue_percent {
 	height: 15pt;
 	background-color: #98b8f4;
 	background-image: linear-gradient(to bottom, #98b8f4, blue);
@@ -2673,6 +2676,7 @@ dl.addrules dt.floatleft {
 	overflow: auto;
 	box-sizing: border-box;
 }
+/* Here comes the glory... */
 .windowbg:nth-of-type(even) {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.5) 100%) repeat scroll 0% 0% transparent;
 }
@@ -2805,6 +2809,9 @@ div.lastpost p {
 #boardindex_table .icon, #boardindex_table .info, #boardindex_table .stats, #boardindex_table .lastpost {
 	min-height: 4.5em;
 }
+.main_container {
+	margin-bottom: 20px;
+}
 .up_contain {
 	overflow: hidden;
 	box-sizing: border-box;
@@ -2912,6 +2919,8 @@ span.postby {
 }
 .moderation {
 	float: right;
+	width: 35px;
+	margin: 5px 0 0 0;
 }
 #topic_container .icon, #topic_container .info, #topic_container .windowbg, #topic_container .stats, #topic_container .lastpost {
 	box-shadow: none;
@@ -3003,8 +3012,6 @@ select.qaction {
 	font-weight: bold;
 }
 #poll_options dl.options dd {
-	margin: 0 0 0 15px;
-	padding: 1px 0 0 0;
 	width: 60%;
 	max-width: 45em;
 	float: left;
@@ -3018,7 +3025,6 @@ select.qaction {
 }
 /* Absolute positioning stops these breaking the bars on narrow screens. */
 #poll_options dl.options .percentage {
-	color: #121A26;
 	display: block;
 	float: right;
 	margin: -2px;
@@ -3102,7 +3108,7 @@ div#pollmoderation {
 	padding: 2px 0;
 }
 /* poster and postarea + moderation area underneath */
-.post_wrapper:after {
+.post_wrapper::after {
 	content:"";
 	display: block;
 	clear: both;
@@ -3110,7 +3116,7 @@ div#pollmoderation {
 /* poster details and list of items */
 .poster {
 	float: left;
-	/* Don't set this in em.It will eat too much space if people nead to set large text sizes. */
+	/* Don't set this in em.It will eat too much space if people need to set large text sizes. */
 	/* Better to just break the few words here, and leave more space for actual topic content. */
 	width: 160px;
 	word-break: hyphenate;
@@ -3369,7 +3375,7 @@ ul.post_options li {
 .under_message {
 	overflow: visible;
 }
-.under_message:after {
+.under_message::after {
 	clear: both;
 	content: "";
 	display: block;
@@ -3646,7 +3652,7 @@ h3.profile_hd {
 /* Some new stuff */
 #display_head {
 	clear: both;
-	margin: -7px 0 15px;
+	margin: -7px 0 15px 0;
 }
 #display_head p {
 	color: #959595;
@@ -3682,7 +3688,7 @@ h3.profile_hd {
 }
 .block {
 	display: block;
-	margin: 0 0 2px 0;
+	margin: 0 0 5px 0;
 }
 .boardindex_table {
 	margin: 10px 0 10px 0;
