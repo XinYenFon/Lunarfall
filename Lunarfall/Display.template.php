@@ -644,129 +644,6 @@ function template_single_post($message)
 							</div>';
 	}
 
-	// And stuff below the attachments.
-	if ($context['can_report_moderator'] || !empty($context['can_see_likes']) || !empty($context['can_like']) || $message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
-	echo '
-							<div class="under_message">';
-
-	// Maybe they want to report this post to the moderator(s)?
-	if ($context['can_report_moderator'])
-		echo '
-								<ul class="floatright smalltext">
-									<li class="report_link"><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '">', $txt['report_to_mod'], '</a></li>
-								</ul>';
-
-	// What about likes?
-	if (!empty($modSettings['enable_likes']))
-	{
-		echo '
-								<ul class="floatleft">';
-
-		if (!empty($message['likes']['can_like']))
-		{
-			echo '
-									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><i class="fa fa-', $message['likes']['you'] ? 'thumbs-o-down' : 'thumbs-o-up', ' fa-lg"></i> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>';
-		}
-
-		if (!empty($message['likes']['count']) && !empty($context['can_see_likes']))
-		{
-			$context['some_likes'] = true;
-			$count = $message['likes']['count'];
-			$base = 'likes_';
-			if ($message['likes']['you'])
-			{
-				$base = 'you_' . $base;
-				$count--;
-			}
-			$base .= (isset($txt[$base . $count])) ? $count : 'n';
-
-			echo '
-									<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=msg;like=' . $message['id'] .';'. $context['session_var'] .'='. $context['session_id'], comma_format($count)), '</li>';
-		}
-
-		echo '
-								</ul>';
-	}
-
-	// Show the quickbuttons, for various operations on posts.
-	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
-	{
-		echo '
-								<ul class="quickbuttons">';
-
-		// Can they reply?
-		if ($context['can_quote'])
-			echo '
-									<li><a href="', $scripturl, '?action=post;quote=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';last_msg=', $context['topic_last_message'], '" onclick="return oQuickReply.quote(', $message['id'], ');"><i class="fa fa-quote-left fa-lg"></i>', $txt['quote_action'], '</a></li>';
-
-		// Can the user modify the contents of this post?  Show the modify inline image.
-		if ($message['can_modify'])
-			echo '
-									<li><a title="', $txt['modify_msg'], '" id="modify_button_', $message['id'], '" onclick="oQuickModify.modifyMsg(\'', $message['id'], '\', \'', !empty($modSettings['toggle_subject']), '\')"><i class="fa fa-pencil fa-lg"></i>', $txt['quick_edit'], '</a></li>';
-
-		if ($message['can_approve'] || $message['can_unapprove'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'])
-			echo '
-									<li class="post_options">', $txt['post_options'];
-
-		echo '
-										<ul>';
-
-		// Can the user modify the contents of this post?
-		if ($message['can_modify'])
-			echo '
-											<li><a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], '"><i class="fa fa-pencil fa-lg"></i>', $txt['modify'], '</a></li>';
-
-		// How about... even... remove it entirely?!
-		if ($context['can_delete'] && ($context['topic_first_message'] == $message['id']))
-			echo '
-											<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['are_sure_remove_topic'], '?\');"><i class="fa fa-remove fa-lg"></i>', $txt['remove_topic'],'</a></li>';
-		elseif ($message['can_remove'] && ($context['topic_first_message'] != $message['id']))
-			echo '
-											<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><i class="fa fa-remove fa-lg"></i>', $txt['remove'], '</a></li>';
-
-		// What about splitting it off the rest of the topic?
-		if ($context['can_split'] && !empty($context['real_num_replies']))
-			echo '
-											<li><a href="', $scripturl, '?action=splittopics;topic=', $context['current_topic'], '.0;at=', $message['id'], '"><i class="fa fa-random fa-lg"></i>', $txt['split'], '</a></li>';
-
-		// Can we issue a warning because of this post?  Remember, we can't give guests warnings.
-		if ($context['can_issue_warning'] && !$message['is_message_author'] && !$message['member']['is_guest'])
-			echo '
-											<li><a href="', $scripturl, '?action=profile;area=issuewarning;u=', $message['member']['id'], ';msg=', $message['id'], '"><i class="fa fa-exclamation fa-lg"></i>', $txt['issue_warning'], '</a></li>';
-
-		// Can we restore topics?
-		if ($context['can_restore_msg'])
-			echo '
-											<li><a href="', $scripturl, '?action=restoretopic;msgs=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-history fa-lg"></i>', $txt['restore_message'], '</a></li>';
-
-		// Maybe we can approve it, maybe we should?
-		if ($message['can_approve'])
-			echo '
-											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-check fa-lg"></i>', $txt['approve'], '</a></li>';
-
-		// Maybe we can unapprove it?
-		if ($message['can_unapprove'])
-			echo '
-											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-minus-circle fa-lg"></i>', $txt['unapprove'], '</a></li>';
-
-		echo '
-										</ul>
-									</li>';
-
-		// Show a checkbox for quick moderation?
-		if (!empty($options['display_quick_mod']) && $options['display_quick_mod'] == 1 && $message['can_remove'])
-			echo '
-									<li style="display: none;" id="in_topic_mod_check_', $message['id'], '"></li>';
-
-		if ($message['can_approve'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'])
-			echo '
-								</ul>';
-	}
-
-	if ($context['can_report_moderator'] || !empty($context['can_see_likes']) || !empty($context['can_like']) || $message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
-	echo '
-							</div>';
-
 	echo '
 						</div>
 						<div class="moderatorbar">';
@@ -809,9 +686,108 @@ function template_single_post($message)
 							</div>';
 	}
 
+	// Looks we can't haz fun with Likes... fine!
+	if (!empty($modSettings['enable_likes']))
+	{
+		echo '
+					<ul class="floatleft likez">';
+
+		if (!empty($message['likes']['can_like']))
+			echo '
+						<li id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><i class="fa fa-', $message['likes']['you'] ? 'thumbs-o-down' : 'thumbs-o-up', ' fa-lg"></i>', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>';
+						
+		if (!empty($message['likes']['count']) && !empty($context['can_see_likes']))
+		{
+			$context['some_likes'] = true;
+			$count = $message['likes']['count'];
+			$base = 'likes_';
+			if ($message['likes']['you'])
+			{
+				$base = 'you_' . $base;
+				$count--;
+			}
+			$base .= (isset($txt[$base . $count])) ? $count : 'n';
+
+			echo '
+						<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=msg;like=' . $message['id'] .';'. $context['session_var'] .'='. $context['session_id'], comma_format($count)), '</li>';
+		}
+
+		echo '
+					</ul>';
+	}
+	
 	echo '
 						</div>
-					</div>
+					</div>';
+
+	// Can i haz fun? k thx bai!
+	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
+	{
+		echo '
+						<ul class="qbuttons">';
+
+		// Maybe they want to report this post to the moderator(s)?
+		if ($context['can_report_moderator'])
+			echo '
+							<li><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '"><i class="fa fa-exclamation-triangle fa-lg" title="', $txt['report_to_mod'], '"></i></a></li>';
+
+		// Can they reply?
+		if ($context['can_quote'])
+			echo '
+							<li><a href="', $scripturl, '?action=post;quote=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';last_msg=', $context['topic_last_message'], '" onclick="return oQuickReply.quote(', $message['id'], ');"><i class="fa fa-quote-left fa-lg" title="', $txt['quote_action'], '"></i></a></li>';
+
+		// Can the user modify the contents of this post?  Show the modify inline image.
+		if ($message['can_modify'])
+			echo '
+							<li><a title="', $txt['modify_msg'], '" id="modify_button_', $message['id'], '" onclick="oQuickModify.modifyMsg(\'', $message['id'], '\', \'', !empty($modSettings['toggle_subject']), '\')"><i class="fa fa-edit fa-lg" title="', $txt['quick_edit'], '"></i></a></li>';
+
+		// Can the user modify the contents of this post?
+		if ($message['can_modify'])
+			echo '
+							<li><a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], '"><i class="fa fa-pencil fa-lg" title="', $txt['modify'], '"></i></a></li>';
+
+		// How about... even... remove it entirely?!
+		if ($context['can_delete'] && ($context['topic_first_message'] == $message['id']))
+			echo '
+							<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['are_sure_remove_topic'], '?\');"><i class="fa fa-remove fa-lg" title="', $txt['remove_topic'],'"></i></a></li>';
+		elseif ($message['can_remove'] && ($context['topic_first_message'] != $message['id']))
+			echo '
+							<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><i class="fa fa-remove fa-lg" title="', $txt['remove'], '"></i></a></li>';
+
+		// What about splitting it off the rest of the topic?
+		if ($context['can_split'] && !empty($context['real_num_replies']))
+			echo '
+							<li><a href="', $scripturl, '?action=splittopics;topic=', $context['current_topic'], '.0;at=', $message['id'], '"><i class="fa fa-random fa-lg" title="', $txt['split'], '"></i></a></li>';
+
+		// Can we issue a warning because of this post?  Remember, we can't give guests warnings.
+		if ($context['can_issue_warning'] && !$message['is_message_author'] && !$message['member']['is_guest'])
+			echo '
+							<li><a href="', $scripturl, '?action=profile;area=issuewarning;u=', $message['member']['id'], ';msg=', $message['id'], '"><i class="fa fa-exclamation fa-lg" title="', $txt['issue_warning'], '"></i></a></li>';
+
+		// Can we restore topics?
+		if ($context['can_restore_msg'])
+			echo '
+							<li><a href="', $scripturl, '?action=restoretopic;msgs=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-history fa-lg" title="', $txt['restore_message'], '"></i></a></li>';
+
+		// Maybe we can approve it, maybe we should?
+		if ($message['can_approve'])
+			echo '
+							<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-check fa-lg" title="', $txt['approve'], '"></i></a></li>';
+
+		// Maybe we can unapprove it?
+		if ($message['can_unapprove'])
+			echo '
+							<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-minus-circle fa-lg" title="', $txt['unapprove'], '"></i></a></li>';
+
+		// Show a checkbox for quick moderation?
+		if (!empty($options['display_quick_mod']) && $options['display_quick_mod'] == 1 && $message['can_remove'])
+			echo '
+							<li style="display: none;" id="in_topic_mod_check_', $message['id'], '"></li>';
+
+		echo '
+						</ul>';
+	}
+		echo '
 				</div>
 				<hr class="post_separator">';
 }

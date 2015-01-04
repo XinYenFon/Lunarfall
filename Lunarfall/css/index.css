@@ -2625,10 +2625,6 @@ dl.addrules dt.floatleft {
 .windowbg:nth-of-type(odd), .windowbg2 {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 5%) repeat scroll 0% 0% transparent;
 }
-/* Special treatment for #forumposts area */
-#forumposts .windowbg, #forumposts .approvebg {
-	overflow: visible;
-}
 /* Nobody wants locked topics to stand out much. */
 .windowbg.locked {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 95%, rgba(0, 0, 0, 0.7) 95%) repeat scroll 0% 0% transparent;
@@ -3112,6 +3108,7 @@ div#pollmoderation {
 }
 .moderatorbar {
 	clear: right;
+	border-top: 1px solid #DDD;
 }
 .messageicon {
 	float: left;
@@ -3559,12 +3556,12 @@ h3.profile_hd {
 .dropmenu li ul, .dropmenu li li:hover, .button,
 #search_form .button_submit, .quickbuttons li,
 .quickbuttons li ul, .quickbuttons li ul li:hover, .quickbuttons ul li a:focus,
-.popup_window {
+.popup_window, .qbuttons li {
 	background: #121A26;
 }
 /* Well some of them has different gradient effect on hover */
 .button:hover, .button_submit:hover, .button_reset:hover, .button_link:hover,
-.topbottom:hover,#search_form .button_submit:hover, .quickbuttons li:hover {
+.topbottom:hover,#search_form .button_submit:hover, .quickbuttons li:hover, .qbuttons li:hover {
 	background: #67C1F5;
 }
 /* If it fits I sits... */
@@ -3691,4 +3688,41 @@ i {
 	display: block;
 	width: 16px;
 	height: 16px;
+}
+#forumposts .windowbg {
+	padding-bottom: 0;
+}
+.likez {
+	margin: 5px;
+}
+.qbuttons {
+	float: right;
+	clear: right;
+	margin: 20px 0 0 0;
+	opacity: 0.3;
+	transition: 1s;
+}
+.qbuttons:hover {
+	opacity: 1;
+}
+.qbuttons li {
+	float: left;
+	border: 1px solid #2E3E4C;
+	border-bottom: none;
+	border-right: none;
+	padding: 5px;
+}
+.qbuttons li a {
+	color: #FFF;
+	text-decoration: none;
+}
+.qbuttons li i {
+	margin: 0;
+}
+.qbuttons li:first-child {
+	border-top-left-radius: 3px;
+}
+.qbuttons li:last-child {
+	border-right: 1px solid #2E3E4C;
+	border-top-right-radius: 3px;
 }
