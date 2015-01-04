@@ -729,11 +729,9 @@ img.sort, .sort {
 	right: 0;
 }
 .dropmenu li a, #top_info > li > a {
-	padding: 0 7px 0 7px;
+	padding: 0 7px;
 	margin: 0;
 	display: block;
-	border: 1px solid transparent;
-	border-radius: 4px;
 }
 /* Level 1 active button. */
 .dropmenu li a.active, #top_info li a.active {
@@ -1297,6 +1295,11 @@ ul li.greeting {
 	display: inline;
 	margin: 0;
 	font-size: 0.9em;
+	border: 1px solid #2E3E4C;
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+	padding: 0 1px 0 1px;
+	color: #FFF;
+	overflow: visible;
 }
 .quickbuttons li a {
 	padding: 0 4px 0 5px;
@@ -1305,71 +1308,11 @@ ul li.greeting {
 	float: left;
 	background: url(../images/quickbuttons.png) no-repeat 0 -1px;
 }
-.quickbuttons li a img {
-	padding-bottom: 2px;
-}
 .quickbuttons li input {
 	margin-top: 4px;
 }
-.quickbuttons a:hover {
-	color: #a70;
-}
-.quickbuttons li a.quote_button {
-	background-position: 0 -1px;
-	padding: 0 2px 0 20px;
-}
-/* Fix for quote on reply box */
-#post_modify {
-	border-radius: 4px;
-}
-.quickbuttons li a.modifybutton {
-	background-position: 0 -59px;
-	padding: 0 2px 0 20px;
-}
-.quickbuttons li a.remove_button {
-	background-position: 2px -29px;
-	padding: 0 2px 0 25px;
-}
-.quickbuttons li a.modify_button {
-	background-position: 2px -59px;
-}
-.quickbuttons li a.approve_button {
-	background-position: 2px -88px;
-}
-.quickbuttons li a.restore_button {
-	background-position: 0 -120px;
-}
-.quickbuttons li a.split_button {
-	background-position: 2px -149px;
-}
-.quickbuttons li a.reply_button {
-	background-position: 0 -180px;
-	padding: 0px 4px 0px 22px;
-}
-.quickbuttons li a.reply_all_button {
-	background-position: 0 -180px;
-	padding: 0px 4px 0px 22px;
-}
-.quickbuttons li a.notify_button {
-	background-position: 1px -210px;
-	padding: 0 4px 0 22px;
-}
-.quickbuttons li a.unapprove_button {
-	background-position: 2px -238px;
-}
-.quickbuttons li a.warn_button {
-	background-position: 2px -270px;
-}
 .quickbuttons li.inline_mod_check {
 	padding: 1px 1px 1px 1px;
-}
-.quickbuttons li {
-	border: 1px solid #2E3E4C;
-	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-	padding: 0 1px 0 1px;
-	color: #FFF;
-	margin: 3px 19px;
-	overflow: visible;
 }
 .quickbuttons li:first-child, .quickbuttons li:first-child:hover {
 	padding-bottom: 0;
@@ -1419,7 +1362,6 @@ ul li.greeting {
 	border: 1px solid transparent;
 }
 .quickbuttons ul li a, .quickbuttons ul li a:focus {
-	padding: 0 6px 0 26px;
 	display: block;
 	line-height: 2.2em;
 	width: 12em;
@@ -3474,6 +3416,9 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 .titlebg a, .subbg a {
 	background: none;
 	text-decoration: none;
+}
+#statistics h4.titlebg {
+	color: #FFF;
 }
 
 /* Other */
