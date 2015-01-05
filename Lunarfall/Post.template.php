@@ -705,7 +705,7 @@ function template_main()
 
 	if ($context['can_quote'])
 		echo '
-						newPostsHTML += \'<ul class="reset smalltext quickbuttons" id="msg_\' + newPosts[i].getAttribute("id") + \'_quote"><li><a href="#postmodify" onclick="return insertQuoteFast(\\\'\' + newPosts[i].getAttribute("id") + \'\\\');" class="quote_button"><span>', $txt['quote'], '</span><\' + \'/a></li></ul>\';';
+						newPostsHTML += \'<ul class="qbuttons" id="msg_\' + newPosts[i].getAttribute("id") + \'_quote"><li><a href="#postmodify" onclick="return insertQuoteFast(\\\'\' + newPosts[i].getAttribute("id") + \'\\\');">"><i class="fa fa-quote-left fa-lg" title="', $txt['quote'], '"></i><\' + \'/a></li></ul>\';';
 
 	echo '
 						newPostsHTML += \'<br class="clear">\';
@@ -833,8 +833,8 @@ function template_main()
 			if ($context['can_quote'])
 			{
 				echo '
-					<ul class="quickbuttons" id="msg_', $post['id'], '_quote">
-						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');" class="quote_button">', $txt['quote'], '</a></li>
+					<ul class="qbuttons" id="msg_', $post['id'], '_quote">
+						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');"><i class="fa fa-quote-left fa-lg" title="', $txt['quote'], '"></i></a></li>
 					</ul>';
 			}
 

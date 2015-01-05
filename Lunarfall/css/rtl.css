@@ -258,15 +258,8 @@ img#smflogo {
 
 
 /* The quick buttons */
-ul.quickbuttons {
+.qbuttons {
 	float: left;
-}
-.quickbuttons li.quick_edit, .quickbuttons li.post_options {
-	line-height: 1.9em;
-	position: relative;
-}
-.quickbuttons li ul {
-	text-align: right;
 }
 
 .post_verification #verification_control {

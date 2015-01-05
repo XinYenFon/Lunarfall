@@ -215,7 +215,8 @@ function template_folder()
 		{
 
 			echo '
-	<div class="windowbg">
+<div class="windowbg">
+	<div class="post_wrapper">
 		<div class="poster">';
 
 		// Are there any custom fields above the member name?
@@ -419,43 +420,6 @@ function template_folder()
 			<div class="post">
 				<div class="inner" id="msg_', $message['id'], '"', '>', $message['body'], '</div>';
 
-			if ($message['can_report'])
-			echo '
-				<a href="' . $scripturl . '?action=pm;sa=report;l=' . $context['current_label_id'] . ';pmsg=' . $message['id'] . '" class="floatright">' . $txt['pm_report_to_admin'] . '</a>';
-
-			echo '
-				<ul class="reset smalltext quickbuttons">';
-
-			// Show reply buttons if you have the permission to send PMs.
-			if ($context['can_send_pm'])
-			{
-				// You can't really reply if the member is gone.
-				if (!$message['member']['is_guest'])
-				{
-					// Is there than more than one recipient you can reply to?
-					if ($message['number_recipients'] > 1)
-						echo '
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote;u=all" class="reply_all_button">', $txt['reply_to_all'], '</a></li>';
-
-					echo '
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=', $message['member']['id'], '" class="reply_button">', $txt['reply'], '</a></li>
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=' . $message['member']['id'], '" class="quote_button">', $txt['quote_action'], '</a></li>';
-				}
-				// This is for "forwarding" - even if the member is gone.
-				else
-					echo '
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote" class="quote_button">', $txt['reply_quote'], '</a></li>';
-			}
-			echo '
-					<li><a href="', $scripturl, '?action=pm;sa=pmactions;pm_actions%5b', $message['id'], '%5D=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', addslashes($txt['remove_message']), '?\');" class="remove_button">', $txt['delete'], '</a></li>';
-
-			if (empty($context['display_mode']))
-				echo '
-					<li><input type="checkbox" name="pms[]" id="deletedisplay', $message['id'], '" value="', $message['id'], '" onclick="document.getElementById(\'deletelisting', $message['id'], '\').checked = this.checked;" class="input_check"></li>';
-
-			echo '
-				</ul>';
-
 			// Are there any custom profile fields for above the signature?
 			if (!empty($message['custom_fields']['above_signature']))
 			{
@@ -541,6 +505,45 @@ function template_folder()
 		<div class="moderatorbar">
 		</div>
 	</div>';
+
+			echo '
+				<ul class="qbuttons">';
+
+			if ($message['can_report'])
+			echo '
+				<li><a href="' . $scripturl . '?action=pm;sa=report;l=' . $context['current_label_id'] . ';pmsg=' . $message['id'] . '"><i class="fa fa-exclamation-triangle fa-lg" title="' . $txt['pm_report_to_admin'] . '"></i></a></li>';
+
+			// Show reply buttons if you have the permission to send PMs.
+			if ($context['can_send_pm'])
+			{
+				// You can't really reply if the member is gone.
+				if (!$message['member']['is_guest'])
+				{
+					// Is there than more than one recipient you can reply to?
+					if ($message['number_recipients'] > 1)
+						echo '
+					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote;u=all"><i class="fa fa-mail-reply-all fa-lg" title="', $txt['reply_to_all'], '"></i></a></li>';
+
+					echo '
+					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=', $message['member']['id'], '"><i class="fa fa-mail-reply fa-lg" title="', $txt['reply'], '"></i></a></li>
+					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=' . $message['member']['id'], '"><i class="fa fa-quote-left fa-lg" title="', $txt['quote_action'], '"></i></a></li>';
+				}
+				// This is for "forwarding" - even if the member is gone.
+				else
+					echo '
+					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote"><i class="fa fa-quote-left fa-lg" title="', $txt['reply_quote'], '"></i></a></li>';
+			}
+			echo '
+					<li><a href="', $scripturl, '?action=pm;sa=pmactions;pm_actions%5b', $message['id'], '%5D=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', addslashes($txt['remove_message']), '?\');"><i class="fa fa-remove fa-lg" title="', $txt['delete'], '"></i></a></li>';
+
+			if (empty($context['display_mode']))
+				echo '
+					<li><input type="checkbox" name="pms[]" id="deletedisplay', $message['id'], '" value="', $message['id'], '" onclick="document.getElementById(\'deletelisting', $message['id'], '\').checked = this.checked;" class="input_check"></li>';
+
+			echo '
+				</ul>
+
+</div>';
 		}
 
 		if (empty($context['display_mode']))
@@ -1919,9 +1922,9 @@ function template_showPMDrafts()
 					<div class="list_posts">
 						', $draft['body'], '
 					</div>
-					<ul class="reset smalltext quickbuttons">
-						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;id_draft=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '"  class="modifybutton"><span>', $txt['draft_edit'], '</span></a></li>
-						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['draft_remove'], '?\');" class="remove_button"><span>', $txt['draft_delete'], '</span></a></li>
+					<ul class="qbuttons">
+						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;id_draft=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-pencil fa-lg" title="', $txt['draft_edit'], '"></i></a></li>
+						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['draft_remove'], '?\');"><i class="fa fa-remove fa-lg title="', $txt['draft_delete'], '"></i></a></li>
 					</ul>
 				</div>';
 		}

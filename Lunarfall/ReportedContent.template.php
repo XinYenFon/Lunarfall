@@ -60,7 +60,7 @@ function template_reported_posts()
 			<hr>
 			', $report['body'], '
 			<br>
-			<ul class="quickbuttons">
+			<ul class="qbuttons">
 				<li><a href="', $report['report_href'], '">', $details_button, '</a></li>
 				<li><a href="', $scripturl, '?action=moderate;area=reportedposts;sa=handle;ignore=', (int) !$report['ignore'], ';rid=', $report['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['mod-report-ignore_token_var'], '=', $context['mod-report-ignore_token'], '" class="report_ignore" data-ignore="', (int) !$report['ignore'], '">', $report['ignore'] ? $unignore_button : $ignore_button, '</a></li>
 				<li><a href="', $scripturl, '?action=moderate;area=reportedposts;sa=handle;closed=', (int) !$report['closed'], ';rid=', $report['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['mod-report-closed_token_var'], '=', $context['mod-report-closed_token'], '">', $close_button, '</a></li>';
@@ -423,7 +423,7 @@ function template_reported_members()
 				', $txt['mc_reportedp_reported_by'], ': ', implode(', ', $comments), '
 			</div>
 			<hr>
-			<ul class="quickbuttons">
+			<ul class="qbuttons">
 				<li><a href="', $report['report_href'], '">', $details_button, '</a></li>
 				<li><a href="', $scripturl, '?action=moderate;area=reportedmembers;sa=handle;ignore=', (int) !$report['ignore'], ';rid=', $report['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['mod-report-ignore_token_var'], '=', $context['mod-report-ignore_token'], '" class="report_ignore" data-ignore="', (int) !$report['ignore'], '">', $report['ignore'] ? $unignore_button : $ignore_button, '</a></li>
 				<li><a href="', $scripturl, '?action=moderate;area=reportedmembers;sa=handle;closed=', (int) !$report['closed'], ';rid=', $report['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['mod-report-closed_token_var'], '=', $context['mod-report-closed_token'], '">', $close_button, '</a></li>';

@@ -1282,100 +1282,6 @@ ul li.greeting {
 	display: inline-block;
 }
 
-/* The quick buttons */
-.quickbuttons {
-	margin: 11px 0 0 0;
-	padding: 0 0 4px 0;
-	clear: right;
-	float: right;
-	text-align: right;
-}
-.quickbuttons li {
-	float: left;
-	display: inline;
-	margin: 0;
-	font-size: 0.9em;
-	border: 1px solid #2E3E4C;
-	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-	padding: 0 1px 0 1px;
-	color: #FFF;
-	overflow: visible;
-}
-.quickbuttons li a {
-	padding: 0 4px 0 5px;
-	display: block;
-	line-height: 1.9em;
-	float: left;
-	background: url(../images/quickbuttons.png) no-repeat 0 -1px;
-}
-.quickbuttons li input {
-	margin-top: 4px;
-}
-.quickbuttons li.inline_mod_check {
-	padding: 1px 1px 1px 1px;
-}
-.quickbuttons li:first-child, .quickbuttons li:first-child:hover {
-	padding-bottom: 0;
-}
-.quickbuttons li:last-child, .quickbuttons li:last-child:hover {
-	padding-bottom: 0;
-	line-height: 1.9em;
-}
-.quickbuttons li.quick_edit, .quickbuttons li.post_options {
-	line-height: 1.9em;
-	position: relative;
-}
-.quickbuttons li a, .quickbuttons li a:hover {
-	text-decoration: none;
-}
-.quickbuttons li.post_options {
-	padding: 0 4px 0 4px;
-}
-.quickbuttons li.post_options>a {
-	padding: 0 4px 0 4px;
-}
-.quickbuttons li ul {
-	position: absolute;
-	top: 1.9em;
-	z-index: 90;
-	padding: 0.5em;
-	font-weight: normal;
-	text-align: left;
-	border: solid 1px #999;
-	border-left: solid 1px #aaa;
-	border-top: solid 1px #bbb;
-	box-shadow: 2px 3px 3px rgba(0,0,0,0.2);
-}
-.quickbuttons li ul {
-	display: none;
-	right: -1px;
-}
-.quickbuttons li:hover ul {
-	display: block;
-}
-.quickbuttons li ul li, .quickbuttons li:hover ul li {
-	display: block;
-	background: none;
-	border: none;
-	box-shadow: none;
-	width: 12em;
-	border: 1px solid transparent;
-}
-.quickbuttons ul li a, .quickbuttons ul li a:focus {
-	display: block;
-	line-height: 2.2em;
-	width: 12em;
-	box-sizing: border-box;
-}
-/* Note: The next declarations are for keyboard access with js disabled. */
-.quickbuttons ul li a:focus {
-	margin: 0 -9910px 0 9910px;
-}
-/* Cancel for hover and/or js access. */
-.quickbuttons ul li:hover a:focus, .quickbuttons ul li a:focus {
-	margin: 0;
-}
-
 /* The jump to box */
 #display_jump_to {
 	padding: 11px 5px 5px 0;
@@ -3554,19 +3460,17 @@ h3.profile_hd {
 /* Background of buttons */
 .button_submit, .button_reset, .button_link, .topbottom,
 .dropmenu li ul, .dropmenu li li:hover, .button,
-#search_form .button_submit, .quickbuttons li,
-.quickbuttons li ul, .quickbuttons li ul li:hover, .quickbuttons ul li a:focus,
-.popup_window, .qbuttons li {
+#search_form .button_submit, .popup_window, .qbuttons li {
 	background: #121A26;
 }
 /* Well some of them has different gradient effect on hover */
 .button:hover, .button_submit:hover, .button_reset:hover, .button_link:hover,
-.topbottom:hover,#search_form .button_submit:hover, .quickbuttons li:hover, .qbuttons li:hover {
+.topbottom:hover,#search_form .button_submit:hover, .qbuttons li:hover {
 	background: #67C1F5;
 }
 /* If it fits I sits... */
 .navigate_section ul, .popup_content, .up_contain, .top_menu, 
-.dropmenu li ul, .roundframe, .notify_dropdown, .quickbuttons li ul {
+.dropmenu li ul, .roundframe, .notify_dropdown {
 	background-image: linear-gradient(to bottom, #1B2734 0%, #1F3954 50%) !important;
 	color: #9099A1;
 	border: 1px solid #2E3E4C;
@@ -3689,7 +3593,7 @@ i {
 	width: 16px;
 	height: 16px;
 }
-#forumposts .windowbg {
+.nopad {
 	padding-bottom: 0;
 }
 .likez {

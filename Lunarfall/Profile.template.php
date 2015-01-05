@@ -401,7 +401,7 @@ function template_showPosts()
 		foreach ($context['posts'] as $post)
 		{
 			echo '
-			<div class="windowbg">
+			<div class="windowbg nopad">
 				<div class="counter">', $post['counter'], '</div>
 				<div class="topic_details">
 					<h5><strong><a href="', $scripturl, '?board=', $post['board']['id'], '.0">', $post['board']['name'], '</a> / <a href="', $scripturl, '?topic=', $post['topic'], '.', $post['start'], '#msg', $post['id'], '">', $post['subject'], '</a></strong></h5>
@@ -422,22 +422,22 @@ function template_showPosts()
 			if ($post['can_reply'] || $post['can_delete'])
 				echo '
 				<div class="floatright">
-					<ul class="reset smalltext quickbuttons">';
+					<ul class="qbuttons">';
 
 			// If they *can* reply?
 			if ($post['can_reply'])
 				echo '
-						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '" class="reply_button"><span>', $txt['reply'], '</span></a></li>';
+						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '"><i class="fa fa-reply fa-lg title="', $txt['reply'], '"></i></a></li>';
 
 			// If they *can* quote?
 			if ($post['can_quote'])
 				echo '
-						<li><a href="', $scripturl . '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '" class="quote_button"><span>', $txt['quote_action'], '</span></a></li>';
+						<li><a href="', $scripturl . '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '"><i class="fa fa-quote-left fa-lg title="', $txt['quote_action'], '"></i></a></li>';
 
 			// How about... even... remove it entirely?!
 			if ($post['can_delete'])
 				echo '
-						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');" class="remove_button"><span>', $txt['remove'], '</span></a></li>';
+						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><i class="fa fa-remove fa-lg title="', $txt['remove'], '"></i></a></li>';
 
 			if ($post['can_reply'] || $post['can_delete'])
 				echo '
@@ -488,7 +488,8 @@ function template_showAlerts()
 		echo '
 			<tr class="windowbg2 centertext">
 				<td>', $txt['alerts_none'], '</td>
-			</tr>';
+			</tr>
+		</table>';
 	else
 	{
 		// Start the form.
@@ -503,7 +504,7 @@ function template_showAlerts()
 				<td>', $alert['text'], '</td>
 				<td>', $alert['time'], '</td>
 				<td>
-					<ul class="quickbuttons">
+					<ul class="qbuttons">
 						<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', $txt['delete'] ,'</a></li>
 						<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read') ,';aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']),'</a></li>
 						<li><input type="checkbox" name="mark[', $id ,']" value="', $id ,'"></li>
@@ -560,7 +561,7 @@ function template_showDrafts()
 		foreach ($context['drafts'] as $draft)
 		{
 			echo '
-				<div class="windowbg">
+				<div class="windowbg nopad">
 					<div class="counter">', $draft['counter'], '</div>
 					<div class="topic_details">
 						<h5><strong><a href="', $scripturl, '?board=', $draft['board']['id'], '.0">', $draft['board']['name'], '</a> / ', $draft['topic']['link'], '</strong> &nbsp; &nbsp;';
@@ -579,9 +580,9 @@ function template_showDrafts()
 						', $draft['body'], '
 					</div>
 				<div class="floatright">
-					<ul class="reset smalltext quickbuttons">
-						<li><a href="', $scripturl, '?action=post;', (empty($draft['topic']['id']) ? 'board=' . $draft['board']['id'] : 'topic=' . $draft['topic']['id']), '.0;id_draft=', $draft['id_draft'], '" class="reply_button"><span>', $txt['draft_edit'], '</span></a></li>
-						<li><a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=showdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['draft_remove'], '?\');" class="remove_button"><span>', $txt['draft_delete'], '</span></a></li>
+					<ul class="qbuttons">
+						<li><a href="', $scripturl, '?action=post;', (empty($draft['topic']['id']) ? 'board=' . $draft['board']['id'] : 'topic=' . $draft['topic']['id']), '.0;id_draft=', $draft['id_draft'], '"><i class="fa fa-pencil fa-lg" title="', $txt['draft_edit'], '"></i></a></li>
+						<li><a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=showdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['draft_remove'], '?\');"><i class="fa fa-remove fa-lg" title="', $txt['draft_delete'], '"></i></a></li>
 					</ul>
 				</div>
 			</div>';

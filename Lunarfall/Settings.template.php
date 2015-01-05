@@ -194,6 +194,7 @@ function template_settings()
 			'label' => $txt['og_image'],
 			'description' => $txt['og_image_desc'],
 			'type' => 'text',
+		),
 		array(
 			'id' => 'facebook',
 			'label' => $txt['facebook_page'],

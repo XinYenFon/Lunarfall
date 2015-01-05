@@ -21,11 +21,6 @@
 		margin: 0 5px 0 0;
 	}
 
-	/* Menu */
-	.quickbuttons li:hover ul {
-		display: none;
-	}
-
 	/* General */
 	.action_home {
 		width: 100% !important;

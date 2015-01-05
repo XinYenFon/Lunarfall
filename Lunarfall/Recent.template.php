@@ -44,22 +44,22 @@ function template_recent()
 
 		if ($post['can_reply'] || $post['can_delete'])
 			echo '
-					<ul class="reset smalltext quickbuttons">';
+					<ul class="qbuttons">';
 
 		// If they *can* reply?
 		if ($post['can_reply'])
 			echo '
-						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '" class="reply_button"><span>', $txt['reply'], '</span></a></li>';
+						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '"><i class="fa fa-reply fa-lg" title="', $txt['reply'], '"></i></a></li>';
 
 		// If they *can* quote?
 		if ($post['can_quote'])
 			echo '
-						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '" class="quote_button"><span>', $txt['quote_action'], '</span></a></li>';
+						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '"><i class="fa fa-quote-left title="', $txt['quote_action'], '"></i></a></li>';
 
 		// How about... even... remove it entirely?!
 		if ($post['can_delete'])
 			echo '
-						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';recent;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');" class="remove_button"><span>', $txt['remove'], '</span></a></li>';
+						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';recent;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><i class="fa fa-remove fa-lg" title="', $txt['remove'], '"></i></a></li>';
 
 		if ($post['can_reply'] || $post['can_delete'])
 			echo '
