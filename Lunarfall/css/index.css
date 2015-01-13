@@ -4,7 +4,7 @@ html {
 	background: #2A3F5A;
 }
 body {
-	background: url(../images/page_bg_generated_v6.jpg) no-repeat fixed #010101;
+	background: url(../images/blue_body_darker_repeat.jpg) repeat-y fixed #010101;
 	background-position: center top;
 	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
 	color: #8F98A0;
