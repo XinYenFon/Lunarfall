@@ -215,7 +215,7 @@ function template_folder()
 		{
 
 			echo '
-<div class="windowbg">
+<div class="windowbg nopad">
 	<div class="post_wrapper">
 		<div class="poster">';
 
@@ -349,7 +349,7 @@ function template_folder()
 					// Don't show the email address if they want it hidden.
 					if ($message['member']['show_email'])
 						echo '
-						<li><a href="mailto:', $message['member']['email'], '" rel="nofollow">', ($settings['use_image_buttons'] ? '<span class="generic_icons mail centericon" title="' . $txt['email'] . '"></span>' : $txt['email']), '</a></li>';
+						<li><a href="mailto:', $message['member']['email'], '" rel="nofollow">', ($settings['use_image_buttons'] ? '<i class="fa fa-envelope fa-lg centericon" title="' . $txt['email'] . '"></i>' : $txt['email']), '</a></li>';
 
 					// Since we know this person isn't a guest, you *can* message them.
 					if ($context['can_send_pm'])
@@ -593,7 +593,7 @@ function template_subject_list()
 	<thead>
 		<tr class="title_bar">
 			<th width="4%" class="centercol">
-				<a href="', $scripturl, '?action=pm;view;f=', $context['folder'], ';start=', $context['start'], ';sort=', $context['sort_by'], ($context['sort_direction'] == 'up' ? '' : ';desc'), ($context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : ''), '"> <span class="generic_icons switch" title="', $txt['pm_change_view'], '"></span></a>
+				<a href="', $scripturl, '?action=pm;view;f=', $context['folder'], ';start=', $context['start'], ';sort=', $context['sort_by'], ($context['sort_direction'] == 'up' ? '' : ';desc'), ($context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : ''), '"> <i class="fa fa-refresh fa-lg" title="', $txt['pm_change_view'], '"></i></a>
 			</th>
 			<th class="lefttext" width="22%">
 				<a href="', $scripturl, '?action=pm;f=', $context['folder'], ';start=', $context['start'], ';sort=date', $context['sort_by'] == 'date' && $context['sort_direction'] == 'up' ? ';desc' : '', $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', '">', $txt['date'], $context['sort_by'] == 'date' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
@@ -638,7 +638,7 @@ function template_subject_list()
 		echo '
 				};
 			// ]]></script>
-				', $message['is_replied_to'] ? '<span class="generic_icons replied" title="' . $txt['pm_replied'] . '"></span>' : '<span class="generic_icons im_off" title="' . $txt['pm_read'] . '"></span>', '</td>
+				', $message['is_replied_to'] ? '<i class="fa fa-reply fa-lg" title="' . $txt['pm_replied'] . '"></i>' : '<span class="generic_icons im_off" title="' . $txt['pm_read'] . '"></span>', '</td>
 			<td>', $message['time'], '</td>
 			<td>', ($context['display_mode'] != 0 && $context['current_pm'] == $message['id'] ? '<img src="' . $settings['images_url'] . '/selected.png" alt="*">' : ''), '<a href="', ($context['display_mode'] == 0 || $context['current_pm'] == $message['id'] ? '' : ($scripturl . '?action=pm;pmid=' . $message['id'] . ';kstart;f=' . $context['folder'] . ';start=' . $context['start'] . ';sort=' . $context['sort_by'] . ($context['sort_direction'] == 'up' ? ';' : ';desc') . ($context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : ''))), '#msg', $message['id'], '">', $message['subject'], $message['is_unread'] ? '&nbsp;<span class="new_posts">' . $txt['new'] . '</span>' : '', '</a></td>
 			<td>', ($context['from_or_to'] == 'from' ? $message['member']['link'] : (empty($message['recipients']['to']) ? '' : implode(', ', $message['recipients']['to']))), '</td>
@@ -973,7 +973,7 @@ function template_send()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-					<span class="generic_icons inbox icon" title="', $txt['new_message'], '"></span> ', $txt['new_message'], '
+					<i class="fa fa-inbox fa-lg" title="', $txt['new_message'], '"></i> ', $txt['new_message'], '
 			</h3>
 		</div>';
 
@@ -1884,7 +1884,7 @@ function template_showPMDrafts()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<span class="generic_icons inbox"></span> ', $txt['drafts_show'], '
+				<i class="fa fa-inbox fa-lg"></i> ', $txt['drafts_show'], '
 			</h3>
 		</div>
 		<div class="pagesection">

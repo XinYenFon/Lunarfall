@@ -100,7 +100,7 @@ function template_registration_form()
 							<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" class="input_text">
 							<span id="smf_autov_username_div" style="display: none;">
 								<a id="smf_autov_username_link" href="#">
-									<span id="smf_autov_username_img" class="generic_icons check"></span>
+									<i id="smf_autov_username_img" class="fa fa-lg"></i>
 								</a>
 							</span>
 						</dd>
@@ -114,7 +114,7 @@ function template_registration_form()
 						<dd>
 							<input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" class="input_password">
 							<span id="smf_autov_pwmain_div" style="display: none;">
-								<span id="smf_autov_pwmain_img" class="generic_icons invalid"></span>
+								<i id="smf_autov_pwmain_img" class="fa fa-lg"></i>
 							</span>
 						</dd>
 					</dl>
@@ -123,7 +123,7 @@ function template_registration_form()
 						<dd>
 							<input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" class="input_password">
 							<span id="smf_autov_pwverify_div" style="display: none;">
-								<span id="smf_autov_pwverify_img" class="generic_icons valid"></span>
+								<i id="smf_autov_pwverify_img" class="fa fa-lg"></i>
 							</span>
 						</dd>
 					</dl>';

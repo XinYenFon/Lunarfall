@@ -208,6 +208,12 @@ function template_credits()
 				<dd>', implode('</dd><dd>', $context['credits_software_graphics']['fonts']), '</dd>
 			</dl>';
 		echo '
+			<dl>
+				<dt><strong>Theme</strong></dt>
+				<dd><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> | This font is licensed under the <a href="http://scripts.sil.org/OFL">SIL Open Font License</a>, Version 1.1</dd>
+				<dd><a href="https://github.com/Antes/Lunarfall">Lunarfall</a> | Licensed under <a href="https://github.com/Antes/Lunarfall/blob/master/LICENSE">The MIT License (MIT)</a></dd>
+				<dd>Background taken from <a href="http://store.steampowered.com">Steam</a> | Sid Meier\'s Civilization®: Beyond Earth™</dd>
+			</dl>
 		</div>';
 	}
 

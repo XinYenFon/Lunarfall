@@ -65,7 +65,7 @@ function template_profile_popup()
 		$item_url = (isset($item['url']) ? $item['url'] : (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $item['area'])) . $menu_context['extra_parameters'];
 		echo '
 				<li>
-					', $area['icon'], '<a href="', $item_url, '">', !empty($item['title']) ? $item['title'] : $area['label'], '</a>
+					<a href="', $item_url, '"><i class="fa fa-', $area['icon_class'],' fa-lg fa-fw"></i>', !empty($item['title']) ? $item['title'] : $area['label'], '</a>
 				</li>';
 	}
 
@@ -153,7 +153,7 @@ function template_summary()
 	// Email is only visible if it's your profile or you have the moderate_forum permission
 	if ($context['member']['show_email'])
 		echo '
-				<li><a href="mailto:', $context['member']['email'], '" title="', $context['member']['email'], '" rel="nofollow"><span class="generic_icons mail" title="' . $txt['email'] . '"></span></a></li>';
+				<li><a href="mailto:', $context['member']['email'], '" title="', $context['member']['email'], '" rel="nofollow"><i class="fa fa-envelope fa-lg" title="' . $txt['email'] . '"></i></a></li>';
 
 	// Don't show an icon if they haven't specified a website.
 	if ($context['member']['website']['url'] !== '' && !isset($context['disabled_fields']['website']))
@@ -567,10 +567,10 @@ function template_showDrafts()
 						<h5><strong><a href="', $scripturl, '?board=', $draft['board']['id'], '.0">', $draft['board']['name'], '</a> / ', $draft['topic']['link'], '</strong> &nbsp; &nbsp;';
 
 			if (!empty($draft['sticky']))
-				echo '<span class="generic_icons sticky" title="', $txt['sticky_topic'], '"></span>';
+				echo '<i class="fa fa-sticky fa-lg" title="', $txt['sticky_topic'], '"></i>';
 
 			if (!empty($draft['locked']))
-				echo '<span class="generic_icons lock" title="', $txt['locked_topic'], '"></span>';
+				echo '<i class="fa fa-lock fa-lg" title="', $txt['locked_topic'], '"></i>';
 
 			echo '
 						</h5>
@@ -612,7 +612,7 @@ function template_editBuddies()
 	<div id="edit_buddies">
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<span class="generic_icons people icon"></span> ', $txt['editBuddies'], '
+				<i class="fa fa-user fa-lg"></i> ', $txt['editBuddies'], '
 			</h3>
 		</div>
 		<table class="table_grid">
@@ -651,7 +651,7 @@ function template_editBuddies()
 
 			if ($buddy['show_email'])
 				echo '
-					<td><a href="mailto:' . $buddy['email'] . '" rel="nofollow"><span class="generic_icons mail icon" title="' . $txt['email'] . ' ' . $buddy['name'] . '"></span></a></td>';
+					<td><a href="mailto:' . $buddy['email'] . '" rel="nofollow"><i class="fa fa-envelope fa-lg" title="' . $txt['email'] . ' ' . $buddy['name'] . '"></i></a></td>';
 
 			// Show the custom profile fields for this user.
 			if (!empty($context['custom_pf']))
@@ -660,7 +660,7 @@ function template_editBuddies()
 						<td class="lefttext">', $buddy['options'][$key], '</td>';
 
 			echo '
-					<td><a href="', $scripturl, '?action=profile;area=lists;sa=buddies;u=', $context['id_member'], ';remove=', $buddy['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons delete" title="', $txt['buddy_remove'], '"></span></a></td>
+					<td><a href="', $scripturl, '?action=profile;area=lists;sa=buddies;u=', $context['id_member'], ';remove=', $buddy['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-remove fa-lg" title="', $txt['buddy_remove'], '"></i></a></td>
 				</tr>';
 		}
 	}
@@ -755,9 +755,9 @@ function template_editIgnoreList()
 
 		if ($member['show_email'])
 			echo '
-				<td><a href="mailto:' . $member['email'] . '" rel="nofollow"><span class="generic_icons mail icon" title="' . $txt['email'] . ' ' . $member['name'] . '"></span></a></td>';
+				<td><a href="mailto:' . $member['email'] . '" rel="nofollow"><i class="fa fa-envelope fa-lg" title="' . $txt['email'] . ' ' . $member['name'] . '"></i></a></td>';
 		echo '
-				<td><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=lists;sa=ignore;remove=', $member['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons delete" title="', $txt['ignore_remove'], '"></span></a></td>
+				<td><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=lists;sa=ignore;remove=', $member['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-remove fa-lg" title="', $txt['ignore_remove'], '"></i></a></td>
 			</tr>';
 	}
 
@@ -1126,7 +1126,7 @@ function template_statPanel()
 		<div id="activitytime" class="flow_hidden">
 			<div class="title_bar">
 				<h3 class="titlebg">
-					<span class="generic_icons history"></span> ', $txt['statPanel_activityTime'], '
+					<i class="fa fa-history fa-lg"></i> ', $txt['statPanel_activityTime'], '
 				</h3>
 			</div>';
 
@@ -1169,7 +1169,7 @@ function template_statPanel()
 			<div class="half_content">
 				<div class="title_bar">
 					<h3 class="titlebg">
-						<span class="generic_icons replies"></span> ', $txt['statPanel_topBoards'], '
+						<i class="fa fa-sort-amount-desc fa-lg"></i> ', $txt['statPanel_topBoards'], '
 					</h3>
 				</div>';
 
@@ -1204,7 +1204,7 @@ function template_statPanel()
 			<div class="half_content">
 				<div class="title_bar">
 					<h3 class="titlebg">
-						<span class="generic_icons replies"></span> ', $txt['statPanel_topBoardsActivity'], '
+						<i class="fa fa-sort-amount-desc fa-lg"></i> ', $txt['statPanel_topBoardsActivity'], '
 					</h3>
 				</div>';
 
@@ -1787,7 +1787,7 @@ function template_alert_configuration()
 		{
 			echo '
 				<tr class="windowbg">
-					<td>', $txt['alert_' . $alert_id], isset($alert_details['help']) ? '<a href="' . $scripturl . '?action=helpadmin;help=' . $alert_details['help'] . '" onclick="return reqOverlayDiv(this.href);" class="help floatright"><span class="generic_icons help" title="'. $txt['help'].'"></span>' : '', '</td>';
+					<td>', $txt['alert_' . $alert_id], isset($alert_details['help']) ? '<a href="' . $scripturl . '?action=helpadmin;help=' . $alert_details['help'] . '" onclick="return reqOverlayDiv(this.href);" class="help floatright"><i class="fa fa-question-circle fa-lg" title="'. $txt['help'].'"></i>' : '', '</td>';
 
 			foreach ($context['alert_bits'] as $type => $bitmask)
 			{

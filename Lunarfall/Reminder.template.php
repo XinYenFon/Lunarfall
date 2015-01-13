@@ -99,14 +99,14 @@ function template_set_password()
 					<dd>
 						<input type="password" name="passwrd1" id="smf_autov_pwmain" size="22" class="input_password">
 						<span id="smf_autov_pwmain_div" style="display: none;">
-							<span id="smf_autov_pwmain_img" class="generic_icons invalid"></span>
+							<i id="smf_autov_pwmain_img" class="fa fa-lg invalid"></i>
 						</span>
 					</dd>
 					<dt>', $txt['verify_pass'], ': </dt>
 					<dd>
 						<input type="password" name="passwrd2" id="smf_autov_pwverify" size="22" class="input_password">
 						<span id="smf_autov_pwverify_div" style="display: none;">
-							<span id="smf_autov_pwverify_img" class="generic_icons invalid"></span>
+							<i id="smf_autov_pwverify_img" class="fa fa-lg invalid"></i>
 						</span>
 					</dd>
 				</dl>
@@ -152,14 +152,14 @@ function template_ask()
 					<dd>
 						<input type="password" name="passwrd1" id="smf_autov_pwmain" size="22" class="input_password">
 						<span id="smf_autov_pwmain_div" style="display: none;">
-							<span id="smf_autov_pwmain_img" class="generic_icons invalid"></span>
+							<i id="smf_autov_pwmain_img" class="fa fa-lg invalid"></i>
 						</span>
 					</dd>
 					<dt>', $txt['verify_pass'], ': </dt>
 					<dd>
 						<input type="password" name="passwrd2" id="smf_autov_pwverify" size="22" class="input_password">
 						<span id="smf_autov_pwverify_div" style="display: none;">
-							<span id="smf_autov_pwverify_img" class="generic_icons valid"></span>
+							<i id="smf_autov_pwverify_img" class="fa fa-lg valid"></i>
 						</span>
 					</dd>
 				</dl>

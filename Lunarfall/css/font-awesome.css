@@ -200,14 +200,16 @@
 .fa-th-list:before {
   content: "\f00b";
 }
-.fa-check:before {
+.fa-check:before,
+.valid:before {
   content: "\f00c";
 }
 .fa-remove:before,
 .fa-close:before,
 .fa-times:before,
 .button_delete:before,
-.fa-members_delete:before {
+.fa-members_delete:before,
+.invalid:before {
   content: "\f00d";
 }
 .fa-search-plus:before {
@@ -510,7 +512,9 @@
   content: "\f070";
 }
 .fa-warning:before,
-.fa-exclamation-triangle:before {
+.fa-exclamation-triangle:before,
+.fa-members_watched:before,
+.check:before {
   content: "\f071";
 }
 .fa-plane:before {
@@ -602,14 +606,16 @@
   content: "\f08c";
 }
 .fa-thumb-tack:before,
-.button_sticky:before {
+.button_sticky:before,
+.fa-sticky:before {
   content: "\f08d";
 }
 .fa-external-link:before {
   content: "\f08e";
 }
 .fa-sign-in:before,
-.fa-regcenter:before {
+.fa-regcenter:before,
+.fa-signup:before {
   content: "\f090";
 }
 .fa-trophy:before,
@@ -716,7 +722,8 @@
 .fa-users:before,
 .fa-mlist:before,
 .fa-membergroups:before,
-.fa-starters:before {
+.fa-starters:before,
+.fa-members_request:before {
   content: "\f0c0";
 }
 .fa-chain:before,
@@ -738,7 +745,8 @@
   content: "\f0c5";
 }
 .fa-paperclip:before,
-.fa-attachment:before {
+.fa-attachment:before,
+.fa-post_moderation_attach:before {
   content: "\f0c6";
 }
 .fa-save:before,
@@ -1020,7 +1028,8 @@
 }
 .fa-star-half-empty:before,
 .fa-star-half-full:before,
-.fa-star-half-o:before {
+.fa-star-half-o:before,
+.fa-frenemy:before {
   content: "\f123";
 }
 .fa-location-arrow:before {
@@ -1043,7 +1052,8 @@
 .fa-info:before {
   content: "\f129";
 }
-.fa-exclamation:before {
+.fa-exclamation:before,
+.fa-alerts:before {
   content: "\f12a";
 }
 .fa-superscript:before {
@@ -1692,7 +1702,8 @@
 .fa-birthday-cake:before {
   content: "\f1fd";
 }
-.fa-area-chart:before {
+.fa-area-chart:before,
+.fa-stats:before {
   content: "\f1fe";
 }
 .fa-pie-chart:before {
