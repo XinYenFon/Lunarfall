@@ -206,7 +206,8 @@
   content: "\f00b";
 }
 .fa-check:before,
-.valid:before {
+.valid:before,
+.fa-enable:before {
   content: "\f00c";
 }
 .fa-remove:before,
@@ -463,7 +464,8 @@
 .fa-check-circle-o:before {
   content: "\f05d";
 }
-.fa-ban:before {
+.fa-ban:before,
+.fa-disable:before {
   content: "\f05e";
 }
 .fa-arrow-left:before {

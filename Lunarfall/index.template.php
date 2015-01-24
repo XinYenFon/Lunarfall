@@ -288,13 +288,25 @@ function template_body_above()
 				<br>
 				', $settings['site_slogan'],'
 			</h1>';
-			if (!empty($settings['facebook']) || !empty($settings['twitter']) || !empty($settings['googleplus']))
-			echo '
-				<div class="social_media floatright">
-					',!empty($settings['facebook']) ? '<a href="//facebook.com/'. $settings['facebook'].'"><i class="fa fa-facebook-square fa-3x" title="Facebook"></i></a>' : '','
-					',!empty($settings['twitter']) ? '<a href="//twitter.com/'. $settings['twitter'].'"><i class="fa fa-twitter fa-3x" title="Twitter"></i></a>' : '','
-					',!empty($settings['googleplus']) ? '<a href="//plus.google.com/'. $settings['googleplus'].'"><i class="fa fa-google-plus fa-3x" title="Google+"></i></a>' : '','
-				</div>';
+
+	/* Social Media */
+	if (!empty($settings['facebook']) || !empty($settings['twitter']) || !empty($settings['googleplus']))
+		echo '
+			<div class="social_media floatright">
+				',!empty($settings['facebook']) ? '<a href="//facebook.com/'. $settings['facebook'].'"><i class="fa fa-facebook-square fa-3x" title="Facebook"></i></a>' : '','
+				',!empty($settings['twitter']) ? '<a href="//twitter.com/'. $settings['twitter'].'"><i class="fa fa-twitter fa-3x" title="Twitter"></i></a>' : '','
+				',!empty($settings['googleplus']) ? '<a href="//plus.google.com/'. $settings['googleplus'].'"><i class="fa fa-google-plus fa-3x" title="Google+"></i></a>' : '','
+			</div>';
+
+	/* Pop menu for small screens */
+	echo '
+		<div id="basic-modal" class="pop_menu floatleft">
+			<a class="basic"><i class="fa fa-reorder fa-2x"></i></a>
+		</div>
+		<div id="basic-modal-content">';
+			template_menu();
+	echo '
+		</div>';
 
 	echo'
 		</div>

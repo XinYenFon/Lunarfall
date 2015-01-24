@@ -823,7 +823,7 @@ img.sort, .sort {
 }
 /* Levels 2 and 3 submenu wrapper. */
 .dropmenu li ul {
-	top: 3.5em !important;
+	top: 4.5em !important;
 }
 .dropmenu li ul, .top_menu {
 	z-index: 90;
@@ -1549,7 +1549,7 @@ tr.windowbg td, .table_grid tr td {
 	background: none;
 }
 /* This is a small fix for dropmenu icons */
-.dropmenu .generic_icons, #profile_menu .generic_icons, .dropmenu img {
+.dropmenu img {
 	margin: -3px 8px 0 0;
 }
 
@@ -3208,13 +3208,6 @@ h3.profile_hd {
 	margin-bottom: 0.25em;
 }
 
-#reported_posts .generic_icons {
-	margin: -3px 3px 0 0;
-}
-#modcenter .generic_icons {
-	margin: -3px -3px 0 0;
-}
-
 /* Some colors for generic usage */
 .red, .invalid {
 	color: red;
@@ -3265,6 +3258,9 @@ i {
 #mlist .fa-sort-up {
 	margin: 0 0 0 5px;
 	vertical-align: -4px;
+}
+.social_media {
+	margin: 0 10px 0 0;
 }
 .social_media i {
 	margin: 10px 0 0 5px;
@@ -3325,4 +3321,68 @@ i {
 .qbuttons li:last-child {
 	border-right: 1px solid #2E3E4C;
 	border-top-right-radius: 3px;
+}
+/* If its collapsed you know what to do */
+.collapsed {
+	opacity: 0.5;
+	transition: 1s;
+}
+.collapsed:hover {
+	opacity: 1;
+}
+/* Hey here is something hidden from desktop :P */
+.pop_menu {
+	margin: 15px 0 0 15px;
+}
+
+/* Some new popup */
+#basic-modal-content, #basic-modal {
+	display:none;
+}
+#simplemodal-overlay {
+	height: 100%;
+	width: 100%;
+}
+#simplemodal-container {
+	width: 600px;
+	background-image: linear-gradient(to bottom, #1B2734 0%, #1F3954 50%);
+	box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+	transition: 1s;
+	/* Don't like forcing things but I hate JS */
+	height: auto !important;
+	top: 10% !important;
+}
+#simplemodal-container .simplemodal-wrap {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.4) 95%) repeat scroll 0% 0% transparent;
+	clear: both;
+}
+#simplemodal-container .dropmenu li {
+	float: none;
+	background: none;
+	box-shadow: none;
+	padding: 0;
+}
+#simplemodal-container .dropmenu li ul {
+	position: static;
+	border: none;
+	background: none;
+	box-shadow: none;
+	width: 100%;
+}
+#simplemodal-container .dropmenu li li {
+	width: 17em;
+	background: none;
+	box-shadow: none;
+}
+#simplemodal-container .hide_popup {
+	padding: 5px;
+}
+#simplemodal-container #main_menu {
+	float: none;
+}
+.simplemodal-close i {
+	margin: 0 5px 10px 0;
+}
+.simplemodal-wrap {
+	padding: 5px;
 }
