@@ -918,6 +918,7 @@ img.sort, .sort {
 /* Reposition as visible on hover. */
 .dropmenu li li:hover ul, .dropmenu li li ul {
 	left: -14px;
+	top: 2em !important;
 }
 .dropmenu li li.subsections > a::after {
 	position: absolute;
