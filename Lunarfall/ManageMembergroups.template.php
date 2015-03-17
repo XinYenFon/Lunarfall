@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -323,7 +323,7 @@ function template_edit_group()
 	echo '
 				</dl>
 				<input type="submit" name="save" value="', $txt['membergroups_edit_save'], '" class="button_submit">', $context['group']['allow_delete'] ? '
-				<input type="submit" name="delete" value="' . $txt['membergroups_delete'] . '" onclick="return confirm(\'' . ($context['is_moderator_group'] ? $txt['membergroups_confirm_delete_mod'] : $txt['membergroups_confirm_delete']) . '\');" class="button_submit">' : '', '
+				<input type="submit" name="delete" value="'. $txt['membergroups_delete'] .'" data-confirm="'. ($context['is_moderator_group'] ? $txt['membergroups_confirm_delete_mod'] : $txt['membergroups_confirm_delete']) .'" class="button_submit you_sure">' : '', '
 			</div>
 			<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 			<input type="hidden" name="', $context['admin-mmg_token_var'], '" value="', $context['admin-mmg_token'], '">

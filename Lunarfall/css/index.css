@@ -772,14 +772,17 @@ img.sort, .sort {
 	display: block;
 }
 #profile_menu .profile_user_links ol {
-	margin: 10px;
+	margin: 5px;
 }
 #profile_menu .profile_user_links li {
-	float: left;
-	width: 50%;
+	display: inline-block;
+	padding: 5px;
 }
-#profile_menu .profile_user_links li img {
-	margin-bottom: -1px;
+#profile_menu .profile_user_links li:hover {
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.4) 95%) repeat scroll 0% 0% transparent;
+}
+#profile_menu .profile_user_links i {
+	margin: 0;
 }
 #pm_menu, #alerts_menu {
 	max-height: 30em;
@@ -3386,4 +3389,10 @@ i {
 }
 .simplemodal-wrap {
 	padding: 5px;
+}
+#post_share .facebook {
+	color: #3B5998;
+}
+#post_share::after {
+	clear: both;
 }

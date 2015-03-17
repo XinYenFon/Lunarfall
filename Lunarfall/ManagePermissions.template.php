@@ -5,7 +5,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -712,6 +712,10 @@ function template_inline_permissions()
 
 	if (empty($modSettings['permission_enable_deny']))
 		echo '
+													<li>
+														<input type="checkbox" class="input_check" onclick="invertAll(this, this.form, \''. $context['current_permission']. '[\');">
+														<span>', $txt['check_all'], '</span>
+													</li>
 												</ul>';
 	else
 		echo '

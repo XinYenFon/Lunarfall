@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -362,7 +362,7 @@ function template_view_versions()
 	// Loop through every source file displaying its version - using javascript.
 	foreach ($context['file_versions'] as $filename => $version)
 		echo '
-								<tr class="windowbg2">
+								<tr class="windowbg">
 									<td class="half_table">
 										', $filename, '
 									</td>
@@ -400,7 +400,7 @@ function template_view_versions()
 
 	foreach ($context['default_template_versions'] as $filename => $version)
 		echo '
-									<tr class="windowbg2">
+									<tr class="windowbg">
 										<td class="half_table">
 											', $filename, '
 										</td>
@@ -440,7 +440,7 @@ function template_view_versions()
 	{
 		foreach ($files as $filename => $version)
 			echo '
-									<tr class="windowbg2">
+									<tr class="windowbg">
 										<td class="half_table">
 											', $filename, '.<em>', $language, '</em>.php
 										</td>
@@ -457,7 +457,7 @@ function template_view_versions()
 								</tbody>
 							</table>';
 
-	// Finally, display the version information for the currently selected theme - if it is not the default one.
+	// Display the version information for the currently selected theme - if it is not the default one.
 	if (!empty($context['template_versions']))
 	{
 		echo '
@@ -482,7 +482,49 @@ function template_view_versions()
 
 		foreach ($context['template_versions'] as $filename => $version)
 			echo '
-									<tr class="windowbg2">
+									<tr class="windowbg">
+										<td class="half_table">
+											', $filename, '
+										</td>
+										<td class="quarter_table">
+											<em id="yourTemplates', $filename, '">', $version, '</em>
+										</td>
+										<td class="quarter_table">
+											<em id="currentTemplates', $filename, '">??</em>
+										</td>
+									</tr>';
+
+		echo '
+								</tbody>
+							</table>';
+	}
+
+	// Display the tasks files version.
+	if (!empty($context['tasks_versions']))
+	{
+		echo '
+							<table class="table_grid">
+								<tbody>
+									<tr class="windowbg">
+										<td class="half_table">
+											<a href="#" id="Tasks-link">', $txt['dvc_tasks'] ,'</a>
+										</td>
+										<td class="quarter_table">
+											<em id="yourTemplates">??</em>
+										</td>
+										<td class="quarter_table">
+											<em id="currentTemplates">??</em>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table id="Tasks" class="table_grid">
+								<tbody>';
+
+		foreach ($context['tasks_versions'] as $filename => $version)
+			echo '
+									<tr class="windowbg">
 										<td class="half_table">
 											', $filename, '
 										</td>
@@ -519,7 +561,8 @@ function template_view_versions()
 									Sources: \'Sources\',
 									Default: \'Default\',
 									Languages: \'Languages\',
-									Templates: \'Templates\'
+									Templates: \'Templates\',
+									Tasks: \'Tasks\'
 								}
 							});
 						// ]]></script>';
@@ -1074,14 +1117,13 @@ function template_edit_profile_field()
 											<strong><label for="placement">', $txt['custom_edit_placement'], ':</label></strong>
 										</dt>
 										<dd>
-											<select name="placement" id="placement">
-												<option value="0"', $context['field']['placement'] == '0' ? ' selected' : '', '>', $txt['custom_edit_placement_standard'], '</option>
-												<option value="1"', $context['field']['placement'] == '1' ? ' selected' : '', '>', $txt['custom_edit_placement_with_icons'], '</option>
-												<option value="2"', $context['field']['placement'] == '2' ? ' selected' : '', '>', $txt['custom_edit_placement_above_signature'], '</option>
-												<option value="3"', $context['field']['placement'] == '3' ? ' selected' : '', '>', $txt['custom_profile_placement_below_signature'], '</option>
-												<option value="4"', $context['field']['placement'] == '4' ? ' selected' : '', '>', $txt['custom_profile_placement_below_avatar'], '</option>
-												<option value="5"', $context['field']['placement'] == '5' ? ' selected' : '', '>', $txt['custom_profile_placement_above_name'], '</option>
-												<option value="6"', $context['field']['placement'] == '6' ? ' selected' : '', '>', $txt['custom_profile_placement_bottom'], '</option>
+											<select name="placement" id="placement">';
+
+	foreach ($context['cust_profile_fields_placement'] as $order => $name)
+		echo '
+												<option value="', $order ,'"', $context['field']['placement'] == $order ? ' selected' : '', '>', $txt['custom_profile_placement_'. $name], '</option>';
+
+	echo '
 											</select>
 										</dd>
 										<dt>
@@ -1207,7 +1249,7 @@ function template_edit_profile_field()
 
 	if ($context['fid'])
 		echo '
-									<input type="submit" name="delete" value="', $txt['delete'], '" onclick="return confirm(\'', $txt['custom_edit_delete_sure'], '\');" class="button_submit">';
+									<input type="submit" name="delete" value="', $txt['delete'], '" data-confirm="', $txt['custom_edit_delete_sure'], '" class="button_submit you_sure">';
 
 	echo '
 							</div>

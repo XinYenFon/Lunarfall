@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -67,8 +67,8 @@ function template_error_log()
 					', $context['page_index'], '
 				</div>
 				<div class="floatright" style="margin-top: 1ex">
-					<input type="submit" name="removeSelection" value="' . $txt['remove_selection'] . '" onclick="return confirm(\'' . $txt['remove_selection_confirm'] . '\');" class="button_submit">
-					<input type="submit" name="delall" value="', $context['has_filter'] ? $txt['remove_filtered_results'] : $txt['remove_all'], '" onclick="return confirm(\'', $context['has_filter'] ? $txt['remove_filtered_results_confirm'] : $txt['sure_about_errorlog_remove'], '\');" class="button_submit">
+					<input type="submit" name="removeSelection" value="', $txt['remove_selection'] ,'" data-confirm="', $txt['remove_selection_confirm'] ,'" class="button_submit you_sure">
+					<input type="submit" name="delall" value="', ($context['has_filter'] ? $txt['remove_filtered_results'] : $txt['remove_all']) ,'" data-confirm="', ($context['has_filter'] ? $txt['remove_filtered_results_confirm'] : $txt['sure_about_errorlog_remove']) ,'" class="button_submit you_sure">
 				</div>
 			</div>
 			<table class="table_grid" id="error_log">
@@ -94,7 +94,7 @@ function template_error_log()
 				</tr>';
 
 	echo '
-				<tr class="windowbg">
+				<tr>
 					<td colspan="3" class="righttext" style="padding: 4px 8px;">
 						<label for="check_all1"><strong>', $txt['check_all'], '</strong></label>&nbsp;
 						<input type="checkbox" id="check_all1" onclick="invertAll(this, this.form, \'delete[]\'); this.form.check_all2.checked = this.checked;" class="input_check">
@@ -167,7 +167,7 @@ function template_error_log()
 	}
 
 	echo '
-				<tr class="windowbg">
+				<tr>
 					<td colspan="3" class="righttext" style="padding-right: 1.2ex">
 						<label for="check_all2"><strong>', $txt['check_all'], '</strong></label>&nbsp;
 						<input type="checkbox" id="check_all2" onclick="invertAll(this, this.form, \'delete[]\'); this.form.check_all1.checked = this.checked;" class="input_check">
@@ -180,8 +180,8 @@ function template_error_log()
 
 	echo '
 			<div class="floatright" style="margin-top: 1ex">
-				<input type="submit" name="removeSelection" value="' . $txt['remove_selection'] . '" onclick="return confirm(\'' . $txt['remove_selection_confirm'] . '\');" class="button_submit">
-				<input type="submit" name="delall" value="', $context['has_filter'] ? $txt['remove_filtered_results'] : $txt['remove_all'], '" onclick="return confirm(\'', $context['has_filter'] ? $txt['remove_filtered_results_confirm'] : $txt['sure_about_errorlog_remove'], '\');" class="button_submit">
+				<input type="submit" name="removeSelection" value="', $txt['remove_selection'] ,'" data-confirm="', $txt['remove_selection_confirm'] ,'" class="button_submit you_sure">
+				<input type="submit" name="delall" value="', ($context['has_filter'] ? $txt['remove_filtered_results'] : $txt['remove_all']) ,'" data-confirm="', ($context['has_filter'] ? $txt['remove_filtered_results_confirm'] : $txt['sure_about_errorlog_remove']) ,'" class="button_submit you_sure">
 			</div>
 			<br>';
 

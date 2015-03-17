@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -216,6 +216,9 @@ function template_main()
 	// Show quickreply
 	if ($context['can_reply'])
 	template_quickreply();
+
+		echo '
+				<script><!-- // --><![CDATA[';
 
 	if (!empty($options['display_quick_mod']) && $options['display_quick_mod'] == 1 && $context['can_remove_post'])
 		echo '
@@ -543,6 +546,11 @@ function template_single_post($message)
 	echo '</span>';
 
 	echo '
+									<span id="post_share" class="floatright">
+										<a href="#" class="facebook"><i class="fa fa-facebook fa-2x fa-fw"></i></a>
+										<a href="#" class="twitter"><i class="fa fa-twitter fa-2x fa-fw"></i></a>
+										<a href="#" class="gplus"><i class="fa fa-google-plus fa-2x fa-fw"></i></a>
+									</span>
 								</h5>
 								<div id="msg_', $message['id'], '_quick_mod"', $ignoring ? ' style="display:none;"' : '', '></div>
 							</div>';
@@ -644,58 +652,31 @@ function template_single_post($message)
 							</div>';
 	}
 
+	// And stuff below the attachments.
+	if ($context['can_report_moderator'] || !empty($context['can_see_likes']) || !empty($context['can_like']) || $message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
 	echo '
-						</div>
-						<div class="moderatorbar">';
+							<div class="under_message">';
 
-	// Are there any custom profile fields for above the signature?
-	if (!empty($message['custom_fields']['above_signature']))
-	{
+	// Maybe they want to report this post to the moderator(s)?
+	if ($context['can_report_moderator'])
 		echo '
-							<div class="custom_fields_above_signature">
-								<ul class="reset nolist">';
+								<ul class="floatright smalltext">
+									<li class="report_link"><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '">', $txt['report_to_mod'], '</a></li>
+								</ul>';
 
-		foreach ($message['custom_fields']['above_signature'] as $custom)
-			echo '
-									<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
-
-		echo '
-								</ul>
-							</div>';
-	}
-
-	// Show the member's signature?
-	if (!empty($message['member']['signature']) && empty($options['show_no_signatures']) && $context['signature_enabled'])
-		echo '
-							<div class="signature" id="msg_', $message['id'], '_signature"', $ignoring ? ' style="display:none;"' : '', '>', $message['member']['signature'], '</div>';
-
-
-	// Are there any custom profile fields for below the signature?
-	if (!empty($message['custom_fields']['below_signature']))
-	{
-		echo '
-							<div class="custom_fields_below_signature">
-								<ul class="reset nolist">';
-
-		foreach ($message['custom_fields']['below_signature'] as $custom)
-			echo '
-									<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
-
-		echo '
-								</ul>
-							</div>';
-	}
-
-	// Looks we can't haz fun with Likes... fine!
+	// What about likes?
 	if (!empty($modSettings['enable_likes']))
 	{
 		echo '
-					<ul class="floatleft likez">';
+								<ul class="floatleft">';
 
 		if (!empty($message['likes']['can_like']))
+		{
+			// @to-do fix this later (changes also changes stuff)
 			echo '
-						<li id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><i class="fa fa-', $message['likes']['you'] ? 'thumbs-o-down' : 'thumbs-o-up', ' fa-lg"></i>', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>';
-						
+									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><span class="generic_icons ', $message['likes']['you'] ? 'unlike' : 'like', '"></span> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>';
+		}
+
 		if (!empty($message['likes']['count']) && !empty($context['can_see_likes']))
 		{
 			$context['some_likes'] = true;
@@ -709,16 +690,12 @@ function template_single_post($message)
 			$base .= (isset($txt[$base . $count])) ? $count : 'n';
 
 			echo '
-						<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=msg;like=' . $message['id'] .';'. $context['session_var'] .'='. $context['session_id'], comma_format($count)), '</li>';
+									<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=msg;like=' . $message['id'] .';'. $context['session_var'] .'='. $context['session_id'], comma_format($count)), '</li>';
 		}
 
 		echo '
-					</ul>';
+								</ul>';
 	}
-	
-	echo '
-						</div>
-					</div>';
 
 	// Can i haz fun? k thx bai!
 	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
@@ -905,9 +882,7 @@ function template_quickreply()
 			<form action="', $scripturl, '?action=spellcheck" method="post" accept-charset="', $context['character_set'], '" name="spell_form" id="spell_form" target="spellWindow"><input type="hidden" name="spellstring" value=""></form>';
 
 	echo '
-				<script><!-- // --><![CDATA[';
-
-	echo '
+				<script><!-- // --><![CDATA[
 					var oQuickReply = new QuickReply({
 						bDefaultCollapsed: false,
 						iTopicId: ', $context['current_topic'], ',
@@ -920,6 +895,7 @@ function template_quickreply()
 						sClassExpanded: "toggle_down",
 						sJumpAnchor: "quickreply",
 						bIsFull: true
-					});';
+					});
+				// ]]></script>';
 }
 ?>
