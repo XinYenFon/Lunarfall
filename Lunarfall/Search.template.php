@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -309,7 +309,6 @@ function template_results()
 		{
 
 			echo '
-			<div class="search_results_posts">
 			<div class="windowbg">
 				<div class="flow_auto">';
 
@@ -367,8 +366,7 @@ function template_results()
 
 			echo '
 				</div>
-			</div>
-		</div>';
+			</div>';
 
 		}
 		if (!empty($context['topics']))
@@ -432,7 +430,6 @@ function template_results()
 			foreach ($topic['matches'] as $message)
 			{
 				echo '
-			<div class="search_results_posts">
 				<div class="windowbg">
 					<div class="counter">', $message['counter'], '</div>
 					<div class="topic_details">
@@ -460,8 +457,7 @@ function template_results()
 						</ul>';
 			echo '
 					<br class="clear">
-				</div>
-			</div>';
+				</div>';
 			}
 		}
 

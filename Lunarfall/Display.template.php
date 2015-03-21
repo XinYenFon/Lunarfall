@@ -546,11 +546,6 @@ function template_single_post($message)
 	echo '</span>';
 
 	echo '
-									<span id="post_share" class="floatright">
-										<a href="#" class="facebook"><i class="fa fa-facebook fa-2x fa-fw"></i></a>
-										<a href="#" class="twitter"><i class="fa fa-twitter fa-2x fa-fw"></i></a>
-										<a href="#" class="gplus"><i class="fa fa-google-plus fa-2x fa-fw"></i></a>
-									</span>
 								</h5>
 								<div id="msg_', $message['id'], '_quick_mod"', $ignoring ? ' style="display:none;"' : '', '></div>
 							</div>';
@@ -653,16 +648,9 @@ function template_single_post($message)
 	}
 
 	// And stuff below the attachments.
-	if ($context['can_report_moderator'] || !empty($context['can_see_likes']) || !empty($context['can_like']) || $message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
+	if (!empty($context['can_see_likes']) || !empty($context['can_like']))
 	echo '
 							<div class="under_message">';
-
-	// Maybe they want to report this post to the moderator(s)?
-	if ($context['can_report_moderator'])
-		echo '
-								<ul class="floatright smalltext">
-									<li class="report_link"><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '">', $txt['report_to_mod'], '</a></li>
-								</ul>';
 
 	// What about likes?
 	if (!empty($modSettings['enable_likes']))
@@ -677,26 +665,21 @@ function template_single_post($message)
 									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><span class="generic_icons ', $message['likes']['you'] ? 'unlike' : 'like', '"></span> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>';
 		}
 
-		if (!empty($message['likes']['count']) && !empty($context['can_see_likes']))
-		{
-			$context['some_likes'] = true;
-			$count = $message['likes']['count'];
-			$base = 'likes_';
-			if ($message['likes']['you'])
-			{
-				$base = 'you_' . $base;
-				$count--;
-			}
-			$base .= (isset($txt[$base . $count])) ? $count : 'n';
-
-			echo '
-									<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=msg;like=' . $message['id'] .';'. $context['session_var'] .'='. $context['session_id'], comma_format($count)), '</li>';
-		}
-
 		echo '
 								</ul>';
 	}
 
+	if (!empty($context['can_see_likes']) || !empty($context['can_like']))
+	echo '
+							</div>';
+
+	// Share this post! I order no?
+		echo '
+						<ul id="post_socialshare" class="qbuttons">
+							<li><a href="//facebook.com/sharer/sharer.php?u=', $message['href'], '" target="_blank"><i class="fa fa-facebook fa-lg fa-fw" title="', $txt['lunarfall_facebook'],'"></i></a></li>
+							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '"><i class="fa fa-twitter fa-lg fa-fw" title="', $txt['lunarfall_twitter'],'"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus fa-lg fa-fw" title="', $txt['lunarfall_gplus'],'"></i></a></li>
+						</ul>';
 	// Can i haz fun? k thx bai!
 	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
 	{
@@ -762,7 +745,9 @@ function template_single_post($message)
 							<li style="display: none;" id="in_topic_mod_check_', $message['id'], '"></li>';
 
 		echo '
-						</ul>';
+						</ul>
+				</div>
+			</div>';
 	}
 		echo '
 				</div>

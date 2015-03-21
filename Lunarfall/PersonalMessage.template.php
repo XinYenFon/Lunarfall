@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -1410,7 +1410,7 @@ function template_labels()
 		echo '
 		<div class="padding">
 			<input type="submit" name="save" value="', $txt['save'], '" class="button_submit">
-			<input type="submit" name="delete" value="', $txt['quickmod_delete_selected'], '" onclick="return confirm(\'', $txt['pm_labels_delete'], '\');" class="button_submit">
+			<input type="submit" name="delete" value="', $txt['quickmod_delete_selected'], '" data-confirm="', $txt['pm_labels_delete'] ,'" class="button_submit you_sure">
 		</div>';
 
 	echo '
@@ -1568,7 +1568,7 @@ function template_rules()
 	if (!empty($context['rules']))
 		echo '
 			<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-			<input type="submit" name="delselected" value="', $txt['pm_delete_selected_rule'], '" onclick="return confirm(\'', $txt['pm_js_delete_rule_confirm'], '\');" class="button_submit smalltext">';
+			<input type="submit" name="delselected" value="', $txt['pm_delete_selected_rule'], '" data-confirm="', $txt['pm_js_delete_rule_confirm'] ,'" class="button_submit smalltext you_sure">';
 
 	echo '
 		</div>

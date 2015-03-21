@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -311,8 +311,6 @@ function template_registration_form()
 				"password_valid": "', $txt['registration_password_valid'], '"
 			};
 			var verificationHandle = new smfRegister("registration", ', empty($modSettings['password_strength']) ? 0 : $modSettings['password_strength'], ', regTextStrings);
-			// Update the authentication status.
-			updateAuthMethod();
 		// ]]></script>';
 }
 

@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2014 Simple Machines and individual contributors
+ * @copyright 2015 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 1
@@ -48,7 +48,7 @@ function template_profile_popup()
 
 	echo '
 		<div class="profile_user_avatar">
-			', $context['member']['avatar']['image'],'
+			<a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['member']['avatar']['image'],'</a>
 		</div>
 		<div class="profile_user_info">
 			<span class="profile_username"><a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['user']['name'], '</a></span>
@@ -144,12 +144,52 @@ function template_summary()
 	// Display the basic information about the user
 	echo '
 	<div id="profileview" class="roundframe flow_auto">
-		<div id="basicinfo">
-			<div class="username">
+		<div id="basicinfo">';
+
+	// Are there any custom profile fields for above the name?
+	if (!empty($context['print_custom_fields']['above_member']))
+	{
+		echo '
+			<div class="custom_fields_above_name">
+				<ul >';
+
+		foreach ($context['print_custom_fields']['above_member'] as $field)
+			if (!empty($field['output_html']))
+				echo '
+					<li>', $field['output_html'], '</li>';
+
+		echo '
+				</ul>
+			</div>
+			<br>';
+	}
+
+	echo '
+			<div class="username clear">
 				<h4>', $context['member']['name'], '<span class="position">', (!empty($context['member']['group']) ? $context['member']['group'] : $context['member']['post_group']), '</span></h4>
 			</div>
-			', $context['member']['avatar']['image'], '
-			<ul class="reset">';
+			', $context['member']['avatar']['image'];
+
+	// Are there any custom profile fields for below the avatar?
+	if (!empty($context['print_custom_fields']['below_avatar']))
+	{
+		echo '
+			<div class="custom_fields_below_avatar">
+				<ul >';
+
+		foreach ($context['print_custom_fields']['below_avatar'] as $field)
+			if (!empty($field['output_html']))
+				echo '
+					<li>', $field['output_html'], '</li>';
+
+		echo '
+				</ul>
+			</div>
+			<br>';
+	}
+
+		echo '
+			<ul class="reset clear">';
 	// Email is only visible if it's your profile or you have the moderate_forum permission
 	if ($context['member']['show_email'])
 		echo '
@@ -160,11 +200,11 @@ function template_summary()
 		echo '
 				<li><a href="', $context['member']['website']['url'], '" title="' . $context['member']['website']['title'] . '" target="_blank" class="new_win">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg" title="' . $context['member']['website']['title'] . '"></i>' : $txt['www']), '</a></li>';
 
-	// Are there any custom profile fields for the summary?
-	if (!empty($context['custom_fields']))
+	// Are there any custom profile fields as icons?
+	if (!empty($context['print_custom_fields']['icons']))
 	{
-		foreach ($context['custom_fields'] as $field)
-			if (($field['placement'] == 1 || empty($field['output_html'])) && !empty($field['value']))
+		foreach ($context['print_custom_fields']['icons'] as $field)
+			if (!empty($field['output_html']))
 				echo '
 					<li class="custom_field">', $field['output_html'], '</li>';
 	}
@@ -195,8 +235,27 @@ function template_summary()
 	echo '
 			<a href="', $scripturl, '?action=profile;area=statistics;u=', $context['id_member'], '" class="infolinks">', $txt['statPanel'], '</a>';
 
+	// Are there any custom profile fields for bottom?
+	if (!empty($context['print_custom_fields']['bottom_poster']))
+	{
+		echo '
+			<div class="custom_fields_bottom">
+				<ul class="reset nolist">';
+
+		foreach ($context['print_custom_fields']['bottom_poster'] as $field)
+			if (!empty($field['output_html']))
+				echo '
+					<li>', $field['output_html'], '</li>';
+
+		echo '
+				</ul>
+			</div>';
+	}
+
 	echo '
-		</div>
+		</div>';
+
+	echo '
 		<div id="detailedinfo">
 			<dl>';
 
@@ -235,28 +294,18 @@ function template_summary()
 			</dl>';
 
 	// Any custom fields for standard placement?
-	if (!empty($context['custom_fields']))
+	if (!empty($context['print_custom_fields']['standard']))
 	{
-		$shown = false;
-		foreach ($context['custom_fields'] as $field)
-		{
-			if ($field['placement'] != 0 || empty($field['output_html']))
-				continue;
-
-			if (empty($shown))
-			{
-				echo '
+		echo '
 				<dl>';
-				$shown = true;
-			}
 
-			echo '
+		foreach ($context['print_custom_fields']['standard'] as $field)
+			if (!empty($field['output_html']))
+				echo '
 					<dt>', $field['name'], ':</dt>
 					<dd>', $field['output_html'], '</dd>';
-		}
 
-		if (!empty($shown))
-			echo '
+		echo '
 				</dl>';
 	}
 
@@ -287,7 +336,7 @@ function template_summary()
 		// If the person looking at the summary has permission, and the account isn't activated, give the viewer the ability to do it themselves.
 		if (!empty($context['activate_message']))
 			echo '
-					<dt class="clear"><span class="alert">', $context['activate_message'], '</span>&nbsp;(<a href="', $context['activate_link'], '"', ($context['activate_type'] == 4 ? ' onclick="return confirm(\'' . $txt['profileConfirm'] . '\');"' : ''), '>', $context['activate_link_text'], '</a>)</dt>';
+					<dt class="clear"><span class="alert">', $context['activate_message'], '</span>&nbsp;(<a href="', $context['activate_link'], '"', ($context['activate_type'] == 4 ? ' class="you_sure" data-confirm="'. $txt['profileConfirm'] .'"' : ''), '>', $context['activate_link_text'], '</a>)</dt>';
 
 		// If the current member is banned, show a message and possibly a link to the ban.
 		if (!empty($context['member']['bans']))
@@ -341,26 +390,19 @@ function template_summary()
 	echo '
 				</dl>';
 
-	// Are there any custom profile fields for the summary?
-	if (!empty($context['custom_fields']))
+	// Are there any custom profile fields for above the signature?
+	if (!empty($context['print_custom_fields']['above_signature']))
 	{
-		$shown = false;
-		foreach ($context['custom_fields'] as $field)
-		{
-			if ($field['placement'] != 2 || empty($field['output_html']))
-				continue;
-			if (empty($shown))
-			{
-				$shown = true;
-				echo '
+		echo '
 				<div class="custom_fields_above_signature">
 					<ul class="reset nolist">';
-			}
-			echo '
-						<li>', $field['output_html'], '</li>';
-		}
-		if ($shown)
+
+		foreach ($context['print_custom_fields']['above_signature'] as $field)
+			if (!empty($field['output_html']))
 				echo '
+						<li>', $field['output_html'], '</li>';
+
+		echo '
 					</ul>
 				</div>';
 	}
@@ -372,6 +414,23 @@ function template_summary()
 					<h5>', $txt['signature'], ':</h5>
 					', $context['member']['signature'], '
 				</div>';
+
+	// Are there any custom profile fields for below the signature?
+	if (!empty($context['print_custom_fields']['below_signature']))
+	{
+		echo '
+				<div class="custom_fields_below_signature">
+					<ul class="reset nolist">';
+
+		foreach ($context['print_custom_fields']['below_signature'] as $field)
+			if (!empty($field['output_html']))
+				echo '
+						<li>', $field['output_html'], '</li>';
+
+		echo '
+					</ul>
+				</div>';
+	}
 
 	echo '
 		</div>
@@ -474,29 +533,30 @@ function template_showAlerts()
 	// Do we have an update message?
 	if (!empty($context['update_message']))
 		echo '
-			<div class="infobox">
-				', $context['update_message'], '.
-			</div>';
+		<div class="infobox">
+			', $context['update_message'], '.
+		</div>';
 
 	echo '
-		<table id="alerts" class="table_grid">
-			<tr class="title_bar">
-				<th>', $txt['alerts'], ' - ', $context['member']['name'], '</th>
-			</tr>';
+		<div class="cat_bar">
+			<h3 class="catbg">
+			', $txt['alerts'], ' - ', $context['member']['name'], '
+			</h3>
+		</div>';
 
 	if (empty($context['alerts']))
 		echo '
-			<tr class="windowbg2 centertext">
-				<td>', $txt['alerts_none'], '</td>
-			</tr>
-		</table>';
+		<div class="information">
+			', $txt['alerts_none'], '
+		</div>';
+
 	else
 	{
 		// Start the form.
 		echo '
-		<form action="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;save" method="post" accept-charset="', $context['character_set'], '" id="mark_all">';
+		<form action="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;save" method="post" accept-charset="', $context['character_set'], '" id="mark_all">
+			<table id="alerts" class="table_grid">';
 
-		$counter = 1;
 		foreach ($context['alerts'] as $id => $alert)
 		{
 			echo '
@@ -527,7 +587,7 @@ function template_showAlerts()
 						<option value="remove">', $txt['quick_mod_remove'] ,'</option>
 					</select>
 					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-					<input type="submit" name="req" value="', $txt['quick_mod_go'] ,'" onclick="return confirm(\'' . $txt['quickmod_confirm'] . '\');" class="button_submit">
+					<input type="submit" name="req" value="', $txt['quick_mod_go'] ,'" class="button_submit you_sure">
 				</div>
 			</div>
 		</form>';
@@ -1689,8 +1749,8 @@ function template_alert_configuration()
 				', $txt['alert_prefs'], '
 			</h3>
 		</div>
-		<p class="information">', $txt['alert_prefs_desc'], '</p>
-		<form action="', $scripturl, '?action=profile;area=notification;sa=alerts" id="admin_form_wrapper" method="post" accept-charset="', $context['character_set'], '" id="notify_options" class="flow_hidden">
+		<p class="information">', (empty($context['description']) ? $txt['alert_prefs_desc'] : $context['description']), '</p>
+		<form action="', $scripturl, '?', $context['action'], '" id="admin_form_wrapper" method="post" accept-charset="', $context['character_set'], '" id="notify_options" class="flow_hidden">
 			<div class="cat_bar">
 				<h3 class="catbg">
 					', $txt['notification_general'], '
@@ -1728,11 +1788,11 @@ function template_alert_configuration()
 					', $txt['notify_what_how'], '
 				</h3>
 			</div>
-			<table class="table_grid" style="width: 100%">
+			<table class="table_grid">
 				<tr>
 					<td></td>
-					<td>', $txt['receive_alert'], '</td>
-					<td>', $txt['receive_mail'], '</td>
+					<td class="centercol">', $txt['receive_alert'], '</td>
+					<td class="centercol">', $txt['receive_mail'], '</td>
 				</tr>';
 
 	foreach ($context['alert_types'] as $alert_group => $alerts)

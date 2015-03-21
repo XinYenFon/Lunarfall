@@ -3269,7 +3269,7 @@ i {
 .social_media i {
 	margin: 10px 0 0 5px;
 }
-.fa-facebook-square {
+.fa-facebook-square, .fa-facebook {
 	color: #3b5998;
 }
 .fa-twitter {
@@ -3390,9 +3390,8 @@ i {
 .simplemodal-wrap {
 	padding: 5px;
 }
-#post_share .facebook {
-	color: #3B5998;
-}
-#post_share::after {
-	clear: both;
+
+#post_socialshare.qbuttons {
+	float: left;
+	clear: left;
 }
