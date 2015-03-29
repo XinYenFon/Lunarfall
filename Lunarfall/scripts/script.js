@@ -356,8 +356,6 @@ smc_PopupMenu.prototype.add = function (sItem, sUrl)
 
 	$item.click({obj: this}, function (e) {
 		e.preventDefault();
-		if (e.target != this)
-			return;
 
 		e.data.obj.toggle(sItem);
 	});
@@ -945,11 +943,6 @@ smc_Toggle.prototype.changeState = function(bCollapse, bInit)
 			else
 			{
 				if (bCollapse)
-					$(oContainer).slideUp();
-				else
-					$(oContainer).slideDown();
-				
-				if (bCollapse)
 				{
 					if (this.opt.aHeader != null && this.opt.aHeader.hasClass('cat_bar'))
 						$(this.opt.aHeader).addClass('collapsed');
@@ -960,7 +953,7 @@ smc_Toggle.prototype.changeState = function(bCollapse, bInit)
 					if (this.opt.aHeader != null && this.opt.aHeader.hasClass('cat_bar'))
 						$(this.opt.aHeader).removeClass('collapsed');
 					$(oContainer).slideDown();
-				} 
+				}
 			}
 		}
 	}
@@ -1627,5 +1620,13 @@ $(function()
 		{
 			$(item).css('display', 'none');
 		});
+	});
+
+	// Generic confirmation message.
+	$('.you_sure').on('click', function() {
+
+		var custom_message = $(this).attr('data-confirm');
+
+		return confirm(custom_message ? custom_message.replace(/-n-/g, "\n") : smf_you_sure);
 	});
 })
