@@ -34,7 +34,7 @@ function template_recent()
 	foreach ($context['posts'] as $post)
 	{
 		echo '
-			<div class="windowbg">
+			<div class="', $post['css_class'] ,'">
 					<div class="counter">', $post['counter'], '</div>
 					<div class="topic_details">
 						<h5>', $post['board']['link'], ' / ', $post['link'], '</h5>
@@ -42,7 +42,7 @@ function template_recent()
 					</div>
 					<div class="list_posts">', $post['message'], '</div>';
 
-		if ($post['can_reply'] || $post['can_delete'])
+		if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 			echo '
 					<ul class="qbuttons">';
 
@@ -59,9 +59,9 @@ function template_recent()
 		// How about... even... remove it entirely?!
 		if ($post['can_delete'])
 			echo '
-						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';recent;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><i class="fa fa-remove fa-lg" title="', $txt['remove'], '"></i></a></li>';
+						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';recent;', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'] ,'" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['remove'], '</a></li>';
 
-		if ($post['can_reply'] || $post['can_delete'])
+		if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 			echo '
 					</ul>';
 
@@ -127,19 +127,8 @@ function template_unread()
 
 		foreach ($context['topics'] as $topic)
 		{
-			$color_class = 'windowbg';
-
-			// Sticky topics should get a different color, too.
-			if ($topic['is_sticky'])
-				$color_class = 'sticky ' . $color_class;
-			// Locked topics get special treatment as well.
-			if ($topic['is_locked'])
-				$color_class = 'locked ' . $color_class;
-
-			$color_class2 = $color_class . '2';
-
 			echo '
-					<div class="', $color_class, '">
+					<div class="', $topic['css_class'], '">
 						<div class="icon">
 							<img src="', $topic['first_post']['icon_url'], '" alt="">
 								', $topic['is_posted_in'] ? '<img src="'. $settings['images_url']. '/icons/profile_sm.png" alt="" style="position: absolute; z-index: 5; right: 4px; bottom: -3px;">' : '','
@@ -276,19 +265,8 @@ function template_replies()
 
 		foreach ($context['topics'] as $topic)
 		{
-			$color_class = 'windowbg';
-
-			// Sticky topics should get a different color, too.
-			if ($topic['is_sticky'])
-				$color_class = 'sticky ' . $color_class;
-			// Locked topics get special treatment as well.
-			if ($topic['is_locked'])
-				$color_class = 'locked ' . $color_class;
-
-			$color_class2 = $color_class . '2';
-
 			echo '
-						<div class="', $color_class, '">
+						<div class="', $topic['css_class'], '">
 							<div class="icon">
 								<img src="', $topic['first_post']['icon_url'], '" alt="">
 								', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '','

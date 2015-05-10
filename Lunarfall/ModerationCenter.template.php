@@ -330,7 +330,7 @@ function template_notes()
 			// Cycle through the notes.
 			foreach ($context['notes'] as $note)
 				echo '
-							<li class="smalltext">', ($note['can_delete'] ? '<a href="'. $note['delete_href'] .';'. $context['mod-modnote-del_token_var'] .'='. $context['mod-modnote-del_token'] .'" class="delete_modnote"><i class="fa fa-remove fa-lg"></i></a>' : ''), $note['time'] ,' <strong>', $note['author']['link'], ':</strong> ', $note['text'], '</li>';
+							<li class="smalltext">', ($note['can_delete'] ? '<a href="'. $note['delete_href'] .';'. $context['mod-modnote-del_token_var'] .'='. $context['mod-modnote-del_token'] .'" data-confirm="'. $txt['mc_reportedp_delete_confirm'] .'" class="you_sure"><span class="generic_icons delete"></span></a>' : ''), $note['time'] ,' <strong>', $note['author']['link'], ':</strong> ', $note['text'], '</li>';
 
 			echo '
 						</ul>
@@ -418,7 +418,7 @@ function template_unapproved_posts()
 			<div class="floatright">
 				<select name="do" onchange="if (this.value != 0 &amp;&amp; confirm(\'', $txt['mc_unapproved_sure'], '\')) submit();">
 					<option value="0">', $txt['with_selected'], ':</option>
-					<option value="0">-------------------</option>
+					<option value="0" disabled>-------------------</option>
 					<option value="approve">&nbsp;--&nbsp;', $txt['approve'], '</option>
 					<option value="delete">&nbsp;--&nbsp;', $txt['delete'], '</option>
 				</select>

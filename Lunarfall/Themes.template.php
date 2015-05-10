@@ -232,11 +232,11 @@ function template_list_themes()
 
 				// Enable/Disable.
 				echo '
-					<a href="', $scripturl, '?action=admin;area=theme;sa=enable;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tre_token_var'], '=', $context['admin-tre_token'], '', (!empty($theme['enable']) ? ';disabled' : '') ,'" onclick="return confirm(\'', $txt['theme_'. (!empty($theme['enable']) ? 'disable' : 'enable') .'_confirm'], '\');"><i class="fa fa-',!empty($theme['enable']) ? 'disable' : 'enable',' fa-lg" title="', $txt['theme_'. (!empty($theme['enable']) ? 'disable' : 'enable')] ,'"></i></a>';
+					<a href="', $scripturl, '?action=admin;area=theme;sa=enable;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tre_token_var'], '=', $context['admin-tre_token'], '', (!empty($theme['enable']) ? ';disabled' : '') ,'" data-confirm="', $txt['theme_'. (!empty($theme['enable']) ? 'disable' : 'enable') .'_confirm'], '" class="you_sure"><span class="generic_icons ',!empty($theme['enable']) ? 'disable' : 'enable','" title="', $txt['theme_'. (!empty($theme['enable']) ? 'disable' : 'enable')] ,'"></span></a>';
 
 				// Deleting.
 				echo '
-						<a href="', $scripturl, '?action=admin;area=theme;sa=remove;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tr_token_var'], '=', $context['admin-tr_token'], '" onclick="return confirm(\'', $txt['theme_remove_confirm'], '\');"><i class="fa fa-remove fa-lg" title="', $txt['theme_remove'], '"></i></a>';
+						<a href="', $scripturl, '?action=admin;area=theme;sa=remove;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tr_token_var'], '=', $context['admin-tr_token'], '" data-confirm="', $txt['theme_remove_confirm'], '" class="you_sure"><span class="generic_icons delete" title="', $txt['theme_remove'], '"></span></a>';
 
 				echo '
 					</span>';

@@ -112,7 +112,8 @@ function template_main()
 	if (!empty($context['search_params']['topic']))
 		echo '
 				<p>', $txt['search_specific_topic'], ' &quot;', $context['search_topic']['link'], '&quot;.</p>
-				<input type="hidden" name="topic" value="', $context['search_topic']['id'], '">';
+				<input type="hidden" name="topic" value="', $context['search_topic']['id'], '">
+				<input type="submit" name="b_search" value="', $txt['search'], '" class="button_submit">';
 
 	echo '
 			</div>
@@ -309,7 +310,7 @@ function template_results()
 		{
 
 			echo '
-			<div class="windowbg">
+			<div class="', $topic['css_class'] ,'">
 				<div class="flow_auto">';
 
 			foreach ($topic['matches'] as $message)
@@ -335,11 +336,11 @@ function template_results()
 					{
 						if ($topic['quick_mod']['remove'])
 							echo '
-						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=remove;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['quickmod_confirm'], '\');"><i class="fa fa-remove fa-lg" title="', $txt['remove_topic'], '"></i></a>';
+						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=remove;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons delete" title="', $txt['remove_topic'], '"></span></a>';
 
 						if ($topic['quick_mod']['lock'])
 							echo '
-						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=lock;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['quickmod_confirm'], '\');"><i class="fa ', $topic['is_locked'] ? 'fa-unlock' : 'fa-lock',' fa-lg" title="', $topic['is_locked'] ? $txt['set_unlock'] : $txt['set_lock'], '"></i></a>';
+						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=lock;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons lock" title="', $topic['is_locked'] ? $txt['set_unlock'] : $txt['set_lock'], '"></span></a>';
 
 						if ($topic['quick_mod']['lock'] || $topic['quick_mod']['remove'])
 							echo '
@@ -347,7 +348,7 @@ function template_results()
 
 						if ($topic['quick_mod']['sticky'])
 							echo '
-						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=sticky;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['quickmod_confirm'], '\');"><i class="fa fa-thumb-tack fa-lg" title="', $topic['is_sticky'] ? $txt['set_nonsticky'] : $txt['set_sticky'], '"></i></a>';
+						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=sticky;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons sticky" title="', $topic['is_sticky'] ? $txt['set_nonsticky'] : $txt['set_sticky'], '"></span></a>';
 
 						if ($topic['quick_mod']['move'])
 							echo '
@@ -430,7 +431,7 @@ function template_results()
 			foreach ($topic['matches'] as $message)
 			{
 				echo '
-				<div class="windowbg">
+				<div class="', $topic['css_class'] ,'">
 					<div class="counter">', $message['counter'], '</div>
 					<div class="topic_details">
 						<h5>', $topic['board']['link'], ' / <a href="', $scripturl, '?topic=', $topic['id'], '.', $message['start'], ';topicseen#msg', $message['id'], '">', $message['subject_highlighted'], '</a></h5>

@@ -54,14 +54,13 @@ function template_pm_popup()
 	// Unlike almost every other template, this is designed to be included into the HTML directly via $().load()
 	echo '
 		<div class="pm_bar">
-			<div class="pm_sending floatright">
+			<div class="pm_sending block">
 				', $context['can_send_pm'] ? '<a href="' . $scripturl . '?action=pm;sa=send">' . $txt['pm_new_short'] . '</a> | ' : '', '
-				', $context['can_draft'] ? '<a href="' . $scripturl . '?action=pm;sa=showpmdrafts">' . $txt['pm_drafts_short'] . '</a> | ' : '', '
-				<a href="', $scripturl, '?action=pm;sa=settings">', $txt['pm_settings_short'], '</a>
+				', $context['can_draft'] ? '<a href="' . $scripturl . '?action=pm;sa=showpmdrafts">' . $txt['pm_drafts_short'] . '</a>' : '', '
+				<a href="', $scripturl, '?action=pm;sa=settings" class="floatright">', $txt['pm_settings_short'], '</a>
 			</div>
-			<div class="pm_mailbox floatleft">
-				<a href="', $scripturl, '?action=pm">', $txt['inbox'], '</a>
-				| <a href="', $scripturl, '?action=pm;f=sent">', $txt['pm_sent_short'], '</a>
+			<div class="pm_mailbox centertext">
+				<a href="', $scripturl, '?action=pm" class="button">', $txt['inbox'], '</a>
 			</div>
 		</div>
 		<div class="pm_unread">';
@@ -1923,8 +1922,8 @@ function template_showPMDrafts()
 						', $draft['body'], '
 					</div>
 					<ul class="qbuttons">
-						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;id_draft=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-pencil fa-lg" title="', $txt['draft_edit'], '"></i></a></li>
-						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['draft_remove'], '?\');"><i class="fa fa-remove fa-lg title="', $txt['draft_delete'], '"></i></a></li>
+						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;id_draft=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons modifybutton"></span>', $txt['draft_edit'], '</a></li>
+						<li><a href="', $scripturl, '?action=pm;sa=showpmdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['draft_remove'] ,'?" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['draft_delete'], '</a></li>
 					</ul>
 				</div>';
 		}

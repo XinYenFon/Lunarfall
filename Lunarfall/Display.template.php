@@ -338,7 +338,7 @@ function template_single_post($message)
 
 	// Show the message anchor and a "new" anchor if this message is new.
 	echo '
-				<div class="windowbg', $message['approved'] ? '' : ' approvebg', ' nopad">', $message['id'] != $context['first_message'] ? '
+				<div class="', $message['css_class'] ,' nopad">', $message['id'] != $context['first_message'] ? '
 					<a id="msg' . $message['id'] . '"></a>' . ($message['first_new'] ? '<a id="new"></a>' : '') : '', '
 					<div class="post_wrapper">';
 
@@ -568,7 +568,7 @@ function template_single_post($message)
 									', $txt['post_awaiting_approval'], '
 								</div>';
 	echo '
-								<div class="inner" id="msg_', $message['id'], '"', $ignoring ? ' style="display:none;"' : '', '>', $message['body'], '</div>
+								<div class="inner" data-msgid="', $message['id'], '" id="msg_', $message['id'], '"', $ignoring ? ' style="display:none;"' : '', '>', $message['body'], '</div>
 							</div>';
 
 	// Assuming there are attachments...
@@ -648,7 +648,7 @@ function template_single_post($message)
 	}
 
 	// And stuff below the attachments.
-	if (!empty($context['can_see_likes']) || !empty($context['can_like']))
+	if ($context['can_report_moderator'] || !empty($context['can_see_likes']) || !empty($context['can_like']) || $message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
 	echo '
 							<div class="under_message">';
 
@@ -660,7 +660,6 @@ function template_single_post($message)
 
 		if (!empty($message['likes']['can_like']))
 		{
-			// @to-do fix this later (changes also changes stuff)
 			echo '
 									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><span class="generic_icons ', $message['likes']['you'] ? 'unlike' : 'like', '"></span> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>';
 		}
@@ -673,6 +672,8 @@ function template_single_post($message)
 	echo '
 							</div>';
 
+	echo '
+			<div class="signature" id="msg_', $message['id'], '_signature"', $ignoring ? ' style="display:none;"' : '', '>', $message['member']['signature'], '</div>';
 	// Share this post! I order no?
 		echo '
 						<ul id="post_socialshare" class="qbuttons">
@@ -749,7 +750,24 @@ function template_single_post($message)
 				</div>
 			</div>';
 	}
+
+	// Are there any custom profile fields for below the signature?
+	if (!empty($message['custom_fields']['below_signature']))
+	{
 		echo '
+							<div class="custom_fields_below_signature">
+								<ul class="reset nolist">';
+
+		foreach ($message['custom_fields']['below_signature'] as $custom)
+			echo '
+									<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
+
+		echo '
+								</ul>
+							</div>';
+	}
+
+	echo '
 				</div>
 				<hr class="post_separator">';
 }

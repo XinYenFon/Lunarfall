@@ -263,6 +263,7 @@ $txt['dvc_sources'] = 'Sources';
 $txt['dvc_default'] = 'Default Templates';
 $txt['dvc_templates'] = 'Current Templates';
 $txt['dvc_languages'] = 'Language Files';
+$txt['dvc_tasks'] = 'Background Tasks';
 
 $txt['smileys_default_set_for_theme'] = 'Select default smiley set for this theme';
 $txt['smileys_no_default'] = '(use global default smiley set)';
@@ -610,7 +611,7 @@ $txt['not_done_reason'] = 'To avoid overloading your server, the process has bee
 $txt['not_done_continue'] = 'Continue';
 
 $txt['general_settings'] = 'General';
-$txt['database_paths_settings'] = 'Database and Paths';
+$txt['database_settings'] = 'Database';
 $txt['cookies_sessions_settings'] = 'Cookies and Sessions';
 $txt['security_settings'] = 'Security';
 $txt['caching_settings'] = 'Caching';
@@ -742,5 +743,9 @@ $txt['likes_like'] = 'Membergroups allowed to like posts';
 $txt['likes_view'] = 'Membergroups allowed to view likes';
 
 $txt['mention'] = 'Membergroups allowed to mention users';
+
+$txt['notifications'] = 'Notifications';
+$txt['notify_settings'] = 'Notification Settings';
+$txt['notifications_desc'] = 'This page allows you to set the default notification options for users.';
 
 ?>

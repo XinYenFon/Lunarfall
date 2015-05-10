@@ -47,10 +47,10 @@ function template_profile_popup()
 	// Unlike almost every other template, this is designed to be included into the HTML directly via $().load()
 
 	echo '
-		<div class="profile_user_avatar">
+		<div class="profile_user_avatar floatleft">
 			<a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['member']['avatar']['image'],'</a>
 		</div>
-		<div class="profile_user_info">
+		<div class="profile_user_info floatleft">
 			<span class="profile_username"><a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['user']['name'], '</a></span>
 			<span class="profile_group">', $context['member']['group'], '</span>
 		</div>
@@ -72,6 +72,7 @@ function template_profile_popup()
 
 	echo '
 			</ol>
+			<br class="clear">
 		</div>';
 }
 
@@ -82,12 +83,12 @@ function template_alerts_popup()
 	// Unlike almost every other template, this is designed to be included into the HTML directly via $().load()
 	echo '
 		<div class="alert_bar">
-			<div class="alerts_opts floatright">
+			<div class="alerts_opts block">
 				<a href="' . $scripturl . '?action=profile;area=notification;sa=markread;', $context['session_var'], '=', $context['session_id'], '" onclick="return markAlertsRead(this)">', $txt['mark_alerts_read'], '</a>
-				| <a href="', $scripturl, '?action=profile;area=notification;sa=alerts">', $txt['alert_settings'], '</a>
+				<a href="', $scripturl, '?action=profile;area=notification;sa=alerts" class="floatright">', $txt['alert_settings'], '</a>
 			</div>
-			<div class="alerts_box floatleft">
-				<a href="', $scripturl, '?action=profile;area=showalerts">', $txt['all_alerts'], '</a>
+			<div class="alerts_box centertext">
+				<a href="', $scripturl, '?action=profile;area=showalerts" class="button">', $txt['all_alerts'], '</a>
 			</div>
 		</div>
 		<div class="alerts_unread">';
@@ -460,7 +461,7 @@ function template_showPosts()
 		foreach ($context['posts'] as $post)
 		{
 			echo '
-			<div class="windowbg nopad">
+			<div class="', $post['css_class'] ,'">
 				<div class="counter">', $post['counter'], '</div>
 				<div class="topic_details">
 					<h5><strong><a href="', $scripturl, '?board=', $post['board']['id'], '.0">', $post['board']['name'], '</a> / <a href="', $scripturl, '?topic=', $post['topic'], '.', $post['start'], '#msg', $post['id'], '">', $post['subject'], '</a></strong></h5>
@@ -478,7 +479,7 @@ function template_showPosts()
 					', $post['body'], '
 				</div>';
 
-			if ($post['can_reply'] || $post['can_delete'])
+			if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 				echo '
 				<div class="floatright">
 					<ul class="qbuttons">';
@@ -496,9 +497,9 @@ function template_showPosts()
 			// How about... even... remove it entirely?!
 			if ($post['can_delete'])
 				echo '
-						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['remove_message'], '?\');"><i class="fa fa-remove fa-lg title="', $txt['remove'], '"></i></a></li>';
+						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'] ,'" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['remove'], '</a></li>';
 
-			if ($post['can_reply'] || $post['can_delete'])
+			if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 				echo '
 					</ul>
 				</div>';
@@ -560,21 +561,21 @@ function template_showAlerts()
 		foreach ($context['alerts'] as $id => $alert)
 		{
 			echo '
-			<tr class="windowbg">
-				<td>', $alert['text'], '</td>
-				<td>', $alert['time'], '</td>
-				<td>
-					<ul class="qbuttons">
-						<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', $txt['delete'] ,'</a></li>
-						<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read') ,';aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '">', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']),'</a></li>
-						<li><input type="checkbox" name="mark[', $id ,']" value="', $id ,'"></li>
-					</ul>
-				</td>
-			</tr>';
+				<tr class="windowbg">
+					<td>', $alert['text'], '</td>
+					<td>', $alert['time'], '</td>
+					<td>
+						<ul class="qbuttons">
+							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['delete'] ,'</a></li>
+							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read') ,';aid= ', $id ,';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons ', $alert['is_read'] != 0 ? 'unread_button' : 'read_button','"></span>', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']),'</a></li>
+							<li><input type="checkbox" name="mark[', $id ,']" value="', $id ,'"></li>
+						</ul>
+					</td>
+				</tr>';
 		}
 
 		echo '
-		</table>
+			</table>
 			<div class="pagesection">
 				<div class="floatleft">
 					', $context['pagination'] ,'
@@ -641,8 +642,8 @@ function template_showDrafts()
 					</div>
 				<div class="floatright">
 					<ul class="qbuttons">
-						<li><a href="', $scripturl, '?action=post;', (empty($draft['topic']['id']) ? 'board=' . $draft['board']['id'] : 'topic=' . $draft['topic']['id']), '.0;id_draft=', $draft['id_draft'], '"><i class="fa fa-pencil fa-lg" title="', $txt['draft_edit'], '"></i></a></li>
-						<li><a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=showdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['draft_remove'], '?\');"><i class="fa fa-remove fa-lg" title="', $txt['draft_delete'], '"></i></a></li>
+						<li><a href="', $scripturl, '?action=post;', (empty($draft['topic']['id']) ? 'board=' . $draft['board']['id'] : 'topic=' . $draft['topic']['id']), '.0;id_draft=', $draft['id_draft'], '"><span class="generic_icons reply_button"></span>', $txt['draft_edit'], '</a></li>
+						<li><a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=showdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['draft_remove'] ,'" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['draft_delete'], '</a></li>
 					</ul>
 				</div>
 			</div>';
@@ -2347,7 +2348,7 @@ function template_issueWarning()
 				<dd>
 					<select name="warn_temp" id="warn_temp" disabled onchange="populateNotifyTemplate();" style="font-size: x-small;">
 						<option value="-1">', $txt['profile_warning_notify_template'], '</option>
-						<option value="-1">------------------------------</option>';
+						<option value="-1" disabled>------------------------------</option>';
 
 		foreach ($context['notification_templates'] as $id_template => $template)
 			echo '

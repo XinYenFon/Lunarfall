@@ -194,24 +194,8 @@ function template_main()
 
 		foreach ($context['topics'] as $topic)
 		{
-			$color_class = 'windowbg';
-
-			// Is this topic pending approval, or does it have any posts pending approval?
-			if ($context['can_approve_posts'] && $topic['unapproved_posts'])
-				$color_class = (!$topic['approved'] ? 'approvetopic ' : 'approvepost ') . $color_class;
-
-			// Sticky topics should get a different color, too.
-			if ($topic['is_sticky'])
-				$color_class = 'sticky ' . $color_class;
-			// Locked topics get special treatment as well.
-			if ($topic['is_locked'])
-				$color_class = 'locked ' . $color_class;
-
-			// Some columns require a different shade of the color class.
-			$alternate_class = $color_class . '2';
-
 			echo '
-			<div class="', $color_class, '">
+			<div class="', $topic['css_class'], '">
 				<div class="icon">
 					<img src="', $topic['first_post']['icon_url'], '" alt="">
 					', $topic['is_posted_in'] ? '<i class="fa fa-user fa-lg posted"></i>' : '', '
@@ -244,7 +228,7 @@ function template_main()
 							<div class="message_index_title">
 								', $topic['new'] && $context['user']['is_logged'] ? '<a href="' . $topic['new_href'] . '" id="newicon' . $topic['first_post']['id'] . '"><span class="new_posts">' . $txt['new'] . '</span></a>' : '', '
 								<span class="preview', $topic['is_sticky'] ? ' bold_text' : '', '" title="', $topic[(empty($modSettings['message_index_preview_first']) ? 'last_post' : 'first_post')]['preview'], '">
-									<span id="msg_', $topic['first_post']['id'], '">', $topic['first_post']['link'], ($context['can_approve_posts'] && !$topic['approved'] ? '&nbsp;<em>(' . $txt['awaiting_approval'] . ')</em>' : ''), '</span>
+									<span id="msg_', $topic['first_post']['id'], '">', $topic['first_post']['link'], (!$topic['approved'] ? '&nbsp;<em>(' . $txt['awaiting_approval'] . ')</em>' : ''), '</span>
 								</span>
 							</div>
 							<p class="floatleft">', $txt['started_by'], ' ', $topic['first_post']['member']['link'], '</p>
@@ -269,16 +253,16 @@ function template_main()
 				{
 					// Check permissions on each and show only the ones they are allowed to use.
 					if ($topic['quick_mod']['remove'])
-						echo '<a href="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], ';actions%5B', $topic['id'], '%5D=remove;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['quickmod_confirm'], '\');"><i class="fa fa-remove fa-fw fa-lg" title="', $txt['remove_topic'], '"></i></a>';
+						echo '<a href="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], ';actions%5B', $topic['id'], '%5D=remove;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons delete" title="', $txt['remove_topic'], '"></span></a>';
 
 					if ($topic['quick_mod']['lock'])
-						echo '<a href="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], ';actions%5B', $topic['id'], '%5D=lock;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['quickmod_confirm'], '\');"><i class="fa ', $topic['is_locked'] ? 'fa-unlock' : 'fa-lock',' fa-fw fa-lg" title="', $topic['is_locked'] ? $txt['set_unlock'] : $txt['set_lock'], '"></i></a>';
+						echo '<a href="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], ';actions%5B', $topic['id'], '%5D=lock;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons lock" title="', $topic['is_locked'] ? $txt['set_unlock'] : $txt['set_lock'], '"></span></a>';
 
 					if ($topic['quick_mod']['lock'] || $topic['quick_mod']['remove'])
 						echo '<br>';
 
 					if ($topic['quick_mod']['sticky'])
-						echo '<a href="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], ';actions%5B', $topic['id'], '%5D=sticky;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', $txt['quickmod_confirm'], '\');"><i class="fa fa-thumb-tack fa-fw fa-lg" title="', $topic['is_sticky'] ? $txt['set_nonsticky'] : $txt['set_sticky'], '"></i></a>';
+						echo '<a href="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], ';actions%5B', $topic['id'], '%5D=sticky;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons sticky" title="', $topic['is_sticky'] ? $txt['set_nonsticky'] : $txt['set_sticky'], '"></span></a>';
 
 					if ($topic['quick_mod']['move'])
 						echo '<a href="', $scripturl, '?action=movetopic;current_board=', $context['current_board'], ';board=', $context['current_board'], '.', $context['start'], ';topic=', $topic['id'], '.0"><i class="fa fa-arrow-circle-o-right fa-fw fa-lg" title="', $txt['move_topic'], '"></i></a>';
@@ -330,7 +314,7 @@ function template_main()
 	<div class="pagesection">
 		', template_button_strip($context['normal_buttons'], 'right'), '
 		', $context['menu_separator'], '<a href="#main_content_section" class="topbottom floatleft" id="bot">', $txt['go_up'], '</a>
-		<div class="pagelinks">', $context['page_index'], '</div>
+		<div class="pagelinks floatleft">', $context['page_index'], '</div>
 	</div>';
 	}
 
