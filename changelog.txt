@@ -1,0 +1,32 @@
+0.4.0 (8 July 2015)
++ Social share feature added for each post
+! caching core theme changes
+
+0.3.0 (26 January 2015)
+! Font-Awesome updated to v4.3
++ Collapsed boards has less opacity (Big thanks to NanoSector for creating snip for me)
++ OG support added from Curve2
+- removed generic_icons.png
+- removed admin_icons_hd.png
+* background image changed (this made sure big screens 1080p 24''++ gets better view)
++ added credits to credits page
+* more icon conversation
+* more css corrections
+
+0.2.0 (13 December 2014)
++ Social media icons added.
++ Ability to disable FA-Icons.
+! Fixed the possible conflict with FA css loaded themes.
+- Removed some inline css.
+* Generic_menu changes for easier compatibility with FA Icons.
++ Added mod to make sure everything is in order (you can find lunarfall_dependencies in attachments).
+* More icon conversation to FA Icons.
+! Some small bug-fixes.
+
+0.1.0 (7 December 2014)
+- First release (Count as Alpha)
+
+! bug fix
++ added feature
+* changed
+- Info Only

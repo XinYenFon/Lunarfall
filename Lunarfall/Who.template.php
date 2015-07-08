@@ -207,6 +207,8 @@ function template_credits()
 				<dt><strong>', $txt['credits_fonts'], '</strong></dt>
 				<dd>', implode('</dd><dd>', $context['credits_software_graphics']['fonts']), '</dd>
 			</dl>';
+
+		/* Following part hardcoded on purpose don't change */
 		echo '
 			<dl>
 				<dt><strong>Theme</strong></dt>
