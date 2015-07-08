@@ -285,8 +285,6 @@ function template_body_above()
 		<div class="frame">
 			<h1 class="forumtitle">
 				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
-				<br>
-				', $settings['site_slogan'],'
 			</h1>';
 
 	/* Social Media */

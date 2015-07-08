@@ -672,14 +672,17 @@ function template_single_post($message)
 	echo '
 							</div>';
 
-	echo '
+	// Show the member's signature?
+	if (!empty($message['member']['signature']) && empty($options['show_no_signatures']) && $context['signature_enabled'])
+		echo '
 			<div class="signature" id="msg_', $message['id'], '_signature"', $ignoring ? ' style="display:none;"' : '', '>', $message['member']['signature'], '</div>';
+
 	// Share this post! I order no?
 		echo '
 						<ul id="post_socialshare" class="qbuttons">
 							<li><a href="//facebook.com/sharer/sharer.php?u=', $message['href'], '" target="_blank"><i class="fa fa-facebook fa-lg fa-fw" title="', $txt['lunarfall_facebook'],'"></i></a></li>
 							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '"><i class="fa fa-twitter fa-lg fa-fw" title="', $txt['lunarfall_twitter'],'"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus fa-lg fa-fw" title="', $txt['lunarfall_gplus'],'"></i></a></li>
+							<li><a href="//plus.google.com/share?url=', $message['href'], '"><i class="fa fa-google-plus fa-lg fa-fw" title="', $txt['lunarfall_gplus'],'"></i></a></li>
 						</ul>';
 	// Can i haz fun? k thx bai!
 	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
