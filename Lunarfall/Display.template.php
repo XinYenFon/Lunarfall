@@ -749,10 +749,12 @@ function template_single_post($message)
 							<li style="display: none;" id="in_topic_mod_check_', $message['id'], '"></li>';
 
 		echo '
-						</ul>
+						</ul>';
+	}
+
+		echo '
 				</div>
 			</div>';
-	}
 
 	// Are there any custom profile fields for below the signature?
 	if (!empty($message['custom_fields']['below_signature']))
