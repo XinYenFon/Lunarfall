@@ -10,9 +10,21 @@
  * @version 2.1 Beta 2
  */
 
+/**
+ * The main messageindex.
+ */
 function template_main()
 {
 	global $context, $settings, $options, $scripturl, $modSettings, $txt;
+
+	// Let them know why their message became unapproved.
+	if ($context['becomesUnapproved'])
+	{
+		echo '
+			<div class="noticebox">
+				', $txt['post_becomesUnapproved'], '
+			</div>';
+	}
 
 	if (!empty($context['boards']) && (!empty($options['show_children']) || $context['start'] == 0))
 	{
@@ -323,7 +335,7 @@ function template_main()
 
 	if (!empty($context['can_quick_mod']) && $options['display_quick_mod'] == 1 && !empty($context['topics']) && $context['can_move'])
 		echo '
-			<script><!-- // --><![CDATA[
+			<script>
 				if (typeof(window.XMLHttpRequest) != "undefined")
 					aJumpTo[aJumpTo.length] = new JumpTo({
 						sContainerId: "quick_mod_jump_to",
@@ -340,20 +352,23 @@ function template_main()
 						bDisabled: true,
 						sCustomName: "move_to"
 					});
-			// ]]></script>';
+			</script>';
 
 	// Javascript for inline editing.
 	echo '
-<script><!-- // --><![CDATA[
+<script>
 	var oQuickModifyTopic = new QuickModifyTopic({
 		aHidePrefixes: Array("lockicon", "stickyicon", "pages", "newicon"),
 		bMouseOnDiv: false,
 	});
-// ]]></script>';
+</script>';
 
 	template_topic_legend();
 }
 
+/**
+ * Shows a legend for topic icons.
+ */
 function template_topic_legend()
 {
 	global $context, $settings, $txt, $modSettings;
@@ -377,7 +392,7 @@ function template_topic_legend()
 
 	if (!empty($context['jump_to']))
 		echo '
-			<script><!-- // --><![CDATA[
+			<script>
 				if (typeof(window.XMLHttpRequest) != "undefined")
 					aJumpTo[aJumpTo.length] = new JumpTo({
 						sContainerId: "message_index_jump_to",
@@ -391,7 +406,7 @@ function template_topic_legend()
 						sCatPrefix: "",
 						sGoButtonLabel: "', $txt['quick_mod_go'], '"
 					});
-			// ]]></script>';
+			</script>';
 
 	echo '
 			<br class="clear">

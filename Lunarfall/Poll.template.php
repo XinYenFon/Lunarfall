@@ -10,13 +10,16 @@
  * @version 2.1 Beta 2
  */
 
+/**
+ * A form for creating and/or editing a poll.
+ */
 function template_main()
 {
 	global $context, $txt, $scripturl;
 
 	// Some javascript for adding more options.
 	echo '
-		<script><!-- // --><![CDATA[
+		<script>
 			var pollOptionNum = 0;
 			var pollOptionId = ', $context['last_choice_id'], ';
 
@@ -33,7 +36,7 @@ function template_main()
 
 				setOuterHTML(document.getElementById("pollMoreOptions"), \'<li><label for="options-\' + pollOptionId + \'" ', (isset($context['poll_error']['no_question']) ? ' class="error"' : ''), '>', $txt['option'], ' \' + pollOptionNum + \'</label>: <input type="text" name="options[\' + (pollOptionId) + \']" id="options-\' + (pollOptionId) + \'" value="" size="80" maxlength="255" class="input_text"></li><li id="pollMoreOptions"></li\');
 			}
-		// ]]></script>';
+		</script>';
 
 	// Start the main poll form.
 	echo '

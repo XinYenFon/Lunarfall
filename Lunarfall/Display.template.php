@@ -10,6 +10,9 @@
  * @version 2.1 Beta 2
  */
 
+/**
+ * This tempate handles displaying a topic
+ */
 function template_main()
 {
 	global $context, $settings, $options, $txt, $scripturl, $modSettings;
@@ -20,6 +23,15 @@ function template_main()
 		echo '
 			<div class="infobox">
 				', $txt['report_sent'], '
+			</div>';
+	}
+
+	// Let them know why their message became unapproved.
+	if ($context['becomesUnapproved'])
+	{
+		echo '
+			<div class="noticebox">
+				', $txt['post_becomesUnapproved'], '
 			</div>';
 	}
 
@@ -218,7 +230,7 @@ function template_main()
 	template_quickreply();
 
 		echo '
-				<script><!-- // --><![CDATA[';
+				<script>';
 
 	if (!empty($options['display_quick_mod']) && $options['display_quick_mod'] == 1 && $context['can_remove_post'])
 		echo '
@@ -316,10 +328,15 @@ function template_main()
 					ignore_toggles([', implode(', ', $context['ignoredMsgs']), '], ', JavaScriptEscape($txt['show_ignore_user_post']), ');';
 
 	echo '
-				// ]]></script>';
+				</script>';
 
 }
 
+/**
+ * Template for displaying a single post.
+ *
+ * @param array $message An array of information about the message to display. Should have 'id' and 'member'. Can also have 'first_new', 'is_ignored' and 'css_class'.
+ */
 function template_single_post($message)
 {
 	global $context, $settings, $options, $txt, $scripturl, $modSettings;
@@ -777,6 +794,9 @@ function template_single_post($message)
 				<hr class="post_separator">';
 }
 
+/**
+ * The template for displaying the quick reply box.
+ */
 function template_quickreply()
 {
 	global $context, $modSettings, $scripturl, $options, $txt;
@@ -827,7 +847,7 @@ function template_quickreply()
 
 		echo '
 						', template_control_richedit($context['post_box_name'], 'smileyBox_message', 'bbcBox_message'), '
-						<script><!-- // --><![CDATA[
+						<script>
 							function insertQuoteFast(messageid)
 							{
 								if (window.XMLHttpRequest)
@@ -845,7 +865,7 @@ function template_quickreply()
 
 								ajax_indicator(false);
 							}
-						// ]]></script>';
+						</script>';
 
 	// Is visual verification enabled?
 	if ($context['require_verification'])
@@ -873,7 +893,7 @@ function template_quickreply()
 	// draft autosave available and the user has it enabled?
 	if (!empty($context['drafts_autosave']))
 		echo '
-			<script><!-- // --><![CDATA[
+			<script>
 				var oDraftAutoSave = new smf_DraftAutoSave({
 					sSelf: \'oDraftAutoSave\',
 					sLastNote: \'draft_lastautosave\',
@@ -883,14 +903,14 @@ function template_quickreply()
 					iBoard: ', (empty($context['current_board']) ? 0 : $context['current_board']), ',
 					iFreq: ', (empty($modSettings['masterAutoSaveDraftsDelay']) ? 60000 : $modSettings['masterAutoSaveDraftsDelay'] * 1000), '
 				});
-			// ]]></script>';
+			</script>';
 
 	if ($context['show_spellchecking'])
 		echo '
 			<form action="', $scripturl, '?action=spellcheck" method="post" accept-charset="', $context['character_set'], '" name="spell_form" id="spell_form" target="spellWindow"><input type="hidden" name="spellstring" value=""></form>';
 
 	echo '
-				<script><!-- // --><![CDATA[
+				<script>
 					var oQuickReply = new QuickReply({
 						bDefaultCollapsed: false,
 						iTopicId: ', $context['current_topic'], ',
@@ -904,6 +924,9 @@ function template_quickreply()
 						sJumpAnchor: "quickreply",
 						bIsFull: true
 					});
-				// ]]></script>';
+					var oEditorID = "', $context['post_box_name'] ,'";
+					var oEditorObject = oEditorHandle_', $context['post_box_name'], ';
+					var oJumpAnchor = "quickreply";
+				</script>';
 }
 ?>

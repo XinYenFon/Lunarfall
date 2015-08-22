@@ -666,7 +666,6 @@ img.sort, .sort {
 #main_menu {
 	margin: 0;
 	padding: 0;
-	float: left;
 	width: 100%;
 }
 .dropmenu, #top_info {
@@ -674,20 +673,24 @@ img.sort, .sort {
 	position: relative;
 	box-sizing: border-box;
 }
-#menu_nav {
-	padding: 0 40px 0 0;
+.dropmenu {
+	background-image: linear-gradient(to bottom, #1B2734 0%, #1F3954 50%) !important;
+	border: 1px solid #2E3E4C;
+	border-bottom: none;
+	box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.08);
 }
 /* Level 1 button background. */
 .dropmenu li, #top_info > li {
 	margin: 0 2px 0 1px;
 	padding: 0 0 0.3em 0;
-	float: left;
 	font-size: 0.9em;
 	line-height: 1.9em;
 	position: relative;
+	display: inline-block;
 }
 .dropmenu li {
-	float: left;
+	margin: 0;
+	padding: 0;
 }
 .dropmenu li li {
 	border-right: none;
@@ -696,7 +699,7 @@ img.sort, .sort {
 	border-right: none;
 }
 .dropmenu li a{
-	background: #416C8A;
+/*	background: #416C8A;*/
 	padding: 15px !important;
 	color: #67C1F5;
 	margin: 0;
@@ -1004,6 +1007,7 @@ img.sort, .sort {
 #wrapper, .frame {
 	margin: 0 auto;
 	min-width: 760px;
+	width: 90%;
 }
 
 /* Box-shadow only on this one. */
@@ -1169,7 +1173,6 @@ ul li.greeting {
 
 /* The navigation list (i.e. linktree) */
 .navigate_section {
-	padding: 3px 0 0 0;
 	float: left;
 	width: 100%;
 }
@@ -1178,13 +1181,15 @@ ul li.greeting {
 	padding: 0;
 }
 .navigate_section ul {
-	margin: 4px 0 0 0;
-	padding: 0 10px;
+	padding: 0 14px;
 	font-size: 0.9em;
 	overflow: hidden;
-	border: 1px solid #ddd;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.08);
 	box-sizing: border-box;
+	background-image: linear-gradient(to bottom, #1F3954 0%, #1B2734 100%) !important;
+	color: #9099A1;
+	border: 1px solid #2E3E4C;
+	border-top: none;
 }
 .navigate_section ul li {
 	float: left;
@@ -2953,6 +2958,7 @@ div.cat_bar {
 	text-shadow: -1px -1px 1px rgba(0,0,0,0.2);
 	box-sizing: border-box;
 	margin-bottom: 1px;
+	position: relative;
 }
 .cat_bar h3 {
 	padding: 8px 12px 6px 12px;
@@ -3169,7 +3175,7 @@ h3.profile_hd {
 	background: #67C1F5;
 }
 /* If it fits I sits... */
-.navigate_section ul, .popup_content, .up_contain, .top_menu, 
+.popup_content, .up_contain, .top_menu, 
 .dropmenu li ul, .roundframe, .notify_dropdown {
 	background-image: linear-gradient(to bottom, #1B2734 0%, #1F3954 50%) !important;
 	color: #9099A1;
@@ -3394,4 +3400,18 @@ i {
 #post_socialshare.qbuttons {
 	float: left;
 	clear: left;
+}
+#category_1::after {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	content: "";
+	right: 35px;
+	top: 10px;
+	font-size: 2em;
+	line-height: 1;
+	background: url(../images/animal-penguin.png) no-repeat;
+}
+#category_1 i {
+	right: 15px;
 }

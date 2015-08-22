@@ -70,13 +70,21 @@
 		display: none !important;
 	}
 	#alerts_menu {
-		margin: 0 0 0 -169px;
+		margin: 0 0 0 -175px;
 	}
 	#pm_menu {
-		margin: 0 0 0 -81px;
+		margin: 0 0 0 -85px;
+	}
+	.dropmenu li {
+		width: 50%;
+	}
+	.dropmenu li a {
+		width: 65%;
+	}
+	.dropmenu ul li a {
+		width: auto !important;
 	}
 	#footer_section ul {
-		display: block;
 		width: 100%;
 		margin: 5px;
 		float: none;
@@ -101,6 +109,11 @@
 		padding: 0;
 		display: block;
 		clear: both;
+	}
+	#main_content_section .button {
+		padding: 0 6px;
+		margin: 5px 0 0 0;
+		font-size: 0.75em;
 	}
 	#topic_icons p {
 		display: block;
@@ -139,6 +152,9 @@
 	.keyinfo h5 .modified {
 		float: none !important;
 	}
+	.subject_title input {
+		width: 90%;
+	}
 
 	/* Post Section */
 	#post_header dd {
@@ -158,7 +174,12 @@
 		padding: 0;
 	}
 	#poll_options dl.options dt,
-	#poll_options dl.options dd {
+	#poll_options dl.options dd,
+	dl.settings dt, dl.settings dd	{
+		width: 100%;
+		float: none;
+	}
+	.move_topic {
 		width: 100%;
 	}
 	/* Stats Center */
@@ -235,6 +256,11 @@
 	.action_admin .navigate_section {
 		display: none;
 	}
+	#admincenter .input_text, #quick_search .input_text,
+	#admincenter select, #quick_search select {
+		width: 90%;
+	}
+
 	/* Menu tests */
 	#adm_submenus {
 		padding: 0;
@@ -242,6 +268,24 @@
 	#adm_submenus .dropmenu li {
 		float: left;
 		margin: 0;
+	}
+	#header_member_list_user_name, #header_member_list_ip,
+	#header_member_list_last_active, #header_member_list_posts,
+	.hidden {
+		display: none;
+	}
+	.msearch_details {
+		width: 100% !important;
+		float: none;
+	}
+	.msearch_details .righttext {
+		text-align: left;
+	}
+	.msearch_details input {
+		width: 90%;
+	}
+	.msearch_details .input_check {
+		width: 5%;
 	}
 	/* 3rd level menu tests */
 	.dropmenu li ul ul {
@@ -326,6 +370,11 @@
 		margin: 0 5px 0 0;
 	}
 
+	/* Menu */
+	.quickbuttons li:hover ul {
+		display: none;
+	}
+
 	/* General */
 	.action_home {
 		width: 100% !important;
@@ -388,7 +437,9 @@
 	}
 	#moderationbuttons_strip a {
 		float: left;
-		margin: 0 0 7px 0 !important; /* Extra margin for fat fingers like Kindred */
+		width: 40%;
+		max-width: 90px;
+		margin: 0 5px 7px 0 !important; /* Extra margin for fat fingers like Kindred */
 	}
 	.button.button_strip_mark_unread {
 		display: none;
@@ -443,7 +494,9 @@
 	#inner_wrap, #search_form, #smflogo, #message_index_jump_to, .nextlinks, #display_jump_to,
 	#siteslogan, th.id_group, th.registered,
 	td.lefttext.id_group, td.lefttext.registered, td.posts, td.statsbar.posts,
-	#main_content_section .navigate_section, a.topbottom, .pagesection.top, .time {
+	#main_content_section .navigate_section, a.topbottom, .pagesection.top, .time, .hidden,
+	#header_custom_profile_fields_field_type, #header_custom_profile_fields_active,
+	#header_custom_profile_fields_placement {
 		display: none !important;
 	}
 
@@ -452,6 +505,9 @@
 		width: 100%;
 		margin: 0;
 		padding: 0;
+	}
+	#private, #enclose {
+		width: 95%;
 	}
 }
 /* Still not enough data or people to test this... */

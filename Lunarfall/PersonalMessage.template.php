@@ -10,8 +10,9 @@
  * @version 2.1 Beta 2
  */
 
-
-// This is for stuff above the menu in the personal messages section.
+/**
+ * This is for stuff above the menu in the personal messages section
+ */
 function template_pm_above()
 {
 	global $context, $txt;
@@ -40,7 +41,9 @@ function template_pm_above()
 		</div>';
 }
 
-// Just the end of the index bar, nothing special.
+/**
+ * Just the end of the index bar, nothing special.
+ */
 function template_pm_below()
 {
 	echo '
@@ -91,13 +94,16 @@ function template_pm_popup()
 		</div>';
 }
 
+/**
+ * Shows a particular folder (eg inbox or outbox), all the PMs in it, etc.
+ */
 function template_folder()
 {
 	global $context, $settings, $options, $scripturl, $modSettings, $txt;
 
 	// The every helpful javascript!
 	echo '
-	<script><!-- // --><![CDATA[
+	<script>
 		var allLabels = {};
 		var currentLabels = {};
 		function loadLabelChoices()
@@ -172,7 +178,7 @@ function template_folder()
 				}
 			}
 		}
-	// ]]></script>';
+	</script>';
 
 	echo '
 <form class="flow_hidden" action="', $scripturl, '?action=pm;sa=pmactions;', $context['display_mode'] == 2 ? 'conversation;' : '', 'f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', '" method="post" accept-charset="', $context['character_set'], '" name="pmFolder">';
@@ -582,7 +588,9 @@ function template_folder()
 </form>';
 }
 
-// Just list all the personal message subjects - to make templates easier.
+/**
+ * Just list all the personal message subjects - to make templates easier.
+ */
 function template_subject_list()
 {
 	global $context, $settings, $txt, $scripturl;
@@ -620,7 +628,7 @@ function template_subject_list()
 		echo '
 		<tr class="windowbg">
 			<td width="4%">
-			<script><!-- // --><![CDATA[
+			<script>
 				currentLabels[', $message['id'], '] = {';
 
 		if (!empty($message['labels']))
@@ -636,7 +644,7 @@ function template_subject_list()
 
 		echo '
 				};
-			// ]]></script>
+			</script>
 				', $message['is_replied_to'] ? '<i class="fa fa-reply fa-lg" title="' . $txt['pm_replied'] . '"></i>' : '<span class="generic_icons im_off" title="' . $txt['pm_read'] . '"></span>', '</td>
 			<td>', $message['time'], '</td>
 			<td>', ($context['display_mode'] != 0 && $context['current_pm'] == $message['id'] ? '<img src="' . $settings['images_url'] . '/selected.png" alt="*">' : ''), '<a href="', ($context['display_mode'] == 0 || $context['current_pm'] == $message['id'] ? '' : ($scripturl . '?action=pm;pmid=' . $message['id'] . ';kstart;f=' . $context['folder'] . ';start=' . $context['start'] . ';sort=' . $context['sort_by'] . ($context['sort_direction'] == 'up' ? ';' : ';desc') . ($context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : ''))), '#msg', $message['id'], '">', $message['subject'], $message['is_unread'] ? '&nbsp;<span class="new_posts">' . $txt['new'] . '</span>' : '', '</a></td>
@@ -696,6 +704,9 @@ function template_subject_list()
 	</div>';
 }
 
+/**
+ * The form for the PM search feature
+ */
 function template_search()
 {
 	global $context, $scripturl, $txt;
@@ -722,10 +733,10 @@ function template_search()
 				<span class="enhanced">
 					<strong>', $txt['pm_search_text'], ':</strong>
 					<input type="search" name="search"', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', ' size="40" class="input_text">
-					<script><!-- // --><![CDATA[
+					<script>
 						createEventListener(window);
 						window.addEventListener("load", initSearch, false);
-					// ]]></script>
+					</script>
 					<select name="searchtype">
 						<option value="1"', empty($context['search_params']['searchtype']) ? ' selected' : '', '>', $txt['pm_search_match_all'], '</option>
 						<option value="2"', !empty($context['search_params']['searchtype']) ? ' selected' : '', '>', $txt['pm_search_match_any'], '</option>
@@ -792,7 +803,7 @@ function template_search()
 
 		// Some javascript for the advanced toggling
 		echo '
-		<script><!-- // --><![CDATA[
+		<script>
 			var oAdvancedPanelToggle = new smc_Toggle({
 				bToggleEnabled: true,
 				bCurrentlyCollapsed: true,
@@ -814,13 +825,16 @@ function template_search()
 					}
 				]
 			});
-		// ]]></script>';
+		</script>';
 	}
 
 	echo '
 	</form>';
 }
 
+/**
+ * Displays results from a PM search
+ */
 function template_search_results()
 {
 	global $context, $scripturl, $txt;
@@ -929,6 +943,9 @@ function template_search_results()
 
 }
 
+/**
+ * The form for sending a new PM
+ */
 function template_send()
 {
 	global $context, $options, $scripturl, $modSettings, $txt;
@@ -1115,21 +1132,13 @@ function template_send()
 	}
 
 	echo '
-		<script><!-- // --><![CDATA[';
+		<script>';
 	// The functions used to preview a personal message without loading a new page.
 	echo '
 			var txt_preview_title = "', $txt['preview_title'], '";
 			var txt_preview_fetch = "', $txt['preview_fetch'], '";
 			function previewPost()
-			{';
-	if (isBrowser('is_firefox'))
-		echo '
-				// Firefox doesn\'t render <marquee> that have been put it using javascript
-				if (document.forms.postmodify.elements[', JavaScriptEscape($context['post_box_name']), '].value.indexOf(\'[move]\') != -1)
 				{
-					return submitThisOnce(document.forms.postmodify);
-				}';
-	echo '
 				if (window.XMLHttpRequest)
 				{
 					// Opera didn\'t support setRequestHeader() before 8.01.
@@ -1247,7 +1256,7 @@ function template_send()
 			});';
 
 	echo '
-		// ]]></script>';
+		</script>';
 
 	// Show the message you're replying to.
 	if ($context['reply'])
@@ -1267,7 +1276,7 @@ function template_send()
 	</div><br class="clear">';
 
 	echo '
-		<script><!-- // --><![CDATA[
+		<script>
 			var oPersonalMessageSend = new smf_PersonalMessageSend({
 				sSelf: \'oPersonalMessageSend\',
 				sSessionId: smf_session_id,
@@ -1307,10 +1316,12 @@ function template_send()
 		';
 
 	echo '
-		// ]]></script>';
+		</script>';
 }
 
-// This template asks the user whether they wish to empty out their folder/messages.
+/**
+ * This template asks the user whether they wish to empty out their folder/messages.
+ */
 function template_ask_delete()
 {
 	global $context, $scripturl, $txt;
@@ -1325,7 +1336,9 @@ function template_ask_delete()
 		</div>';
 }
 
-// This template asks the user what messages they want to prune.
+/**
+ * This template asks the user what messages they want to prune.
+ */
 function template_prune()
 {
 	global $context, $scripturl, $txt;
@@ -1350,7 +1363,9 @@ function template_prune()
 	</div>';
 }
 
-// Here we allow the user to setup labels, remove labels and change rules for labels (i.e, do quite a bit)
+/**
+ * Here we allow the user to setup labels, remove labels and change rules for labels (i.e, do quite a bit)
+ */
 function template_labels()
 {
 	global $context, $scripturl, $txt;
@@ -1435,7 +1450,9 @@ function template_labels()
 	</form><br>';
 }
 
-// Template for reporting a personal message.
+/**
+ * Template for reporting a personal message.
+ */
 function template_report_message()
 {
 	global $context, $txt, $scripturl;
@@ -1487,7 +1504,9 @@ function template_report_message()
 	</form>';
 }
 
-// Little template just to say "Yep, it's been submitted"
+/**
+ * Little template just to say "Yep, it's been submitted"
+ */
 function template_report_message_complete()
 {
 	global $context, $txt, $scripturl;
@@ -1502,7 +1521,9 @@ function template_report_message_complete()
 		</div>';
 }
 
-// Manage rules.
+/**
+ * Manage rules.
+ */
 function template_rules()
 {
 	global $context, $txt, $scripturl;
@@ -1575,13 +1596,15 @@ function template_rules()
 
 }
 
-// Template for adding/editing a rule.
+/**
+ * Template for adding/editing a rule.
+ */
 function template_add_rule()
 {
 	global $context, $txt, $scripturl;
 
 	echo '
-	<script><!-- // --><![CDATA[
+	<script>
 			var criteriaNum = 0;
 			var actionNum = 0;
 			var groups = new Array()
@@ -1716,7 +1739,7 @@ function template_add_rule()
 				// Set the actual HTML!
 				setInnerHTML(document.getElementById("ruletext"), text);
 			}
-	// ]]></script>';
+	</script>';
 
 	echo '
 	<form action="', $scripturl, '?action=pm;sa=manrules;save;rid=', $context['rid'], '" method="post" accept-charset="', $context['character_set'], '" name="addrule" id="addrule" class="flow_hidden">
@@ -1848,7 +1871,7 @@ function template_add_rule()
 
 	// Now setup all the bits!
 		echo '
-	<script><!-- // --><![CDATA[';
+	<script>';
 
 	foreach ($context['rule']['criteria'] as $k => $c)
 		echo '
@@ -1872,10 +1895,12 @@ function template_add_rule()
 			document.getElementById("addonjs2").style.display = "";';
 
 	echo '
-		// ]]></script>';
+		</script>';
 }
 
-// Template for showing all the PM drafts of the user.
+/**
+ * Template for showing all of a user's PM drafts.
+ */
 function template_showPMDrafts()
 {
 	global $context, $scripturl, $txt;
