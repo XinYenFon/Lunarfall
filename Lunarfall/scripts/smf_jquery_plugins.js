@@ -693,6 +693,7 @@
     };
 })(jQuery);
 
+/* @todo Devs please write some description here */
 $(document).ready(function() {
 	if (smf_member_id > 0)
 		$('div.boardindex_table div.cat_bar').each(function(index, el)
