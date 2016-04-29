@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2015 Simple Machines and individual contributors
+ * @copyright 2016 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 2
+ * @version 2.1 Beta 3
  */
 
 /**
@@ -24,9 +24,7 @@ function template_recent()
 				<span class="xx"></span>',$txt['recent_posts'],'
 			</h3>
 		</div>
-		<div class="pagesection">
-			<span>', $context['page_index'], '</span>
-		</div>';
+		<div class="pagesection">', $context['page_index'], '</div>';
 
 	if (empty($context['posts']))
 	{
@@ -74,9 +72,7 @@ function template_recent()
 	}
 
 	echo '
-		<div class="pagesection">
-			<span>', $context['page_index'], '</span>
-		</div>
+		<div class="pagesection">', $context['page_index'], '</div>
 	</div>';
 }
 
@@ -109,11 +105,11 @@ function template_unread()
 		echo '
 			<div id="unread">
 				<div id="topic_header" class="title_bar">
-					<div class="icon"></div>
+					<div class="board_icon"></div>
 					<div class="info">
 						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=subject', $context['sort_by'] == 'subject' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['subject'], $context['sort_by'] == 'subject' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
 					</div>
-					<div class="stats">
+					<div class="board_stats centertext">
 						<a href="', $scripturl, '?action=unread', $context['showing_all_topics'] ? ';all' : '', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] == 'replies' && $context['sort_direction'] == 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] == 'replies' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
 					</div>
 					<div class="lastpost">
@@ -135,15 +131,15 @@ function template_unread()
 		{
 			echo '
 					<div class="', $topic['css_class'], '">
-						<div class="icon">
+						<div class="board_icon">
 							<img src="', $topic['first_post']['icon_url'], '" alt="">
-								', $topic['is_posted_in'] ? '<img src="'. $settings['images_url']. '/icons/profile_sm.png" alt="" style="position: absolute; z-index: 5; right: 4px; bottom: -3px;">' : '','
+							', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '', '
 						</div>
 						<div class="info">';
 
 			// Now we handle the icons
 			echo '
-							<div class="icons">';
+							<div class="icons floatright">';
 			if ($topic['is_locked'])
 				echo '
 								<i class="fa fa-lock fa-lg floatright"></i>';
@@ -166,7 +162,7 @@ function template_unread()
 							</p>
 							<small id="pages', $topic['first_post']['id'], '">&nbsp;', $topic['pages'], '</small>
 						</div>
-						<div class="stats">
+						<div class="board_stats centertext">
 							<p>
 								', $topic['replies'], ' ', $txt['replies'], '
 								<br>
@@ -250,11 +246,11 @@ function template_replies()
 		echo '
 			<div id="unreadreplies">
 				<div id="topic_header" class="title_bar">
-					<div class="icon"></div>
+					<div class="board_icon"></div>
 					<div class="info">
 						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=subject', $context['sort_by'] === 'subject' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['subject'], $context['sort_by'] === 'subject' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
 					</div>
-					<div class="stats">
+					<div class="board_stats centertext">
 						<a href="', $scripturl, '?action=unreadreplies', $context['querystring_board_limits'], ';sort=replies', $context['sort_by'] === 'replies' && $context['sort_direction'] === 'up' ? ';desc' : '', '">', $txt['replies'], $context['sort_by'] === 'replies' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
 					</div>
 					<div class="lastpost">
@@ -276,7 +272,7 @@ function template_replies()
 		{
 			echo '
 						<div class="', $topic['css_class'], '">
-							<div class="icon">
+							<div class="board_icon">
 								<img src="', $topic['first_post']['icon_url'], '" alt="">
 								', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '','
 							</div>
@@ -284,7 +280,7 @@ function template_replies()
 
 			// Now we handle the icons
 			echo '
-								<div class="icons">';
+								<div class="icons floatright">';
 			if ($topic['is_locked'])
 				echo '
 									<i class="fa fa-lock fa-lg floatright"></i>';
@@ -307,7 +303,7 @@ function template_replies()
 								</p>
 								<small id="pages', $topic['first_post']['id'], '">&nbsp;', $topic['pages'], '</small>
 							</div>
-							<div class="stats">
+							<div class="board_stats centertext">
 								<p>
 									', $topic['replies'], ' ', $txt['replies'], '
 									<br>

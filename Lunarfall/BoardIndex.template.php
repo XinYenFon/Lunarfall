@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2015 Simple Machines and individual contributors
+ * @copyright 2016 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 2
+ * @version 2.1 Beta 3
  */
 
 /**
@@ -72,7 +72,7 @@ function template_main()
 
 		echo '
 		<div class="main_container">
-			<div class="cat_bar', $category['is_collapsed'] ? ' collapsed' : '','" id="category_', $category['id'], '">
+			<div class="cat_bar" id="category_', $category['id'], '">
 				<h3 class="catbg">';
 
 		// If this category even can collapse, show a link to collapse it.
@@ -110,7 +110,7 @@ function template_main()
 
 				echo '
 
-						<p>', $board['description'] , '</p>';
+						<p class="board_description">', $board['description'] , '</p>';
 
 				// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
 				if (!empty($board['link_moderators']))
@@ -120,12 +120,12 @@ function template_main()
 				// Show some basic information about the number of posts, etc.
 					echo '
 					</div>
-					<div class="stats">
+					<div class="board_stats">
 						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], '
 						', $board['is_redirect'] ? '' : '<br> ' . comma_format($board['topics']) . ' ' . $txt['board_topics'], '
 						</p>
 					</div>
-					<div class="lastpost">';
+					<div class="lastpost ',!empty($board['last_post']['id']) ? 'lpr_border' : 'hidden','">';
 
 				if (!empty($board['last_post']['id']))
 					echo '
@@ -155,7 +155,7 @@ function template_main()
 
 				echo '
 					<div id="board_', $board['id'], '_children" class="children">
-						<p><strong>', $txt['sub_boards'], '</strong>: ', implode(', ', $children), '</p>
+						<p><strong>', $txt['sub_boards'], '</strong>: ', implode($children), '</p>
 					</div>';
 				}
 
@@ -208,7 +208,7 @@ function template_info_center()
 
 	foreach ($context['info_center'] as $block)
 	{
-		$func = 'template_ic_block_' . $block;
+		$func = 'template_ic_block_' . $block['tpl'];
 		$func();
 	}
 

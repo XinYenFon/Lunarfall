@@ -1,5 +1,5 @@
 <?php
-// Version: 2.1 Beta 2; Settings
+// Version: 2.1 Beta 3; Settings
 
 global $settings;
 
@@ -13,8 +13,5 @@ $txt['googleplus_page'] = 'Google+ Page';
 $txt['gplus_desc'] = '<span class="smalltext">Do not enter whole URL, just use the last part. ie; .../<strong>+SMFforum</strong> or .../<strong>118330618266939737270</strong></span>';
 $txt['disable_fa_icons'] = 'Disable Font-Awesome Icons';
 $txt['disable_fa_icons_desc'] = '<span class="smalltext"If you don\'t want Font-Awesome icons in your site you can disable here<br>Increases performance with not loading the Font-Awesome related files</span>';
-/* Open Graph */
-$txt['og_image'] = 'OG Image';
-$txt['og_image_desc'] = 'Link to your Open Graph optimized image, suggested size 175x175px<br><span class="smalltext">You can read more about here <a href="http://ogp.me/">Open Graph</a></span>';
 
 ?>

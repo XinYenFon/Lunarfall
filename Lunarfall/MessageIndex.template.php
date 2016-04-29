@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2015 Simple Machines and individual contributors
+ * @copyright 2016 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 2
+ * @version 2.1 Beta 3
  */
 
 /**
@@ -52,7 +52,7 @@ function template_main()
 						<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link">(!)</a>';
 
 			echo '
-						<p>', $board['description'] , '</p>';
+						<p class="board_description">', $board['description'] , '</p>';
 
 			// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
 			if (!empty($board['moderators']) || !empty($board['moderator_groups']))
@@ -62,7 +62,7 @@ function template_main()
 			// Show some basic information about the number of posts, etc.
 			echo '
 					</div>
-					<div class="stats">
+					<div class="board_stats centertext">
 						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], ' <br>
 						', $board['is_redirect'] ? '' : comma_format($board['topics']) . ' ' . $txt['board_topics'], '
 						</p>
@@ -115,6 +115,12 @@ function template_main()
 
 	if (!$context['no_topic_listing'])
 	{
+	// Mobile action buttons (top)
+	echo '
+		<div class="mobile_buttons floatright">
+			<a class="button mobile_act">', $txt['mobile_action'],'</a>
+		</div>';
+
 		echo '
 	<div class="pagesection">
 		', $context['menu_separator'], '<a href="#bot" class="topbottom floatleft">', $txt['go_down'], '</a>
@@ -126,7 +132,7 @@ function template_main()
 		{
 		echo '
 	<div id="description_board" class="windowbg">
-		<h3 class="floatleft">', $context['name'], '&nbsp;-&nbsp;</h3>
+		<h3>', $context['name'], '</h3>
 		<p>';
 	if ($context['description'] != '')
 	echo '
@@ -168,9 +174,9 @@ function template_main()
 		if (!empty($context['topics']))
 		{
 			echo '
-					<div class="icon">&nbsp;</div>
+					<div class="board_icon">&nbsp;</div>
 					<div class="info">', $context['topics_headers']['subject'], ' / ', $context['topics_headers']['starter'], '</div>
-					<div class="stats">', $context['topics_headers']['replies'], ' / ', $context['topics_headers']['views'], '</div>
+					<div class="board_stats centertext">', $context['topics_headers']['replies'], ' / ', $context['topics_headers']['views'], '</div>
 					<div class="lastpost">', $context['topics_headers']['last_post'], '</div>';
 
 			// Show a "select all" box for quick moderation?
@@ -208,16 +214,16 @@ function template_main()
 		{
 			echo '
 			<div class="', $topic['css_class'], '">
-				<div class="icon">
+				<div class="board_icon">
 					<img src="', $topic['first_post']['icon_url'], '" alt="">
 					', $topic['is_posted_in'] ? '<i class="fa fa-user fa-lg posted"></i>' : '', '
 				</div>
-					<div class="info">
+					<div class="info', !empty($context['can_quick_mod']) ? '' : ' info_block','">
 						<div ', (!empty($topic['quick_mod']['modify']) ? 'id="topic_' . $topic['first_post']['id'] . '"  ondblclick="oQuickModifyTopic.modify_topic(\'' . $topic['id'] . '\', \'' . $topic['first_post']['id'] . '\');"' : ''), '>';
 
 			// Now we handle the icons
 			echo '
-							<div class="icons">';
+							<div class="icons floatright">';
 			if ($topic['is_watched'])
 				echo '
 								<i class="fa fa-binoculars fa-lg floatright" title="', $txt['watching_this_topic'], '"></i>';
@@ -244,11 +250,11 @@ function template_main()
 								</span>
 							</div>
 							<p class="floatleft">', $txt['started_by'], ' ', $topic['first_post']['member']['link'], '</p>
-							<small id="pages', $topic['first_post']['id'], '">&nbsp;', $topic['pages'], '</small>
+							', !empty($topic['pages']) ? '<span id="pages'. $topic['first_post']['id']. '" class="topic_pages">&nbsp;'. $topic['pages']. '</span>' : '','
 							<br class="clear">
 						</div>
 					</div>
-					<div class="stats"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>
+					<div class="board_stats centertext"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>
 					<div class="lastpost">
 						<p>', sprintf($txt['last_post_topic'], '<a href="' . $topic['last_post']['href'] . '">' . $topic['last_post']['time'] . '</a>', $topic['last_post']['member']['link']), '</p>
 					</div>';
@@ -322,6 +328,12 @@ function template_main()
 	<input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '">
 	</form>';
 
+	// Mobile action buttons (bottom)
+	echo '
+		<div class="mobile_buttons floatright">
+			<a class="button mobile_act">', $txt['mobile_action'],'</a>
+		</div>';
+
 		echo '
 	<div class="pagesection">
 		', template_button_strip($context['normal_buttons'], 'right'), '
@@ -364,6 +376,16 @@ function template_main()
 </script>';
 
 	template_topic_legend();
+
+	// Lets pop the...
+	echo '
+			<div id="mobile_action" class="popup_container">
+				<div class="popup_window description">
+					<div class="popup_heading">', $txt['mobile_action'],'
+					<a href="javascript:void(0);" class="generic_icons hide_popup"></a></div>
+					', template_button_strip($context['normal_buttons']), '
+				</div>
+			</div>';
 }
 
 /**

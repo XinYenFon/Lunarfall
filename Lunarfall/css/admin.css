@@ -2,7 +2,19 @@
 .action_admin .generic_list {
 	overflow: auto;
 }
-tr.windowbg {
+#admin_content .windowbg {
+	margin: 5px 0 5px 0;
+	box-shadow: none;
+}
+#admin_content .windowbg2 {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	margin: 0 0 10px 0;
+	box-shadow: none;
+	background: #f0f4f7;
+}
+.action_admin .table_grid td {
+	border: 1px solid #ddd;
 	border-top: 0;
 }
 .action_admin .generic_list .flow_auto {
@@ -13,6 +25,7 @@ tr.windowbg {
 	margin-bottom: 0;
 }
 .table_caption, tr.table_caption td {
+	color: #000;
 	font-size: 10px;
 	font-weight: bold;
 }
@@ -20,7 +33,6 @@ tr.windowbg {
 	padding: 0 10px;
 }
 fieldset {
-	margin-bottom: 6px;
 	padding: 6px;
 }
 fieldset dl {
@@ -28,6 +40,7 @@ fieldset dl {
 }
 legend {
 	font-weight: bold;
+	color: #000;
 }
 
 /* Styles for the admin home screen.
@@ -36,6 +49,13 @@ legend {
 h3.catbg #quick_search form {
 	padding-top: 2px;
 	font-size: 0.9em;
+}
+h3.catbg #quick_search form input, h3.catbg #quick_search form select, h3.catbg #quick_search form .button_submit {
+	margin: 0 3px !important;
+	padding: 4px 3px 3px 3px;
+	border-radius: 4px;
+	border: 1px solid #777;
+	vertical-align: top;
 }
 h3.catbg #quick_search form select {
 	font-size: 0.9em;
@@ -49,7 +69,12 @@ h3.catbg #quick_search form .button_submit {
 	font-weight: bold;
 	padding: 3px 6px 2px 6px;
 }
-
+h3.catbg #quick_search form .button_submit:hover {
+	background: #fff;
+}
+span#quick_search {
+	display: block;
+}
 /* Browser tweaks. */
 body#chrome #quick_search form .input_text {
 	padding: 2px;
@@ -133,7 +158,6 @@ fieldset.admin_group legend {
 	border: 1px solid #cacdd3;
 	padding: 1px 5px;
 	border-radius: 3px;
-	color: #000;
 }
 fieldset.admin_group a {
 	display: inline-block;
@@ -225,7 +249,7 @@ pre.file_content {
 	background-color: #d1f7bf;
 	width: 8%;
 }
-.perm_write {
+.perm_writable {
 	background-color: #ffbbbb;
 	width: 8%;
 }
@@ -237,7 +261,7 @@ pre.file_content {
 	background-color: #c2c6c0;
 	width: 8%;
 }
-.perm_nochange {
+.perm_no_change {
 	background-color: #eee;
 	width: 8%;
 }
@@ -260,7 +284,13 @@ pre.file_content {
 	padding: 8px 0;
 	margin: 0;
 }
-#manage_boards li.windowbg:hover {
+#manage_boards li.windowbg:first-child, #manage_boards li.windowbg2:first-child {
+	border-top: none;
+}
+#manage_boards li.windowbg:last-child, #manage_boards li.windowbg2:last-child {
+	border-bottom: 1px solid #ddd;
+}
+#manage_boards li.windowbg:hover, #manage_boards li.windowbg2:hover {
 	background: #D0E7F8;
 }
 #manage_boards li .floatleft {
@@ -378,7 +408,9 @@ ul.theme_options li {
 }
 .is_directory {
 	padding-left: 18px;
-	background: url(../images/admin/boards.png) no-repeat;
+}
+.is_directory span {
+	margin: -2px 3px 0 0;
 }
 .edit_file {
 	width: 96%;
@@ -459,11 +491,19 @@ h3.grid_header {
 #error_log {
 	margin: 4px 0;
 }
+#error_log tr:first-child td {
+	background: #fff;
+	padding: 8px;
+}
 
 /* Styles for the Report generation */
 #report_buttons {
 	min-height: 2.4em;
 	padding: 3px 0;
+}
+.report_results th {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 }
 
 #support_credits .sub_bar {

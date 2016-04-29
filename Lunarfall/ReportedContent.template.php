@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2015 Simple Machines and individual contributors
+ * @copyright 2016 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 2
+ * @version 2.1 Beta 3
  */
 
 /**
@@ -45,7 +45,7 @@ function template_reported_posts()
 	foreach ($context['reports'] as $report)
 	{
 		echo '
-		<div class="windowbg nopad">
+		<div class="windowbg">
 			<h5>
 				<strong>', !empty($report['topic']['board_name']) ? '<a href="' . $scripturl . '?board=' . $report['topic']['id_board'] . '.0">' . $report['topic']['board_name'] . '</a>' : '??', ' / <a href="', $report['topic']['href'], '">', $report['subject'], '</a></strong> ', $txt['mc_reportedp_by'], ' <strong>', $report['author']['link'], '</strong>
 			</h5>
@@ -123,7 +123,7 @@ function template_reported_posts_block()
 		</div>
 		<div class="windowbg" id="reported_posts_panel">
 			<div class="modbox">
-				<ul class="reset">';
+				<ul>';
 
 		foreach ($context['reported_posts'] as $report)
 			echo '
@@ -332,7 +332,7 @@ function template_reported_members_block()
 		</div>
 		<div class="windowbg" id="reported_users_panel">
 			<div class="modbox">
-				<ul class="reset">';
+				<ul>';
 
 		foreach ($context['reported_members'] as $report)
 			echo '
@@ -422,7 +422,7 @@ function template_reported_members()
 	foreach ($context['reports'] as $report)
 	{
 		echo '
-		<div class="windowbg nopad">
+		<div class="windowbg">
 			<h5>
 				<strong><a href="', $report['user']['href'], '">', $report['user']['name'], '</a></strong>
 			</h5>

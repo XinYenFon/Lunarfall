@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2015 Simple Machines and individual contributors
+ * @copyright 2016 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 2
+ * @version 2.1 Beta 3
  */
 
 /**
@@ -21,8 +21,58 @@ function template_generic_menu_dropdown_above()
 	$context['cur_menu_id'] = isset($context['cur_menu_id']) ? $context['cur_menu_id'] + 1 : 1;
 	$menu_context = &$context['menu_data_' . $context['cur_menu_id']];
 
+	// Load the menu
+	template_generic_menu($menu_context);
+	template_generic_menu_mobile($menu_context);
+
+	// This is the main table - we need it so we can keep the content to the right of it.
 	echo '
-				<div id="admin_menu">';
+				<div id="admin_content">';
+
+	// It's possible that some pages have their own tabs they wanna force...
+// 	if (!empty($context['tabs']))
+		template_generic_menu_tabs($menu_context);
+}
+
+/**
+ * Part of the admin layer - used with generic_menu_dropdown_above to close the admin content div.
+ */
+function template_generic_menu_dropdown_below()
+{
+	echo '
+				</div>';
+}
+
+function template_generic_menu_mobile(&$menu_context)
+{
+	global $context, $txt;
+
+	// Load mobile menu here
+	echo '
+		<a class="menu_icon mobile_generic_menu_', $context['cur_menu_id'], '"></a>
+		<div id="mobile_generic_menu_', $context['cur_menu_id'], '" class="popup_container">
+			<div class="popup_window description">
+				<div class="popup_heading">', $txt['mobile_user_menu'],'
+				<a href="javascript:void(0);" class="generic_icons hide_popup"></a></div>
+				', template_generic_menu($menu_context), '
+			</div>
+		</div>
+		<script>
+			$( ".mobile_generic_menu_', $context['cur_menu_id'], '" ).click(function() {
+				$( "#mobile_generic_menu_', $context['cur_menu_id'], '" ).show();
+				});
+			$( ".hide_popup" ).click(function() {
+				$( "#mobile_generic_menu_', $context['cur_menu_id'], '" ).hide();
+			});
+		</script>';
+}
+
+function template_generic_menu (&$menu_context)
+{
+	global $context;
+
+	echo '
+				<div id="generic_menu">';
 
 	echo '
 					<ul class="dropmenu" id="dropdown_menu_', $context['cur_menu_id'], '">';
@@ -46,7 +96,7 @@ function template_generic_menu_dropdown_above()
 								<li', !empty($area['subsections']) ? ' class="subsections"' : '', '>';
 
 			echo '
-									<a class="', !empty($area['selected']) ? 'chosen' : '', '" href="', (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $i), $menu_context['extra_parameters'], '"><i class="fa fa-'.$area['icon_class'].' fa-fw"></i> ',$area['label'], '</a>';
+									<a class="', $area['icon_class'], !empty($area['selected']) ? ' chosen ' : '', '" href="', (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $i), $menu_context['extra_parameters'], '">', $area['icon'], $area['label'], '</a>';
 
 			// Is this the current area, or just some area?
 			if (!empty($area['selected']) && empty($context['tabs']))
@@ -86,23 +136,6 @@ function template_generic_menu_dropdown_above()
 	echo '
 					</ul>
 				</div>';
-
-	// This is the main table - we need it so we can keep the content to the right of it.
-	echo '
-				<div id="admin_content">';
-
-	// It's possible that some pages have their own tabs they wanna force...
-// 	if (!empty($context['tabs']))
-		template_generic_menu_tabs($menu_context);
-}
-
-/**
- * Part of the admin layer - used with generic_menu_dropdown_above to close the admin content div.
- */
-function template_generic_menu_dropdown_below()
-{
-	echo '
-				</div>';
 }
 
 /**
@@ -120,8 +153,9 @@ function template_generic_menu_tabs(&$menu_context)
 	if (!empty($tab_context['title']))
 	{
 		echo '
-					<div class="cat_bar">
-						<h3 class="catbg">';
+					<div class="cat_bar">', (function_exists('template_admin_quick_search') ? '
+						<form action="' . $scripturl . '?action=admin;area=search" method="post" accept-charset="' . $context['character_set'] . '">' : ''), '
+							<h3 class="catbg">';
 
 		// The function is in Admin.template.php, but since this template is used elsewhere too better check if the function is available
 		if (function_exists('template_admin_quick_search'))
@@ -186,7 +220,7 @@ function template_generic_menu_tabs(&$menu_context)
 				echo '<img src="', $settings['images_url'], '/icons/', !empty($selected_tab['icon']) ? $selected_tab['icon'] : $tab_context['icon'], '" alt="" class="icon">';
 
 			if (!empty($selected_tab['help']) || !empty($tab_context['help']))
-				echo '<a href="', $scripturl, '?action=helpadmin;help=', !empty($selected_tab['help']) ? $selected_tab['help'] : $tab_context['help'], '" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'],'"></i></a>';
+				echo '<a href="', $scripturl, '?action=helpadmin;help=', !empty($selected_tab['help']) ? $selected_tab['help'] : $tab_context['help'], '" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'],'"></span></a>';
 
 			echo $tab_context['title'];
 		}
@@ -197,7 +231,8 @@ function template_generic_menu_tabs(&$menu_context)
 		}
 
 		echo '
-						</h3>
+							</h3>', (function_exists('template_admin_quick_search') ? '
+						</form>' : ''), '
 					</div>';
 	}
 

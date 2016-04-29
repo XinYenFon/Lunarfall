@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2015 Simple Machines and individual contributors
+ * @copyright 2016 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 2
+ * @version 2.1 Beta 3
  */
 
 /**
@@ -51,7 +51,7 @@ function template_main()
 	}
 
 	// Close our wrapper.
-	echo '<br class="clear">
+	echo '
 	</div>';
 }
 
@@ -96,9 +96,6 @@ function template_show_month_grid($grid_name, $is_mini = false)
 					';
 				}
 
-				// Arguably the most exciting part, the title!
-				echo '<a href="', $scripturl, '?action=calendar;year=', $calendar_data['current_year'], ';month=', $calendar_data['current_month'], '">', $txt['months_titles'][$calendar_data['current_month']], ' ', $calendar_data['current_year'], '</a>';
-
 				// Next Link: if we're showing prev / next and it's not a mini-calendar.
 				if (empty($calendar_data['next_calendar']['disabled']) && $calendar_data['show_next_prev'] && $is_mini === false)
 				{
@@ -108,6 +105,9 @@ function template_show_month_grid($grid_name, $is_mini = false)
 						</span>
 					';
 				}
+
+				// Arguably the most exciting part, the title!
+				echo '<a href="', $scripturl, '?action=calendar;year=', $calendar_data['current_year'], ';month=', $calendar_data['current_month'], '">', $txt['months_titles'][$calendar_data['current_month']], ' ', $calendar_data['current_year'], '</a>';
 
 				echo '
 				</h3>
@@ -193,6 +193,8 @@ function template_show_month_grid($grid_name, $is_mini = false)
 				}
 			}
 			else
+				// Default Classes (either compact or comfortable and disabled).
+				$classes[] = !empty($calendar_data['size']) && $calendar_data['size'] == 'small' ? 'compact' : 'comfortable';
 				$classes[] = 'disabled';
 
 			// Now, implode the classes for each day.
@@ -262,18 +264,16 @@ function template_show_month_grid($grid_name, $is_mini = false)
 							{
 								echo '
 									<a class="modify_event" href="', $event['modify_href'], '">
-										<img src="', $settings['images_url'], '/icons/calendar_modify.png" alt="*" title="', $txt['calendar_edit'], '" class="calendar_icon">
-									</a>
-								';
+										<span class="generic_icons calendar_modify" title="', $txt['calendar_edit'], '"></span>
+									</a>';
 							}
 							// Exporting!
 							if ($event['can_export'])
 							{
 								echo '
 									<a class="modify_event" href="', $event['export_href'], '">
-										<img src="', $settings['images_url'], '/icons/calendar_export.png" alt=">" title="', $txt['calendar_export'], '" class="calendar_icon">
-									</a>
-								';
+										<span class="generic_icons calendar_export" title="', $txt['calendar_export'], '"></span>
+									</a>';
 							}
 							echo $event['is_selected'] ? '<div class="sel_event">' . $event['link'] . '</div>' : $event['link'], $event['is_last'] ? '' : '<br>';
 						}
@@ -340,30 +340,28 @@ function template_show_week_grid($grid_name)
 					if (empty($calendar_data['previous_calendar']['disabled']) && !empty($calendar_data['show_next_prev']))
 					{
 						echo '
-							<span class="floatleft xlarge_text">
+							<span class="floatleft">
 								<a href="', $calendar_data['previous_week']['href'], '">&#171;</a>
 							</span>
 						';
+					}
+
+					// Next Week Link...
+					if (empty($calendar_data['next_calendar']['disabled']) && !empty($calendar_data['show_next_prev']))
+					{
+						echo '
+							<span class="floatright">
+								<a href="', $calendar_data['next_week']['href'], '">&#187;</a>
+							</span>';
 					}
 
 					// The Month Title + Week Number...
 					if (!empty($calendar_data['week_title']))
 							echo $calendar_data['week_title'];
 
-					// Next Week Link...
-					if (empty($calendar_data['next_calendar']['disabled']) && !empty($calendar_data['show_next_prev']))
-					{
-						echo '
-							<span class="floatright xlarge_text">
-								<a href="', $calendar_data['next_week']['href'], '">&#187;</a>
-							</span>
-						';
-					}
-
 					echo '
 					</h3>
-				</div>
-			';
+				</div>';
 		}
 
 		// Our actual month...
@@ -372,8 +370,7 @@ function template_show_week_grid($grid_name)
 				<a href="', $scripturl, '?action=calendar;month=', $month_data['current_month'], '">
 					', $txt['months_titles'][$month_data['current_month']], '
 				</a>
-			</div>
-		';
+			</div>';
 
 		// The main table grid for $this week.
 		echo '
@@ -402,7 +399,7 @@ function template_show_week_grid($grid_name)
 								echo $txt['days'][$day['day_of_week']], ' - ', $day['day'];
 
 							echo '</td>
-							<td class="', implode(' ', $classes), '', empty($day['events']) ? (' disabled' . ($context['can_post'] ? ' week_post' : '')) : ' events', '">';
+							<td class="', implode(' ', $classes), '', empty($day['events']) ? (' disabled' . ($context['can_post'] ? ' week_post' : '')) : ' events', ' event_col">';
 							// Show any events...
 							if (!empty($day['events']))
 							{
@@ -414,18 +411,16 @@ function template_show_week_grid($grid_name)
 									{
 										echo '
 											<a href="', $event['modify_href'], '">
-												<img src="', $settings['images_url'], '/icons/calendar_modify.png" alt="*" title="', $txt['calendar_edit'], '" class="calendar_icon">
-											</a>
-										';
+												<span class="generic_icons calendar_modify" title="', $txt['calendar_edit'], '"></span>
+											</a>';
 									}
 									// Can we export? Sweet.
 									if (!empty($event['can_export']))
 									{
 										echo '
 											<a class="modify_event" href="', $event['export_href'], '">
-												<img src="', $settings['images_url'], '/icons/calendar_export.png" alt=">" title="', $txt['calendar_export'], '" class="calendar_icon">
-											</a>
-										';
+												<span class="generic_icons calendar_export" title="', $txt['calendar_export'], '"></span>
+											</a>';
 									}
 									echo $event['link'], $event['is_last'] ? '' : '<br>';
 								}
@@ -433,11 +428,10 @@ function template_show_week_grid($grid_name)
 									</div>
 									<div class="active_post_event floatright">
 										<a href="', $scripturl, '?action=calendar;sa=post;month=', $month_data['current_month'], ';year=', $month_data['current_year'], ';day=', $day['day'], ';', $context['session_var'], '=', $context['session_id'], '">
-											<img src="', $settings['images_url'], '/icons/plus.png" alt="*" title="', $txt['calendar_post_event'], '">
+											<span class="generic_icons plus" title="', $txt['calendar_post_event'], '"></span>
 										</a>
 									</div>
-									<br class="clear">
-								';
+									<br class="clear">';
 							}
 							else
 							{
@@ -446,18 +440,17 @@ function template_show_week_grid($grid_name)
 									echo '
 										<div class="week_add_event">
 											<a href="', $scripturl, '?action=calendar;sa=post;month=', $month_data['current_month'], ';year=', $month_data['current_year'], ';day=', $day['day'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['calendar_post_event'], '</a>
-										</div>
-									';
+										</div>';
 								}
 							}
 							echo '</td>
-							<td class="', implode(' ', $classes), !empty($day['holidays']) ? ' holidays' : ' disabled', '">';
+							<td class="', implode(' ', $classes), !empty($day['holidays']) ? ' holidays' : ' disabled', ' holiday_col">';
 							// Show any holidays!
 							if (!empty($day['holidays']))
 								echo implode('<br>', $day['holidays']);
 
 							echo '</td>
-							<td class="', implode(' ', $classes), '', !empty($day['birthdays']) ? ' birthdays' : ' disabled', '">';
+							<td class="', implode(' ', $classes), '', !empty($day['birthdays']) ? ' birthdays' : ' disabled', ' birthday_col">';
 							// Show any birthdays...
 							if (!empty($day['birthdays']))
 							{
@@ -470,8 +463,7 @@ function template_show_week_grid($grid_name)
 								}
 							}
 							echo '</td>
-						</tr>
-					';
+						</tr>';
 				}
 
 				// We'll show the lower column after our last month is shown.
@@ -482,12 +474,11 @@ function template_show_week_grid($grid_name)
 				++$iteration;
 
 				echo '
-			</table>
-		';
+			</table>';
 	}
 }
 
-/*
+/**
  * Calendar Grid Base
  *
  * This function is ONLY designed for use
@@ -519,10 +510,8 @@ function template_calendar_base($col_span = 1)
 					echo '</select>
 					<input type="submit" class="button_submit" id="view_button" value="', $txt['view'], '">
 				</form>
-				<br class="clear">
 			</td>
-		</tr>
-	';
+		</tr>';
 }
 
 /**

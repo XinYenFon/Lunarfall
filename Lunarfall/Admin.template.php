@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2015 Simple Machines and individual contributors
+ * @copyright 2016 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 2
+ * @version 2.1 Beta 3
  */
 
 /**
@@ -510,10 +510,10 @@ function template_view_versions()
 											<a href="#" id="Tasks-link">', $txt['dvc_tasks'] ,'</a>
 										</td>
 										<td class="quarter_table">
-											<em id="yourTemplates">??</em>
+											<em id="yourTasks">??</em>
 										</td>
 										<td class="quarter_table">
-											<em id="currentTemplates">??</em>
+											<em id="currentTasks">??</em>
 										</td>
 									</tr>
 								</tbody>
@@ -529,10 +529,10 @@ function template_view_versions()
 											', $filename, '
 										</td>
 										<td class="quarter_table">
-											<em id="yourTemplates', $filename, '">', $version, '</em>
+											<em id="yourTasks', $filename, '">', $version, '</em>
 										</td>
 										<td class="quarter_table">
-											<em id="currentTemplates', $filename, '">??</em>
+											<em id="currentTasks', $filename, '">??</em>
 										</td>
 									</tr>';
 
@@ -610,7 +610,7 @@ function template_edit_censored()
 								<script>
 									document.getElementById("moreCensoredWords_link").style.display = "";
 								</script>
-								<hr width="100%" size="1" class="hrcolor clear">
+								<hr>
 								<dl class="settings">
 									<dt>
 										<strong><label for="allow_no_censored">', $txt['allow_no_censored'], ':</label></strong>
@@ -902,7 +902,7 @@ function template_show_settings()
 					echo '
 											<fieldset id="', $config_var['name'], '">
 												<legend>', $txt['bbcTagsToUse_select'], '</legend>
-													<ul class="reset">';
+													<ul>';
 
 					foreach ($context['bbc_columns'] as $bbcColumn)
 					{
@@ -952,7 +952,7 @@ function template_show_settings()
 			if ($config_var == '')
 				echo '
 								</dl>
-								<hr class="hrcolor clear">
+								<hr>
 								<dl class="settings">';
 			else
 				echo '
@@ -1282,16 +1282,17 @@ function template_admin_search_results()
 
 	echo '
 						<div id="section_header" class="cat_bar">
-							<h3 class="catbg">
-								<div id="quick_search">
-									<form action="', $scripturl, '?action=admin;area=search" method="post" accept-charset="', $context['character_set'], '" class="floatright">
+							<form action="', $scripturl, '?action=admin;area=search" method="post" accept-charset="', $context['character_set'], '">
+								<h3 class="catbg">
+									<span id="quick_search" class="floatright">
 										<input type="search" name="search_term" value="', $context['search_term'], '" class="input_text">
 										<input type="hidden" name="search_type" value="', $context['search_type'], '">
 										<input type="submit" name="search_go" value="', $txt['admin_search_results_again'], '" class="button_submit">
-									</form>
-								</div>
-								<i class="fa fa-search fa-lg"></i>&nbsp;', sprintf($txt['admin_search_results_desc'], $context['search_term']), '
-							</h3>
+									</span>
+									<span class="generic_icons filter"></span>
+									<span id="quick_search_results">&nbsp;', sprintf($txt['admin_search_results_desc'], $context['search_term']), '</span>
+								</h3>
+							</form>
 						</div>
 					<div class="windowbg">';
 
@@ -1542,12 +1543,12 @@ function template_php_info()
 
 				echo '
 								<tr class="windowbg">
-									<td align="left" class="equal_table">', $key, '</td>';
+									<td class="equal_table">', $key, '</td>';
 
 				foreach ($setting as $key_lm => $value)
 				{
 					echo '
-									<td align="left" class="equal_table">', $value, '</td>';
+									<td class="equal_table">', $value, '</td>';
 				}
 				echo '
 								</tr>';
@@ -1557,8 +1558,8 @@ function template_php_info()
 			{
 				echo '
 								<tr class="windowbg">
-									<td align="left" class="equal_table">', $key,  '</td>
-									<td align="left" colspan="2">', $setting, '</td>
+									<td class="equal_table">', $key,  '</td>
+									<td colspan="2">', $setting, '</td>
 								</tr>';
 			}
 		}
@@ -1608,18 +1609,16 @@ function template_admin_quick_search()
 	global $context, $txt, $scripturl;
 	if ($context['user']['is_admin'])
 		echo '
-							<object id="quick_search">
-								<form action="', $scripturl, '?action=admin;area=search" method="post" accept-charset="', $context['character_set'], '" class="floatright">
-									<i class="fa fa-search fa-lg centericon"></i>
-									<input type="text" name="search_term" value="', $txt['admin_search'], '" onclick="if (this.value == \'', $txt['admin_search'], '\') this.value = \'\';" class="input_text">
+								<span class="floatright">
+									<span class="generic_icons filter centericon"></span>
+									<input type="search" name="search_term" value="', $txt['admin_search'], '" onclick="if (this.value == \'', $txt['admin_search'], '\') this.value = \'\';" class="input_text">
 									<select name="search_type">
 										<option value="internal"', (empty($context['admin_preferences']['sb']) || $context['admin_preferences']['sb'] == 'internal' ? ' selected' : ''), '>', $txt['admin_search_type_internal'], '</option>
 										<option value="member"', (!empty($context['admin_preferences']['sb']) && $context['admin_preferences']['sb'] == 'member' ? ' selected' : ''), '>', $txt['admin_search_type_member'], '</option>
 										<option value="online"', (!empty($context['admin_preferences']['sb']) && $context['admin_preferences']['sb'] == 'online' ? ' selected' : ''), '>', $txt['admin_search_type_online'], '</option>
 									</select>
 									<input type="submit" name="search_go" id="search_go" value="', $txt['admin_search_go'], '" class="button_submit">
-								</form>
-							</object>';
+								</span>';
 }
 
 ?>
