@@ -2,17 +2,17 @@
 /* Index */
 html {
 	background: #2A3F5A;
+	height: 100%;
 }
 body {
 	background: url(../images/blue_body_darker_repeat.jpg) repeat-y fixed #010101;
 	background-position: center top;
 	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
 	color: #8F98A0;
-	margin: 0 auto;
+	margin: 0;
 	padding: 0;
+	min-height: 100%;
 	position: relative;
-	float: left;
-	width: 100%;
 }
 /* <p> is a possible exception for margins. Must test that one a bit. */
 p, ul, ol, li, dl, dd ,dt, fieldset, form {
@@ -47,15 +47,31 @@ textarea, textarea.editor {
 .sceditor-container textarea, .sceditor-container textarea:focus  {
 	box-shadow: none;
 }
+#quick_edit_body_container textarea,
+.move_topic textarea,
+dd textarea {
+	width: 100%;
+	min-height: 100px;
+}
 /* Apply the font only to these elements. */
 input, button, select {
 	font-size: 0.9em;
+}
+input.button_submit {
+	color: #FFF;
+}
+/* Height fixation */
+input, select {
+	height: 25px;
 }
 select {
 	padding: 2px;
 }
 select option {
 	padding: 0 4px;
+}
+select[size], input.input_check, input.input_radio {
+	height: auto;
 }
 input:hover, textarea:hover, button:hover, select:hover {
 	outline: none !important;
@@ -105,12 +121,15 @@ input.input_check, input.input_radio {
 	background: none;
 	vertical-align: top;
 }
+.moderationbuttons_mobile_check {
+	display: none;
+}
 /* Give disabled text input elements a different background color. */
 input[disabled].input_text {
 	background: #eee;
 }
 /* Standard horizontal rule.. ([hr], etc.) */
-hr, hr.hrcolor {
+hr {
 	border: none;
 	margin: 12px 0;
 	height: 2px;
@@ -131,34 +150,25 @@ a:hover, a.new_win:hover {
 /* Deprecated? */
 body#help_popup {
 	padding: 12px;
+	box-sizing: border-box;
 }
 
-ul#likes li {
+#likes li {
 	clear: both;
 }
-
-ul#likes span.avatar {
-	width: 45px;
-	height: 45px;
-	padding: 2px;
+#likes .avatar {
+	max-height: 90px;
+	max-width: 90px;
+	padding: 0 10px 0 0;
 }
-ul#likes span.avatar img {
-	max-height: 40px;
+#likes span {
+	display: inline-block;
+	vertical-align: top;
 }
-ul#likes li span.description {
+#likes .description {
 	font-style: italic;
 	opacity: 0.4;
-	padding: 0.4em 0.7em;
 	font-size: 0.9em;
-}
-
-/* I think the reset class can be deprecated. */
-/* Must test inheritance thoroughly to be sure. */
-/* A quick reset list class. */
-ul.reset, ul.reset li {
-	padding: 0;
-	margin: 0;
-	list-style: none;
 }
 
 /* Buttons should be styled a bit differently, in order to make them look more button'ish. */
@@ -168,12 +178,11 @@ ul.reset, ul.reset li {
 }
 .button_submit, .button_reset, .button_link {
 	margin: 0 0 0 12px;
-	padding: 2px 4px;
+	padding: 0 4px;
 	float: right;
 	cursor: pointer;
 	border: 1px solid #2E3E4C;
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-	color: #FFF;
 }
 .button_submit:hover, .button_reset:hover, .button_link:hover {
 	box-shadow: -1px -1px 2px rgba(0,0,0,0.07), -1px -2px 4px rgba(255,255,255,0.33) inset;
@@ -271,42 +280,45 @@ h3.largetext {
 }
 .half_content {
 	box-sizing: border-box;
-	padding: 0 0.3%;
 	width: 50%;
 	display: inline-block;
 	vertical-align: top;
 }
 .half_content:nth-of-type(even) {
-	margin: 0 -0.25em 0 0;
+	margin-right: -0.25em;
+	padding-right: 0.3%;
 }
 .half_content:nth-of-type(odd) {
-	margin: 0 0 0 -0.25em;
+	margin-left: -0.2em;
+	padding-left: 0.3%;
 }
 
 /* BBC */
 /* A quote, perhaps from another post. */
-.bbc_standard_quote::before, .bbc_alternate_quote::before {
+.bbc_standard_quote:before, .bbc_alternate_quote:before {
 	color: #aaa;
 	font-size: 22px;
 	content: '\275D';
-	margin: -5px 5px 0 -5px;
+	position: absolute;
+	left: 5px;
 }
 /* Remove the difference IE/Opera/Chrome/Firefox etc... */
-#firefox .bbc_standard_quote::before, #firefox .bbc_alternate_quote::before {
+#firefox .bbc_standard_quote:before, #firefox .bbc_alternate_quote:before {
 	font-size: 30px;
 }
-#firefox .bbc_standard_quote::before, #firefox .bbc_alternate_quote::before,
-#chrome .bbc_standard_quote::before, #chrome .bbc_alternate_quote::before {
+#firefox .bbc_standard_quote:before, #firefox .bbc_alternate_quote:before,
+#chrome .bbc_standard_quote:before, #chrome .bbc_alternate_quote:before {
 	vertical-align: middle;
 	margin: 0 5px 0 0;
 }
 .bbc_standard_quote, .bbc_alternate_quote {
 	margin: 0 0 8px 0;
-	padding: 6px 10px;
+	padding: 6px 10px 6px 25px;
 	font-size: 0.9em;
 	border: 1px solid #d6dfe2;
 	border-left: 2px solid #aaa;
 	border-right: 2px solid #aaa;
+	position: relative;
 }
 /* Alternate blockquote stylings */
 .bbc_standard_quote {
@@ -319,7 +331,7 @@ h3.largetext {
 .bbc_code {
 	display: block;
 	font-family: "DejaVu Sans Mono", Monaco, Consolas, monospace;
-	font-size: 0.9em;
+	font-size: 0.75em;
 	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
 	border-top: 2px solid #bbb;
@@ -362,11 +374,9 @@ h3.largetext {
 .bbc_color a {
 	color: inherit;
 }
-.bbc_bold {
-	font-weight: bold;
-}
-.bbc_img {
+.bbc_img, .atc_img {
 	border: 0;
+	max-width: 100%;
 }
 .bbc_table {
 	font: inherit;
@@ -377,17 +387,10 @@ h3.largetext {
 	color: inherit;
 	vertical-align: top;
 }
-.bbc_u {
-	text-decoration: underline;
-}
 .bbc_list {
 	text-align: left;
 	padding: 0 0 0 35px;
 	list-style-type: inherit;
-}
-/* Everything is same except HTML5 valid */
-.bbc_tt {
-	font-family: "dejavu sans mono", "monaco", "lucida console", "courier new", monospace;
 }
 /* No image should have a border when linked. */
 a img {
@@ -421,19 +424,16 @@ a img {
 /* the page navigation area */
 .pagesection {
 	font-size: 0.9em;
-	padding: 2px 4px;
+	padding: 2px 0;
 	overflow: hidden;
 	margin: 0;
 	clear: both;
 }
-.pages::after, .jump_to::after {
+.pages:after, .jump_to:after, .code:after {
 	content: ": ";
 }
 #main_content_section .pagesection {
 	margin: 4px 0 0 0;
-}
-div.pagesection div.floatright input, div.pagesection div.floatright select {
-	margin-top: 3px;
 }
 .pagelinks {
 	margin: 8px 0 0 0;
@@ -454,7 +454,12 @@ div.pagesection div.floatright input, div.pagesection div.floatright select {
 	font-family: verdana, sans-serif;
 	font-weight: bold;
 }
-
+.current_page:before, .codeoperation:before {
+	content: "[";
+}
+.current_page:after, .codeoperation:after {
+	content: "]";
+}
 /* Go up and go down links. */
 .topbottom {
 	display: block;
@@ -515,11 +520,6 @@ a.moderation_link, a.moderation_link:visited {
 	color: red;
 	font-weight: bold;
 }
-
-p.para2 {
-	padding: 12px 0 44px 0;
-	margin: 0;
-}
 /* AJAX notification bar
 ------------------------------------------------------- */
 #ajax_in_progress {
@@ -553,18 +553,9 @@ dl.settings {
 	padding: 5px;
 }
 dl.settings dt {
-	width: 40%;
+	width: 56%;
 	float: left;
 	margin: 0 0 10px 0;
-	padding: 0;
-	clear: both;
-}
-dl.settings dt.settings_title {
-	width: 100%;
-	float: none;
-	margin: 0 0 10px 0;
-	padding: 5px 0 0 0;
-	font-weight: bold;
 	clear: both;
 }
 dl.settings dt.windowbg {
@@ -575,19 +566,17 @@ dl.settings dt.windowbg {
 	clear: both;
 }
 dl.settings dd {
-	width: 56%;
+	width: 42%;
 	float: right;
 	overflow: auto;
 	margin: 0 0 3px 0;
-	padding: 0;
 }
 dl.settings img {
 	margin: 0 10px 0 0;
 	vertical-align: middle;
 }
 /* help icons */
-dl.settings dt a img {
-	position: relative;
+dl.settings dt a span {
 	vertical-align: top;
 }
 
@@ -600,11 +589,8 @@ table.table_grid {
 table.table_grid td {
 	padding: 3px;
 }
-.table_grid.half_content {
-	width: 50%;
-}
 /* Some predefined widths (mostly for tables) */
-.half_table {
+.table_grid.half_content, .half_table {
 	width: 50%;
 }
 .equal_table {
@@ -725,12 +711,7 @@ img.sort, .sort {
 .dropmenu li strong {
 	color: #333;
 }
-/* For the upshrink button in the main menu bar. */
-#collapse_button {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
+
 .dropmenu li a, #top_info > li > a {
 	padding: 0 7px;
 	margin: 0;
@@ -787,14 +768,12 @@ img.sort, .sort {
 #profile_menu .profile_user_links i {
 	margin: 0;
 }
-#pm_menu, #alerts_menu {
+.top_menu.scrollable {
 	max-height: 30em;
 }
-#pm_menu .pm_unread, #alerts_menu .alerts_unread {
-	margin-top: 2px;
-	padding-top: 3px;
+.pm_unread, .alerts_unread {
+	margin-top: 5px;
 	border-top: 1px solid #ddd;
-	clear: both;
 }
 #pm_menu .no_unread, #alerts_menu .no_unread {
 	padding-top: 3px;
@@ -804,28 +783,19 @@ img.sort, .sort {
 	clear: both;
 	padding: 2px;
 }
-#pm_menu .pm_unread div > .avatar, #alerts_menu .alerts_unread div > .avatar {
+.top_menu.scrollable .avatar {
 	width: 40px;
 	height: 40px;
-	margin: 1px 6px 0 1px;
+	margin: 4px;
+	display: inline-block;
 }
-#pm_menu .pm_unread .avatar img, #alerts_menu .alerts_unread .avatar img {
-	width: 100%;
-	height: 100%;
-	max-width: 40px;
-	max-height: 40px;
-}
-#pm_menu .unread .subject {
-	font-weight: bold;
-}
-#pm_menu .unread, #alerts_menu .unread {
-	border-bottom: 1px solid #ddd;
-}
-#pm_menu .unread:last-of-type, #alerts_menu .unread:last-of-type {
-	border-bottom: 1px solid transparent;
-}
-#pm_menu .details, #alerts_menu .details {
+.top_menu.scrollable .details {
 	max-width: 80%;
+	display: inline-block;
+	vertical-align: top;
+}
+#pm_menu .subject {
+	font-weight: bold;
 }
 /* Levels 2 and 3 submenu wrapper. */
 .dropmenu li ul {
@@ -846,8 +816,6 @@ img.sort, .sort {
 	margin: 0;
 	padding: 0;
 	width: 17em;
-	position: relative;
-	float: none;
 	font-size: 1em;
 }
 .dropmenu li li a {
@@ -882,6 +850,7 @@ img.sort, .sort {
 /* Note: The next declarations are for keyboard access with js disabled. */
 .dropmenu ul a:focus, .dropmenu ul ul a:focus {
 	margin-left: 9990px;
+	border: none;
 	width: 17em;
 }
 .dropmenu ul ul a:focus {
@@ -891,11 +860,6 @@ img.sort, .sort {
 .dropmenu ul li:hover a:focus, .dropmenu ul li a:focus {
 	margin-left: 0;
 	width: auto;
-}
-/* Necessary to allow highlighting of 1st level while hovering over submenu. */
-.dropmenu li:hover li a, .dropmenu li li a {
-	padding: 0 9px;
-	color: #346;
 }
 /* Level 3 submenu wrapper positioning. */
 .dropmenu li ul ul {
@@ -911,9 +875,6 @@ img.sort, .sort {
 	background: #212D3D;
 }
 /* Reposition Level 2 submenu as visible on hover. */
-.dropmenu li ul {
-	display: none;
-}
 .dropmenu li:hover ul {
 	display: block;
 }
@@ -926,10 +887,10 @@ img.sort, .sort {
 	left: -14px;
 	top: 2em !important;
 }
-.dropmenu li li.subsections > a::after {
+.dropmenu li li.subsections > a:after {
 	position: absolute;
-	top: 0.7em;
-	right: 2px;
+	padding: 5px 0;
+	right: 10px;
 	font: 83.33%/150% Arial, sans-serif;
 	content: '\25ba';
 }
@@ -941,7 +902,6 @@ img.sort, .sort {
 /* The extra menu rows for admin sections, etc. */
 #adm_submenus {
 	margin: 0 0 6px 0;
-	padding: 10px 15px 0 15px;
 	overflow: hidden;
 }
 
@@ -987,9 +947,6 @@ img.sort, .sort {
 	color: #ffc187;
 	background: #557ea0;
 }
-.align_top a, .align_bottom a {
-	margin: 0 12px 0 0;
-}
 .button.last {
 	margin-top: 9px;
 }
@@ -997,21 +954,16 @@ img.sort, .sort {
 /* Styles for the general looks of the theme.
 ------------------------------------------------------- */
 /* Do all these here to save repetition. */
-#header, #header .frame, #top_section, #upper_wrap, #upper_section, #upper_section .user,
+#header, #top_section, #upper_wrap, #upper_section, #upper_section .user,
 #upper_section .news, .navigate_section, #content_section, #main_content_section,
-#lower_section, #lower_section .frame, #footer_section, #footer_section div.frame {
+#footer {
 	box-sizing: border-box;
-}
-
-/* These divisions wrap the forum sections when a forum width is set. */
-#wrapper, .frame {
-	margin: 0 auto;
-	min-width: 760px;
-	width: 90%;
 }
 
 /* Box-shadow only on this one. */
 #wrapper {
+	margin: 0 auto;
+	width: 90%;
 	clear: both;
 }
 
@@ -1019,15 +971,13 @@ img.sort, .sort {
 /* The top bar. */
 #top_section {
 	margin: 0;
-	padding: 0 4px;
+	padding: 0 5%;
 	border-bottom: 1px solid #bbb;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.16);
 	background: #171A21;
-}
-#top_section .frame{
 	clear: both;
 }
-#top_section .frame::after {
+#top_section:after {
 	content:"";
 	display: block;
 	clear: both;
@@ -1039,8 +989,8 @@ img.sort, .sort {
 	width: auto;
 }
 #profile_menu_top > img.avatar {
-	height: 18px;
-	width: 18px;
+	max-height: 18px;
+	max-width: 18px;
 	margin: 2px 5px 0 0;
 	float: left;
 	padding: 0;
@@ -1051,8 +1001,7 @@ img.sort, .sort {
 	display: inline;
 	font-size: 0.9em;
 }*/
-.notice
-{
+.notice {
 	font-weight: bold;
 }
 
@@ -1069,21 +1018,14 @@ img.sort, .sort {
 	margin: 2px;
 }
 #search_form select, #language_select {
-	color: #000;
 	margin: 1px;
-}
-#search_form .button_submit {
-	margin: 2px 10px 2px 5px;
-	padding: 2px 5px;
-}
-#search_form .button_submit:hover {
-	text-decoration: none;
 }
 /* The logo and slogan. */
 #header {
 	padding: 2px 2px 12px 2px;
+	margin: 0 5%;
 }
-#header::after {
+#header:after {
 	content:"";
 	display: block;
 	clear: both;
@@ -1132,7 +1074,7 @@ img#smflogo {
 #inner_section {
 	padding: 12px 10px 2px 10px;
 }
-#inner_section::after {
+#inner_section:after {
 	content:"";
 	display: block;
 	clear: both;
@@ -1173,6 +1115,7 @@ ul li.greeting {
 
 /* The navigation list (i.e. linktree) */
 .navigate_section {
+	padding: 3px 0 0 0;
 	float: left;
 	width: 100%;
 }
@@ -1181,7 +1124,8 @@ ul li.greeting {
 	padding: 0;
 }
 .navigate_section ul {
-	padding: 0 14px;
+	margin: 4px 0 0 0;
+	padding: 0 10px;
 	font-size: 0.9em;
 	overflow: hidden;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.08);
@@ -1231,39 +1175,37 @@ ul li.greeting {
 #main_content_section {
 	padding: 5px 12px 16px 12px;
 }
-#main_content_section::after {
+#main_content_section:after {
 	content:"";
 	display: block;
 	clear: both;
 }
-/* Footer is now full-width by default. Frame inside it will match theme wrapper width automatically. */
+/* Footer is now full-width by default. */
 /* The footer with copyright links etc. */
-#footer_section {
+#footer {
 	margin: 4em 0 0 0;
-	padding: 0;
-	overflow: auto;
+	padding: 10px 5%;
 	background: #2A3F5A;
 	border-top: 3px solid #b2b6bd;
-
+	position:absolute;
+	bottom: 0;
+	width: 100%;
 }
-/* min-width should be equal to #wrapper min-width. */
-#footer_section div.frame {
-	padding: 10px 5px;
-	overflow: auto;
-}
-#footer_section ul li, #footer_section p,
-#footer_section ul li a, #footer_section p a {
+#footer li, #footer p, #footer a {
 	font-size: 0.9em;
 	color: #fff;
 }
-#footer_section ul li {
-	display: inline;
-	padding-right: 5px;
+#footer ul {
+	padding: 0 5px;
 }
-#footer_section ul li.copyright {
+#footer li.copyright {
 	display: block;
+	font-family: Verdana, sans-serif; /* Copyright must be Verdana! */
 }
 
+#footerfix{
+	padding-bottom: 75px;
+}
 /* the posting icons */
 #postbuttons_upper ul li a span {
 	line-height: 19px;
@@ -1364,15 +1306,6 @@ ul li.greeting {
 }
 
 /* Styles for the move topic section. */
-#move_topic dl {
-	margin-bottom: 0;
-}
-#move_topic dl.settings dt {
-	width: 40%;
-}
-#move_topic dl.settings dd {
-	width: 59%;
-}
 .move_topic {
 	width: 710px;
 	margin: auto;
@@ -1505,11 +1438,6 @@ dl.register_form dd {
 	margin-right: 12px;
 }
 
-/* common for all admin sections */
-#admin_content {
-	clear: left;
-	padding-top: 6px;
-}
 /* Custom profile fields like to play with us some times. */
 #admin_content .custom_field {
 	margin-bottom: 15px;
@@ -1524,15 +1452,15 @@ dl.register_form dd {
 	vertical-align: middle;
 }
 
-tr.windowbg td, .table_grid tr td {
+tr.windowbg td, tr.windowbg2 td, .table_grid tr td {
 	padding: 4px 8px;
 }
 #credits p {
 	font-style: italic;
-	margin: 0;
-	padding: 0;
 }
-#credits .windowbg, #preview_section .windowbg, #poll .windowbg, #registration .roundframe,
+
+#credits .windowbg, #credits .windowbg2, #preview_section .windowbg, #poll .windowbg,
+#registration .roundframe, #report_form .windowbg,
 #admin_login .roundframe, #frmLogin .roundframe, #post_area .roundframe, #memberlist_search .roundframe,
 #profileview, #coppa, #fatal_error .windowbg {
 	margin: 0 0 10px 0 !important;
@@ -1549,8 +1477,8 @@ tr.windowbg td, .table_grid tr td {
 	border-width: 1px 0 1px 1px;
 }
 
-#admin_menu .dropmenu {
-	margin: 5px 0 0 0;
+#generic_menu {
+	margin: 5px 0;
 }
 /* Some lovely generic icons.
 ------------------------------------------------- */
@@ -1560,18 +1488,20 @@ tr.windowbg td, .table_grid tr td {
 /* This is a small fix for dropmenu icons */
 .dropmenu img {
 	margin: -3px 8px 0 0;
+	vertical-align: middle;
 }
 
 /* Styles for (fatal) errors.
 ------------------------------------------------- */
+
 #fatal_error {
 	width: 80%;
 	margin: auto;
 }
-.errorbox::before, .noticebox::before, .infobox::before {
+.errorbox:before, .noticebox:before, .infobox:before {
 	width: 16px;
 	height: 16px;
-	background: url(../images/generic_icons.png) no-repeat 0px -80px;
+	background: url(../images/generic_icons.png) no-repeat -57px -83px;
 	left: 10px;
 	content: '';
 	position: absolute;
@@ -1612,10 +1542,10 @@ tr.windowbg td, .table_grid tr td {
 ------------------------------------------------- */
 
 .noticebox:before {
-	background-position: -16px -81px;
+	background-position: -83px -83px;
 }
 .infobox:before {
-	background-position: -32px -81px;
+	background-position: -161px -83px;
 }
 .noticebox {
 	color: #666;
@@ -1639,8 +1569,6 @@ tr.windowbg td, .table_grid tr td {
 
 dl {
 	overflow: auto;
-	margin: 0;
-	padding: 0;
 }
 
 /* The basic user info on the left */
@@ -1899,6 +1827,9 @@ dl {
 
 /* Styles for the statistics center.
 ------------------------------------------------- */
+#statistics .roundframe {
+	margin: 0;
+}
 dl.stats dt {
 	width: 50%;
 	float: left;
@@ -1958,16 +1889,18 @@ dl.stats dd span {
 	text-align: left;
 }
 #stats tr.windowbg th.stats_month {
+	width: 25%;
+	padding: 0 2em;
 	text-align: left;
-	padding: 0px 2em;
 }
 #stats tr.windowbg td.stats_day {
-	padding: 0px 3.5em;
+	padding: 0 3.5em;
 	text-align: left;
 }
 
 /* Styles for the personal messages section.
 ------------------------------------------------- */
+
 #personal_messages h3 span#author, #personal_messages h3 span#topic_title {
 	float: left;
 }
@@ -2091,15 +2024,6 @@ dl.addrules dt.floatleft {
 	text-align: left;
 }
 
-/* Styles for the search results page.
-------------------------------------------------- */
-.search_results_posts {
-	overflow: hidden;
-}
-.search_results_posts .buttons {
-	padding: 5px 12px 0 0;
-}
-
 /* Styles for the help section.
 ------------------------------------------------- */
 
@@ -2154,10 +2078,10 @@ dl.addrules dt.floatleft {
 	width: 100%;
 	height: 100%;
 	background: rgba(40,64,80,0.5);
-	z-index: 3;
+	z-index: 5;
 }
 .popup_window {
-	position: fixed;
+	position: relative;
 	width: 480px;
 	z-index: 99;
 	padding: 0 6px 6px 6px;
@@ -2166,6 +2090,8 @@ dl.addrules dt.floatleft {
 	max-height: none!important; /* Is this declaration necessary? None is the default anyway. */
 	overflow: visible!important;
 	background: #FFFFFF;
+	top: 15%;
+	margin: 0 auto;
 }
 .popup_heading {
 	margin: 0;
@@ -2200,7 +2126,7 @@ dl.addrules dt.floatleft {
 	position: relative;
 	box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
-.progress_bar.full_bar {
+.progress_bar .full_bar {
 	padding-top: 1pt;
 	width: 100%;
 	color: black;
@@ -2209,20 +2135,22 @@ dl.addrules dt.floatleft {
 	font-weight: bold;
 	z-index: 2;
 }
-.progress_bar.green_percent {
+.progress_bar .green_percent {
 	height: 15pt;
 	background-color: #c1ffc1;
 	background-image: linear-gradient(to bottom, #c1ffc1, green);
 	z-index: 1;
 }
-.progress_bar.blue_percent {
+.progress_bar .blue_percent {
 	height: 15pt;
 	background-color: #98b8f4;
 	background-image: linear-gradient(to bottom, #98b8f4, blue);
 	z-index: 1;
 }
 
-.windowbg, .windowbg2, .approvebg {
+.generic_list_wrapper, .windowbg, .windowbg2, #forumposts .approvebg, #forumposts .approvebg2 {
+	background: #f0f4f7;
+	margin: 12px 0 0 0;
 	padding: 12px 16px;
 	border: 1px solid #2E3E4C;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
@@ -2259,10 +2187,10 @@ div#editlang_desc {
 .topic_details .smalltext {
 	font-size: 0.9em;
 }
-.table_grid tr.windowbg td.centercol {
+.table_grid tr.windowbg2 td.centercol, .table_grid tr.windowbg td.centercol {
 	text-align: center;
 }
-tr.windowbg {
+tr.windowbg, tr.windowbg2 {
 	box-shadow: none;
 }
 #postmodify #message{
@@ -2298,7 +2226,7 @@ div#manage_boards dl dd textarea[name=desc] {
 .infolinks {
 	display: block;
 }
-#groups .windowbg {
+#groups .windowbg, #groups .windowbg2 {
 	box-shadow: none;
 	border-top: 0;
 	margin: 0;
@@ -2316,47 +2244,44 @@ h3 .collapse {
 .cat_bar .desc {
 	color: #FFF;
 }
-div.icon {
-	float: left;
+.board_icon {
 	width: 5%;
 	text-align: center;
 	padding: 8px 0 0 0;
 	min-width: 60px;
 }
-div.info {
-	float: left;
+.info {
 	width: 50%;
 	margin: 10px 0 5px 0;
 }
-div.info .subject {
+.info .subject {
 	font-weight: 600;
 	font-size: 1.1em;
 	color: #C6D4DF;
 }
-div.stats {
+.board_stats {
 	width: 14%;
-	float: left;
-	padding: 7px;
+	padding: 10px;
 	font-size: 0.9em;
 }
-div.stats p {
+.board_stats p {
 	border-left: 1px solid #DDD;
 	border-right: 1px solid #DDD;
 	text-align: center;
 	min-height: 3em;
 	margin: 3px 0 0;
 }
-div.lastpost {
-	width: 26%;
-	float: left;
-	padding-top: 7px;
+.lastpost {
+	width: 25%;
 	font-size: 0.9em;
 }
-div.lastpost p {
+.lastpost p {
 	margin: 3px 0 0 0;
 }
-#boardindex_table .icon, #boardindex_table .info, #boardindex_table .stats, #boardindex_table .lastpost {
+.board_icon, .info, .board_stats, .lastpost {
 	min-height: 4.5em;
+	display: table-cell;
+	vertical-align: middle;
 }
 .main_container {
 	margin-bottom: 20px;
@@ -2370,25 +2295,31 @@ div.lastpost p {
 }
 /* Child boards */
 .children {
-	width: 100%;
-	float: left;
 	border-top: 1px solid #DDD;
 	padding: 5px;
 }
 .children p {
 	font-size: 0.9em;
 }
+.children a:after {
+	content: ", ";
+}
+.children a:last-of-type:after {
+	content: "";
+}
 p.moderators {
 	font-size: 0.9em;
 	font-weight: bold;
 }
 span.postby {
-	width: 100%;
-	float: left;
+	display: block;
 }
 /* Info Center */
 #info_center {
 	clear: both;
+}
+#info_center .sub_bar {
+	border-top: 1px solid #ddd;
 }
 #info_center .sub_bar:first-child {
 	border-top: none;
@@ -2424,6 +2355,9 @@ span.postby {
 #ic_recentposts .recenttime strong {
 	color: #555;
 }
+#ic_recentposts .windowbg {
+	background: none;
+}
 #upshrinkHeaderIC p.inline {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.4) 95%) repeat scroll 0% 0% transparent;
 	border: 1px solid #28394D;
@@ -2441,92 +2375,93 @@ span.postby {
 }
 
 /* MessageIndex */
+/* Start with description and other things */
+#description_board {
+	padding: 8px 10px;
+	border-radius: 6px 6px 0 0;
+	border-bottom: none;
+	box-shadow: none;
+}
+#description_board h3, #description_board p {
+	display: inline-block;
+}
+#description_board h3:after {
+	content: ' - ';
+}
 /* Topic list */
-#topic_container .windowbg {
-	height: 4em;
-	border-top: none;
-}
 #topic_header {
-	height: 2em;
+	margin: 0;
+	border-radius: 0;
 }
-#topic_header .icon, #topic_header .info, #topic_header .stats, #topic_header .lastpost, #topic_header .moderation {
-	height: 1.5em !important;
+#topic_header div {
+	height: 2em;
 	font-weight: bold;
 	font-size: 1em;
-	margin-top: 3px;
-	margin-bottom: 0;
+	margin: 0;
 	padding: 0;
-}
-#topic_header.title_bar {
-	margin: 0px;
-}
-#messageindex .stats, #recent .stats {
-	text-align: center;
 }
 #topic_header input {
 	margin-top: 5px !important;
 }
-.moderation {
-	float: right;
-	width: 35px;
-	margin: 5px 0 0 0;
+#topic_container .windowbg, #topic_container .windowbg2 {
+	border-top: none;
 }
-#topic_container .icon, #topic_container .info, #topic_container .windowbg, #topic_container .stats, #topic_container .lastpost {
+#topic_container .board_icon, #topic_container .info, #topic_container .windowbg2, #topic_container .windowbg, #topic_container .board_stats, #topic_container .lastpost {
 	box-shadow: none;
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
-	height: 3.5em;
-}
-#topic_container .icons span {
-	margin: 2px 0 0 5px;
+	min-height: 4em;
 }
 .icon img, .moderation input {
 	margin-top: 15px;
 }
-.info .icons, #messageindex .stats p, .lastpost p, #unread .stats p, #unreadreplies .stats p {
-	margin-top: 5px;
+.info .icons, #messageindex .board_stats p, .lastpost p, #unread .board_stats p, #unreadreplies .board_stats p {
 	border: none;
 }
-/* Start with description and other things */
-#description_board {
-	padding: 8px 10px 8px 10px;
+.moderation {
+	display: table-cell;
+	min-width: 35px;
+	width: 3%;
+	vertical-align: middle;
+	text-align: right;
+	padding: 0 5px 0 0 !important;
 }
-.lastpost span.last_post {
-	float: right;
-	margin: 4px;
-}
-select.qaction {
-	padding: 0;
-}
+/* Quick moderation selects and submit */
 #quick_actions {
-	padding-right: 4px;
-	margin-top: 5px;
+	padding: 4px 0;
 }
-.qaction_cell .button_submit {
-	margin: 2px 4px 0 4px;
+/* Investigate default select and button sizing. Something is slightly off there.*/
+.qaction.button_submit {
+	margin: 1px 4px 0 4px;
 }
-#topic_icons {
-	margin-top: 10px;
-	float: left;
-	width: 100%;
+/* Icons and jump to */
+#topic_icons:before {
+	display: block;
+	height: 8px;
+	clear: both;
+	content: '';
+}
+#topic_icons .information {
+	font-size: .9em;
+	border-radius: 4px;
 }
 #topic_icons p {
+	padding: 0 12px 0 4px;
 	line-height: 2em;
 }
-#topic_icons p.floatleft {
-	padding: 0 12px 2px 0;
-}
-/* Just to correct Fred there without requiring an extra image. Should make a new Fred with clear padding. */
-#topic_icons p.floatleft img:first-child {
+/* Should lose this before RC1. It's a kludge. Can be fixed by new image */
+#topic_icons .floatleft img:first-child {
 	padding: 0 2px;
 }
 #message_index_jump_to_select {
 	font-size: 1em;
-	padding: 2px;
+	padding: 0;
 }
+/* This is a bit of a kludge too */
 #message_index_jump_to .button_submit {
-	padding: 4px 6px 2px 6px;
+	margin-top: 3px;
+	padding: 1px 6px;
 }
 
 /* Display */
@@ -2657,8 +2592,8 @@ div#pollmoderation {
 	padding: 2px 0;
 }
 /* poster and postarea + moderation area underneath */
-.post_wrapper::after {
-	content:"";
+.post_wrapper:after {
+	content: "";
 	display: block;
 	clear: both;
 }
@@ -2719,7 +2654,6 @@ div#pollmoderation {
 }
 .moderatorbar {
 	clear: right;
-	border-top: 1px solid #DDD;
 }
 .messageicon {
 	float: left;
@@ -2770,8 +2704,9 @@ img.smiley {
 .attachments {
 	padding: 12px 0 0 0;
 }
-.attachments .floatleft {
+.attached {
 	padding: 0 6px 8px 6px;
+	max-width: 100%;
 }
 .attachments_top {
 	margin: 0 auto;
@@ -2796,7 +2731,6 @@ img.smiley {
 #quickReplyOptions .roundframe {
 	margin: 0;
 	padding: 8px 10% 12px 10%;
-	overflow: auto;
 }
 #quickReplyExpand {
 	float: right;
@@ -2925,7 +2859,7 @@ ul.post_options li {
 .under_message {
 	overflow: visible;
 }
-.under_message::after {
+.under_message:after {
 	clear: both;
 	content: "";
 	display: block;
@@ -2958,7 +2892,6 @@ div.cat_bar {
 	text-shadow: -1px -1px 1px rgba(0,0,0,0.2);
 	box-sizing: border-box;
 	margin-bottom: 1px;
-	position: relative;
 }
 .cat_bar h3 {
 	padding: 8px 12px 6px 12px;
@@ -2966,10 +2899,10 @@ div.cat_bar {
 /* Styles for rounded headers. */
 .cat_bar .desc
 {
-	font-size: 10px;
+	font-size: 12px;
 	line-height: 1.5em;
 	font-weight: normal;
-	margin: -8px 0 4px 12px;
+	margin: -8px 0 4px 8px;
 }
 h3.catbg {
 	overflow: hidden;
@@ -2997,7 +2930,7 @@ h3.catbg .icon {
 	margin: 10px 0 0 0;
 	padding: 12px 16px;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
-	overflow: hidden;
+	overflow: auto;
 }
 /* TitleBar & SubBar */
 .title_bar {
@@ -3005,8 +2938,7 @@ h3.catbg .icon {
 	border-top: none;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
 	color: #666;
-	text-align: left;
-	margin: 5px 0;
+	margin: 5px 0 0 0;
 }
 .sub_bar {
 	text-shadow: none;
@@ -3025,9 +2957,6 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 .titlebg a, .subbg a {
 	background: none;
 	text-decoration: none;
-}
-#statistics h4.titlebg {
-	color: #FFF;
 }
 
 /* Other */
@@ -3048,11 +2977,22 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 p.information img {
 	vertical-align: middle;
 }
-#messageindex .information, #topic_container .info {
+#messageindex .information {
 	margin: 0;
 }
-#topic_icons .information {
-	border-top: 1px solid #2E3E4C;
+#topic_icons .information,
+#messageindex .information {
+	border-top: 1px solid #ddd;
+}
+.topic_pages {
+	font-size: 0.75em;
+	margin: 0 0 0 5px;
+}
+.topic_pages:before {
+	content: " «";
+}
+.topic_pages:after {
+	content: " »"
 }
 /* Mentions */
 .atwho-view {
@@ -3099,30 +3039,18 @@ p.information img {
 }
 /* On/Off Icons (User) */
 .on, .off {
+	display: inline-block;
 	width: 14px;
 	height: 14px;
 	border-radius: 12px;
 	border: 1px solid none;
-	position: absolute;
-	margin: 4px 0 0 0;
+	vertical-align: middle;
 }
 .on {
 	background: #99FF66;
 }
 .off {
 	background: grey;
-}
-#whoFilter span.on, #whoFilter span.off {
-	margin: 3px 0 0 -5px !important;
-}
-#mlist span.on, #mlist span.off, #edit_buddies .on, #edit_buddies .off {
-	margin: -5px 0 0 10px;
-}
-#mlist .pm_icon, #edit_buddies .pm_icon {
-	margin: 0 !important;
-}
-#userstatus .smalltext, .pm_icon {
-	margin: 0 0 0 20px !important;
 }
 
 /* Styles for print media. */
@@ -3182,10 +3110,7 @@ h3.profile_hd {
 	border: 1px solid #2E3E4C;
 }
 
-.notify_dropdown {
-	background: #ffffff;
-	padding: 0;
-}
+/* Topic/Board follow-alert menu */
 .notify_dropdown strong {
 	font-size: 1.1em;
 }
@@ -3235,9 +3160,96 @@ h3.profile_hd {
 	display: block;
 	margin: 0 0 5px 0;
 }
-.boardindex_table {
-	margin: 10px 0 10px 0;
+
+/* Alternating colors */
+.stripes:nth-of-type(even) { background-color:#F2F2F2; }
+.stripes:nth-of-type(odd) { background-color:#f0f4f7; }
+.alternative { background-color:#F2F2F2; }
+.alternative2{ background-color:#E8EDF0; }
+
+#alerts tr.windowbg td,
+#alerts tr.windowbg2 td {
+	border-right: 1px solid #DDD;
 }
+
+.centerbox {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#au-previews div.descbox div,
+#au-previews div.errorbox div,
+#au-previews div.infobox div{
+	display:inline-block;
+	width:32%;
+	min-height:30px;
+	vertical-align: middle;
+}
+.attach-info p.progressBar, .attach-info p.attached_BBC, a#attach-cancelAll, a#attach-uploadAll{
+	display:none;
+}
+p.attached_BBC a.insertBBC
+{
+	margin:0;
+}
+
+.attach-info p, .attach-info field{
+	display:inline-block;
+}
+#attachUpload{
+	min-height:50px;
+}
+#total-progress{
+	width:50%;
+	display:none;
+}
+
+.progressBar {
+	height: 20px;
+	margin: 1px;
+	background: #F8F8F8;
+	border: 1px solid #C5C5C5;
+	box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.102);
+	vertical-align: middle;
+}
+
+.progressBar span {
+	display: block;
+	height: 100%;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+	transition: width .4s ease-in-out;
+	background-color: #34c2e3;
+	background-size: 30px 30px;
+	background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+	width:0px;
+}
+
+#maxFiles_progress, #maxFiles_progress_text {
+	display:none;
+}
+.progress_yellow span {
+	background-color: #fecf23;
+}
+
+.progress_green span {
+	background-color: #a5df41;
+}
+
+.progress_red span {
+	background-color: #F45D4C;
+}
+
+.progress_blue span {
+	background-color: #34c2e3;
+}
+
+/* Hide this from desktop users sshh... our little sekrit */
+.mobile_buttons {
+	display: none;
+}
+
+/* Lunarfall special */
 i {
 	margin-right: 5px;
 }
@@ -3317,6 +3329,8 @@ i {
 	border-bottom: none;
 	border-right: none;
 	padding: 5px;
+	min-width: 25px;
+	text-align: center;
 }
 .qbuttons li a {
 	color: #FFF;
@@ -3340,78 +3354,8 @@ i {
 .collapsed:hover {
 	opacity: 1;
 }
-/* Hey here is something hidden from desktop :P */
-.pop_menu {
-	margin: 15px 0 0 15px;
-}
-
-/* Some new popup */
-#basic-modal-content, #basic-modal {
-	display:none;
-}
-#simplemodal-overlay {
-	height: 100%;
-	width: 100%;
-}
-#simplemodal-container {
-	width: 600px;
-	background-image: linear-gradient(to bottom, #1B2734 0%, #1F3954 50%);
-	box-shadow: 0 3px 6px rgba(0,0,0,0.5);
-	transition: 1s;
-	/* Don't like forcing things but I hate JS */
-	height: auto !important;
-	top: 10% !important;
-}
-#simplemodal-container .simplemodal-wrap {
-	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.4) 95%) repeat scroll 0% 0% transparent;
-	clear: both;
-}
-#simplemodal-container .dropmenu li {
-	float: none;
-	background: none;
-	box-shadow: none;
-	padding: 0;
-}
-#simplemodal-container .dropmenu li ul {
-	position: static;
-	border: none;
-	background: none;
-	box-shadow: none;
-	width: 100%;
-}
-#simplemodal-container .dropmenu li li {
-	width: 17em;
-	background: none;
-	box-shadow: none;
-}
-#simplemodal-container .hide_popup {
-	padding: 5px;
-}
-#simplemodal-container #main_menu {
-	float: none;
-}
-.simplemodal-close i {
-	margin: 0 5px 10px 0;
-}
-.simplemodal-wrap {
-	padding: 5px;
-}
-
+/* Social share on posts */
 #post_socialshare.qbuttons {
 	float: left;
 	clear: left;
-}
-#category_1::after {
-	position: absolute;
-	width: 16px;
-	height: 16px;
-	content: "";
-	right: 35px;
-	top: 10px;
-	font-size: 2em;
-	line-height: 1;
-	background: url(../images/animal-penguin.png) no-repeat;
-}
-#category_1 i {
-	right: 15px;
 }

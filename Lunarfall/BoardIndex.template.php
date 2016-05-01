@@ -95,7 +95,7 @@ function template_main()
 			{
 				echo '
 				<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : '') ,'">
-					<div class="icon">
+					<div class="board_icon">
 						<a href="', ($board['is_redirect'] || $context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '">
 							<i class="fa fa-board_', $board['board_class'], ' fa-3x"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></i>
 						</a>

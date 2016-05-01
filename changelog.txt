@@ -1,3 +1,7 @@
+0.5.0 (1 May 2016)
+- removed lunarfall_dependencies, new changes to core allows us to get rid of this modification.
+! catching core theme changes (probably the biggest changes)
+
 0.4.0 (8 July 2015)
 + Social share feature added for each post
 ! caching core theme changes

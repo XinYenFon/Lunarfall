@@ -42,6 +42,7 @@ function template_init()
 {
 	global $settings, $txt;
 
+	loadCSSFile('font-awesome.css');
 	/* $context, $options and $txt may be available for use, but may not be fully populated yet. */
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
@@ -304,16 +305,6 @@ function template_body_above()
 				',!empty($settings['twitter']) ? '<a href="//twitter.com/'. $settings['twitter'].'"><i class="fa fa-twitter fa-3x" title="Twitter"></i></a>' : '','
 				',!empty($settings['googleplus']) ? '<a href="//plus.google.com/'. $settings['googleplus'].'"><i class="fa fa-google-plus fa-3x" title="Google+"></i></a>' : '','
 			</div>';
-
-	/* Pop menu for small screens */
-	echo '
-		<div id="basic-modal" class="pop_menu floatleft">
-			<a class="basic"><i class="fa fa-reorder fa-2x"></i></a>
-		</div>
-		<div id="basic-modal-content">';
-			template_menu();
-	echo '
-		</div>';
 
 	echo'
 		</div>

@@ -570,7 +570,7 @@
 	};
 
 	$.fn.superfish.defaults = {
-		popUpSelector: 'ul,.sf-mega', // within menu context
+		popUpSelector: 'ul,.dropmenu,.sf-mega', // within menu context
 		hoverClass: 'sfHover',
 		pathClass: 'overrideThisToUse',
 		pathLevels: 1,
