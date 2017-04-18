@@ -3,10 +3,12 @@
 #calendar {
 	overflow: hidden;
 }
-#calendar .windowbg, #calendar .windowbg2 {
+#calendar .windowbg,
+#calendar .windowbg2 {
 	box-shadow: none;
 	border-radius: 0;
 	box-sizing: content-box;
+	margin: 0;
 }
 /* Used to indicate the current day in the grid. */
 #main_grid .calendar_today span.day_text,
@@ -165,14 +167,17 @@ td.days:hover {
 }
 #main_grid tr:not(.days_wrapper) th,
 #main_grid tr:not(.days_wrapper) td {
-	height: 30px;
+	min-height: 30px;
 }
-#post_event {
-	background: #e7eaef;
-	text-align: center;
+.calendar_top .input_text {
+	width: 80px;
 }
+#calendar_range,
 #calendar_navigation {
-	margin-top: 8px;
+	padding: 5px 0;
+	text-align: center;
+	max-width: 50%;
+	margin: auto;
 }
 #main_grid .act_day {
 	font-size: 12pt;
@@ -192,10 +197,10 @@ td.week_post {
 	vertical-align: middle !important;
 }
 div.week_add_event {
-	text-align: center;
+	/* text-align: center; */
 }
 div.week_add_event > a {
-	font-size: x-large;
+	/* font-size: x-large; */
 	color: #999;
 }
 div.week_add_event > a:hover {
@@ -206,10 +211,12 @@ span.hidelink {
 }
 #view_button {
 	margin-top: -2px;
+	margin-left: inherit;
 }
-/* Cheat and match this to the submit button. */
+#main_grid .buttonrow,
 #main_grid .buttonlist {
-	margin: 0 12px 0 0;
+	margin: 5px 0;
+	padding: 0
 }
 #month_grid .compact {
 	padding: 2px;
@@ -228,6 +235,25 @@ span.hidelink {
 }
 .modify_event:hover {
 	text-decoration: none;
+}
+.modify_event_links {
+	float: right;
+}
+.event_wrapper:not(:last-child) {
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #ddd;
+}
+.event_time, .event_location {
+	color: #777;
+}
+.post_event_link {
+	vertical-align: middle;
+	height: 18px;
+	display: inline-block;
+}
+.active_post_event {
+	margin-top: 1em;
 }
 
 /* Break long words in calendar table cells to avoid layout problems */
@@ -258,16 +284,16 @@ span.hidelink {
 	#main_grid tr {
 		margin-bottom: 1em;
 	}
-	#main_grid tr:not(.days_wrapper) {
+	#main_grid tr:first-of-type {
 		display: none;
 	}
-	#main_grid .days_wrapper {
+	#main_grid tr:not(:first-of-type) {
 		display: block;
 	}
 	#main_grid td {
 		display: block;
 	}
-	
+
 	#main_grid .calendar_table .days {
 		margin-top: 0;
 		height: auto;
@@ -275,7 +301,7 @@ span.hidelink {
 	#main_grid .calendar_table .days:not(.disabled) {
 		min-height: 45px;
 	}
-	#main_grid .calendar_table .weeks a:before {
+	#main_grid .calendar_table .weeks a::before {
 		content: attr(title);
 		font-size: 0.65em;
 		margin: 0 0.5em;
@@ -284,7 +310,7 @@ span.hidelink {
 	#main_grid .calendar_table .weeks {
 		margin-top: 0;
 	}
-	
+
 	#main_grid .calendar_week tr {
 		border: 1px solid #ddd !important;
 	}
@@ -293,17 +319,10 @@ span.hidelink {
 		height: auto;
 		border: none !important;
 	}
-	#main_grid .calendar_week .event_col:before {
-		content: "Events: ";
-	}
-	#main_grid .calendar_week .holiday_col:before {
-		content: "Holidays: ";
-	}
-	#main_grid .calendar_week .birthday_col:before {
-		content: "Birthdays: ";
-	}
-	#main_grid .calendar_week .event_col:empty:before {
-		content: "Events: None";
+	#main_grid .calendar_week .event_col::before,
+	#main_grid .calendar_week .holiday_col::before,
+	#main_grid .calendar_week .birthday_col::before {
+		content: attr(data-css-prefix);
 	}
 	#main_grid .calendar_week .holiday_col:empty {
 		display: none;
@@ -317,5 +336,27 @@ span.hidelink {
 	div.week_add_event > a {
 		font-size: 1em;
 		text-decoration: underline;
+	}
+}
+
+@media (max-width: 639px) {
+	.calendar_top {
+		padding: 12px 8px;
+	}
+	#calendar_range,
+	#calendar_navigation {
+		max-width: none;
+	}
+}
+@media (max-width: 539px) {
+	#calendar_range {
+		clear: both;
+		padding: 10px 0 0;
+	}
+}
+@media (max-width: 479px) {
+	#calendar_navigation {
+		clear: both;
+		padding: 10px 0 0;
 	}
 }

@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -507,7 +507,7 @@ function template_view_versions()
 								<tbody>
 									<tr class="windowbg">
 										<td class="half_table">
-											<a href="#" id="Tasks-link">', $txt['dvc_tasks'] ,'</a>
+											<a href="#" id="Tasks-link">', $txt['dvc_tasks'], '</a>
 										</td>
 										<td class="quarter_table">
 											<em id="yourTasks">??</em>
@@ -632,8 +632,7 @@ function template_edit_censored()
 									</dd>
 								</dl>
 								<input type="submit" name="save_censor" value="', $txt['save'], '" class="button_submit">
-							</div>
-							<br>';
+							</div>';
 
 	// This table lets you test out your filters by typing in rude words and seeing what comes out.
 	echo '
@@ -780,7 +779,7 @@ function template_show_settings()
 			else
 			{
 				echo '
-							<div class="information winfo">
+							<div class="information noup">
 								', $config_var['label'], '
 							</div>';
 			}
@@ -833,7 +832,7 @@ function template_show_settings()
 				// Show the [?] button.
 				if ($config_var['help'])
 					echo '
-							<a id="setting_', $config_var['name'], '" href="', $scripturl, '?action=helpadmin;help=', $config_var['help'], '" onclick="return reqOverlayDiv(this.href);"><i class="fa fa-question-circle fa-lg" title="', $txt['help'],'"></i></a> ';
+							<a id="setting_', $config_var['name'], '_help" href="', $scripturl, '?action=helpadmin;help=', $config_var['help'], '" onclick="return reqOverlayDiv(this.href);"><span class="generic_icons help" title="', $txt['help'], '"></span></a> ';
 
 				echo '
 										<a id="setting_', $config_var['name'], '"></a> <span', ($config_var['disabled'] ? ' style="color: #777777;"' : ($config_var['invalid'] ? ' class="error"' : '')), '><label for="', $config_var['name'], '">', $config_var['label'], '</label>', $subtext, ($config_var['type'] == 'password' ? '<br><em>' . $txt['admin_confirm_password'] . '</em>' : ''), '</span>
@@ -854,7 +853,7 @@ function template_show_settings()
 				elseif ($config_var['type'] == 'select')
 				{
 					echo '
-										<select name="', $config_var['name'], '" id="', $config_var['name'], '" ', $javascript, $disabled, (!empty($config_var['multiple']) ? ' multiple="multiple"' : ''), '>';
+										<select name="', $config_var['name'], '" id="', $config_var['name'], '" ', $javascript, $disabled, (!empty($config_var['multiple']) ? ' multiple="multiple"' : ''), (!empty($config_var['multiple']) && !empty($config_var['size']) ? ' size="' . $config_var['size'] . '"' : ''), '>';
 					foreach ($config_var['data'] as $option)
 						echo '
 											<option value="', $option[0], '"', (!empty($config_var['value']) && ($option[0] == $config_var['value'] || (!empty($config_var['multiple']) && in_array($option[0], $config_var['value']))) ? ' selected' : ''), '>', $option[1], '</option>';
@@ -864,7 +863,6 @@ function template_show_settings()
 				// List of boards? This requires getBoardList() having been run and the results in $context['board_list'].
 				elseif ($config_var['type'] == 'boards')
 				{
-					$board_list = true;
 					$first = true;
 					echo '
 										<a href="#" class="board_selector">[ ', $txt['select_boards_from_list'], ' ]</a>
@@ -937,7 +935,7 @@ function template_show_settings()
 					$max = isset($config_var['max']) ? ' max="' . $config_var['max'] . '"' : '';
 
 					echo '
-											<input type="', $type ,'"', $javascript, $disabled, ' name="', $config_var['name'], '" id="', $config_var['name'], '" value="', $config_var['value'], '"', ($config_var['size'] ? ' size="' . $config_var['size'] . '"' : ''), ' class="input_text"', $min . $max . $step, '>';
+											<input type="', $type, '"', $javascript, $disabled, ' name="', $config_var['name'], '" id="', $config_var['name'], '" value="', $config_var['value'], '"', ($config_var['size'] ? ' size="' . $config_var['size'] . '"' : ''), ' class="input_text"', $min . $max . $step, '>';
 				}
 
 				echo isset($config_var['postinput']) ? '
@@ -1129,7 +1127,7 @@ function template_edit_profile_field()
 
 	foreach ($context['cust_profile_fields_placement'] as $order => $name)
 		echo '
-												<option value="', $order ,'"', $context['field']['placement'] == $order ? ' selected' : '', '>', $txt['custom_profile_placement_'. $name], '</option>';
+												<option value="', $order, '"', $context['field']['placement'] == $order ? ' selected' : '', '>', $txt['custom_profile_placement_' . $name], '</option>';
 
 	echo '
 											</select>
@@ -1325,7 +1323,7 @@ function template_admin_search_results()
 			{
 				echo '
 							<li>
-								<a href="', $result['url'], '"><strong>', $result['name'], '</strong></a> [', isset($txt['admin_search_section_' . $result['type']]) ? $txt['admin_search_section_' . $result['type']] : $result['type'] , ']';
+								<a href="', $result['url'], '"><strong>', $result['name'], '</strong></a> [', isset($txt['admin_search_section_' . $result['type']]) ? $txt['admin_search_section_' . $result['type']] : $result['type'], ']';
 
 				if ($result['help'])
 					echo '
@@ -1405,7 +1403,7 @@ function template_repair_boards()
 					<div id="admincenter">
 						<div id="section_header" class="cat_bar">
 							<h3 class="catbg">',
-								$context['error_search'] ? $txt['errors_list'] : $txt['errors_fixing'] , '
+								$context['error_search'] ? $txt['errors_list'] : $txt['errors_fixing'], '
 							</h3>
 						</div>
 						<div class="windowbg">';
@@ -1558,7 +1556,7 @@ function template_php_info()
 			{
 				echo '
 								<tr class="windowbg">
-									<td class="equal_table">', $key,  '</td>
+									<td class="equal_table">', $key, '</td>
 									<td colspan="2">', $setting, '</td>
 								</tr>';
 			}

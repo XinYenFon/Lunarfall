@@ -9,53 +9,20 @@
 	#notify_dropdown {
 		margin: 5px 0 0 2px;
 	}
-	#basic-modal {
-		display: block;
-	}
-	#main_menu {
-		display: none;
-	}
-	#menu_nav {
-		padding: 0;
-	}
-	#simplemodal-container {
-		width: 95% !important;
-		padding: 5px 0;
-	}
-	#simplemodal-container #main_menu, #basic-modal {
-		display: block;
-	}
-	#simplemodal-container .dropmenu li {
-		width: 100%;
-	}
 }
 
 /* I have a Lumia with 480px screen... so ^^ */
 @media (max-width: 480px) {
-	/* Tests for my own beloved theme */
-	.button, .button.active {
-		background: none;
-		border: none;
-		box-shadow: none;
-		margin: 3px;
-		padding: 0 3px 0 3px;
-	}
-	.button:hover, .button.active:hover {
-		background: none;
-		color: #777;
-		box-shadow: none;
-	}
-	.button_text {
-		display: none;
-	}
-	.buttonlist i {
-		display: inline-block !important;
-	}
-
 	/* This is general */
 	.popup_window {
-		width: 93% !important;
+		width: 90%;
 		min-height: 285px !important;
+		max-height: 5em;
+		overflow-x: hidden !important;
+		overflow-y: scroll !important;
+		-webkit-overflow-scrolling: touch;
+		padding: 0;
+		margin: 0 auto;
 	}
 	.button_submit {
 		min-width: 15%;
@@ -75,26 +42,56 @@
 	#pm_menu {
 		margin: 0 0 0 -85px;
 	}
-	.dropmenu li {
-		width: 50%;
+	#main_menu, .generic_menu {
+		display: none;
 	}
-	.dropmenu li a {
-		width: 65%;
+	#mobile_user_menu .dropmenu,
+	div[id^="mobile_generic_menu_"] .generic_menu {
+		display: block;
+	}
+	.menu_icon {
+		display: inline-block;
+		background: url(../images/menu_icon.svg) no-repeat;
+		height: 20px;
+		width: 20px;
+	}
+	.dropmenu li, .dropmenu li:hover,
+	.dropmenu li a, .dropmenu li a:hover,
+	.dropmenu li a.active, .dropmenu li a.active:hover,
+	.dropmenu li ul {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border-left: 0;
+		border-right: 0;
+	}
+	.dropmenu li a, .dropmenu li:hover a {
+		padding: 5px 0;
+	}
+	.dropmenu li a, .dropmenu li a:hover {
+		text-indent: 10px;
+		border-radius: 0;
+	}
+	.dropmenu li a, .dropmenu li:hover a,
+	.dropmenu li a.active, .dropmenu li a.active:hover,
+	.dropmenu ul li a:hover, .dropmenu li li a:hover,
+	.dropmenu ul li li:hover, .dropmenu li ul,
+	.dropmenu li li:hover ul, .dropmenu li li ul {
+		border-left: 0;
+		border-right: 0;
 	}
 	.dropmenu ul li a {
 		width: auto !important;
 	}
-	#footer_section ul {
+	.dropmenu li ul,
+	.dropmenu li li:hover ul, .dropmenu li li ul {
+		position: relative;
+		border-radius: 0;
+		left: 0;
+	}
+	#footer ul {
 		width: 100%;
-		margin: 5px;
 		float: none;
-	}
-	/* BoardIndex */
-	div.icon {
-		width: 15% !important;
-	}
-	div.lastpost {
-		display: none;
 	}
 	/* MessageIndex */
 	#main_content_section .pagelinks {
@@ -104,20 +101,24 @@
 		margin: 5px 0;
 		padding: 0;
 	}
-	#main_content_section .buttonlist {
-		margin: 0 0 5px 0;
-		padding: 0;
-		display: block;
-		clear: both;
-	}
-	#main_content_section .button {
-		padding: 0 6px;
-		margin: 5px 0 0 0;
-		font-size: 0.75em;
-	}
 	#topic_icons p {
 		display: block;
 		width: 100%;
+	}
+	/* some new stuff for far better UX */
+	.mobile_subject {
+		display: block;
+		padding: 9px 0;
+		position: relative;
+	}
+	.mobile_subject .board_description {
+		display: block;
+		font-weight: normal;
+		font-size: 0.9em;
+		color: #222;
+	}
+	.board_description {
+		display: none;
 	}
 	/* Register Page */
 	#registration .button_submit {
@@ -147,7 +148,7 @@
 		max-height: 300px;
 	}
 	img.icon, #forumposts .catbg img {
-		display:none;
+		display: none;
 	}
 	.keyinfo h5 .modified {
 		float: none !important;
@@ -225,15 +226,15 @@
 	#mlist_search dt {
 		width: 100%;
 		display: block;
+		padding: 0;
 	}
 	#mlist_search dd {
-		float: left;
+		padding: 0;
+		margin: 0;
 	}
 	#mlist_search .input_check{
-		margin: 0 13px 0 0;
-	}
-	#mlist_search .input_text {
-		width: 93%;
+		margin: 0 13px 3px 3px;
+		vertical-align: middle;
 	}
 	/* Moderation */
 	.post_note input {
@@ -248,6 +249,12 @@
 		padding: 0 !important;
 		margin: 0 0 5px 0;
 	}
+	.admin_search {
+		float: none;
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+	}
 	.admin_group a {
 		width: 50% !important;
 		float: left;
@@ -259,6 +266,17 @@
 	#admincenter .input_text, #quick_search .input_text,
 	#admincenter select, #quick_search select {
 		width: 90%;
+	}
+	
+	/* Calendar */
+	.event_options_left, .event_options_right {
+		width: 100%;
+	}
+	#event_title, #event_board {
+		width: 100%;
+	}
+	#evtitle {
+		width: 98%;
 	}
 
 	/* Menu tests */
@@ -291,16 +309,9 @@
 	.dropmenu li ul ul {
 		margin: 0 !important;
 	}
-	.dropmenu li li:hover ul, .dropmenu li li ul {
-		left: 1px !important;
-	}
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
-	/* No pop menu for you big screens ! :P */
-	#main_menu {
-		display: block;
-	}
 	/* Display (Topic View) */
 	.poster {
 		float: none !important;
@@ -349,6 +360,54 @@
 }
 /* We have shared things... */
 @media screen and (max-width: 720px) {
+	/* New Mobile Action/Mod Pop (Test) */
+	.moderationbuttons_check {
+		display: none;
+	}
+	.moderationbuttons_mobile_check {
+		display: inline-block;
+	}
+	#mobile_action .button, #mobile_moderation .button, #mobile_action .top_menu {
+		width: 100% !important;
+		padding: 5px 0;
+		margin: 0;
+		border-radius: 0;
+		border-left: 0;
+		border-right: 0;
+		text-indent: 5px;
+	}
+	#mobile_action .notify_dropdown {
+		top: 0 !important;
+		left: 0 !important;
+		position: relative;
+	}
+	#mobile_action .top_menu {
+		width: 95%;
+		padding: 0;
+		margin: 0 auto;
+	}
+	#mobile_action .notify_dropdown a {
+		border-bottom: 1px solid #999;
+	}
+	#mobile_action .notify_dropdown a:last-of-type {
+		border-bottom: none;
+	}
+	#mobile_action .notify_dropdown span {
+		display: none;
+	}
+	.mobile_buttons {
+		margin: 5px 0;
+	}
+	.mobile_buttons .button {
+		margin: 0;
+	}
+	.pagesection .buttonlist, #moderationbuttons {
+		display: none;
+	}
+	.mobile_buttons {
+		display: block;
+	}
+
 	/* Stuff */
 	.infolinks {
 		display: inline-block;
@@ -379,8 +438,19 @@
 	.action_home {
 		width: 100% !important;
 	}
-	#wrapper, .frame {
-		min-width: 100% !important;
+	#wrapper {
+		width: 100% !important;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0;
+	}
+	#top_section, #footer {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	#header {
+		margin-left: 0;
+		margin-right: 0;
 	}
 	#upper_section, #inner_section, #content_section {
 		border-radius: 0;
@@ -404,35 +474,45 @@
 	}
 
 	/* BoardIndex */
-	div.icon span {
-		margin-top: 10px;
-	}
-	div.info {
-		width: 75% !important;
-	}
-	div.stats {
+	.board_stats {
 		display: none;
 	}
 	div.lastpost {
 		width: 100%;
-		margin: 0 0 0 5px;
 		padding: 0;
+		display: block;
+		min-height: 2em !important;
+	}
+	.lpr_border {
+		border-top: 1px solid #DDD;
+	}
+	div.lastpost p {
+		margin: 5px;
 	}
 	span.postby {
-		float: none;
+		display: inline-block;
 	}
 
 	/* MessageIndex */
-	#messageindex .icon, #messageindex .lastpost, #messageindex .moderation {
+	#messageindex .board_icon, #messageindex .lastpost {
 		display: none;
 	}
 	#messageindex .info {
-		width: 95% !important;
-		margin: 0 5px 0 5px;
+		padding: 0 5px 0 5px;
+	}
+	.info_block {
+		display: block;
+		width: 95%;
+	}
+	.moderation a {
+		padding: 3px;
 	}
 
 	/* Display (Topics) */
-	.user_info {
+	.user_info li {
+		display: inline-block;
+	}
+	.user_info li.avatar, .user_info li.poster_ip {
 		display: none;
 	}
 	#moderationbuttons_strip a {
@@ -466,7 +546,7 @@
 		margin: 0 0 5px 0; /* For UX */
 	}
 	/* Post Screen */
-	form#postmodify .roundframe {
+	form#postmodify .roundframe, #post_event .roundframe {
 		padding: 5px !important;
 	}
 	#post_header input {
@@ -486,13 +566,9 @@
 		margin: 2px 5px 0 0;
 		width: 48%;
 	}
-	/* Calendar */
-	#event_main .input_text {
-		width: 60%;
-	}
 	/* Hide me */
 	#inner_wrap, #search_form, #smflogo, #message_index_jump_to, .nextlinks, #display_jump_to,
-	#siteslogan, th.id_group, th.registered,
+	#siteslogan, th.id_group, th.registered, td.reg_group, td.reg_date,
 	td.lefttext.id_group, td.lefttext.registered, td.posts, td.statsbar.posts,
 	#main_content_section .navigate_section, a.topbottom, .pagesection.top, .time, .hidden,
 	#header_custom_profile_fields_field_type, #header_custom_profile_fields_active,
@@ -509,14 +585,50 @@
 	#private, #enclose {
 		width: 95%;
 	}
+
+	/* Attachment uploading. */
+	#au-previews div.descbox div,
+	#au-previews div.errorbox div,
+	#au-previews div.infobox div{
+		display:block;
+		width:auto;
+		padding-bottom: 3px;
+	}
 }
+
+@media (min-width: 480px) and (max-width: 560px) {
+	/* Calendar */
+	#event_time_options {
+		width: 40%;
+	}
+	#event_title, #event_board {
+		width: 100%;
+	}
+	#evtitle {
+		width: 98%;
+	}
+}
+
+@media (min-width: 720px) and (max-width: 799px) {
+	/* Calendar */
+	#event_time_options {
+		width: 44%;
+	}
+	#event_title, #event_board {
+		width: 100%;
+	}
+	#evtitle {
+		width: 98%;
+	}
+}
+
 /* Still not enough data or people to test this... */
 /* This needs more data and this range is probably for iPad Air (alike) tablets... */
 @media (min-width: 721px) and (max-width: 855px) {
 	div.lastpost {
 		margin: 0 0 0 20px !important;
 	}
-	div.stats {
+	.board_stats {
 		display: none;
 	}
 }

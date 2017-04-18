@@ -5,7 +5,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -45,19 +45,19 @@ function template_permission_index()
 				<thead>
 					<tr class="title_bar">
 						<th>', $txt['membergroups_name'], '</th>
-						<th width="10%" style="text-align:center">', $txt['membergroups_members_top'], '</th>';
+						<th class="small_table">', $txt['membergroups_members_top'], '</th>';
 
 			if (empty($modSettings['permission_enable_deny']))
 				echo '
-						<th width="16%" style="text-align:center">', $txt['membergroups_permissions'], '</th>';
+						<th class="small_table">', $txt['membergroups_permissions'], '</th>';
 			else
 				echo '
-						<th width="8%" style="text-align:center">', $txt['permissions_allowed'], '</th>
-						<th width="8%" style="text-align:center">', $txt['permissions_denied'], '</th>';
+						<th class="small_table">', $txt['permissions_allowed'], '</th>
+						<th class="small_table">', $txt['permissions_denied'], '</th>';
 
 			echo '
-						<th width="10%" style="text-align:center">', $context['can_modify'] ? $txt['permissions_modify'] : $txt['permissions_view'], '</th>
-						<th width="4%" style="text-align: center">
+						<th class="small_table">', $context['can_modify'] ? $txt['permissions_modify'] : $txt['permissions_view'], '</th>
+						<th class="table_icon centercol">
 							', $context['can_modify'] ? '<input type="checkbox" class="input_check" onclick="invertAll(this, this.form, \'group\');">' : '', '
 						</th>
 					</tr>
@@ -82,15 +82,15 @@ function template_permission_index()
 
 		if (empty($modSettings['permission_enable_deny']))
 			echo '
-						<td width="16%">', $group['num_permissions']['allowed'], '</td>';
+						<td>', $group['num_permissions']['allowed'], '</td>';
 		else
 			echo '
-						<td width="8%"', $group['id'] == 1 ? ' style="font-style: italic;"' : '', '>', $group['num_permissions']['allowed'], '</td>
-						<td width="8%"', $group['id'] == 1 || $group['id'] == -1 ? ' style="font-style: italic;"' : (!empty($group['num_permissions']['denied']) ? ' class="red"' : ''), '>', $group['num_permissions']['denied'], '</td>';
+						<td ', $group['id'] == 1 ? ' style="font-style: italic;"' : '', '>', $group['num_permissions']['allowed'], '</td>
+						<td ', $group['id'] == 1 || $group['id'] == -1 ? ' style="font-style: italic;"' : (!empty($group['num_permissions']['denied']) ? ' class="red"' : ''), '>', $group['num_permissions']['denied'], '</td>';
 
 		echo '
-						<td>', $group['allow_modify'] ? '<a href="' . $scripturl . '?action=admin;area=permissions;sa=modify;group=' . $group['id'] . (empty($context['profile']) ? '' : ';pid=' . $context['profile']['id']) . '">' . ($context['can_modify'] ? $txt['permissions_modify'] : $txt['permissions_view']). '</a>' : '', '</td>
-						<td>', $group['allow_modify'] && $context['can_modify'] ? '<input type="checkbox" name="group[]" value="' . $group['id'] . '" class="input_check">' : '', '</td>
+						<td>', $group['allow_modify'] ? '<a href="' . $scripturl . '?action=admin;area=permissions;sa=modify;group=' . $group['id'] . (empty($context['profile']) ? '' : ';pid=' . $context['profile']['id']) . '">' . ($context['can_modify'] ? $txt['permissions_modify'] : $txt['permissions_view']) . '</a>' : '', '</td>
+						<td class="centercol">', $group['allow_modify'] && $context['can_modify'] ? '<input type="checkbox" name="group[]" value="' . $group['id'] . '" class="input_check">' : '', '</td>
 					</tr>';
 	}
 
@@ -370,7 +370,7 @@ function template_edit_profiles()
 					<tr class="title_bar">
 						<th>', $txt['permissions_profile_name'], '</th>
 						<th>', $txt['permissions_profile_used_by'], '</th>
-						<th', !empty($context['show_rename_boxes']) ? ' style="display:none"' : '', ' width="5%">', $txt['delete'], '</th>
+						<th class="table_icon"', !empty($context['show_rename_boxes']) ? ' style="display:none"' : '', '>', $txt['delete'], '</th>
 					</tr>
 				</thead>
 				<tbody>';
@@ -573,7 +573,7 @@ function template_modify_group_display($type)
 				{
 					echo '
 						<tr class="title_bar">
-							<th width="10"></th>
+							<th></th>
 							<th', $context['group']['id'] == -1 ? ' colspan="2"' : '', ' class="smalltext">', $permissionGroup['name'], '</th>';
 
 					if ($context['group']['id'] != -1)
@@ -592,8 +592,8 @@ function template_modify_group_display($type)
 				{
 					echo '
 						<tr class="windowbg">
-							<td width="10">
-								', $permission['show_help'] ? '<a href="' . $scripturl . '?action=helpadmin;help=permissionhelp_' . $permission['id'] . '" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="'. $txt['help'].'"></i></a>' : '', '
+							<td>
+								', $permission['show_help'] ? '<a href="' . $scripturl . '?action=helpadmin;help=permissionhelp_' . $permission['id'] . '" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="' . $txt['help'] . '"></span></a>' : '', '
 							</td>
 							<td class="lefttext full_width">', $permission['name'], '</td><td>';
 
@@ -683,7 +683,7 @@ function template_inline_permissions()
 	// This looks really weird, but it keeps things nested properly...
 	echo '
 											<fieldset id="', $context['current_permission'], '">
-												<legend><a href="javascript:void(0);" onclick="document.getElementById(\'', $context['current_permission'], '\').style.display = \'none\';document.getElementById(\'', $context['current_permission'], '_groups_link\').style.display = \'block\'; return false;"><i class="fa toggle_up fa-lg"></i> ', $txt['avatar_select_permission'], '</a></legend>';
+												<legend><a href="javascript:void(0);" onclick="document.getElementById(\'', $context['current_permission'], '\').style.display = \'none\';document.getElementById(\'', $context['current_permission'], '_groups_link\').style.display = \'block\'; return false;" class="toggle_up"> ', $txt['avatar_select_permission'], '</a></legend>';
 	if (empty($modSettings['permission_enable_deny']))
 		echo '
 												<ul>';
@@ -731,7 +731,7 @@ function template_inline_permissions()
 	if (empty($modSettings['permission_enable_deny']))
 		echo '
 													<li>
-														<input type="checkbox" class="input_check" onclick="invertAll(this, this.form, \''. $context['current_permission']. '[\');">
+														<input type="checkbox" class="input_check" onclick="invertAll(this, this.form, \''. $context['current_permission'] . '[\');">
 														<span>', $txt['check_all'], '</span>
 													</li>
 												</ul>';
@@ -827,7 +827,7 @@ function template_postmod_permissions()
 		echo '
 									</tr>
 									<tr class="windowbg">
-										<th width="30%">
+										<th class="quarter_table">
 											', $txt['permissions_post_moderation_group'], '
 										</th>
 										<th><i class="fa fa-check fa-lg green"></i></th>
@@ -855,7 +855,7 @@ function template_postmod_permissions()
 		{
 			echo '
 									<tr class="windowbg">
-										<td width="40%">
+										<td class="half_table">
 											<span ', ($group['color'] ? 'style="color: ' . $group['color'] . '"' : ''), '>', $group['name'], '</span>';
 				if (!empty($group['children']))
 					echo '

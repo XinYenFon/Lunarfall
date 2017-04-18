@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -20,7 +20,7 @@ function template_email_members()
 	// Are we done sending the newsletter?
 	if (!empty($context['newsletter_sent']))
 		echo '
-	<div class="infobox">', $txt['admin_news_newsletter_'. $context['newsletter_sent']] ,'</div>';
+	<div class="infobox">', $txt['admin_news_newsletter_' . $context['newsletter_sent']], '</div>';
 
 	echo '
 	<div id="admincenter">
@@ -28,7 +28,7 @@ function template_email_members()
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['admin_newsletters'], '</h3>
 			</div>
-			<div class="information">
+			<div class="information noup">
 				', $txt['admin_news_select_recipients'], '
 			</div>
 			<div class="windowbg">
@@ -50,74 +50,69 @@ function template_email_members()
 	echo '
 					</dd>
 				</dl>
-				<br class="clear">
-			<br>
-
-			<div id="advanced_panel_header" class="title_bar">
-				<h3 class="titlebg">
-					<i id="advanced_panel_toggle" class="fa toggle_up fa-lg floatright" style="display: none;"></i>
-					<a href="#" id="advanced_panel_link">', $txt['advanced'], '</a>
-				</h3>
-			</div>
-
-			<div id="advanced_panel_div" class="padding">
-				<dl class="settings">
-					<dt>
-						<strong>', $txt['admin_news_select_email'], ':</strong><br>
-						<span class="smalltext">', $txt['admin_news_select_email_desc'], '</span>
-					</dt>
-					<dd>
-						<textarea name="emails" rows="5" cols="30" style="width: 98%;"></textarea>
-					</dd>
-					<dt>
-						<strong>', $txt['admin_news_select_members'], ':</strong><br>
-						<span class="smalltext">', $txt['admin_news_select_members_desc'], '</span>
-					</dt>
-					<dd>
-						<input type="text" name="members" id="members" value="" size="30" class="input_text">
-						<span id="members_container"></span>
-					</dd>
-				</dl>
-				<hr class="bordercolor">
-				<dl class="settings">
-					<dt>
-						<strong>', $txt['admin_news_select_excluded_groups'], ':</strong><br>
-						<span class="smalltext">', $txt['admin_news_select_excluded_groups_desc'], '</span>
-					</dt>
-					<dd>';
+				<div id="advanced_panel_header" class="title_bar">
+					<h3 class="titlebg">
+						<span id="advanced_panel_toggle" class="toggle_down floatright" style="display: none;"></span>
+						<a href="#" id="advanced_panel_link">', $txt['advanced'], '</a>
+					</h3>
+				</div>
+				<div id="advanced_panel_div" class="padding">
+					<dl class="settings">
+						<dt>
+							<strong>', $txt['admin_news_select_email'], ':</strong><br>
+							<span class="smalltext">', $txt['admin_news_select_email_desc'], '</span>
+						</dt>
+						<dd>
+							<textarea name="emails" rows="5" cols="30" style="width: 98%;"></textarea>
+						</dd>
+						<dt>
+							<strong>', $txt['admin_news_select_members'], ':</strong><br>
+							<span class="smalltext">', $txt['admin_news_select_members_desc'], '</span>
+						</dt>
+						<dd>
+							<input type="text" name="members" id="members" value="" size="30" class="input_text">
+							<span id="members_container"></span>
+						</dd>
+					</dl>
+					<hr class="bordercolor">
+					<dl class="settings">
+						<dt>
+							<strong>', $txt['admin_news_select_excluded_groups'], ':</strong><br>
+							<span class="smalltext">', $txt['admin_news_select_excluded_groups_desc'], '</span>
+						</dt>
+						<dd>';
 
 	foreach ($context['groups'] as $group)
 				echo '
-						<label for="exclude_groups_', $group['id'], '"><input type="checkbox" name="exclude_groups[', $group['id'], ']" id="exclude_groups_', $group['id'], '" value="', $group['id'], '" class="input_check"> ', $group['name'], '</label> <em>(', $group['member_count'], ')</em><br>';
+							<label for="exclude_groups_', $group['id'], '"><input type="checkbox" name="exclude_groups[', $group['id'], ']" id="exclude_groups_', $group['id'], '" value="', $group['id'], '" class="input_check"> ', $group['name'], '</label> <em>(', $group['member_count'], ')</em><br>';
 
 	echo '
-						<br>
-						<label for="checkAllGroupsExclude"><input type="checkbox" id="checkAllGroupsExclude" onclick="invertAll(this, this.form, \'exclude_groups\');" class="input_check"> <em>', $txt['check_all'], '</em></label><br>
-					</dd>
-					<dt>
-						<strong>', $txt['admin_news_select_excluded_members'], ':</strong><br>
-						<span class="smalltext">', $txt['admin_news_select_excluded_members_desc'], '</span>
-					</dt>
-					<dd>
-						<input type="text" name="exclude_members" id="exclude_members" value="" size="30" class="input_text">
-						<span id="exclude_members_container"></span>
-					</dd>
-				</dl>
-				<hr class="bordercolor">
-				<dl class="settings">
-					<dt>
-						<label for="email_force"><strong>', $txt['admin_news_select_override_notify'], ':</strong></label><br>
-						<span class="smalltext">', $txt['email_force'], '</span>
-					</dt>
-					<dd>
-						<input type="checkbox" name="email_force" id="email_force" value="1" class="input_check">
-					</dd>
-				</dl>
-			</div>
-			<div class="righttext">
+							<br>
+							<label for="checkAllGroupsExclude"><input type="checkbox" id="checkAllGroupsExclude" onclick="invertAll(this, this.form, \'exclude_groups\');" class="input_check"> <em>', $txt['check_all'], '</em></label><br>
+						</dd>
+						<dt>
+							<strong>', $txt['admin_news_select_excluded_members'], ':</strong><br>
+							<span class="smalltext">', $txt['admin_news_select_excluded_members_desc'], '</span>
+						</dt>
+							<dd>
+							<input type="text" name="exclude_members" id="exclude_members" value="" size="30" class="input_text">
+							<span id="exclude_members_container"></span>
+						</dd>
+					</dl>
+					<hr class="bordercolor">
+					<dl class="settings">
+						<dt>
+							<label for="email_force"><strong>', $txt['admin_news_select_override_notify'], ':</strong></label><br>
+							<span class="smalltext">', $txt['email_force'], '</span>
+						</dt>
+						<dd>
+							<input type="checkbox" name="email_force" id="email_force" value="1" class="input_check">
+						</dd>
+					</dl>
+				</div>
+				<br>
 				<input type="submit" value="', $txt['admin_next'], '" class="button_submit">
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-			</div>
 			</div>
 		</form>
 	</div>';
@@ -215,7 +210,7 @@ function template_email_members_compose()
 				<div class="', empty($context['error_type']) || $context['error_type'] != 'serious' ? 'noticebox' : 'errorbox', '"', empty($context['post_error']['messages']) ? ' style="display: none"' : '', ' id="errors">
 					<dl>
 						<dt>
-							<strong id="error_serious">', $txt['error_while_submitting'] , '</strong>
+							<strong id="error_serious">', $txt['error_while_submitting'], '</strong>
 						</dt>
 						<dd class="error" id="error_list">
 							', empty($context['post_error']['messages']) ? '' : implode('<br>', $context['post_error']['messages']), '
@@ -227,7 +222,7 @@ function template_email_members_compose()
 						<span', (isset($context['post_error']['no_subject']) ? ' class="error"' : ''), ' id="caption_subject">', $txt['subject'], ':</span>
 					</dt>
 					<dd id="pm_subject">
-						<input type="text" name="subject" value="', $context['subject'], '" tabindex="', $context['tabindex']++, '" size="60" maxlength="60"',isset($context['post_error']['no_subject']) ? ' class="error"' : ' class="input_text"', '/>
+						<input type="text" name="subject" value="', $context['subject'], '" tabindex="', $context['tabindex']++, '" size="60" maxlength="60"', isset($context['post_error']['no_subject']) ? ' class="error"' : ' class="input_text"', '/>
 					</dd>
 				</dl><hr class="clear">
 				<div id="bbcBox_message"></div>';

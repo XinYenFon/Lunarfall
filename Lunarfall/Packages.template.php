@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -156,11 +156,11 @@ function template_view_package()
 
 			echo '
 				<tr class="windowbg">
-					<td>', isset($packageaction['operations']) ? '<img id="operation_img_' . $action_num . '" src="' . $settings['images_url'] . '/selected_open.png" alt="*" style="display: none;">' : '', '</td>
-					<td>', $i++, '.</td>
-					<td>', $packageaction['type'], '</td>
-					<td>', $packageaction['action'], '</td>
-					<td>', $packageaction['description'], '</td>
+					<td style="width: 5%;">', isset($packageaction['operations']) ? '<img id="operation_img_' . $action_num . '" src="' . $settings['images_url'] . '/selected_open.png" alt="*" style="display: none;">' : '', '</td>
+					<td style="width: 5%;">', $i++, '.</td>
+					<td style="width: 20%;">', $packageaction['type'], '</td>
+					<td style="width: 50%;">', $packageaction['action'], '</td>
+					<td style="width: 20%";>', $packageaction['description'], '</td>
 				</tr>';
 
 			// Is there water on the knee? Operation!
@@ -169,7 +169,7 @@ function template_view_package()
 				echo '
 				<tr id="operation_', $action_num, '">
 					<td colspan="5" class="windowbg">
-						<table width="100%">';
+						<table class="table_grid">';
 
 				// Show the operations.
 				$operation_num = 1;
@@ -180,12 +180,11 @@ function template_view_package()
 
 					echo '
 							<tr class="windowbg">
-								<td width="0"></td>
-								<td width="30" class="smalltext"><a href="' . $scripturl . '?action=admin;area=packages;sa=showoperations;operation_key=', $operation['operation_key'], !empty($context['install_id']) ? ';install_id=' . $context['install_id'] : '', ';package=', $_REQUEST['package'], ';filename=', $operation['filename'], ($operation['is_boardmod'] ? ';boardmod' : ''), (isset($_REQUEST['sa']) && $_REQUEST['sa'] == 'uninstall' ? ';reverse' : ''), '" onclick="return reqWin(this.href, 680, 400, false);"><span class="generic_icons package_ops"></span></a></td>
-								<td width="30" class="smalltext">', $operation_num, '.</td>
-								<td width="23%" class="smalltext">', $txt[$operation_text], '</td>
-								<td width="50%" class="smalltext">', $operation['action'], '</td>
-								<td width="20%" class="smalltext">', $operation['description'], !empty($operation['ignore_failure']) ? ' (' . $txt['operation_ignore'] . ')' : '', '</td>
+								<td class="smalltext" style="width: 5%;"><a href="' . $scripturl . '?action=admin;area=packages;sa=showoperations;operation_key=', $operation['operation_key'], !empty($context['install_id']) ? ';install_id=' . $context['install_id'] : '', ';package=', $_REQUEST['package'], ';filename=', $operation['filename'], ($operation['is_boardmod'] ? ';boardmod' : ''), (isset($_REQUEST['sa']) && $_REQUEST['sa'] == 'uninstall' ? ';reverse' : ''), '" onclick="return reqWin(this.href, 680, 400, false);"><span class="generic_icons package_ops"></span></a></td>
+								<td class="smalltext" style="width: 5%;">', $operation_num, '.</td>
+								<td class="smalltext" style="width: 20%;">', $txt[$operation_text], '</td>
+								<td class="smalltext" style="width: 50%;">', $operation['action'], '</td>
+								<td class="smalltext" style="width: 20%;">', $operation['description'], !empty($operation['ignore_failure']) ? ' (' . $txt['operation_ignore'] . ')' : '', '</td>
 							</tr>';
 
 					$operation_num++;
@@ -530,7 +529,7 @@ function template_browse()
 					', $txt['packages_adding_title'], '
 				</h3>
 			</div>
-			<div class="windowbg">
+			<div class="information">
 				', $txt['packages_adding'], '
 			</div>
 
@@ -706,7 +705,6 @@ function template_servers()
 				<input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '">
 			</form>
 		</div>
-		<br>
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<a class="download_new_package">
@@ -818,9 +816,7 @@ function template_servers()
 								<span class="smalltext">', $txt['package_download_filename_info'], '</span>
 							</dd>
 						</dl>
-						<div class="righttext">
-							<input type="submit" value="', $txt['download'], '" class="button_submit">
-						</div>
+						<input type="submit" value="', $txt['download'], '" class="button_submit">
 					</form>
 				</fieldset>
 			</div>
@@ -1052,10 +1048,9 @@ function template_install_options()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['package_install_options'], '</h3>
 		</div>
-		<div class="information">
+		<div class="information noup">
 			', $txt['package_install_options_ftp_why'], '
 		</div>
-
 		<div class="windowbg">
 			<form action="', $scripturl, '?action=admin;area=packages;sa=options" method="post" accept-charset="', $context['character_set'], '">
 				<dl class="settings">
@@ -1128,7 +1123,7 @@ function template_control_chmod()
 
 		if (!$context['server']['is_windows'])
 			echo '
-				<hr />
+				<hr>
 				', $txt['package_chmod_linux'], '<br />
 				<tt># chmod a+w ', implode(' ', $context['notwritable_files']), '</tt>';
 
@@ -1289,10 +1284,10 @@ function template_view_operations()
 	<head>
 		<meta charset="', $context['character_set'], '">
 		<title>', $txt['operation_title'], '</title>
-		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $modSettings['browser_cache'] ,'">
-		<link rel="stylesheet" href="', $settings['theme_url'], '/css/admin.css', $modSettings['browser_cache'] ,'">
-		<script src="', $settings['default_theme_url'], '/scripts/script.js', $modSettings['browser_cache'] ,'"></script>
-		<script src="', $settings['default_theme_url'], '/scripts/theme.js', $modSettings['browser_cache'] ,'"></script>
+		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $modSettings['browser_cache'], '">
+		<link rel="stylesheet" href="', $settings['theme_url'], '/css/admin.css', $modSettings['browser_cache'], '">
+		<script src="', $settings['default_theme_url'], '/scripts/script.js', $modSettings['browser_cache'], '"></script>
+		<script src="', $settings['default_theme_url'], '/scripts/theme.js', $modSettings['browser_cache'], '"></script>
 	</head>
 	<body>
 		<div class="padding windowbg">

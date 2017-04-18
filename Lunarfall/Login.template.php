@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -18,7 +18,7 @@ function template_login()
 	global $context, $settings, $scripturl, $modSettings, $txt;
 
 	echo '
-		<div class="tborder login">
+		<div class="login">
 			<div class="cat_bar">
 				<h3 class="catbg">
 					<i class="fa fa-sign-in fa-lg"></i>', $txt['login'], '
@@ -35,7 +35,7 @@ function template_login()
 	// Or perhaps there's some special description for this time?
 	if (isset($context['description']))
 		echo '
-					<p class="information">', $context['description'], '</p>';
+					<div class="information">', $context['description'], '</div>';
 
 	// Now just get the basic information - username, password, etc.
 	echo '
@@ -47,7 +47,7 @@ function template_login()
 					</dl>
 					<dl>
 						<dt>', $txt['mins_logged_in'], ':</dt>
-						<dd><input type="number" name="cookielength" size="4" maxlength="4" value="', $modSettings['cookieTime'], '"', $context['never_expire'] ? ' disabled' : '', ' class="input_text" min="1" max="525600"></dd>
+						<dd><input type="number" name="cookielength" size="4" maxlength="4" value="', $modSettings['cookieTime'], '"', $context['never_expire'] ? ' disabled' : '', ' class="input_text" min="1"></dd>
 						<dt>', $txt['always_logged_in'], ':</dt>
 						<dd><input type="checkbox" name="cookieneverexp"', $context['never_expire'] ? ' checked' : '', ' class="input_check" onclick="this.form.cookielength.disabled = this.checked;"></dd>';
 	// If they have deleted their account, give them a chance to change their mind.
@@ -78,14 +78,23 @@ function template_login()
 								method: "POST",
 								data: form.serialize(),
 								success: function(data) {
-									if (data.indexOf("<bo" + "dy") > -1)
-										document.location = ', JavaScriptEscape(!empty($_SESSION['login_url']) ? $_SESSION['login_url'] : $scripturl), ';
-									else {
-										form.parent().html($(data).find(".roundframe").html());
+									if (data.indexOf("<bo" + "dy") > -1) {
+										document.open();
+										document.write(data);
+										document.close();
 									}
+									else
+										form.parent().html($(data).find(".roundframe").html());
 								},
-								error: function() {
-									document.location = ', JavaScriptEscape(!empty($_SESSION['login_url']) ? $_SESSION['login_url'] : $scripturl), ';
+								error: function(xhr) {
+									var data = xhr.responseText;
+									if (data.indexOf("<bo" + "dy") > -1) {
+										document.open();
+										document.write(data);
+										document.close();
+									}
+									else
+										form.parent().html($(data).filter("#fatal_error").html());
 								}
 							});
 
@@ -114,10 +123,10 @@ function template_login_tfa()
 	global $context, $scripturl, $modSettings, $txt;
 
 	echo '
-		<div class="tborder login">
+		<div class="login">
 			<div class="cat_bar">
 				<h3 class="catbg">
-					', $txt['tfa_profile_label'] ,'
+					', $txt['tfa_profile_label'], '
 				</h3>
 			</div>
 			<div class="roundframe">';
@@ -186,7 +195,7 @@ function template_kick_guest()
 	// This isn't that much... just like normal login but with a message at the top.
 	echo '
 	<form action="', $context['login_url'], '" method="post" accept-charset="', $context['character_set'], '" name="frmLogin" id="frmLogin">
-		<div class="tborder login">
+		<div class="login">
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['warning'], '</h3>
 			</div>';
@@ -246,14 +255,14 @@ function template_maintenance()
 	// Display the administrator's message at the top.
 	echo '
 <form action="', $context['login_url'], '" method="post" accept-charset="', $context['character_set'], '">
-	<div class="tborder login" id="maintenance_mode">
+	<div class="login" id="maintenance_mode">
 		<div class="cat_bar">
 			<h3 class="catbg">', $context['title'], '</h3>
 		</div>
-		<p class="information">
+		<div class="information">
 			<img class="floatleft" src="', $settings['images_url'], '/construction.png" width="40" height="40" alt="', $txt['in_maintain_mode'], '">
 			', $context['description'], '<br class="clear">
-		</p>
+		</div>
 		<div class="title_bar">
 			<h4 class="titlebg">', $txt['admin_login'], '</h4>
 		</div>
@@ -288,7 +297,7 @@ function template_admin_login()
 	// Since this should redirect to whatever they were doing, send all the get data.
 	echo '
 <form action="', !empty($modSettings['force_ssl']) && $modSettings['force_ssl'] < 2 ? strtr($scripturl, array('http://' => 'https://')) : $scripturl, $context['get_data'], '" method="post" accept-charset="', $context['character_set'], '" name="frmLogin" id="frmLogin">
-	<div class="tborder login" id="admin_login">
+	<div class="login" id="admin_login">
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<i class="fa fa-sign-in fa-lg"></i>', $txt['login'], '

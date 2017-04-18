@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -22,7 +22,7 @@ function template_registration_agreement()
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['registration_agreement'], '</h3>
 			</div>
-			<div class="roundframe">
+			<div class="roundframe noup">
 				<p>', $context['agreement'], '</p>
 			</div>
 			<div id="confirm_buttons">';
@@ -94,7 +94,7 @@ function template_registration_form()
 			<div class="title_bar title_top">
 				<h3 class="titlebg">', $txt['required_info'], '</h3>
 			</div>
-			<div class="roundframe">
+			<div class="roundframe noup">
 				<fieldset>
 					<dl class="register_form">
 						<dt><strong><label for="smf_autov_username">', $txt['username'], ':</label></strong></dt>
@@ -150,7 +150,7 @@ function template_registration_form()
 							<strong', !empty($field['is_error']) ? ' class="red"' : '', '>', $field['name'], ':</strong>
 							<span class="smalltext">', $field['desc'], '</span>
 						</dt>
-						<dd>', str_replace('name="', 'tabindex="' . $context['tabindex']++ .'" name="', $field['input_html']), '</dd>';
+						<dd>', str_replace('name="', 'tabindex="' . $context['tabindex']++ . '" name="', $field['input_html']), '</dd>';
 
 		echo '
 					</dl>';
@@ -167,7 +167,7 @@ function template_registration_form()
 			<div class="title_bar title_top">
 				<h3 class="titlebg">', $txt['additional_information'], '</h3>
 			</div>
-			<div class="roundframe">
+			<div class="roundframe noup">
 				<fieldset>
 					<dl class="register_form" id="custom_group">';
 	}
@@ -335,7 +335,7 @@ function template_after()
 			<div class="cat_bar">
 				<h3 class="catbg">', $context['title'], '</h3>
 			</div>
-			<div class="windowbg">
+			<div class="windowbg noup">
 				<p>', $context['description'], '</p>
 			</div>
 		</div>';
@@ -353,7 +353,7 @@ function template_coppa()
 			<div class="title_bar title_top">
 				<h3 class="titlebg">', $context['page_title'], '</h3>
 			</div>
-			<div id="coppa" class="roundframe">
+			<div id="coppa" class="roundframe noup">
 				<p>', $context['coppa']['body'], '</p>
 				<p>
 					<span><a href="', $scripturl, '?action=coppa;form;member=', $context['coppa']['id'], '" target="_blank" class="new_win">', $txt['coppa_form_link_popup'], '</a> | <a href="', $scripturl, '?action=coppa;form;dl;member=', $context['coppa']['id'], '">', $txt['coppa_form_link_download'], '</a></span>
@@ -436,7 +436,7 @@ function template_verification_sound()
 		<meta charset="', $context['character_set'], '">
 		<title>', $txt['visual_verification_sound'], '</title>
 		<meta name="robots" content="noindex">
-		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $modSettings['browser_cache'] ,'">
+		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $modSettings['browser_cache'], '">
 		<style>';
 
 	// Just show the help text and a "close window" link.
@@ -542,7 +542,7 @@ function template_admin_register()
 							<strong', !empty($field['is_error']) ? ' class="red"' : '', '>', $field['name'], ':</strong>
 							<span class="smalltext">', $field['desc'], '</span>
 						</dt>
-						<dd>', str_replace('name="', 'tabindex="' . $context['tabindex']++ .'" name="', $field['input_html']), '</dd>';
+						<dd>', str_replace('name="', 'tabindex="' . $context['tabindex']++ . '" name="', $field['input_html']), '</dd>';
 
 	echo '
 						<dt>
@@ -634,19 +634,15 @@ function template_edit_agreement()
 	// Show the actual agreement in an oversized text box.
 	echo '
 				<form action="', $scripturl, '?action=admin;area=regcenter" method="post" accept-charset="', $context['character_set'], '">
-					<p class="agreement">
-						<textarea cols="70" rows="20" name="agreement" id="agreement">', $context['agreement'], '</textarea>
-					</p>
+					<textarea cols="70" rows="20" name="agreement" id="agreement">', $context['agreement'], '</textarea>
 					<p>
 						<label for="requireAgreement"><input type="checkbox" name="requireAgreement" id="requireAgreement"', $context['require_agreement'] ? ' checked' : '', ' tabindex="', $context['tabindex']++, '" value="1" class="input_check"> ', $txt['admin_agreement'], '.</label>
 					</p>
-					<div class="flow_auto">
-						<input type="submit" value="', $txt['save'], '" tabindex="', $context['tabindex']++, '" class="button_submit">
-						<input type="hidden" name="agree_lang" value="', $context['current_agreement'], '">
-						<input type="hidden" name="sa" value="agreement">
-						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-						<input type="hidden" name="', $context['admin-rega_token_var'], '" value="', $context['admin-rega_token'], '">
-					</div>
+					<input type="submit" value="', $txt['save'], '" tabindex="', $context['tabindex']++, '" class="button_submit">
+					<input type="hidden" name="agree_lang" value="', $context['current_agreement'], '">
+					<input type="hidden" name="sa" value="agreement">
+					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="', $context['admin-rega_token_var'], '" value="', $context['admin-rega_token'], '">
 				</form>
 			</div>
 		</div>';
@@ -670,9 +666,7 @@ function template_edit_reserved_words()
 			</div>
 			<div class="windowbg">
 				<h4>', $txt['admin_reserved_line'], '</h4>
-				<p class="reserved_names">
-					<textarea cols="30" rows="6" name="reserved" id="reserved">', implode("\n", $context['reserved_words']), '</textarea>
-				</p>
+				<textarea cols="30" rows="6" name="reserved" id="reserved">', implode("\n", $context['reserved_words']), '</textarea>
 				<dl class="settings">
 					<dt>
 						<label for="matchword">', $txt['admin_match_whole'], '</label>

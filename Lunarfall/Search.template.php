@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -34,72 +34,75 @@ function template_main()
 		<p class="noticebox">', $txt['search_warning_ignored_word' . (count($context['search_ignored']) == 1 ? '' : 's')], ': ', implode(', ', $context['search_ignored']), '</p>';
 
 	echo '
-		<fieldset id="advanced_search">
-			<div class="roundframe">
-				<dl class="settings" id="search_options">
-					<dt class="righttext">
-						<strong><label for="searchfor">', $txt['search_for'], ':</label></strong>
-					</dt>
-					<dd>
-						<input type="search" name="search" id="searchfor" ', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', ' maxlength="', $context['search_string_limit'], '" size="40" class="input_text">';
+		<div id="advanced_search" class="roundframe">
+			<dl class="settings" id="search_options">
+				<dt class="righttext">
+					<strong><label for="searchfor">', $txt['search_for'], ':</label></strong>
+				</dt>
+				<dd>
+					<input type="search" name="search" id="searchfor" ', !empty($context['search_params']['search']) ? ' value="' . $context['search_params']['search'] . '"' : '', ' maxlength="', $context['search_string_limit'], '" size="40" class="input_text">';
 
 	if (empty($modSettings['search_simple_fulltext']))
 		echo '
-						<em class="smalltext">', $txt['search_example'], '</em>';
+					<br><em class="smalltext">', $txt['search_example'], '</em>';
 
 	echo '
-					</dd>
+				</dd>
 
-					<dt class="righttext"><label for="searchtype">',
-						$txt['search_match'], ':</label>
-					</dt>
-					<dd>
-						<select name="searchtype" id="searchtype">
-							<option value="1"', empty($context['search_params']['searchtype']) ? ' selected' : '', '>', $txt['all_words'], '</option>
-							<option value="2"', !empty($context['search_params']['searchtype']) ? ' selected' : '', '>', $txt['any_words'], '</option>
-						</select>
-					</dd>
-					<dt class="righttext"><label for="userspec">',
-						$txt['by_user'], ':</label>
-					</dt>
-					<dd>
-						<input id="userspec" type="text" name="userspec" value="', empty($context['search_params']['userspec']) ? '*' : $context['search_params']['userspec'], '" size="40" class="input_text">
-					</dd>
-					<dt class="righttext"><label for="sort">',
-						$txt['search_order'], ':</label>
-					</dt>
-					<dd>
-						<select id="sort" name="sort">
-							<option value="relevance|desc">', $txt['search_orderby_relevant_first'], '</option>
-							<option value="num_replies|desc">', $txt['search_orderby_large_first'], '</option>
-							<option value="num_replies|asc">', $txt['search_orderby_small_first'], '</option>
-							<option value="id_msg|desc">', $txt['search_orderby_recent_first'], '</option>
-							<option value="id_msg|asc">', $txt['search_orderby_old_first'], '</option>
-						</select>
-					</dd>
-					<dt class="righttext options">',
-						$txt['search_options'], ':
-					</dt>
-					<dd class="options">
-						<label for="show_complete">', $txt['search_show_complete_messages'], '
+				<dt class="righttext"><label for="searchtype">',
+					$txt['search_match'], ':</label>
+				</dt>
+				<dd>
+					<select name="searchtype" id="searchtype">
+						<option value="1"', empty($context['search_params']['searchtype']) ? ' selected' : '', '>', $txt['all_words'], '</option>
+						<option value="2"', !empty($context['search_params']['searchtype']) ? ' selected' : '', '>', $txt['any_words'], '</option>
+					</select>
+				</dd>
+				<dt class="righttext"><label for="userspec">',
+					$txt['by_user'], ':</label>
+				</dt>
+				<dd>
+					<input id="userspec" type="text" name="userspec" value="', empty($context['search_params']['userspec']) ? '*' : $context['search_params']['userspec'], '" size="40" class="input_text">
+				</dd>
+				<dt class="righttext"><label for="sort">',
+					$txt['search_order'], ':</label>
+				</dt>
+				<dd>
+					<select id="sort" name="sort">
+						<option value="relevance|desc">', $txt['search_orderby_relevant_first'], '</option>
+						<option value="num_replies|desc">', $txt['search_orderby_large_first'], '</option>
+						<option value="num_replies|asc">', $txt['search_orderby_small_first'], '</option>
+						<option value="id_msg|desc">', $txt['search_orderby_recent_first'], '</option>
+						<option value="id_msg|asc">', $txt['search_orderby_old_first'], '</option>
+					</select>
+				</dd>
+				<dt class="righttext options">',
+					$txt['search_options'], ':
+				</dt>
+				<dd class="options">
+					<ul>
+						<li>
 							<input type="checkbox" name="show_complete" id="show_complete" value="1"', !empty($context['search_params']['show_complete']) ? ' checked' : '', ' class="input_check">
-						</label><br>
-						<label for="subject_only">', $txt['search_subject_only'], '
+							<label for="show_complete">', $txt['search_show_complete_messages'], '</label>
+						</li>
+						<li>
 							<input type="checkbox" name="subject_only" id="subject_only" value="1"', !empty($context['search_params']['subject_only']) ? ' checked' : '', ' class="input_check">
-						</label>
-					</dd>
-					<dt class="righttext between">',
-						$txt['search_post_age'], ':
-					</dt>
-					<dd><label for="minage">',
-						$txt['search_between'], '</label> <input type="number" name="minage" id="minage" value="', empty($context['search_params']['minage']) ? '0' : $context['search_params']['minage'], '" size="5" maxlength="4" class="input_text">&nbsp;<label for="maxage">', $txt['search_and'], '&nbsp;</label><input type="number" name="maxage" id="maxage" value="', empty($context['search_params']['maxage']) ? '9999' : $context['search_params']['maxage'], '" size="5" maxlength="4" class="input_text"> ', $txt['days_word'], '
-					</dd>
-				</dl>
-				<script>
-					createEventListener(window);
-					window.addEventListener("load", initSearch, false);
-				</script>
-				<input type="hidden" name="advanced" value="1">';
+							<label for="subject_only">', $txt['search_subject_only'], '</label>
+						</li>
+					</ul>
+				</dd>
+				<dt class="righttext between">',
+					$txt['search_post_age'], ':
+				</dt>
+				<dd><label for="minage">',
+					$txt['search_between'], '</label> <input type="number" name="minage" id="minage" value="', empty($context['search_params']['minage']) ? '0' : $context['search_params']['minage'], '" size="5" maxlength="4" class="input_text">&nbsp;<label for="maxage">', $txt['search_and'], '&nbsp;</label><input type="number" name="maxage" id="maxage" value="', empty($context['search_params']['maxage']) ? '9999' : $context['search_params']['maxage'], '" size="5" maxlength="4" class="input_text"> ', $txt['days_word'], '
+				</dd>
+			</dl>
+			<script>
+				createEventListener(window);
+				window.addEventListener("load", initSearch, false);
+			</script>
+			<input type="hidden" name="advanced" value="1">';
 
 	// Require an image to be typed to save spamming?
 	if ($context['require_verification'])
@@ -316,7 +319,7 @@ function template_results()
 		{
 
 			echo '
-			<div class="', $topic['css_class'] ,'">
+			<div class="', $topic['css_class'], '">
 				<div class="flow_auto">';
 
 			foreach ($topic['matches'] as $message)
@@ -325,7 +328,7 @@ function template_results()
 					<div class="topic_details floatleft" style="width: 94%">
 						<div class="counter">', $message['counter'], '</div>
 						<h5>', $topic['board']['link'], ' / <a href="', $scripturl, '?topic=', $topic['id'], '.msg', $message['id'], '#msg', $message['id'], '">', $message['subject_highlighted'], '</a></h5>
-						<span class="smalltext">&#171;&nbsp;',$txt['by'],'&nbsp;<strong>', $message['member']['link'], '</strong>&nbsp;',$txt['on'],'&nbsp;<em>', $message['time'], '</em>&nbsp;&#187;</span>
+						<span class="smalltext">&#171;&nbsp;',$txt['by'], '&nbsp;<strong>', $message['member']['link'], '</strong>&nbsp;', $txt['on'], '&nbsp;<em>', $message['time'], '</em>&nbsp;&#187;</span>
 					</div>';
 
 				if (!empty($options['display_quick_mod']))
@@ -342,11 +345,11 @@ function template_results()
 					{
 						if ($topic['quick_mod']['remove'])
 							echo '
-						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=remove;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons delete" title="', $txt['remove_topic'], '"></span></a>';
+						<a href="', $scripturl, '?action=quickmod;board=' . $topic['board']['id'] . '.0;actions%5B', $topic['id'], '%5D=remove;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons delete" title="', $txt['remove_topic'], '"></span></a>';
 
 						if ($topic['quick_mod']['lock'])
 							echo '
-						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=lock;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons lock" title="', $topic['is_locked'] ? $txt['set_unlock'] : $txt['set_lock'], '"></span></a>';
+						<a href="', $scripturl, '?action=quickmod;board=' . $topic['board']['id'] . '.0;actions%5B', $topic['id'], '%5D=lock;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons lock" title="', $topic['is_locked'] ? $txt['set_unlock'] : $txt['set_lock'], '"></span></a>';
 
 						if ($topic['quick_mod']['lock'] || $topic['quick_mod']['remove'])
 							echo '
@@ -354,11 +357,11 @@ function template_results()
 
 						if ($topic['quick_mod']['sticky'])
 							echo '
-						<a href="', $scripturl, '?action=quickmod;board='. $topic['board']['id']. '.0;actions%5B', $topic['id'], '%5D=sticky;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons sticky" title="', $topic['is_sticky'] ? $txt['set_nonsticky'] : $txt['set_sticky'], '"></span></a>';
+						<a href="', $scripturl, '?action=quickmod;board=' . $topic['board']['id'] . '.0;actions%5B', $topic['id'], '%5D=sticky;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons sticky" title="', $topic['is_sticky'] ? $txt['set_nonsticky'] : $txt['set_sticky'], '"></span></a>';
 
 						if ($topic['quick_mod']['move'])
 							echo '
-						<a href="', $scripturl, '?action=movetopic;topic=', $topic['id'], '.0"><i class="fa fa-arrow-circle-o-right fa-lg" title="', $txt['move_topic'], '"></i></a>';
+						<a href="', $scripturl, '?action=movetopic;topic=', $topic['id'], '.0"><span class="generic_icons move" title="', $txt['move_topic'], '"></span></a>';
 					}
 
 					echo '
@@ -393,7 +396,7 @@ function template_results()
 			foreach ($context['qmod_actions'] as $qmod_action)
 				if ($context['can_' . $qmod_action])
 					echo '
-							<option value="' . $qmod_action . '">' . $txt['quick_mod_'  . $qmod_action] . '</option>';
+							<option value="' . $qmod_action . '">' . $txt['quick_mod_' . $qmod_action] . '</option>';
 
 			echo '
 					</select>';
@@ -437,7 +440,7 @@ function template_results()
 			foreach ($topic['matches'] as $message)
 			{
 				echo '
-				<div class="', $topic['css_class'] ,'">
+				<div class="', $topic['css_class'], '">
 					<div class="counter">', $message['counter'], '</div>
 					<div class="topic_details">
 						<h5>', $topic['board']['link'], ' / <a href="', $scripturl, '?topic=', $topic['id'], '.', $message['start'], ';topicseen#msg', $message['id'], '">', $message['subject_highlighted'], '</a></h5>

@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -165,11 +165,60 @@ function template_main()
 				<ul>';
 
 		foreach ($context['linked_calendar_events'] as $event)
+		{
 			echo '
 					<li>
-						', ($event['can_edit'] ? '<a href="' . $event['modify_href'] . '"><span class="generic_icons calendar_modify"></span></a> ' : ''), '<strong>', $event['title'], '</strong>: ', $event['start_date'], ($event['start_date'] != $event['end_date'] ? ' - ' . $event['end_date'] : ''), '
-					</li>';
+						<b class="event_title"><a href="', $scripturl, '?action=calendar;event=', $event['id'], '">', $event['title'], '</a></b>';
 
+			if ($event['can_edit'])
+				echo ' <a href="' . $event['modify_href'] . '"><span class="generic_icons calendar_modify" title="', $txt['calendar_edit'], '"></span></a>';
+
+			if ($event['can_export'])
+				echo ' <a href="' . $event['export_href'] . '"><span class="generic_icons calendar_export" title="', $txt['calendar_export'], '"></span></a>';
+
+			echo '
+						<br>';
+
+			if (!empty($event['allday']))
+			{
+				echo '<time datetime="' . $event['start_iso_gmdate'] . '">', trim($event['start_date_local']), '</time>', ($event['start_date'] != $event['end_date']) ? ' &ndash; <time datetime="' . $event['end_iso_gmdate'] . '">' . trim($event['end_date_local']) . '</time>' : '';
+			}
+			else
+			{
+				// Display event info relative to user's local timezone
+				echo '<time datetime="' . $event['start_iso_gmdate'] . '">', trim($event['start_date_local']), ', ', trim($event['start_time_local']), '</time> &ndash; <time datetime="' . $event['end_iso_gmdate'] . '">';
+
+				if ($event['start_date_local'] != $event['end_date_local'])
+					echo trim($event['end_date_local']) . ', ';
+
+				echo trim($event['end_time_local']);
+
+				// Display event info relative to original timezone
+				if ($event['start_date_local'] . $event['start_time_local'] != $event['start_date_orig'] . $event['start_time_orig'])
+				{
+					echo '</time> (<time datetime="' . $event['start_iso_gmdate'] . '">';
+
+					if ($event['start_date_orig'] != $event['start_date_local'] || $event['end_date_orig'] != $event['end_date_local'] || $event['start_date_orig'] != $event['end_date_orig'])
+						echo trim($event['start_date_orig']), ', ';
+
+					echo trim($event['start_time_orig']), '</time> &ndash; <time datetime="' . $event['end_iso_gmdate'] . '">';
+
+					if ($event['start_date_orig'] != $event['end_date_orig'])
+						echo trim($event['end_date_orig']) . ', ';
+
+					echo trim($event['end_time_orig']), ' ', $event['tz_abbrev'], '</time>)';
+				}
+				// Event is scheduled in the user's own timezone? Let 'em know, just to avoid confusion
+				else
+					echo ' ', $event['tz_abbrev'], '</time>';
+			}
+
+			if (!empty($event['location']))
+				echo '<br>', $event['location'];
+
+			echo '
+					</li>';
+		}
 		echo '
 				</ul>
 			</div>';
@@ -188,8 +237,8 @@ function template_main()
 	// Mobile action - moderation buttons (top)
 	echo '
 			<div class="mobile_buttons floatright">
-				<a class="button mobile_act">', $txt['mobile_action'],'</a>
-				', ($context['can_moderate_forum'] || $context['user']['is_mod']) ? '<a class="button mobile_mod">'. $txt['mobile_moderation'].'</a>' : '','
+				<a class="button mobile_act">', $txt['mobile_action'], '</a>
+				', ($context['can_moderate_forum'] || $context['user']['is_mod']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
 			</div>';
 
 	// Show the topic information - icon, subject, etc.
@@ -213,8 +262,8 @@ function template_main()
 	// Mobile action - moderation buttons (bottom)
 	echo '
 			<div class="mobile_buttons floatright">
-				<a class="button mobile_act">', $txt['mobile_action'],'</a>
-				', ($context['can_moderate_forum'] || $context['user']['is_mod']) ? '<a class="button mobile_mod">'. $txt['mobile_moderation'].'</a>' : '','
+				<a class="button mobile_act">', $txt['mobile_action'], '</a>
+				', ($context['can_moderate_forum'] || $context['user']['is_mod']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
 			</div>';
 
 	// Show the page index... "Pages: [1]".
@@ -248,7 +297,7 @@ function template_main()
 	echo '
 			<div id="mobile_action" class="popup_container">
 				<div class="popup_window description">
-					<div class="popup_heading">', $txt['mobile_action'],'
+					<div class="popup_heading">', $txt['mobile_action'], '
 					<a href="javascript:void(0);" class="generic_icons hide_popup"></a></div>
 					', template_button_strip($context['normal_buttons']), '
 				</div>
@@ -259,7 +308,7 @@ function template_main()
 		echo '
 			<div id="mobile_moderation" class="popup_container">
 				<div class="popup_window description">
-					<div class="popup_heading">', $txt['mobile_moderation'],'
+					<div class="popup_heading">', $txt['mobile_moderation'], '
 					<a href="javascript:void(0);" class="generic_icons hide_popup"></a></div>
 					<div id="moderationbuttons_mobile">
 						', template_button_strip($context['mod_buttons'], 'bottom', array('id' => 'moderationbuttons_strip_mobile')), '
@@ -339,7 +388,7 @@ function template_main()
 									<input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '">
 									<input type="hidden" name="topic" value="' . $context['current_topic'] . '">
 									<input type="hidden" name="msg" value="%msg_id%">
-									<div class="righttext">
+									<div class="righttext quickModifyMargin">
 										<input type="submit" name="post" value="' . $txt['save'] . '" tabindex="' . $context['tabindex']++ . '" onclick="return oQuickModify.modifySave(\'' . $context['session_id'] . '\', \'' . $context['session_var'] . '\');" accesskey="s" class="button_submit">&nbsp;&nbsp;' . ($context['show_spellchecking'] ? '<input type="button" value="' . $txt['spell_check'] . '" tabindex="' . $context['tabindex']++ . '" onclick="spellCheck(\'quickModForm\', \'message\');" class="button_submit">&nbsp;&nbsp;' : '') . '<input type="submit" name="cancel" value="' . $txt['modify_cancel'] . '" tabindex="' . $context['tabindex']++ . '" onclick="return oQuickModify.modifyCancel();" class="button_submit">
 									</div>
 								</div>'), ',
@@ -347,7 +396,7 @@ function template_main()
 							sTemplateBodyNormal: ', JavaScriptEscape('%body%'), ',
 							sTemplateSubjectNormal: ', JavaScriptEscape('<a href="' . $scripturl . '?topic=' . $context['current_topic'] . '.msg%msg_id%#msg%msg_id%" rel="nofollow">%subject%</a>'), ',
 							sTemplateTopSubject: ', JavaScriptEscape('%subject%'), ',
-							sTemplateReasonEdit: ', JavaScriptEscape('<input type="text" name="modify_reason" value="%modify_reason%" size="80" maxlength="80" tabindex="' . $context['tabindex']++ . '" class="input_text">)'), ',
+							sTemplateReasonEdit: ', JavaScriptEscape($txt['reason_for_edit'] . ': <input type="text" name="modify_reason" value="%modify_reason%" size="80" maxlength="80" tabindex="' . $context['tabindex']++ . '" class="input_text quickModifyMargin">'), ',
 							sTemplateReasonNormal: ', JavaScriptEscape('%modify_text'), ',
 							sErrorBorderStyle: ', JavaScriptEscape('1px solid red'), ($context['can_reply']) ? ',
 							sFormRemoveAccessKeys: \'postmodify\'' : '', '
@@ -420,7 +469,7 @@ function template_single_post($message)
 
 	// Show the message anchor and a "new" anchor if this message is new.
 	echo '
-				<div class="', $message['css_class'] ,' nopad">', $message['id'] != $context['first_message'] ? '
+				<div class="', $message['css_class'], '">', $message['id'] != $context['first_message'] ? '
 					<a id="msg' . $message['id'] . '"></a>' . ($message['first_new'] ? '<a id="new"></a>' : '') : '', '
 					<div class="post_wrapper">';
 
@@ -473,7 +522,7 @@ function template_single_post($message)
 	if (!empty($message['custom_fields']['below_avatar']))
 		foreach ($message['custom_fields']['below_avatar'] as $custom)
 			echo '
-								<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
+								<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 
 	// Show the post group icons, but not for guests.
 	if (!$message['member']['is_guest'])
@@ -495,7 +544,7 @@ function template_single_post($message)
 	{
 
 		// Show the post group if and only if they have no other group or the option is on, and they are in a post group.
-		if ((empty($modSettings['hide_post_group']) || $message['member']['group'] == '') && $message['member']['post_group'] != '')
+		if ((empty($modSettings['hide_post_group']) || empty($message['member']['group'])) && !empty($message['member']['post_group']))
 			echo '
 								<li class="postgroup">', $message['member']['post_group'], '</li>';
 
@@ -505,7 +554,7 @@ function template_single_post($message)
 								<li class="postcount">', $txt['member_postcount'], ': ', $message['member']['posts'], '</li>';
 
 		// Show their personal text?
-		if (!empty($modSettings['show_blurb']) && $message['member']['blurb'] != '')
+		if (!empty($modSettings['show_blurb']) && !empty($message['member']['blurb']))
 			echo '
 								<li class="blurb">', $message['member']['blurb'], '</li>';
 
@@ -518,7 +567,7 @@ function template_single_post($message)
 
 			foreach ($message['custom_fields']['icons'] as $custom)
 				echo '
-										<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
+										<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 
 			echo '
 									</ol>
@@ -533,7 +582,7 @@ function template_single_post($message)
 									<ol class="profile_icons">';
 
 			// Don't show an icon if they haven't specified a website.
-			if ($message['member']['website']['url'] != '' && !isset($context['disabled_fields']['website']))
+			if (!empty($message['member']['website']['url']) && !isset($context['disabled_fields']['website']))
 				echo '
 										<li><a href="', $message['member']['website']['url'], '" title="' . $message['member']['website']['title'] . '" target="_blank" class="new_win">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg centericon" title="' . $message['member']['website']['title'] . '"></i>' : $txt['www']), '</a></li>';
 
@@ -556,7 +605,7 @@ function template_single_post($message)
 		if (!empty($message['custom_fields']['standard']))
 			foreach ($message['custom_fields']['standard'] as $custom)
 				echo '
-								<li class="custom ', $custom['col_name'] ,'">', $custom['title'], ': ', $custom['value'], '</li>';
+								<li class="custom ', $custom['col_name'], '">', $custom['title'], ': ', $custom['value'], '</li>';
 
 	}
 	// Otherwise, show the guest's email.
@@ -594,7 +643,7 @@ function template_single_post($message)
 	if (!empty($message['custom_fields']['bottom_poster']))
 		foreach ($message['custom_fields']['bottom_poster'] as $custom)
 			echo '
-									<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
+									<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 
 	// Poster info ends.
 	echo '
@@ -624,8 +673,11 @@ function template_single_post($message)
 									<span class="smalltext modified" id="modified_', $message['id'], '">';
 
 	if (!empty($modSettings['show_modify']) && !empty($message['modified']['name']))
-		echo $message['modified']['last_edit_text'];
-	echo '</span>';
+		echo
+										$message['modified']['last_edit_text'];
+
+	echo '
+									</span>';
 
 	echo '
 								</h5>
@@ -866,7 +918,7 @@ function template_single_post($message)
 
 		foreach ($message['custom_fields']['below_signature'] as $custom)
 			echo '
-									<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
+									<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 
 		echo '
 								</ul>
@@ -965,7 +1017,7 @@ function template_quickreply()
 	echo '
 				<br class="clear_right">
 				<span id="post_confirm_buttons">
-					', template_control_richedit_buttons($context['post_box_name']) ,'
+					', template_control_richedit_buttons($context['post_box_name']), '
 				</span>';
 		echo '
 					</form>
@@ -1008,9 +1060,10 @@ function template_quickreply()
 						sJumpAnchor: "quickreply",
 						bIsFull: true
 					});
-					var oEditorID = "', $context['post_box_name'] ,'";
+					var oEditorID = "', $context['post_box_name'], '";
 					var oEditorObject = oEditorHandle_', $context['post_box_name'], ';
 					var oJumpAnchor = "quickreply";
 				</script>';
 }
+
 ?>

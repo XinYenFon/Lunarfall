@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -75,32 +75,39 @@ function template_maintenance()
 			<h3 class="catbg">', $txt['attachment_pruning'], '</h3>
 		</div>
 		<div class="windowbg">
-			<form action="', $scripturl, '?action=admin;area=manageattachments" method="post" accept-charset="', $context['character_set'], '" onsubmit="return confirm(\'', $txt['attachment_pruning_warning'], '\');" style="margin: 0 0 2ex 0;">
-				', $txt['attachment_remove_old'], ' <input type="number" name="age" value="25" size="4" class="input_text"> ', $txt['days_word'], '<br>
-				', $txt['attachment_pruning_message'], ': <input type="text" name="notice" value="', $txt['attachment_delete_admin'], '" size="40" class="input_text"><br>
-				<input type="submit" name="remove" value="', $txt['remove'], '" class="button_submit">
-				<input type="hidden" name="type" value="attachments">
-				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-				<input type="hidden" name="sa" value="byAge">
-				<br class="clear_right">
+			<form action="', $scripturl, '?action=admin;area=manageattachments" method="post" accept-charset="', $context['character_set'], '" onsubmit="return confirm(\'', $txt['attachment_pruning_warning'], '\');">
+				<dl class="settings">
+					<dt>', $txt['attachment_remove_old'], '</dt>
+					<dd><input type="number" name="age" value="25" size="4" class="input_text"> ', $txt['days_word'], '</dd>
+					<dt>', $txt['attachment_pruning_message'], '</dt>
+					<dd><input type="text" name="notice" value="', $txt['attachment_delete_admin'], '" size="40" class="input_text"></dd>
+					<input type="submit" name="remove" value="', $txt['remove'], '" class="button_submit">
+					<input type="hidden" name="type" value="attachments">
+					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="sa" value="byAge">
+				</dl>
 			</form>
-			<hr>
 			<form action="', $scripturl, '?action=admin;area=manageattachments" method="post" accept-charset="', $context['character_set'], '" onsubmit="return confirm(\'', $txt['attachment_pruning_warning'], '\');" style="margin: 0 0 2ex 0;">
-				', $txt['attachment_remove_size'], ' <input type="number" name="size" id="size" value="100" size="4" class="input_text"> ', $txt['kilobyte'], '<br>
-				', $txt['attachment_pruning_message'], ': <input type="text" name="notice" value="', $txt['attachment_delete_admin'], '" size="40" class="input_text"><br>
-				<input type="submit" name="remove" value="', $txt['remove'], '" class="button_submit">
-				<input type="hidden" name="type" value="attachments">
-				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-				<input type="hidden" name="sa" value="bySize">
-				<br class="clear_right">
+				<dl class="settings">
+					<dt>', $txt['attachment_remove_size'], '</dt>
+					<dd><input type="number" name="size" id="size" value="100" size="4" class="input_text"> ', $txt['kilobyte'], '</dd>
+					<dt>', $txt['attachment_pruning_message'], '</dt>
+					<dd><input type="text" name="notice" value="', $txt['attachment_delete_admin'], '" size="40" class="input_text"></dd>
+					<input type="submit" name="remove" value="', $txt['remove'], '" class="button_submit">
+					<input type="hidden" name="type" value="attachments">
+					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="sa" value="bySize">
+				</dl>
 			</form>
-			<hr>
 			<form action="', $scripturl, '?action=admin;area=manageattachments" method="post" accept-charset="', $context['character_set'], '" onsubmit="return confirm(\'', $txt['attachment_pruning_warning'], '\');" style="margin: 0 0 2ex 0;">
-				', $txt['attachment_manager_avatars_older'], ' <input type="number" name="age" value="45" size="4" class="input_text"> ', $txt['days_word'], '<br>
-				<input type="submit" name="remove" value="', $txt['remove'], '" class="button_submit">
-				<input type="hidden" name="type" value="avatars">
-				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-				<input type="hidden" name="sa" value="byAge">
+				<dl class="settings">
+					<dt>', $txt['attachment_manager_avatars_older'], '</dt>
+					<dd><input type="number" name="age" value="45" size="4" class="input_text"> ', $txt['days_word'], '</dd>
+					<input type="submit" name="remove" value="', $txt['remove'], '" class="button_submit">
+					<input type="hidden" name="type" value="avatars">
+					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="sa" value="byAge">
+				</dl>
 			</form>
 		</div>
 	</div>';
@@ -163,7 +170,6 @@ function template_maintenance()
 					<input type="submit" onclick="start_progress()" name="transfer" value="', $txt['attachment_transfer_now'], '" class="button_submit">
 					<div id="progress_msg"></div>
 					<div id="show_progress" class="padding"></div>
-					<br class="clear_right">
 				</form>
 				<script>
 					function start_progress() {
@@ -171,18 +177,17 @@ function template_maintenance()
 					}
 
 					function show_msg() {
-						$(\'#progress_msg\').html(\'<div><img src="', $settings['actual_images_url'], '/loading_sm.gif" alt="', $txt['ajax_in_progress'], '" width="35" height="35">&nbsp; ', $txt['attachment_transfer_progress'] , '<\/div>\');
+						$(\'#progress_msg\').html(\'<div><img src="', $settings['actual_images_url'], '/loading_sm.gif" alt="', $txt['ajax_in_progress'], '" width="35" height="35">&nbsp; ', $txt['attachment_transfer_progress'], '<\/div>\');
 						show_progress();
 					}
 
 					function show_progress() {
-						$(\'#show_progress\').load("progress.php");
+						$(\'#show_progress\').on("load", "progress.php");
 						setTimeout(\'show_progress()\', 1500);
 					}
 
 				</script>
-			</div>
-			<br class="clear">';
+			</div>';
 }
 
 /**
@@ -203,8 +208,7 @@ function template_attachment_repair()
 		<div class="windowbg">
 			', $txt['repair_attachments_complete_desc'], '
 		</div>
-	</div>
-	<br class="clear">';
+	</div>';
 	}
 
 	// What about if no errors were even found?
@@ -218,8 +222,7 @@ function template_attachment_repair()
 		<div class="windowbg">
 			', $txt['repair_attachments_no_errors'], '
 		</div>
-	</div>
-	<br class="clear">';
+	</div>';
 	}
 	// Otherwise, I'm sad to say, we have a problem!
 	else
@@ -247,8 +250,7 @@ function template_attachment_repair()
 				<input type="submit" name="cancel" value="', $txt['repair_attachments_cancel'], '" class="button_submit">
 			</div>
 		</form>
-	</div>
-	<br class="clear">';
+	</div>';
 	}
 }
 

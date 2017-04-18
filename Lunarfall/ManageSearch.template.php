@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -140,7 +140,7 @@ function template_select_search_method()
 	{
 		echo '
 						<dt>
-							<input type="radio" name="search_index" value="fulltext"', !empty($modSettings['search_index']) && $modSettings['search_index'] == 'fulltext' ? ' checked' : '', empty($context['fulltext_index']) ? ' onclick="alert(\'' . $txt['search_method_fulltext_warning'] . '\'); selectRadioByName(this.form.search_index, \'fulltext\');"': '', ' class="input_radio">
+							<input type="radio" name="search_index" value="fulltext"', !empty($modSettings['search_index']) && $modSettings['search_index'] == 'fulltext' ? ' checked' : '', empty($context['fulltext_index']) ? ' onclick="alert(\'' . $txt['search_method_fulltext_warning'] . '\'); selectRadioByName(this.form.search_index, \'fulltext\');"' : '', ' class="input_radio">
 							', $txt['search_method_fulltext_index'], '
 						</dt>
 						<dd>
@@ -191,7 +191,7 @@ function template_select_search_method()
 		echo '
 						<dt>
 							<input type="radio" name="search_index" value="', $api['setting_index'], '"', !empty($modSettings['search_index']) && $modSettings['search_index'] == $api['setting_index'] ? ' checked' : '', ' class="input_radio">
-							', $api['label'] ,'
+							', $api['label'], '
 						</dt>';
 
 	if ($api['desc'])
@@ -333,7 +333,7 @@ function template_spider_edit()
 			<div class="cat_bar">
 				<h3 class="catbg">', $context['page_title'], '</h3>
 			</div>
-			<div class="information winfo">
+			<div class="information noup">
 				', $txt['add_spider_desc'], '
 			</div>
 			<div class="windowbg">
@@ -383,7 +383,6 @@ function template_show_spider_logs()
 	template_show_list('spider_logs');
 
 	echo '
-		<br class="clear">
 		<form id="admin_form_wrapper" action="', $scripturl, '?action=admin;area=sengines;sa=logs" method="post" accept-charset="', $context['character_set'], '">
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['spider_logs_delete'], '</h3>

@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -80,14 +80,14 @@ function template_main()
 
 		// Group and date.
 		echo '
-					<td class="lefttext reg_group">', empty($member['group']) ? $member['post_group'] : $member['group'], '</td>
-					<td class="lefttext reg_date">', $member['registered_date'], '</td>';
+					<td class="centertext reg_group">', empty($member['group']) ? $member['post_group'] : $member['group'], '</td>
+					<td class="centertext reg_date">', $member['registered_date'], '</td>';
 
 		if (!isset($context['disabled_fields']['posts']))
 		{
 			echo '
-					<td style="white-space: nowrap; width: 15px">', $member['posts'], '</td>
-					<td class="statsbar" style="width: 120px">';
+					<td class="centertext" style="white-space: nowrap; width: 15px">', $member['posts'], '</td>
+					<td class="centertext statsbar" style="width: 120px">';
 
 			if (!empty($member['post_percent']))
 				echo '
@@ -104,7 +104,7 @@ function template_main()
 		{
 			foreach ($context['custom_profile_fields']['columns'] as $key => $column)
 				echo '
-					<td class="lefttext">', $member['options'][$key], '</td>';
+					<td class="righttext">', $member['options'][$key], '</td>';
 		}
 
 		echo '
@@ -157,33 +157,34 @@ function template_search()
 					<i class="fa fa-search fa-lg"></i>', $txt['mlist_search'], '
 				</h3>
 			</div>
-			<div id="memberlist_search" class="clear">
-				<div class="roundframe">
-					<dl id="mlist_search" class="settings">
-						<dt>
-							<label><strong>', $txt['search_for'], ':</strong></label>
-						</dt>
-						<dd>
-							<input type="text" name="search" value="', $context['old_search'], '" size="40" class="input_text">
-						</dd>
-						<dt>
-							<label><strong>', $txt['mlist_search_filter'], ':</strong></label>
-						</dt>';
+			<div id="advanced_search" class="roundframe noup">
+				<dl id="mlist_search" class="settings">
+					<dt>
+						<label><strong>', $txt['search_for'], ':</strong></label>
+					</dt>
+					<dd>
+						<input type="text" name="search" value="', $context['old_search'], '" size="40" class="input_text">
+					</dd>
+					<dt>
+						<label><strong>', $txt['mlist_search_filter'], ':</strong></label>
+					</dt>
+					<dd>
+						<ul>';
 
 	foreach ($context['search_fields'] as $id => $title)
 	{
 		echo '
-						<dd>
-							<label for="fields-', $id, '"><input type="checkbox" name="fields[]" id="fields-', $id, '" value="', $id, '"', in_array($id, $context['search_defaults']) ? ' checked' : '', ' class="input_check floatright">', $title, '</label>
-						</dd>';
+							<li>
+								<input type="checkbox" name="fields[]" id="fields-', $id, '" value="', $id, '"', in_array($id, $context['search_defaults']) ? ' checked' : '', ' class="input_check">
+								<label for="fields-', $id, '">', $title, '</label>
+							</li>';
 	}
 
 	echo '
-					</dl>
-					<div class="flow_auto">
-						<input type="submit" name="submit" value="' . $txt['search'] . '" class="button_submit">
-					</div>
-				</div>
+						</ul>
+					</dd>
+				</dl>
+				<input type="submit" name="submit" value="' . $txt['search'] . '" class="button_submit">
 			</div>
 		</div>
 	</form>';

@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2016 Simple Machines and individual contributors
+ * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 Beta 3
@@ -57,6 +57,9 @@ function template_init()
 	// Set the following variable to true is this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
 	$settings['avatars_on_indexes'] = false;
 
+	// Set the following variable to true is this theme wants to display the avatar of the user that posted the last post on the board index.
+	$settings['avatars_on_boardIndex'] = false;
+
 	// This defines the formatting for the page indexes used throughout the forum.
 	$settings['page_index'] = array(
 		'extra_before' => '<span class="pages">' . $txt['pages'] . '</span>',
@@ -83,7 +86,7 @@ function template_html_above()
 
 	// Show right to left, the language code, and the character set for ease of translating.
 	echo '<!DOCTYPE html>
-	<html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '' , '>
+	<html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', '>
 <head>
 	<meta charset="', $context['character_set'], '">';
 
@@ -100,18 +103,20 @@ function template_html_above()
 	template_javascript();
 
 	echo '
-	<meta name="description" content="', !empty($context['meta_description']) ? $context['meta_description'] : $context['page_title_html_safe'], '">', !empty($context['meta_keywords']) ? '
-	<meta name="keywords" content="' . $context['meta_keywords'] . '">' : '', '
 	<title>', $context['page_title_html_safe'], '</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">';
 
-	// Some Open Graph?
-	echo '
-	<meta property="og:site_name" content="', $mbname,'">
-	<meta property="og:title" content="', $context['page_title_html_safe'],'">
-	', !empty($context['canonical_url']) ? '<meta property="og:url" content="'. $context['canonical_url'].'">' : '',
-	!empty($settings['og_image']) ? '<meta property="og:image" content="'. $settings['og_image'].'">' : '','
-	<meta property="og:description" content="',!empty($context['meta_description']) ? $context['meta_description'] : $context['page_title_html_safe'],'">';
+	// Content related meta tags, like description, keywords, Open Graph stuff, etc...
+	foreach ($context['meta_tags'] as $meta_tag)
+	{
+		echo '
+	<meta';
+
+		foreach ($meta_tag as $meta_key => $meta_value)
+			echo ' ', $meta_key, '="', $meta_value, '"';
+
+		echo '>';
+	}
 
 	/* What is your Lollipop's color?
 	Theme Authors you can change here to make sure your theme's main color got visible on tab */
@@ -173,12 +178,11 @@ function template_html_above()
  */
 function template_body_above()
 {
-	global $context, $settings, $scripturl, $txt, $modSettings;
+	global $context, $settings, $scripturl, $txt, $modSettings, $maintenance;
 
 	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
-	<div id="top_section">
-		<div class="frame">';
+	<div id="top_section">';
 
 	// If the user is logged in, display some things that might be useful.
 	if ($context['user']['is_logged'])
@@ -207,7 +211,7 @@ function template_body_above()
 		// Thirdly, alerts
 		echo '
 			<li>
-				<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'] ,'"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', $txt['alerts'], !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
+				<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', $txt['alerts'], !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
 				<div id="alerts_menu" class="top_menu scrollable"></div>
 			</li>';
 
@@ -217,10 +221,17 @@ function template_body_above()
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
 	else
-		echo '
-		<ul class="floatleft welcome">
-			<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $txt['guest_title'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>
-		</ul>';
+		if (empty($maintenance)) 
+			echo '
+			<ul class="floatleft welcome">
+				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $txt['guest_title'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>
+			</ul>';
+		else 
+			//In maintenance mode, only login is allowed and don't show OverlayDiv
+			echo '
+			<ul class="floatleft welcome">
+				<li>', sprintf($txt['welcome_guest'], $txt['guest_title'], '', $scripturl. '?action=login', 'return true;'), '</li>
+			</ul>';
 
 	if (!empty($modSettings['userLanguage']) && !empty($context['languages']) && count($context['languages']) > 1)
 	{
@@ -287,44 +298,56 @@ function template_body_above()
 	}
 
 	echo '
-		</div>
 	</div>';
 
 	echo '
 	<div id="header">
-		<div class="frame">
-			<h1 class="forumtitle">
-				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
-			</h1>';
+		<h1 class="forumtitle">
+			<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
+		</h1>';
 
-	/* Social Media */
-	if (!empty($settings['facebook']) || !empty($settings['twitter']) || !empty($settings['googleplus']))
-		echo '
-			<div class="social_media floatright">
-				',!empty($settings['facebook']) ? '<a href="//facebook.com/'. $settings['facebook'].'"><i class="fa fa-facebook-square fa-3x" title="Facebook"></i></a>' : '','
-				',!empty($settings['twitter']) ? '<a href="//twitter.com/'. $settings['twitter'].'"><i class="fa fa-twitter fa-3x" title="Twitter"></i></a>' : '','
-				',!empty($settings['googleplus']) ? '<a href="//plus.google.com/'. $settings['googleplus'].'"><i class="fa fa-google-plus fa-3x" title="Google+"></i></a>' : '','
-			</div>';
+	echo '
+		', empty($settings['site_slogan']) ? '<img id="smflogo" src="' . $settings['images_url'] . '/smflogo.png" alt="Simple Machines Forum" title="Simple Machines Forum">' : '<div id="siteslogan" class="floatright">' . $settings['site_slogan'] . '</div>', '';
 
 	echo'
-		</div>
 	</div>
 	<div id="wrapper">
 		<div id="upper_section">
-			<div id="inner_section">';
+			<div id="inner_section">
+				<div id="inner_wrap">
+					<div class="user">
+						', $context['current_time'], '
+					</div>';
+	// Show a random news item? (or you could pick one from news_lines...)
+	if (!empty($settings['enable_news']) && !empty($context['random_news_line']))
+		echo '
+					<div class="news">
+						<h2>', $txt['news'], ': </h2>
+						<p>', $context['random_news_line'], '</p>
+					</div>';
+
+	echo '
+					<hr class="clear">
+				</div>';
+
 	// Load mobile menu here
 	echo '
 				<a class="menu_icon mobile_user_menu"></a>
 				<div id="mobile_user_menu" class="popup_container">
 					<div class="popup_window description">
-						<div class="popup_heading">', $txt['mobile_user_menu'],'
+						<div class="popup_heading">', $txt['mobile_user_menu'], '
 						<a href="javascript:void(0);" class="generic_icons hide_popup"></a></div>
 						', template_menu(), '
 					</div>
 				</div>';
 
 	// Show the menu here, according to the menu sub template, followed by the navigation tree.
-	template_menu();
+	echo '
+	<div id="main_menu">';
+		template_menu();
+
+	echo '
+	</div>';
 
 	theme_linktree();
 
@@ -348,7 +371,8 @@ function template_body_below()
 	echo '
 			</div>
 		</div>
-	</div>';
+	</div>
+</div>';
 
 	// Show the XHTML, RSS and WAP2 links, as well as the copyright.
 	// Footer is now full-width by default.
@@ -358,7 +382,7 @@ function template_body_below()
 	// There is now a global "Go to top" link at the right.
 		echo '
 		<ul>
-			<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="'. $scripturl. '?action=help;sa=rules">'. $txt['terms_and_rules']. '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
+			<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="' . $scripturl . '?action=help;sa=rules">' . $txt['terms_and_rules'] . '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
 			<li class="copyright">', theme_copyright(), '</li>
 		</ul>';
 
@@ -457,14 +481,13 @@ function template_menu()
 	global $context;
 
 	echo '
-				<div id="main_menu">
-					<ul class="dropmenu" id="menu_nav">';
+					<ul class="dropmenu menu_nav">';
 
 	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
 	foreach ($context['menu_buttons'] as $act => $button)
 	{
 		echo '
-						<li id="button_', $act, '"', !empty($button['sub_buttons']) ? ' class="subsections"' :'', '>
+						<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
 							<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', '>
 								<i class="fa fa-', $act, ' fa-lg"></i>', $button['title'], '
 							</a>';
@@ -477,8 +500,8 @@ function template_menu()
 			foreach ($button['sub_buttons'] as $childbutton)
 			{
 				echo '
-								<li', !empty($childbutton['sub_buttons']) ? ' class="subsections"' :'', '>
-									<a href="', $childbutton['href'], '"' , isset($childbutton['target']) ? ' target="' . $childbutton['target'] . '"' : '', '>
+								<li', !empty($childbutton['sub_buttons']) ? ' class="subsections"' : '', '>
+									<a href="', $childbutton['href'], '"', isset($childbutton['target']) ? ' target="' . $childbutton['target'] . '"' : '', '>
 										', $childbutton['title'], '
 									</a>';
 				// 3rd level menus :)
@@ -490,7 +513,7 @@ function template_menu()
 					foreach ($childbutton['sub_buttons'] as $grandchildbutton)
 						echo '
 										<li>
-											<a href="', $grandchildbutton['href'], '"' , isset($grandchildbutton['target']) ? ' target="' . $grandchildbutton['target'] . '"' : '', '>
+											<a href="', $grandchildbutton['href'], '"', isset($grandchildbutton['target']) ? ' target="' . $grandchildbutton['target'] . '"' : '', '>
 												', $grandchildbutton['title'], '
 											</a>
 										</li>';
@@ -510,8 +533,7 @@ function template_menu()
 	}
 
 	echo '
-					</ul>
-				</div>';
+					</ul>';
 }
 
 /**
@@ -532,15 +554,14 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 	$buttons = array();
 	foreach ($button_strip as $key => $value)
 	{
-		// @todo this check here doesn't make much sense now (from 2.1 on), it should be moved to where the button array is generated
-		// Kept for backward compatibility
+		// As of 2.1, the 'test' for each button happens while the array is being generated. The extra 'test' check here is deprecated but kept for backward compatibility (update your mods, folks!)
 		if (!isset($value['test']) || !empty($context[$value['test']]))
 		{
 			if (!isset($value['id']))
 				$value['id'] = $key;
 
 			$button = '
-				<a class="button button_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' '. $value['class'] : '') . '" ' . (!empty($value['url']) ? 'href="'. $value['url'] .'"' : '') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>' . $txt[$value['text']] . '</a>';
+				<a class="button button_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' ' . $value['class'] : '') . '" ' . (!empty($value['url']) ? 'href="' . $value['url'] . '"' : '') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>' . $txt[$value['text']] . '</a>';
 
 			if (!empty($value['sub_buttons']))
 			{
@@ -574,7 +595,7 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 		return;
 
 	echo '
-		<div class="buttonlist', !empty($direction) ? ' float' . $direction : '', '"', (empty($buttons) ? ' style="display: none;"' : ''), (!empty($strip_options['id']) ? ' id="' . $strip_options['id'] . '"': ''), '>
+		<div class="buttonlist', !empty($direction) ? ' float' . $direction : '', '"', (empty($buttons) ? ' style="display: none;"' : ''), (!empty($strip_options['id']) ? ' id="' . $strip_options['id'] . '"' : ''), '>
 			',implode('', $buttons), '
 		</div>';
 }
