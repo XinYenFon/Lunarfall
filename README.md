@@ -8,9 +8,9 @@ Lunarfall is a gaming theme for SMF 2.1 with dark/transparent color style. Theme
 ##### How to Install/Upgrade
 For general users releases will be done in SMorg. For bit more advanced testers you can grab a copy of the repository and upload Lunarfall folder to Themes folder.
 
-There will be no upgrade pack for this theme/dependencies so you have to do the standard ways to upgrade your theme.
+There will be no upgrade pack for this theme so you have to do the standard ways to upgrade your theme.
 
-#####Note to users
+##### Note to users
 With recent changes to core of SMF 2.1, we no longer need lunarfall_dependencies. You need to uninstall that mod then upgrade/update the theme.
 
 ##### How to Contribute

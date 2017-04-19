@@ -859,8 +859,8 @@ function template_main()
 			{
 				echo '
 					<ul class="qbuttons" id="msg_', $post['id'], '_quote">
-						<li style="display:none;" id="quoteSelected_', $post['id'], '" data-msgid="', $post['id'], '"><a href="javascript:void(0)"><span class="generic_icons quote_selected"></span>', $txt['quote_selected_action'] ,'</a></li>
-						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');"><span class="generic_icons quote"></span>', $txt['quote'], '</a></li>
+						<li style="display:none;" id="quoteSelected_', $post['id'], '" data-msgid="', $post['id'], '"><a href="javascript:void(0)"><i class="fa fa-quote-left fa-lg" title="', $txt['quote_selected_action'] ,'"></i> ', $txt['quote_selected_action'] ,'</a></li>
+						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');"><i class="fa fa-quote-left fa-lg" title="', $txt['quote'], '"></i> ', $txt['quote'], '</a></li>
 					</ul>';
 			}
 

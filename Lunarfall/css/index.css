@@ -2429,7 +2429,6 @@ span.postby {
 /* Start with description and other things */
 #description_board {
 	padding: 8px 10px;
-	border-radius: 6px 6px 0 0;
 	border-bottom: none;
 	box-shadow: none;
 }
@@ -2492,7 +2491,6 @@ span.postby {
 }
 #topic_icons .information {
 	font-size: .9em;
-	border-radius: 4px;
 }
 #topic_icons p {
 	padding: 0 12px 0 4px;
@@ -2953,8 +2951,7 @@ h3.catbg .icon {
 /* TitleBar & SubBar */
 .title_bar {
 	border: 1px solid #2E3E4C;
-	border-top: none;
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
+	/*background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;*/
 	color: #666;
 	margin: 5px 0 0 0;
 }
@@ -3000,7 +2997,7 @@ p.information img {
 }
 #topic_icons .information,
 #messageindex .information {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #2E3E4C;
 }
 .topic_pages {
 	font-size: 0.75em;
@@ -3282,6 +3279,34 @@ a.button_submit {
 	display: none;
 }
 
+/* Two-Factor Auth code container */
+.tfacode {
+	background: #D0E7F8;
+	padding: 5px;
+	width: 20%;
+}
+
+/* This was named as "winfo" before, but its better named noup */
+.noup {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	margin: 0 0 10px 0 !important;
+}
+.information.noup {
+	border-radius: 0;
+	margin: 0 !important;
+	border-bottom: none;
+}
+.windowbg2.noup {
+	box-shadow: none;
+}
+
+/* Make the reCAPTCHA dialog centered to match the positioning of the built-in verification */
+.g-recaptcha
+{
+	display: inline-block;
+}
+
 /* Lunarfall special */
 i {
 	margin-right: 5px;
@@ -3390,5 +3415,18 @@ i {
 /* Social share on posts */
 #post_socialshare.qbuttons {
 	float: left;
-	clear: left;
+}
+
+/* Lunarfall SCEditor */
+.sceditor-container iframe, .sceditor-container textarea {
+	background-color: #222b35 !important;
+	color: #d6d7d8 !important;
+}
+.sceditor-container {
+	border-radius: 0 !important;
+	background: none !important;
+	border: 1px solid #233c51 !important;
+}
+.sceditor-toolbar {
+	background: rgba( 0, 0, 0, 0.2 ) !important;
 }
