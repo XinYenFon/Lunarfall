@@ -60,7 +60,7 @@ function template_profile_popup()
 			<span class="profile_username"><a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['user']['name'], '</a></span>
 			<span class="profile_group">', $context['member']['group'], '</span>
 		</div>
-		<div class="profile_user_links">
+		<div class="profile_user_links clear">
 			<ol>';
 
 	$menu_context = &$context[$context['profile_menu_name']];
@@ -474,7 +474,7 @@ function template_showPosts()
 		foreach ($context['posts'] as $post)
 		{
 			echo '
-			<div class="', $post['css_class'], '">
+			<div class="', $post['css_class'], ' nopad">
 				<div class="counter">', $post['counter'], '</div>
 				<div class="topic_details">
 					<h5><strong><a href="', $scripturl, '?board=', $post['board']['id'], '.0">', $post['board']['name'], '</a> / <a href="', $scripturl, '?topic=', $post['topic'], '.', $post['start'], '#msg', $post['id'], '">', $post['subject'], '</a></strong></h5>
@@ -500,7 +500,7 @@ function template_showPosts()
 			// If they *can* reply?
 			if ($post['can_reply'])
 				echo '
-						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '"><i class="fa fa-reply fa-lg title="', $txt['reply'], '"></i></a></li>';
+						<li><a class="lf_hidden" href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '"><i class="fa fa-reply fa-lg title="', $txt['reply'], '"></i></a></li>';
 
 			// If they *can* quote?
 			if ($post['can_quote'])
@@ -510,7 +510,7 @@ function template_showPosts()
 			// How about... even... remove it entirely?!
 			if ($post['can_delete'])
 				echo '
-						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['remove'], '</a></li>';
+						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'], '" class="you_sure"><i class="fa fa-remove fa-lg" title="', $txt['remove'], '"></i></a></li>';
 
 			if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 				echo '

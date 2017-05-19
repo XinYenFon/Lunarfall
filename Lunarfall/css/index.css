@@ -186,6 +186,7 @@ body#help_popup {
 	margin-left: inherit;
 }
 .button_submit, .button_reset, .button_link {
+	color: #67c1f5;
 	margin: 0 0 0 12px;
 	padding: 0 4px;
 	float: right;
@@ -3119,11 +3120,12 @@ h3.profile_hd {
 .button_submit, .button_reset, .button_link, .topbottom,
 .dropmenu li ul, .dropmenu li li:hover, .button,
 #search_form .button_submit, .popup_window, .qbuttons li {
-	background: #121A26;
+	background: rgba( 103, 193, 245, 0.1 );
 }
 /* Well some of them has different gradient effect on hover */
 .button:hover, .button_submit:hover, .button_reset:hover, .button_link:hover,
 .topbottom:hover,#search_form .button_submit:hover, .qbuttons li:hover {
+	color: #FFF;
 	background: #67C1F5;
 }
 /* If it fits I sits... */
@@ -3413,7 +3415,8 @@ i {
 	opacity: 1;
 }
 /* Social share on posts */
-#post_socialshare.qbuttons {
+.post_socialshare.qbuttons {
+	clear: left;
 	float: left;
 }
 
