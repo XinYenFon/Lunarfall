@@ -1,6 +1,6 @@
 ## Lunarfall
 
-#### Theme Version: 0.5.0
+#### Theme Version: 0.5.1
 
 ##### Description
 Lunarfall is a gaming theme for SMF 2.1 with dark/transparent color style. Theme won't be ported back to earlier versions of SMF (Simple Machines Forum).
