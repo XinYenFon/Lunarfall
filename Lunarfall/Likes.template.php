@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -35,12 +35,12 @@ function template_popup()
 	{
 		echo '
 				<li>
-					<span class="floatleft avatar">', $like_details['profile']['avatar']['image'], '</span>
-					<span class="floatright">', $like_details['time'], '</span>
-					<span class="floatleft">
+					', $like_details['profile']['avatar']['image'], '
+					<span>
 						', $like_details['profile']['link_color'], '<br>
 						<span class="description">', $like_details['profile']['group'], '</span>
 					</span>
+					<span class="floatright">', $like_details['time'], '</span>
 				</li>';
 	}
 
@@ -66,7 +66,7 @@ function template_like()
 	if (!empty($context['data']['can_like']))
 	{
 		echo '
-		<li class="like_button" id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '><a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_like"><i class="fa fa-', $context['data']['already_liked'] ? 'thumbs-o-down' : 'thumbs-o-up', ' fa-lg"></i> ', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a></li>';
+		<li class="like_button" id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '><a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_like"><span class="generic_icons ', $context['data']['already_liked'] ? 'unlike' : 'like', '"></span> ', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a></li>';
 	}
 
 	if (!empty($context['data']['count']))

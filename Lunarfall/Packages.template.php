@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -103,8 +103,9 @@ function template_view_package()
 	// Are there data changes to be removed?
 	if ($context['uninstalling'] && !empty($context['database_changes']))
 	{
+		/* This is really a special case so we're adding style inline */
 		echo '
-			<div class="windowbg">
+			<div class="windowbg" style="margin: 0; border-radius: 0;">
 				<label for="do_db_changes"><input type="checkbox" name="do_db_changes" id="do_db_changes" class="input_check">', $txt['package_db_uninstall'], '</label> [<a href="#" onclick="return swap_database_changes();">', $txt['package_db_uninstall_details'], '</a>]
 				<div id="db_changes_div">
 					', $txt['package_db_uninstall_actions'], ':
@@ -518,7 +519,7 @@ function template_examine()
  */
 function template_browse()
 {
-	global $context, $txt, $scripturl, $modSettings, $forum_version;
+	global $context, $txt, $scripturl, $modSettings;
 
 	echo '
 	<div id="admincenter">
@@ -789,7 +790,7 @@ function template_servers()
 								<strong>' . $txt['serverurl'] . ':</strong>
 							</dt>
 							<dd>
-								<input type="text" name="serverurl" size="44" value="http://" class="input_text">
+								<input type="text" name="serverurl" size="44" value="https://" class="input_text">
 							</dd>
 						</dl>
 						<div class="righttext">
@@ -806,7 +807,7 @@ function template_servers()
 								<strong>' . $txt['serverurl'] . ':</strong>
 							</dt>
 							<dd>
-								<input type="text" name="package" size="44" value="http://" class="input_text">
+								<input type="text" name="package" size="44" value="https://" class="input_text">
 							</dd>
 							<dt>
 								<strong>', $txt['package_download_filename'], ':</strong>
@@ -1124,7 +1125,7 @@ function template_control_chmod()
 		if (!$context['server']['is_windows'])
 			echo '
 				<hr>
-				', $txt['package_chmod_linux'], '<br />
+				', $txt['package_chmod_linux'], '<br>
 				<tt># chmod a+w ', implode(' ', $context['notwritable_files']), '</tt>';
 
 		echo '
@@ -1307,7 +1308,7 @@ function template_view_operations()
  */
 function template_file_permissions()
 {
-	global $txt, $scripturl, $context, $settings;
+	global $txt, $scripturl, $context;
 
 	// This will handle expanding the selection.
 	echo '
@@ -1633,7 +1634,7 @@ function template_file_permissions()
  */
 function template_permission_show_contents($ident, $contents, $level, $has_more = false)
 {
-	global $settings, $txt, $scripturl, $context;
+	global $txt, $scripturl, $context;
 	$js_ident = preg_replace('~[^A-Za-z0-9_\-=:]~', ':-:', $ident);
 
 	// Have we actually done something?
@@ -1774,14 +1775,14 @@ function template_action_permissions()
 		echo '
 				<input type="hidden" name="custom_value" value="', $context['custom_value'], '">
 				<input type="hidden" name="totalItems" value="', $context['total_items'], '">
-				<input type="hidden" name="toProcess" value="', base64_encode(json_encode($context['to_process'])), '">';
+				<input type="hidden" name="toProcess" value="', $context['to_process_encode'], '">';
 	else
 		echo '
 				<input type="hidden" name="predefined" value="', $context['predefined_type'], '">
 				<input type="hidden" name="fileOffset" value="', $context['file_offset'], '">
 				<input type="hidden" name="totalItems" value="', $context['total_items'], '">
-				<input type="hidden" name="dirList" value="', base64_encode(json_encode($context['directory_list'])), '">
-				<input type="hidden" name="specialFiles" value="', base64_encode(json_encode($context['special_files'])), '">';
+				<input type="hidden" name="dirList" value="', $context['directory_list_encode'], '">
+				<input type="hidden" name="specialFiles" value="', $context['special_files_encode'], '">';
 
 	// Are we not using FTP for whatever reason.
 	if (!empty($context['skip_ftp']))

@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -486,7 +486,7 @@ function template_single_post($message)
 
 		foreach ($message['custom_fields']['above_member'] as $custom)
 			echo '
-									<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
+									<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 
 		echo '
 								</ul>
@@ -744,7 +744,7 @@ function template_single_post($message)
 			}
 
 			echo '
-									<div class="floatleft attached">';
+									<div class="attached">';
 
 			if ($attachment['is_image'])
 			{

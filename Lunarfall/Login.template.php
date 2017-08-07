@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -120,7 +120,7 @@ function template_login()
  */
 function template_login_tfa()
 {
-	global $context, $scripturl, $modSettings, $txt;
+	global $context, $scripturl, $txt;
 
 	echo '
 		<div class="login">
@@ -140,10 +140,10 @@ function template_login_tfa()
 						<div>
 							<strong>', $txt['tfa_code'], ':</strong>
 							<input type="text" class="input_text" name="tfa_code" style="width: 150px;" value="', !empty($context['tfa_value']) ? $context['tfa_value'] : '', '">
-							<input type="submit" class="button_submit" name="submit" value="', $txt['login'], '" style="float: none; margin: 0;"><br />
-						</div><br />
+							<input type="submit" class="button_submit" name="submit" value="', $txt['login'], '" style="float: none; margin: 0;"><br>
+						</div><br>
 						<div><input type="checkbox" value="1" name="tfa_preserve" id="tfa_preserve"/><label for="tfa_preserve">&nbsp;', $txt['tfa_preserve'], '</label></div>
-						<hr />
+						<hr>
 						<input type="button" class="button_submit" name="backup" value="', $txt['tfa_backup'], '" style="float: none; margin: 0;">
 					</div>
 					<div id="tfaBackup" style="display: none;">

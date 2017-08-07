@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -15,7 +15,7 @@
  */
 function template_main()
 {
-	global $context, $settings, $scripturl, $txt, $modSettings;
+	global $context, $scripturl, $txt, $modSettings;
 
 	echo '
 	<div id="admincenter">';
@@ -368,7 +368,7 @@ function template_set_options()
 			{
 				$titled_section = true;
 				echo '
-					<dt><b>' . $setting . '</b></dt><dd></dd>';
+					<dt><strong>' . $setting . '</strong></dt><dd></dd>';
 			}
 			else
 				$titled_section = false;
@@ -603,7 +603,7 @@ function template_set_settings()
 			{
 				$titled_section = true;
 				echo '
-					<dt><b>' . $setting . '</b></dt><dd></dd>';
+					<dt><strong>' . $setting . '</strong></dt><dd></dd>';
 			}
 			else
 				$titled_section = false;
@@ -613,7 +613,7 @@ function template_set_settings()
 
 		echo '
 					<dt>
-						<label for="', $setting['id'], '">', !$titled_section ? '<b>' : '', $setting['label'], !$titled_section ? '</b>' : '', '</label>:';
+						<label for="', $setting['id'], '">', !$titled_section ? '<strong>' : '', $setting['label'], !$titled_section ? '</strong>' : '', '</label>:';
 
 		if (isset($setting['description']))
 			echo '<br>
@@ -861,7 +861,7 @@ function template_edit_list()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['themeadmin_edit_title'], '</h3>
 		</div>
-		<br>';
+		<div class="windowbg">';
 
 	foreach ($context['themes'] as $theme)
 	{

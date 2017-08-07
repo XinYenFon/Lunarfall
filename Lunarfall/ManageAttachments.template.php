@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -68,7 +68,6 @@ function template_maintenance()
 			<form action="', $scripturl, '?action=admin;area=manageattachments;sa=repair;', $context['session_var'], '=', $context['session_id'], '" method="post" accept-charset="', $context['character_set'], '">
 				<p>', $txt['attachment_integrity_check_desc'], '</p>
 				<input type="submit" name="repair" value="', $txt['attachment_check_now'], '" class="button_submit">
-				<br class="clear_right">
 			</form>
 		</div>
 		<div class="cat_bar">

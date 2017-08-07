@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /*	This template is, perhaps, the most important template in the theme. It
@@ -32,7 +32,7 @@
 	wants and or needs.
 
 	For more information on the templating system, please see the site at:
-	http://www.simplemachines.org/
+	https://www.simplemachines.org/
 */
 
 /**
@@ -82,7 +82,7 @@ function template_init()
  */
 function template_html_above()
 {
-	global $context, $settings, $scripturl, $txt, $modSettings, $mbname;
+	global $context, $scripturl, $txt, $modSettings;
 
 	// Show right to left, the language code, and the character set for ease of translating.
 	echo '<!DOCTYPE html>
@@ -142,8 +142,8 @@ function template_html_above()
 	// If RSS feeds are enabled, advertise the presence of one.
 	if (!empty($modSettings['xmlnews_enable']) && (!empty($modSettings['allow_guestAccess']) || $context['user']['is_logged']))
 		echo '
-	<link rel="alternate" type="application/rss+xml" title="', $context['forum_name_html_safe'], ' - ', $txt['rss'], '" href="', $scripturl, '?type=rss2;action=.xml">
-	<link rel="alternate" type="application/rss+xml" title="', $context['forum_name_html_safe'], ' - ', $txt['atom'], '" href="', $scripturl, '?type=atom;action=.xml">';
+	<link rel="alternate" type="application/rss+xml" title="', $context['forum_name_html_safe'], ' - ', $txt['rss'], '" href="', $scripturl, '?action=.xml;type=rss2', !empty($context['current_board']) ? ';board=' . $context['current_board'] : '', '">
+	<link rel="alternate" type="application/atom+xml" title="', $context['forum_name_html_safe'], ' - ', $txt['atom'], '" href="', $scripturl, '?action=.xml;type=atom', !empty($context['current_board']) ? ';board=' . $context['current_board'] : '', '">';
 
 	// If we're viewing a topic, these should be the previous and next topics, respectively.
 	if (!empty($context['links']['next']))
@@ -221,12 +221,12 @@ function template_body_above()
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
 	else
-		if (empty($maintenance)) 
+		if (empty($maintenance))
 			echo '
 			<ul class="floatleft welcome">
 				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $txt['guest_title'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>
 			</ul>';
-		else 
+		else
 			//In maintenance mode, only login is allowed and don't show OverlayDiv
 			echo '
 			<ul class="floatleft welcome">
@@ -273,12 +273,12 @@ function template_body_above()
 		if (!empty($context['current_board']))
 			echo '
 				<option value="board"', ($selected == 'current_board' ? ' selected' : ''), '>', $txt['search_thisbrd'], '</option>';
-		
+
 		// Can't search for members if we can't see the memberlist
 		if (!empty($context['allow_memberlist']))
 			echo '
 				<option value="members"', ($selected == 'members' ? ' selected' : ''), '>', $txt['search_members'], ' </option>';
-				
+
 		echo '
 			</select>';
 
@@ -577,7 +577,7 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 					$button .= '
 								<a href="' . $element['url'] . '"><strong>' . $txt[$element['text']] . '</strong>';
 					if (isset($txt[$element['text'] . '_desc']))
-						$button .= '<br /><span>' . $txt[$element['text'] . '_desc'] . '</span>';
+						$button .= '<br><span>' . $txt[$element['text'] . '_desc'] . '</span>';
 					$button .= '</a>';
 				}
 				$button .= '

@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -231,7 +231,7 @@ function template_main()
  */
 function template_results()
 {
-	global $context, $settings, $options, $txt, $scripturl, $message;
+	global $context, $options, $txt, $scripturl, $message;
 
 	if (isset($context['did_you_mean']) || empty($context['topics']) || !empty($context['search_ignored']))
 	{

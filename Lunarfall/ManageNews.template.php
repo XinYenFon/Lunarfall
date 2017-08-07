@@ -7,7 +7,7 @@
  * @copyright 2017 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 3
+ * @version 2.1 Beta 4
  */
 
 /**
@@ -179,7 +179,7 @@ function template_email_members()
  */
 function template_email_members_compose()
 {
-	global $context, $settings, $txt, $scripturl;
+	global $context, $txt, $scripturl;
 
 	echo '
 		<div id="preview_section"', isset($context['preview_message']) ? '' : ' style="display: none;"', '>
@@ -380,7 +380,7 @@ function template_email_members_compose()
  */
 function template_email_members_send()
 {
-	global $context, $settings, $txt, $scripturl;
+	global $context, $txt, $scripturl;
 
 	echo '
 	<div id="admincenter">
