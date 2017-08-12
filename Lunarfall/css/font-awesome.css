@@ -539,8 +539,7 @@
 .fa-plane:before {
   content: "\f072";
 }
-.fa-calendar:before,
-.button_calendar:before {
+.fa-calendar:before {
   content: "\f073";
 }
 .fa-random:before {
