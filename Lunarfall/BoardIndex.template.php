@@ -32,10 +32,8 @@ function template_newsfader()
 		<ul id="smf_slider" class="roundframe">';
 
 		foreach ($context['news_lines'] as $news)
-		{
 			echo '
 			<li>', $news, '</li>';
-		}
 
 		echo '
 		</ul>
@@ -72,7 +70,7 @@ function template_main()
 
 		echo '
 		<div class="main_container">
-			<div class="cat_bar" id="category_', $category['id'], '">
+			<div class="cat_bar ', $category['is_collapsed'] ? 'collapsed' : '','" id="category_', $category['id'], '">
 				<h3 class="catbg">';
 
 		// If this category even can collapse, show a link to collapse it.
@@ -215,8 +213,8 @@ function template_info_center()
 	}
 
 	echo '
-		</div>
-	</div>';
+		</div><!-- #upshrinkHeaderIC -->
+	</div><!-- #info_center -->';
 
 	// Info center collapse object.
 	echo '
@@ -277,7 +275,7 @@ function template_ic_block_recent()
 		// latest_post has link, href, time, subject, short_subject (shortened with...), and topic. (its id.)
 		echo '
 				<p id="infocenter_onepost" class="inline">
-					<a href="', $scripturl, '?action=recent">', $txt['recent_view'], '</a>&nbsp;&quot;', sprintf($txt['is_recent_updated'], '&quot;' . $context['latest_post']['link'], '&quot;'), ' (', $context['latest_post']['time'], ')<br>
+					<a href="', $scripturl, '?action=recent">', $txt['recent_view'], '</a> ', sprintf($txt['is_recent_updated'], '&quot;' . $context['latest_post']['link'] . '&quot;'), ' (', $context['latest_post']['time'], ')<br>
 				</p>';
 	}
 	// Show lots of posts.
@@ -293,8 +291,8 @@ function template_ic_block_recent()
 					</tr>';
 
 		/* Each post in latest_posts has:
-				board (with an id, name, and link.), topic (the topic's id.), poster (with id, name, and link.),
-				subject, short_subject (shortened with...), time, link, and href. */
+			board (with an id, name, and link.), topic (the topic's id.), poster (with id, name, and link.),
+			subject, short_subject (shortened with...), time, link, and href. */
 		foreach ($context['latest_posts'] as $post)
 			echo '
 					<tr class="windowbg">
@@ -307,7 +305,7 @@ function template_ic_block_recent()
 				</table>';
 	}
 	echo '
-			</div>';
+			</div><!-- #recent_posts_content -->';
 }
 
 /**
@@ -325,39 +323,43 @@ function template_ic_block_calendar()
 				</h4>
 			</div>';
 
-	// Holidays like "Christmas", "Chanukah", and "We Love [Unknown] Day" :P.
+	// Holidays like "Christmas", "Chanukah", and "We Love [Unknown] Day" :P
 	if (!empty($context['calendar_holidays']))
 		echo '
-				<p class="inline holiday"><span>', $txt['calendar_prompt'], '</span> ', implode(', ', $context['calendar_holidays']), '</p>';
+			<p class="inline holiday">
+				<span>', $txt['calendar_prompt'], '</span> ', implode(', ', $context['calendar_holidays']), '
+			</p>';
 
 	// People's birthdays. Like mine. And yours, I guess. Kidding.
 	if (!empty($context['calendar_birthdays']))
 	{
 		echo '
-				<p class="inline">
-					<span class="birthday">', $context['calendar_only_today'] ? $txt['birthdays'] : $txt['birthdays_upcoming'], '</span>';
+			<p class="inline">
+				<span class="birthday">', $context['calendar_only_today'] ? $txt['birthdays'] : $txt['birthdays_upcoming'], '</span>';
+
 		// Each member in calendar_birthdays has: id, name (person), age (if they have one set?), is_last. (last in list?), and is_today (birthday is today?)
 		foreach ($context['calendar_birthdays'] as $member)
 			echo '
-					<a href="', $scripturl, '?action=profile;u=', $member['id'], '">', $member['is_today'] ? '<strong class="fix_rtl_names">' : '', $member['name'], $member['is_today'] ? '</strong>' : '', isset($member['age']) ? ' (' . $member['age'] . ')' : '', '</a>', $member['is_last'] ? '' : ', ';
+				<a href="', $scripturl, '?action=profile;u=', $member['id'], '">', $member['is_today'] ? '<strong class="fix_rtl_names">' : '', $member['name'], $member['is_today'] ? '</strong>' : '', isset($member['age']) ? ' (' . $member['age'] . ')' : '', '</a>', $member['is_last'] ? '' : ', ';
+
 		echo '
-				</p>';
+			</p>';
 	}
 
 	// Events like community get-togethers.
 	if (!empty($context['calendar_events']))
 	{
 		echo '
-				<p class="inline">
-					<span class="event">', $context['calendar_only_today'] ? $txt['events'] : $txt['events_upcoming'], '</span> ';
+			<p class="inline">
+				<span class="event">', $context['calendar_only_today'] ? $txt['events'] : $txt['events_upcoming'], '</span> ';
 
 		// Each event in calendar_events should have:
 		//		title, href, is_last, can_edit (are they allowed?), modify_href, and is_today.
 		foreach ($context['calendar_events'] as $event)
 			echo '
-					', $event['can_edit'] ? '<a href="' . $event['modify_href'] . '" title="' . $txt['calendar_edit'] . '"><span class="generic_icons calendar_modify"></span></a> ' : '', $event['href'] == '' ? '' : '<a href="' . $event['href'] . '">', $event['is_today'] ? '<strong>' . $event['title'] . '</strong>' : $event['title'], $event['href'] == '' ? '' : '</a>', $event['is_last'] ? '<br>' : ', ';
+				', $event['can_edit'] ? '<a href="' . $event['modify_href'] . '" title="' . $txt['calendar_edit'] . '"><span class="generic_icons calendar_modify"></span></a> ' : '', $event['href'] == '' ? '' : '<a href="' . $event['href'] . '">', $event['is_today'] ? '<strong>' . $event['title'] . '</strong>' : $event['title'], $event['href'] == '' ? '' : '</a>', $event['is_last'] ? '<br>' : ', ';
 		echo '
-				</p>';
+			</p>';
 	}
 }
 
@@ -400,10 +402,13 @@ function template_ic_block_online()
 
 	// Handle hidden users and buddies.
 	$bracketList = array();
+
 	if ($context['show_buddies'])
 		$bracketList[] = comma_format($context['num_buddies']) . ' ' . ($context['num_buddies'] == 1 ? $txt['buddy'] : $txt['buddies']);
+
 	if (!empty($context['num_spiders']))
 		$bracketList[] = comma_format($context['num_spiders']) . ' ' . ($context['num_spiders'] == 1 ? $txt['spider'] : $txt['spiders']);
+
 	if (!empty($context['num_users_hidden']))
 		$bracketList[] = comma_format($context['num_users_hidden']) . ' ' . ($context['num_spiders'] == 1 ? $txt['hidden'] : $txt['hidden_s']);
 
@@ -424,7 +429,7 @@ function template_ic_block_online()
 		// Showing membergroups?
 		if (!empty($settings['show_group_key']) && !empty($context['membergroups']))
 			echo '
-				<span class="membergroups">' . implode(',&nbsp;', $context['membergroups']) . '</span>';
+				<span class="membergroups">' . implode(', ', $context['membergroups']) . '</span>';
 	}
 
 	echo '

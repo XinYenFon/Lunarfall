@@ -6,6 +6,9 @@
 	margin: 5px 0 5px 0;
 	box-shadow: none;
 }
+#admin_content .button {
+	float: right;
+}
 #admin_content .windowbg2 {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -50,7 +53,7 @@ h3.catbg #quick_search form {
 	padding-top: 2px;
 	font-size: 0.9em;
 }
-h3.catbg #quick_search form input, h3.catbg #quick_search form select, h3.catbg #quick_search form .button_submit {
+h3.catbg #quick_search form input, h3.catbg #quick_search form select, h3.catbg #quick_search form .button {
 	margin: 0 3px !important;
 	padding: 4px 3px 3px 3px;
 	border-radius: 4px;
@@ -65,18 +68,18 @@ h3.catbg #quick_search form select {
 h3.catbg #quick_search form select option {
 	padding: 2px 4px;
 }
-h3.catbg #quick_search form .button_submit {
+h3.catbg #quick_search form .button {
 	font-weight: bold;
 	padding: 3px 6px 2px 6px;
 }
-h3.catbg #quick_search form .button_submit:hover {
+h3.catbg #quick_search form .button:hover {
 	background: #fff;
 }
 span#quick_search {
 	display: block;
 }
 /* Browser tweaks. */
-body#chrome #quick_search form .input_text {
+body#chrome #quick_search form input[type="search"] {
 	padding: 2px;
 }
 body#chrome #quick_search form input {
@@ -123,7 +126,6 @@ body#chrome #quick_search form input {
 /* Live news from smorg and support information. */
 #live_news, #supportVersionsTable {
 	width: 70%;
-	box-sizing: border-box;
 }
 #supportVersionsTable {
 	width: 30%;
@@ -167,8 +169,6 @@ fieldset.admin_group a {
 	vertical-align: top;
 }
 fieldset.admin_group .inactive {
-	filter:Alpha(opacity=40);
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
 	opacity: 0.4;
 }
 
@@ -304,7 +304,7 @@ tr[id^="operation_"] .table_grid {
 	border-bottom: 1px solid #ddd;
 }
 #manage_boards li.windowbg:hover, #manage_boards li.windowbg2:hover {
-	background: #D0E7F8;
+	background: #d0e7f8;
 }
 #manage_boards li .floatleft {
 	font-weight: bold;
@@ -332,7 +332,7 @@ tr[id^="operation_"] .table_grid {
 	border-bottom: 1px dotted #000;
 	cursor: help;
 }
-#manage_boards .button_submit {
+#manage_boards .button {
 	margin: 2px 2px 0px 12px;
 }
 .select_all_box {
@@ -376,6 +376,10 @@ span.search_weight {
 }
 #manage_bans fieldset dl.settings {
 	margin-bottom: 0;
+}
+#manage_bans textarea {
+	min-height: 4em;
+	height: 5em;
 }
 
 /* Styles for the manage subscriptions section. */
@@ -426,9 +430,9 @@ ul.theme_options li {
 	margin: -2px 3px 0 0;
 }
 .edit_file {
-	width: 96%;
+	width: 100%;
 	font-family: monospace;
-	margin-top: 1ex;
+	margin: 1ex 0;
 	white-space: pre;
 }
 
@@ -459,13 +463,16 @@ ul.moderation_notes {
 }
 ul.moderation_notes li {
 	padding: 0.2em;
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #ccc;
 }
 .notes {
 	margin-top: 0.4em;
 }
 .post_note {
-	width: 85%;
+	width: calc(100% - 17ex);
+}
+.post_note input {
+	width: 100%;
 }
 
 /* Styles for the error log. */
@@ -474,13 +481,11 @@ h3.grid_header {
 }
 #error_log {
 	width: 100%;
+	margin: 4px 0;
 }
 #error_log tr.windowbg td, #error_log tr.windowbg2 td {
 	padding: 8px;
 	line-height: 160%;
-}
-#error_log td div {
-	box-sizing: border-box;
 }
 #error_log td.checkbox_column {
 	width: 15px;
@@ -491,13 +496,28 @@ h3.grid_header {
 	vertical-align: middle;
 	margin: 0 8px 0 0;
 }
-
-/* More error log stuff. Could still be cleaned up a bit. */
-#error_log {
-	margin: 4px 0;
+#error_log .generic_icons {
+	margin: 0 5px 0 0;
 }
-#error_log tr:first-child td {
-	padding: 8px;
+#error_log .error_info {
+	float: left;
+	width: 50%;
+	line-height: 1.8em;
+	padding: 0 4px 4px 4px;
+}
+#error_log .error_location {
+	padding: 4px;
+	clear: both;
+	border-top: 1px solid #e3e3e3;
+	display: flex;
+}
+#error_log a.error_message {
+	float: left;
+	margin-right: 5px; 
+}
+#error_log span.error_message {
+	overflow: hidden; /* This changes how the text wraps around the float */
+	display: block;
 }
 
 /* Styles for the Report generation */
@@ -513,7 +533,7 @@ h3.grid_header {
 #support_credits .sub_bar {
 	padding: 6px 0px 5px 0px;
 }
-#taskpad .button_submit, #admincenter, #admin_form_wrapper {
+#taskpad .button, #admincenter, #admin_form_wrapper {
 	margin: 5px 0 5px 0;
 }
 h3.config_hd {
@@ -535,8 +555,20 @@ h3.config_hd {
 	color: #FFF;
 }
 
-#manage_boards .button_submit {
-	margin: 5px 0;
+/* Css edit page */
+#css_preview_box {
+	margin-bottom: 2ex;
+	border: 1px solid #777;
+	width: 100%;
+	height: 400px;
+}
+
+/* Smileys and Message icons section */
+.move_smileys img {
+	padding: 2px;
+	border: 2px solid transparent;
+	border-radius: 2px;
+	vertical-align: middle;
 }
 
 #donate_cat {

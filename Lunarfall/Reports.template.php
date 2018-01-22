@@ -32,19 +32,20 @@ function template_report_type()
 		if (isset($type['description']))
 			echo '
 					<dt>', $type['description'], '</dt>';
+
 		echo '
 					<dd>
-						<input type="radio" id="rt_', $type['id'], '" name="rt" value="', $type['id'], '"', $type['is_first'] ? ' checked' : '', ' class="input_radio">
+						<input type="radio" id="rt_', $type['id'], '" name="rt" value="', $type['id'], '"', $type['is_first'] ? ' checked' : '', '>
 						<strong><label for="rt_', $type['id'], '">', $type['title'], '</label></strong>
 					</dd>';
 	}
-		echo '
+	echo '
 				</dl>
-				<input type="submit" name="continue" value="', $txt['generate_reports_continue'], '" class="button_submit">
+				<input type="submit" name="continue" value="', $txt['generate_reports_continue'], '" class="button">
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-			</div>
+			</div><!-- .windowbg -->
 		</form>
-	</div>';
+	</div><!-- #admincenter -->';
 }
 
 /**
@@ -133,7 +134,7 @@ function template_main()
 		</table>';
 	}
 	echo '
-	</div>';
+	</div><!-- #admincenter -->';
 }
 
 /**
@@ -222,7 +223,8 @@ function template_print()
 		}
 		echo '
 			</table>
-		</div><br>';
+		</div>
+		<br>';
 	}
 }
 

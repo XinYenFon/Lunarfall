@@ -30,16 +30,17 @@ function template_registration_agreement()
 	// Age restriction in effect?
 	if ($context['show_coppa'])
 		echo '
-				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="button_submit"><br><br>
-				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="button_submit">';
+				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="button"><br>
+				<br>
+				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="button">';
 	else
 		echo '
-				<input type="submit" name="accept_agreement" value="', $txt['agreement_agree'], '" class="button_submit">';
+				<input type="submit" name="accept_agreement" value="', $txt['agreement_agree'], '" class="button">';
 
 	echo '
-			<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-			<input type="hidden" name="', $context['register_token_var'], '" value="', $context['register_token'], '">
-			</div>
+				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+				<input type="hidden" name="', $context['register_token_var'], '" value="', $context['register_token'], '">
+			</div><!-- .confirm_buttons -->
 			<input type="hidden" name="step" value="1">
 		</form>';
 
@@ -97,9 +98,11 @@ function template_registration_form()
 			<div class="roundframe noup">
 				<fieldset>
 					<dl class="register_form">
-						<dt><strong><label for="smf_autov_username">', $txt['username'], ':</label></strong></dt>
+						<dt>
+							<strong><label for="smf_autov_username">', $txt['username'], ':</label></strong>
+						</dt>
 						<dd>
-							<input type="text" name="user" id="smf_autov_username" size="30" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '" class="input_text">
+							<input type="text" name="user" id="smf_autov_username" size="50" tabindex="', $context['tabindex']++, '" maxlength="25" value="', isset($context['username']) ? $context['username'] : '', '">
 							<span id="smf_autov_username_div" style="display: none;">
 								<a id="smf_autov_username_link" href="#">
 									<i id="smf_autov_username_img" class="fa fa-lg"></i>
@@ -108,31 +111,35 @@ function template_registration_form()
 						</dd>
 						<dt><strong><label for="smf_autov_reserve1">', $txt['user_email_address'], ':</label></strong></dt>
 						<dd>
-							<input type="text" name="email" id="smf_autov_reserve1" size="30" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '" class="input_text">
+							<input type="text" name="email" id="smf_autov_reserve1" size="50" tabindex="', $context['tabindex']++, '" value="', isset($context['email']) ? $context['email'] : '', '">
 						</dd>
 					</dl>
 					<dl class="register_form" id="password1_group">
 						<dt><strong><label for="smf_autov_pwmain">', ucwords($txt['choose_pass']), ':</label></strong></dt>
 						<dd>
-							<input type="password" name="passwrd1" id="smf_autov_pwmain" size="30" tabindex="', $context['tabindex']++, '" class="input_password">
+							<input type="password" name="passwrd1" id="smf_autov_pwmain" size="50" tabindex="', $context['tabindex']++, '">
 							<span id="smf_autov_pwmain_div" style="display: none;">
 								<i id="smf_autov_pwmain_img" class="fa fa-lg"></i>
 							</span>
 						</dd>
 					</dl>
 					<dl class="register_form" id="password2_group">
-						<dt><strong><label for="smf_autov_pwverify">', ucwords($txt['verify_pass']), ':</label></strong></dt>
+						<dt>
+							<strong><label for="smf_autov_pwverify">', ucwords($txt['verify_pass']), ':</label></strong>
+						</dt>
 						<dd>
-							<input type="password" name="passwrd2" id="smf_autov_pwverify" size="30" tabindex="', $context['tabindex']++, '" class="input_password">
+							<input type="password" name="passwrd2" id="smf_autov_pwverify" size="50" tabindex="', $context['tabindex']++, '">
 							<span id="smf_autov_pwverify_div" style="display: none;">
 								<i id="smf_autov_pwverify_img" class="fa fa-lg"></i>
 							</span>
 						</dd>
 					</dl>
 					<dl class="register_form" id="notify_announcements">
-						<dt><strong><label for="notify_announcements">', $txt['notify_announcements'], ':</label></strong></dt>
+						<dt>
+							<strong><label for="notify_announcements">', $txt['notify_announcements'], ':</label></strong>
+						</dt>
 						<dd>
-							<input type="checkbox" name="notify_announcements" id="notify_announcements" tabindex="', $context['tabindex']++, '"', $context['notify_announcements'] ? ' checked="checked"' : '', ' class="input_check" />
+							<input type="checkbox" name="notify_announcements" id="notify_announcements" tabindex="', $context['tabindex']++, '"', $context['notify_announcements'] ? ' checked="checked"' : '', '>
 						</dd>
 					</dl>';
 
@@ -140,7 +147,6 @@ function template_registration_form()
 	if (!empty($context['custom_fields_required']) && !empty($context['custom_fields']))
 	{
 		echo '
-
 					<dl class="register_form">';
 
 		foreach ($context['custom_fields'] as $field)
@@ -158,11 +164,10 @@ function template_registration_form()
 
 	echo '
 				</fieldset>
-			</div>';
+			</div><!-- .roundframe -->';
 
 	// If we have either of these, show the extra group.
 	if (!empty($context['profile_fields']) || !empty($context['custom_fields']))
-	{
 		echo '
 			<div class="title_bar title_top">
 				<h3 class="titlebg">', $txt['additional_information'], '</h3>
@@ -170,7 +175,6 @@ function template_registration_form()
 			<div class="roundframe noup">
 				<fieldset>
 					<dl class="register_form" id="custom_group">';
-	}
 
 	if (!empty($context['profile_fields']))
 	{
@@ -187,7 +191,7 @@ function template_registration_form()
 			}
 			else
 			{
-					echo '
+				echo '
 						<dt>
 							<strong', !empty($field['is_error']) ? ' class="red"' : '', '>', $field['label'], ':</strong>';
 
@@ -211,14 +215,14 @@ function template_registration_form()
 							', $field['value'];
 
 				// Maybe it's a text box - very likely!
-				elseif (in_array($field['type'], array('int', 'float', 'text', 'password')))
+				elseif (in_array($field['type'], array('int', 'float', 'text', 'password', 'url')))
 					echo '
-							<input type="', $field['type'] == 'password' ? 'password' : 'text', '" name="', $key, '" id="', $key, '" size="', empty($field['size']) ? 30 : $field['size'], '" value="', $field['value'], '" tabindex="', $context['tabindex']++, '" ', $field['input_attr'], ' class="input_', $field['type'] == 'password' ? 'password' : 'text', '">';
+							<input type="', $field['type'] == 'password' ? 'password' : 'text', '" name="', $key, '" id="', $key, '" size="', empty($field['size']) ? 30 : $field['size'], '" value="', $field['value'], '" tabindex="', $context['tabindex']++, '" ', $field['input_attr'], '>';
 
 				// You "checking" me out? ;)
 				elseif ($field['type'] == 'check')
 					echo '
-							<input type="hidden" name="', $key, '" value="0"><input type="checkbox" name="', $key, '" id="', $key, '"', !empty($field['value']) ? ' checked' : '', ' value="1" tabindex="', $context['tabindex']++, '" class="input_check" ', $field['input_attr'], '>';
+							<input type="hidden" name="', $key, '" value="0"><input type="checkbox" name="', $key, '" id="', $key, '"', !empty($field['value']) ? ' checked' : '', ' value="1" tabindex="', $context['tabindex']++, '" ', $field['input_attr'], '>';
 
 				// Always fun - select boxes!
 				elseif ($field['type'] == 'select')
@@ -231,6 +235,7 @@ function template_registration_form()
 						// Is this some code to generate the options?
 						if (!is_array($field['options']))
 							$field['options'] = eval($field['options']);
+
 						// Assuming we now have some!
 						if (is_array($field['options']))
 							foreach ($field['options'] as $value => $name)
@@ -257,7 +262,6 @@ function template_registration_form()
 	if (!empty($context['custom_fields']))
 	{
 		foreach ($context['custom_fields'] as $field)
-		{
 			if ($field['show_reg'] < 2)
 				echo '
 						<dt>
@@ -265,20 +269,16 @@ function template_registration_form()
 							<span class="smalltext">', $field['desc'], '</span>
 						</dt>
 						<dd>', $field['input_html'], '</dd>';
-		}
 	}
 
 	// If we have either of these, close the list like a proper gent.
 	if (!empty($context['profile_fields']) || !empty($context['custom_fields']))
-	{
 		echo '
 					</dl>
 				</fieldset>
-			</div>';
-	}
+			</div><!-- .roundframe -->';
 
 	if ($context['visual_verification'])
-	{
 		echo '
 			<div class="title_bar title_top">
 				<h3 class="titlebg">', $txt['verification'], '</h3>
@@ -288,7 +288,6 @@ function template_registration_form()
 					', template_control_verification($context['visual_verification_id'], 'all'), '
 				</fieldset>
 			</div>';
-	}
 
 	echo '
 			<div id="confirm_buttons" class="flow_auto">';
@@ -296,11 +295,13 @@ function template_registration_form()
 	// Age restriction in effect?
 	if (!$context['require_agreement'] && $context['show_coppa'])
 		echo '
-				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="button_submit"><br><br>
-				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="button_submit">';
+				<input type="submit" name="accept_agreement" value="', $context['coppa_agree_above'], '" class="button"><br>
+				<br>
+				<input type="submit" name="accept_agreement_coppa" value="', $context['coppa_agree_below'], '" class="button">';
 	else
 		echo '
-				<input type="submit" name="regSubmit" value="', $txt['register'], '" tabindex="', $context['tabindex']++, '" class="button_submit">';
+				<input type="submit" name="regSubmit" value="', $txt['register'], '" tabindex="', $context['tabindex']++, '" class="button">';
+
 	echo '
 			</div>
 			<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
@@ -356,38 +357,33 @@ function template_coppa()
 			<div id="coppa" class="roundframe noup">
 				<p>', $context['coppa']['body'], '</p>
 				<p>
-					<span><a href="', $scripturl, '?action=coppa;form;member=', $context['coppa']['id'], '" target="_blank" class="new_win">', $txt['coppa_form_link_popup'], '</a> | <a href="', $scripturl, '?action=coppa;form;dl;member=', $context['coppa']['id'], '">', $txt['coppa_form_link_download'], '</a></span>
+					<span><a href="', $scripturl, '?action=coppa;form;member=', $context['coppa']['id'], '" target="_blank" rel="noopener">', $txt['coppa_form_link_popup'], '</a> | <a href="', $scripturl, '?action=coppa;form;dl;member=', $context['coppa']['id'], '">', $txt['coppa_form_link_download'], '</a></span>
 				</p>
 				<p>', $context['coppa']['many_options'] ? $txt['coppa_send_to_two_options'] : $txt['coppa_send_to_one_option'], '</p>';
 
 	// Can they send by post?
 	if (!empty($context['coppa']['post']))
-	{
 		echo '
 				<h4>1) ', $txt['coppa_send_by_post'], '</h4>
 				<div class="coppa_contact">
 					', $context['coppa']['post'], '
 				</div>';
-	}
 
 	// Can they send by fax??
 	if (!empty($context['coppa']['fax']))
-	{
 		echo '
 				<h4>', !empty($context['coppa']['post']) ? '2' : '1', ') ', $txt['coppa_send_by_fax'], '</h4>
 				<div class="coppa_contact">
 					', $context['coppa']['fax'], '
 				</div>';
-	}
 
 	// Offer an alternative Phone Number?
 	if ($context['coppa']['phone'])
-	{
 		echo '
 				<p>', $context['coppa']['phone'], '</p>';
-	}
+
 	echo '
-			</div>';
+			</div><!-- #coppa -->';
 }
 
 /**
@@ -402,19 +398,22 @@ function template_coppa_form()
 		<table style="width: 100%; padding: 3px; border: 0" class="tborder">
 			<tr>
 				<td>', $context['forum_contacts'], '</td>
-			</tr><tr>
+			</tr>
+			<tr>
 				<td class="righttext">
 					<em>', $txt['coppa_form_address'], '</em>: ', $context['ul'], '<br>
 					', $context['ul'], '<br>
 					', $context['ul'], '<br>
 					', $context['ul'], '
 				</td>
-			</tr><tr>
+			</tr>
+			<tr>
 				<td class="righttext">
 					<em>', $txt['coppa_form_date'], '</em>: ', $context['ul'], '
 					<br><br>
 				</td>
-			</tr><tr>
+			</tr>
+			<tr>
 				<td>
 					', $context['coppa_body'], '
 				</td>
@@ -445,6 +444,7 @@ function template_verification_sound()
 	</head>
 	<body style="margin: 1ex;">
 		<div class="windowbg description" style="text-align: center;">';
+
 	if (isBrowser('is_ie') || isBrowser('is_ie11'))
 		echo '
 			<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" type="audio/x-wav">
@@ -458,12 +458,13 @@ function template_verification_sound()
 					<a href="', $context['verification_sound_href'], '" rel="nofollow">', $context['verification_sound_href'], '</a>
 				</object>
 			</audio>';
+
 	echo '
-		<br>
-		<a href="', $context['verification_sound_href'], ';sound" rel="nofollow">', $txt['visual_verification_sound_again'], '</a><br>
-		<a href="', $context['verification_sound_href'], '" rel="nofollow">', $txt['visual_verification_sound_direct'], '</a><br><br>
-		<a href="javascript:self.close();">', $txt['visual_verification_sound_close'], '</a><br>
-		</div>
+			<br>
+			<a href="', $context['verification_sound_href'], ';sound" rel="nofollow">', $txt['visual_verification_sound_again'], '</a><br>
+			<a href="', $context['verification_sound_href'], '" rel="nofollow">', $txt['visual_verification_sound_direct'], '</a><br><br>
+			<a href="javascript:self.close();">', $txt['visual_verification_sound_close'], '</a><br>
+		</div><!-- .description -->
 	</body>
 </html>';
 }
@@ -497,21 +498,21 @@ function template_admin_register()
 							<span class="smalltext">', $txt['admin_register_username_desc'], '</span>
 						</dt>
 						<dd>
-							<input type="text" name="user" id="user_input" tabindex="', $context['tabindex']++, '" size="30" maxlength="25" class="input_text">
+							<input type="text" name="user" id="user_input" tabindex="', $context['tabindex']++, '" size="50" maxlength="25">
 						</dd>
 						<dt>
 							<strong><label for="email_input">', $txt['admin_register_email'], ':</label></strong>
 							<span class="smalltext">', $txt['admin_register_email_desc'], '</span>
 						</dt>
 						<dd>
-							<input type="text" name="email" id="email_input" tabindex="', $context['tabindex']++, '" size="30" class="input_text">
+							<input type="text" name="email" id="email_input" tabindex="', $context['tabindex']++, '" size="50">
 						</dd>
 						<dt>
 							<strong><label for="password_input">', $txt['admin_register_password'], ':</label></strong>
 							<span class="smalltext">', $txt['admin_register_password_desc'], '</span>
 						</dt>
 						<dd>
-							<input type="password" name="password" id="password_input" tabindex="', $context['tabindex']++, '" size="30" class="input_password" onchange="onCheckChange();">
+							<input type="password" name="password" id="password_input" tabindex="', $context['tabindex']++, '" size="50" onchange="onCheckChange();">
 						</dd>';
 
 	if (!empty($context['member_groups']))
@@ -542,7 +543,9 @@ function template_admin_register()
 							<strong', !empty($field['is_error']) ? ' class="red"' : '', '>', $field['name'], ':</strong>
 							<span class="smalltext">', $field['desc'], '</span>
 						</dt>
-						<dd>', str_replace('name="', 'tabindex="' . $context['tabindex']++ . '" name="', $field['input_html']), '</dd>';
+						<dd>
+							', str_replace('name="', 'tabindex="' . $context['tabindex']++ . '" name="', $field['input_html']), '
+						</dd>';
 
 	echo '
 						<dt>
@@ -550,25 +553,25 @@ function template_admin_register()
 							<span class="smalltext">', $txt['admin_register_email_detail_desc'], '</span>
 						</dt>
 						<dd>
-							<input type="checkbox" name="emailPassword" id="emailPassword_check" tabindex="', $context['tabindex']++, '" checked disabled class="input_check">
+							<input type="checkbox" name="emailPassword" id="emailPassword_check" tabindex="', $context['tabindex']++, '" checked disabled>
 						</dd>
 						<dt>
 							<strong><label for="emailActivate_check">', $txt['admin_register_email_activate'], ':</label></strong>
 						</dt>
 						<dd>
-							<input type="checkbox" name="emailActivate" id="emailActivate_check" tabindex="', $context['tabindex']++, '"', !empty($modSettings['registration_method']) && $modSettings['registration_method'] == 1 ? ' checked' : '', ' onclick="onCheckChange();" class="input_check">
+							<input type="checkbox" name="emailActivate" id="emailActivate_check" tabindex="', $context['tabindex']++, '"', !empty($modSettings['registration_method']) && $modSettings['registration_method'] == 1 ? ' checked' : '', ' onclick="onCheckChange();">
 						</dd>
 					</dl>
 					<div class="flow_auto">
-						<input type="submit" name="regSubmit" value="', $txt['register'], '" tabindex="', $context['tabindex']++, '" class="button_submit">
+						<input type="submit" name="regSubmit" value="', $txt['register'], '" tabindex="', $context['tabindex']++, '" class="button">
 						<input type="hidden" name="sa" value="register">
 						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 						<input type="hidden" name="', $context['admin-regc_token_var'], '" value="', $context['admin-regc_token'], '">
 					</div>
-				</div>
+				</div><!-- #register_screen -->
 			</form>
-		</div>
-	</div>
+		</div><!-- #admin_form_wrapper -->
+	</div><!-- #admincenter -->
 	<br class="clear">';
 }
 
@@ -581,12 +584,13 @@ function template_edit_agreement()
 
 	if (!empty($context['saved_successful']))
 		echo '
-					<div class="infobox">', $txt['settings_saved'], '</div>';
+		<div class="infobox">', $txt['settings_saved'], '</div>';
+
 	elseif (!empty($context['could_not_save']))
 		echo '
-					<div class="errorbox">', $txt['admin_agreement_not_saved'], '</div>';
+		<div class="errorbox">', $txt['admin_agreement_not_saved'], '</div>';
 
-	// Just a big box to edit the text file ;).
+	// Just a big box to edit the text file ;)
 	echo '
 		<div id="admin_form_wrapper">
 			<div class="cat_bar">
@@ -610,7 +614,7 @@ function template_edit_agreement()
 				</div>
 				<div class="information">
 					<form action="', $scripturl, '?action=admin;area=regcenter" id="change_reg" method="post" accept-charset="', $context['character_set'], '" style="display: inline;">
-						<strong>', $txt['admin_agreement_select_language'], ':</strong>&nbsp;
+						<strong>', $txt['admin_agreement_select_language'], ':</strong>
 						<select name="agree_lang" onchange="document.getElementById(\'change_reg\').submit();" tabindex="', $context['tabindex']++, '">';
 
 		foreach ($context['editable_agreements'] as $file => $name)
@@ -623,10 +627,10 @@ function template_edit_agreement()
 							<input type="hidden" name="sa" value="agreement">
 							<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 							<input type="hidden" name="', $context['admin-rega_token_var'], '" value="', $context['admin-rega_token'], '">
-							<input type="submit" name="change" value="', $txt['admin_agreement_select_language_change'], '" tabindex="', $context['tabindex']++, '" class="button_submit">
+							<input type="submit" name="change" value="', $txt['admin_agreement_select_language_change'], '" tabindex="', $context['tabindex']++, '" class="button">
 						</div>
 					</form>
-				</div>';
+				</div><!-- .information -->';
 	}
 
 
@@ -636,16 +640,16 @@ function template_edit_agreement()
 				<form action="', $scripturl, '?action=admin;area=regcenter" method="post" accept-charset="', $context['character_set'], '">
 					<textarea cols="70" rows="20" name="agreement" id="agreement">', $context['agreement'], '</textarea>
 					<p>
-						<label for="requireAgreement"><input type="checkbox" name="requireAgreement" id="requireAgreement"', $context['require_agreement'] ? ' checked' : '', ' tabindex="', $context['tabindex']++, '" value="1" class="input_check"> ', $txt['admin_agreement'], '.</label>
+						<label for="requireAgreement"><input type="checkbox" name="requireAgreement" id="requireAgreement"', $context['require_agreement'] ? ' checked' : '', ' tabindex="', $context['tabindex']++, '" value="1"> ', $txt['admin_agreement'], '.</label>
 					</p>
-					<input type="submit" value="', $txt['save'], '" tabindex="', $context['tabindex']++, '" class="button_submit">
+					<input type="submit" value="', $txt['save'], '" tabindex="', $context['tabindex']++, '" class="button">
 					<input type="hidden" name="agree_lang" value="', $context['current_agreement'], '">
 					<input type="hidden" name="sa" value="agreement">
 					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 					<input type="hidden" name="', $context['admin-rega_token_var'], '" value="', $context['admin-rega_token'], '">
 				</form>
-			</div>
-		</div>';
+			</div><!-- #registration_agreement -->
+		</div><!-- #admin_form_wrapper -->';
 }
 
 /**
@@ -660,47 +664,47 @@ function template_edit_reserved_words()
 	<div class="infobox">', $txt['settings_saved'], '</div>';
 
 	echo '
-		<form id="admin_form_wrapper" action="', $scripturl, '?action=admin;area=regcenter" method="post" accept-charset="', $context['character_set'], '">
-			<div class="cat_bar">
-				<h3 class="catbg">', $txt['admin_reserved_set'], '</h3>
+	<form id="admin_form_wrapper" action="', $scripturl, '?action=admin;area=regcenter" method="post" accept-charset="', $context['character_set'], '">
+		<div class="cat_bar">
+			<h3 class="catbg">', $txt['admin_reserved_set'], '</h3>
+		</div>
+		<div class="windowbg">
+			<h4>', $txt['admin_reserved_line'], '</h4>
+			<textarea cols="30" rows="6" name="reserved" id="reserved">', implode("\n", $context['reserved_words']), '</textarea>
+			<dl class="settings">
+				<dt>
+					<label for="matchword">', $txt['admin_match_whole'], '</label>
+				</dt>
+				<dd>
+					<input type="checkbox" name="matchword" id="matchword" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_word'] ? ' checked' : '', '>
+				</dd>
+				<dt>
+					<label for="matchcase">', $txt['admin_match_case'], '</label>
+				</dt>
+				<dd>
+					<input type="checkbox" name="matchcase" id="matchcase" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_case'] ? ' checked' : '', '>
+				</dd>
+				<dt>
+					<label for="matchuser">', $txt['admin_check_user'], '</label>
+				</dt>
+				<dd>
+					<input type="checkbox" name="matchuser" id="matchuser" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_user'] ? ' checked' : '', '>
+				</dd>
+				<dt>
+					<label for="matchname">', $txt['admin_check_display'], '</label>
+				</dt>
+				<dd>
+					<input type="checkbox" name="matchname" id="matchname" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_name'] ? ' checked' : '', '>
+				</dd>
+			</dl>
+			<div class="flow_auto">
+				<input type="submit" value="', $txt['save'], '" name="save_reserved_names" tabindex="', $context['tabindex']++, '" class="button">
+				<input type="hidden" name="sa" value="reservednames">
+				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+				<input type="hidden" name="', $context['admin-regr_token_var'], '" value="', $context['admin-regr_token'], '">
 			</div>
-			<div class="windowbg">
-				<h4>', $txt['admin_reserved_line'], '</h4>
-				<textarea cols="30" rows="6" name="reserved" id="reserved">', implode("\n", $context['reserved_words']), '</textarea>
-				<dl class="settings">
-					<dt>
-						<label for="matchword">', $txt['admin_match_whole'], '</label>
-					</dt>
-					<dd>
-						<input type="checkbox" name="matchword" id="matchword" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_word'] ? ' checked' : '', ' class="input_check">
-					</dd>
-					<dt>
-						<label for="matchcase">', $txt['admin_match_case'], '</label>
-					</dt>
-					<dd>
-						<input type="checkbox" name="matchcase" id="matchcase" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_case'] ? ' checked' : '', ' class="input_check">
-					</dd>
-					<dt>
-						<label for="matchuser">', $txt['admin_check_user'], '</label>
-					</dt>
-					<dd>
-						<input type="checkbox" name="matchuser" id="matchuser" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_user'] ? ' checked' : '', ' class="input_check">
-					</dd>
-					<dt>
-						<label for="matchname">', $txt['admin_check_display'], '</label>
-					</dt>
-					<dd>
-						<input type="checkbox" name="matchname" id="matchname" tabindex="', $context['tabindex']++, '"', $context['reserved_word_options']['match_name'] ? ' checked' : '', ' class="input_check">
-					</dd>
-				</dl>
-				<div class="flow_auto">
-					<input type="submit" value="', $txt['save'], '" name="save_reserved_names" tabindex="', $context['tabindex']++, '" style="margin: 1ex;" class="button_submit">
-					<input type="hidden" name="sa" value="reservednames">
-					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-					<input type="hidden" name="', $context['admin-regr_token_var'], '" value="', $context['admin-regr_token'], '">
-				</div>
-			</div>
-		</form>';
+		</div><!-- .windowbg -->
+	</form>';
 }
 
 ?>

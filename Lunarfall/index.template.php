@@ -54,10 +54,10 @@ function template_init()
 	// Set the following variable to true if this theme requires the optional theme strings file to be loaded.
 	$settings['require_theme_strings'] = false;
 
-	// Set the following variable to true is this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
+	// Set the following variable to true if this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
 	$settings['avatars_on_indexes'] = false;
 
-	// Set the following variable to true is this theme wants to display the avatar of the user that posted the last post on the board index.
+	// Set the following variable to true if this theme wants to display the avatar of the user that posted the last post on the board index.
 	$settings['avatars_on_boardIndex'] = false;
 
 	// This defines the formatting for the page indexes used throughout the forum.
@@ -71,7 +71,7 @@ function template_init()
 		'extra_after' => '',
 	);
 
-	// Allow css/js files to be disable for this specific theme.
+	// Allow css/js files to be disabled for this specific theme.
 	// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
 	if (!isset($settings['disable_files']))
 		$settings['disable_files'] = array();
@@ -86,15 +86,16 @@ function template_html_above()
 
 	// Show right to left, the language code, and the character set for ease of translating.
 	echo '<!DOCTYPE html>
-	<html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', '>
+<html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', '>
 <head>
 	<meta charset="', $context['character_set'], '">';
 
-	// You don't need to manually load index.css, this will be set up for you. You can, of course, add
-	// any other files you want, after template_css() has been run. Note that RTL will also be loaded for you.
+	/*	You don't need to manually load index.css, this will be set up for you. You can, of course, add
+		any other files you want, after template_css() has been run. Note that RTL will also be loaded for you.
 
-	// The most efficient way of writing multi themes is to use a master index.css plus variant.css files.
-	// If you've set them up properly (through $settings['theme_variants'], loadCSSFile will load the variant files for you.
+		The most efficient way of writing multi themes is to use a master index.css plus variant.css files.
+		If you've set them up properly (through $settings['theme_variants'], loadCSSFile will load the variant files for you.
+	*/
 
 	// load in any css from mods or themes so they can overwrite if wanted
 	template_css();
@@ -118,8 +119,8 @@ function template_html_above()
 		echo '>';
 	}
 
-	/* What is your Lollipop's color?
-	Theme Authors you can change here to make sure your theme's main color got visible on tab */
+	/*	What is your Lollipop's color?
+		Theme Authors, you can change the color here to make sure your theme's main color gets visible on tab */
 	echo '
 	<meta name="theme-color" content="#557EA0">';
 
@@ -147,16 +148,12 @@ function template_html_above()
 
 	// If we're viewing a topic, these should be the previous and next topics, respectively.
 	if (!empty($context['links']['next']))
-	{
 		echo '
 	<link rel="next" href="', $context['links']['next'], '">';
-	}
 
 	if (!empty($context['links']['prev']))
-	{
 		echo '
 	<link rel="prev" href="', $context['links']['prev'], '">';
-	}
 
 	// If we're in a board, or a topic for that matter, the index will be the board's index.
 	if (!empty($context['current_board']))
@@ -189,35 +186,35 @@ function template_body_above()
 	{
 		// Firstly, the user's menu
 		echo '
-		<ul class="floatleft" id="top_info">
-			<li>
-				<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">';
-					if (!empty($context['user']['avatar']))
-						echo $context['user']['avatar']['image'];
-					echo $context['user']['name'], '</a>
-				<div id="profile_menu" class="top_menu"></div>
-			</li>';
+			<ul class="floatleft" id="top_info">
+				<li>
+					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">';
+
+		if (!empty($context['user']['avatar']))
+			echo $context['user']['avatar']['image'];
+
+		echo $context['user']['name'], '</a>
+					<div id="profile_menu" class="top_menu"></div>
+				</li>';
 
 		// Secondly, PMs if we're doing them
 		if ($context['allow_pm'])
-		{
 			echo '
-			<li>
-				<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">', $txt['pm_short'], !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '</a>
-				<div id="pm_menu" class="top_menu scrollable"></div>
-			</li>';
-		}
+				<li>
+					<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">', $txt['pm_short'], !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '</a>
+					<div id="pm_menu" class="top_menu scrollable"></div>
+				</li>';
 
 		// Thirdly, alerts
 		echo '
-			<li>
-				<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', $txt['alerts'], !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
-				<div id="alerts_menu" class="top_menu scrollable"></div>
-			</li>';
+				<li>
+					<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', $txt['alerts'], !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
+					<div id="alerts_menu" class="top_menu scrollable"></div>
+				</li>';
 
 		// And now we're done.
 		echo '
-		</ul>';
+			</ul>';
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
 	else
@@ -227,7 +224,7 @@ function template_body_above()
 				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $txt['guest_title'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>
 			</ul>';
 		else
-			//In maintenance mode, only login is allowed and don't show OverlayDiv
+			// In maintenance mode, only login is allowed and don't show OverlayDiv
 			echo '
 			<ul class="floatleft welcome">
 				<li>', sprintf($txt['welcome_guest'], $txt['guest_title'], '', $scripturl. '?action=login', 'return true;'), '</li>
@@ -236,69 +233,70 @@ function template_body_above()
 	if (!empty($modSettings['userLanguage']) && !empty($context['languages']) && count($context['languages']) > 1)
 	{
 		echo '
-		<form id="languages_form" method="get" class="floatright">
-			<select id="language_select" name="language" onchange="this.form.submit()">';
+			<form id="languages_form" method="get" class="floatright">
+				<select id="language_select" name="language" onchange="this.form.submit()">';
 
 		foreach ($context['languages'] as $language)
 			echo '
-				<option value="', $language['filename'], '"', isset($context['user']['language']) && $context['user']['language'] == $language['filename'] ? ' selected="selected"' : '', '>', str_replace('-utf8', '', $language['name']), '</option>';
+					<option value="', $language['filename'], '"', isset($context['user']['language']) && $context['user']['language'] == $language['filename'] ? ' selected="selected"' : '', '>', str_replace('-utf8', '', $language['name']), '</option>';
 
 		echo '
-			</select>
-			<noscript>
-				<input type="submit" value="', $txt['quick_mod_go'], '" />
-			</noscript>
-		</form>';
+				</select>
+				<noscript>
+					<input type="submit" value="', $txt['quick_mod_go'], '">
+				</noscript>
+			</form>';
 	}
 
 	if ($context['allow_search'])
 	{
 		echo '
-		<form id="search_form" class="floatright" action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '">
-			<input type="search" name="search" value="" class="input_text">&nbsp;';
+			<form id="search_form" class="floatright" action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '">
+				<input type="search" name="search" value="">&nbsp;';
 
 		// Using the quick search dropdown?
 		$selected = !empty($context['current_topic']) ? 'current_topic' : (!empty($context['current_board']) ? 'current_board' : 'all');
 
 		echo '
-			<select name="search_selection">
-				<option value="all"', ($selected == 'all' ? ' selected' : ''), '>', $txt['search_entireforum'], ' </option>';
+				<select name="search_selection">
+					<option value="all"', ($selected == 'all' ? ' selected' : ''), '>', $txt['search_entireforum'], ' </option>';
 
 		// Can't limit it to a specific topic if we are not in one
 		if (!empty($context['current_topic']))
 			echo '
-				<option value="topic"', ($selected == 'current_topic' ? ' selected' : ''), '>', $txt['search_thistopic'], '</option>';
+					<option value="topic"', ($selected == 'current_topic' ? ' selected' : ''), '>', $txt['search_thistopic'], '</option>';
 
 		// Can't limit it to a specific board if we are not in one
 		if (!empty($context['current_board']))
 			echo '
-				<option value="board"', ($selected == 'current_board' ? ' selected' : ''), '>', $txt['search_thisbrd'], '</option>';
+					<option value="board"', ($selected == 'current_board' ? ' selected' : ''), '>', $txt['search_thisbrd'], '</option>';
 
 		// Can't search for members if we can't see the memberlist
 		if (!empty($context['allow_memberlist']))
 			echo '
-				<option value="members"', ($selected == 'members' ? ' selected' : ''), '>', $txt['search_members'], ' </option>';
+					<option value="members"', ($selected == 'members' ? ' selected' : ''), '>', $txt['search_members'], ' </option>';
 
 		echo '
-			</select>';
+				</select>';
 
 		// Search within current topic?
 		if (!empty($context['current_topic']))
 			echo '
-			<input type="hidden" name="sd_topic" value="', $context['current_topic'], '">';
+				<input type="hidden" name="sd_topic" value="', $context['current_topic'], '">';
+
 		// If we're on a certain board, limit it to this board ;).
 		elseif (!empty($context['current_board']))
 			echo '
-			<input type="hidden" name="sd_brd" value="', $context['current_board'], '">';
+				<input type="hidden" name="sd_brd" value="', $context['current_board'], '">';
 
 		echo '
-			<input type="submit" name="search2" value="', $txt['search'], '" class="button_submit">
-			<input type="hidden" name="advanced" value="0">
-		</form>';
+				<input type="submit" name="search2" value="', $txt['search'], '" class="button">
+				<input type="hidden" name="advanced" value="0">
+			</form>';
 	}
 
 	echo '
-	</div>';
+	</div><!-- #top_section -->';
 
 	echo '
 	<div id="header">
@@ -307,7 +305,7 @@ function template_body_above()
 		</h1>';
 
 	echo '
-		', empty($settings['site_slogan']) ? '<img id="smflogo" src="' . $settings['images_url'] . '/smflogo.png" alt="Simple Machines Forum" title="Simple Machines Forum">' : '<div id="siteslogan" class="floatright">' . $settings['site_slogan'] . '</div>', '';
+		', empty($settings['site_slogan']) ? '<img id="smflogo" src="' . $settings['images_url'] . '/smflogo.svg" alt="Simple Machines Forum" title="Simple Machines Forum">' : '<div id="siteslogan" class="floatright">' . $settings['site_slogan'] . '</div>', '';
 
 	echo'
 	</div>
@@ -318,6 +316,7 @@ function template_body_above()
 					<div class="user">
 						', $context['current_time'], '
 					</div>';
+
 	// Show a random news item? (or you could pick one from news_lines...)
 	if (!empty($settings['enable_news']) && !empty($context['random_news_line']))
 		echo '
@@ -343,17 +342,15 @@ function template_body_above()
 
 	// Show the menu here, according to the menu sub template, followed by the navigation tree.
 	echo '
-	<div id="main_menu">';
-		template_menu();
-
-	echo '
-	</div>';
+				<div id="main_menu">
+					', template_menu(), '
+				</div>';
 
 	theme_linktree();
 
 	echo '
-			</div>
-		</div>';
+			</div><!-- #inner_section -->
+		</div><!-- #upper_section -->';
 
 	// The main content should go here.
 	echo '
@@ -369,18 +366,17 @@ function template_body_below()
 	global $context, $txt, $scripturl, $modSettings;
 
 	echo '
-			</div>
-		</div>
-	</div>
-</div>';
+			</div><!-- #main_content_section -->
+		</div><!-- #content_section -->
+	</div><!-- #wrapper -->
+</div><!-- #footerfix -->';
 
-	// Show the XHTML, RSS and WAP2 links, as well as the copyright.
-	// Footer is now full-width by default.
+	// Show the footer with copyright, terms and help links.
 	echo '
 	<div id="footer">';
 
 	// There is now a global "Go to top" link at the right.
-		echo '
+	echo '
 		<ul>
 			<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="' . $scripturl . '?action=help;sa=rules">' . $txt['terms_and_rules'] . '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
 			<li class="copyright">', theme_copyright(), '</li>
@@ -392,7 +388,7 @@ function template_body_below()
 		<p>', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']), '</p>';
 
 	echo '
-	</div>';
+	</div><!-- #footer -->';
 
 }
 
@@ -401,7 +397,7 @@ function template_body_below()
  */
 function template_html_below()
 {
-	// load in any javascipt that could be deferred to the end of the page
+	// Load in any javascipt that could be deferred to the end of the page
 	template_javascript(true);
 
 	echo '
@@ -421,13 +417,12 @@ function theme_linktree($force_show = false)
 	// If linktree is empty, just return - also allow an override.
 	if (empty($context['linktree']) || (!empty($context['dont_default_linktree']) && !$force_show))
 		return;
-
-	echo '
+		echo '
 				<div class="navigate_section">
 					<ul>';
 
 	if ($context['user']['is_logged'])
-	echo '
+		echo '
 						<li class="unread_links">
 							<a href="', $scripturl, '?action=unread" title="', $txt['unread_since_visit'], '">', $txt['view_unread_category'], '</a>
 							<a href="', $scripturl, '?action=unreadreplies" title="', $txt['show_unread_replies'], '">', $txt['unread_replies'], '</a>
@@ -453,10 +448,10 @@ function theme_linktree($force_show = false)
 		// Show the link, including a URL if it should have one.
 		if (isset($tree['url']))
 			echo '
-					<a href="' . $tree['url'] . '"><span>' . $tree['name'] . '</span></a>';
+							<a href="' . $tree['url'] . '"><span>' . $tree['name'] . '</span></a>';
 		else
 			echo '
-					<span>' . $tree['name'] . '</span>';
+							<span>' . $tree['name'] . '</span>';
 
 		// Show something after the link...?
 		if (isset($tree['extra_after']))
@@ -468,7 +463,7 @@ function theme_linktree($force_show = false)
 
 	echo '
 					</ul>
-				</div>';
+				</div><!-- .navigate_section -->';
 
 	$shown_linktree = true;
 }
@@ -492,6 +487,7 @@ function template_menu()
 								<i class="fa fa-', $act, ' fa-lg"></i>', $button['title'], '
 							</a>';
 
+		// 2nd level menus
 		if (!empty($button['sub_buttons']))
 		{
 			echo '
@@ -525,7 +521,7 @@ function template_menu()
 				echo '
 								</li>';
 			}
-				echo '
+			echo '
 							</ul>';
 		}
 		echo '
@@ -533,7 +529,7 @@ function template_menu()
 	}
 
 	echo '
-					</ul>';
+					</ul><!-- .menu_nav -->';
 }
 
 /**
@@ -581,9 +577,9 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 					$button .= '</a>';
 				}
 				$button .= '
-							</div>
-						</div>
-					</div>';
+							</div><!-- .overview -->
+						</div><!-- .viewport -->
+					</div><!-- .top_menu -->';
 			}
 
 			$buttons[] = $button;

@@ -26,9 +26,9 @@ function template_main()
 			</div>
 			<div id="mlist">
 				<div class="pagesection">
-					<div class="pagelinks floatleft">', $context['page_index'], '</div>';
-	echo '
-					<div class="selectbox floatright" id="upper_show">', $txt['who_show1'], '
+					<div class="pagelinks floatleft">', $context['page_index'], '</div>
+					<div class="selectbox floatright" id="upper_show">
+						', $txt['who_show1'], '
 						<select name="show_top" onchange="document.forms.whoFilter.show.value = this.value; document.forms.whoFilter.submit();">';
 
 	foreach ($context['show_methods'] as $value => $label)
@@ -37,7 +37,7 @@ function template_main()
 	echo '
 						</select>
 						<noscript>
-							<input type="submit" name="submit_top" value="', $txt['go'], '" class="button_submit">
+							<input type="submit" name="submit_top" value="', $txt['go'], '" class="button">
 						</noscript>
 					</div>
 				</div>
@@ -59,12 +59,10 @@ function template_main()
 
 		// Guests can't be messaged.
 		if (!$member['is_guest'])
-		{
 			echo '
 								<span class="contact_info floatright">
 									', $context['can_send_pm'] ? '<a href="' . $member['online']['href'] . '" title="' . $member['online']['text'] . '">' : '', $settings['use_image_buttons'] ? '<span class="' . ($member['online']['is_online'] == 1 ? 'on' : 'off') . '" title="' . $member['online']['text'] . '"></span>' : $member['online']['label'], $context['can_send_pm'] ? '</a>' : '', '
 								</span>';
-		}
 
 		echo '
 								<span class="member', $member['is_hidden'] ? ' hidden' : '', '">
@@ -84,23 +82,20 @@ function template_main()
 
 	// No members?
 	if (empty($context['members']))
-	{
 		echo '
 						<tr class="windowbg">
 							<td colspan="3">
 							', $txt['who_no_online_' . ($context['show_by'] == 'guests' || $context['show_by'] == 'spiders' ? $context['show_by'] : 'members')], '
 							</td>
 						</tr>';
-	}
 
 	echo '
 					</tbody>
 				</table>
 				<div class="pagesection" id="lower_pagesection">
-					<div class="pagelinks floatleft" id="lower_pagelinks">', $context['page_index'], '</div>';
-
-	echo '
-					<div class="selectbox floatright">', $txt['who_show1'], '
+					<div class="pagelinks floatleft" id="lower_pagelinks">', $context['page_index'], '</div>
+					<div class="selectbox floatright">
+						', $txt['who_show1'], '
 						<select name="show" onchange="document.forms.whoFilter.submit();">';
 
 	foreach ($context['show_methods'] as $value => $label)
@@ -109,13 +104,13 @@ function template_main()
 	echo '
 						</select>
 						<noscript>
-							<input type="submit" value="', $txt['go'], '" class="button_submit">
+							<input type="submit" value="', $txt['go'], '" class="button">
 						</noscript>
 					</div>
-				</div>
-			</div>
+				</div><!-- #lower_pagesection -->
+			</div><!-- #mlist -->
 		</form>
-	</div>';
+	</div><!-- #whos_online -->';
 }
 
 /**
@@ -135,13 +130,13 @@ function template_credits()
 	foreach ($context['credits'] as $section)
 	{
 		if (isset($section['pretext']))
-		echo '
+			echo '
 		<div class="windowbg">
 			<p>', $section['pretext'], '</p>
 		</div>';
 
 		if (isset($section['title']))
-		echo '
+			echo '
 		<div class="cat_bar">
 			<h3 class="catbg">', $section['title'], '</h3>
 		</div>';
@@ -231,21 +226,21 @@ function template_credits()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['credits_modifications'], '</h3>
 		</div>
-		<div class="windowbg">';
+		<div class="windowbg">
+			<ul>';
 
 		// Display the credits.
 		if (!empty($context['credits_modifications']))
 			echo '
-			', implode('
-			<br>', $context['credits_modifications']);
+				<li>', implode('</li><li>', $context['credits_modifications']), '</li>';
 
 		// Legacy.
 		if (!empty($context['copyrights']['mods']))
-			echo (empty($context['credits_modifications']) ? '<br>' : ''),
-			implode('
-			<br>', $context['copyrights']['mods']);
+			echo '
+				<li>', implode('</li><li>', $context['copyrights']['mods']), '</li>';
 
 		echo '
+			</ul>
 		</div>';
 	}
 
@@ -257,7 +252,7 @@ function template_credits()
 		<div class="windowbg">
 			', $context['copyrights']['smf'], '
 		</div>
-	</div>';
+	</div><!-- #credits -->';
 }
 
 ?>

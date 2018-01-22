@@ -19,12 +19,10 @@ function template_main()
 
 	// Let them know why their message became unapproved.
 	if ($context['becomesUnapproved'])
-	{
 		echo '
-			<div class="noticebox">
-				', $txt['post_becomesUnapproved'], '
-			</div>';
-	}
+	<div class="noticebox">
+		', $txt['post_becomesUnapproved'], '
+	</div>';
 
 	if (!empty($context['boards']) && (!empty($options['show_children']) || $context['start'] == 0))
 	{
@@ -37,46 +35,45 @@ function template_main()
 		foreach ($context['boards'] as $board)
 		{
 			echo '
-				<div id="board_', $board['id'], '" class="up_contain">
-					<div class="board_icon">
-						<a href="', ($board['is_redirect'] || $context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '">
-							<i class="fa fa-board_', $board['board_class'], ' fa-3x"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></i>
-						</a>
-					</div>
-					<div class="info">
-						<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
-							', $board['name'], '
-							<p class="board_description mobile_display">', $board['description'], '</p>
-						</a>';
+		<div id="board_', $board['id'], '" class="up_contain">
+			<div class="board_icon">
+				<a href="', ($board['is_redirect'] || $context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>
+			</div>
+			<div class="info">
+				<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
+					', $board['name'], '
+					<p class="board_description mobile_display">', $board['description'], '</p>
+				</a>';
 
 			// Has it outstanding posts for approval?
 			if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
 				echo '
-						<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link">(!)</a>';
+				<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link">(!)</a>';
 
 			echo '
-						<p class="board_description">', $board['description'], '</p>';
+				<p class="board_description">', $board['description'], '</p>';
 
 			// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
 			if (!empty($board['moderators']) || !empty($board['moderator_groups']))
 				echo '
-						<p class="moderators">', count($board['link_moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
+				<p class="moderators">', count($board['link_moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
 
 			// Show some basic information about the number of posts, etc.
 			echo '
-					</div>
-					<div class="board_stats centertext">
-						<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], ' <br>
-						', $board['is_redirect'] ? '' : comma_format($board['topics']) . ' ' . $txt['board_topics'], '
-						</p>
-					</div>
-					<div class="lastpost lpr_border">';
+			</div><!-- .info -->
+			<div class="board_stats centertext">
+				<p>', comma_format($board['posts']), ' ', $board['is_redirect'] ? $txt['redirects'] : $txt['posts'], ' <br>
+				', $board['is_redirect'] ? '' : comma_format($board['topics']) . ' ' . $txt['board_topics'], '
+				</p>
+			</div>
+			<div class="lastpost lpr_border">';
 
 			if (!empty($board['last_post']['id']))
 				echo '
-						<p>', $board['last_post']['last_post_message'], '</p>';
+				<p>', $board['last_post']['last_post_message'], '</p>';
+
 			echo '
-					</div>';
+			</div>';
 
 			// Show the "Child Boards: ". (there's a link_children but we're going to bold the new ones...)
 			if (!empty($board['children']))
@@ -84,7 +81,7 @@ function template_main()
 				// Sort the links into an array with new boards bold so it can be imploded.
 				$children = array();
 				/* Each child in each board's children has:
-						id, name, description, new (is it new?), topics (#), posts (#), href, link, and last_post. */
+					id, name, description, new (is it new?), topics (#), posts (#), href, link, and last_post. */
 				foreach ($board['children'] as $child)
 				{
 					if (!$child['is_redirect'])
@@ -100,16 +97,17 @@ function template_main()
 				}
 
 			echo '
-				<div id="board_', $board['id'], '_children" class="children">
-					<p><strong id="child_list_', $board['id'], '">', $txt['sub_boards'], '</strong>', implode($children), '</p>
-				</div>';
+			<div id="board_', $board['id'], '_children" class="children">
+				<p><strong id="child_list_', $board['id'], '">', $txt['sub_boards'], '</strong>', implode($children), '</p>
+			</div>';
 			}
 
 			echo '
-				</div>';
+		</div><!-- #board_[id] -->';
 		}
+
 		echo '
-	</div>';
+	</div><!-- #board_[current_board]_childboards -->';
 	}
 
 	// They can only mark read if they are logged in and it's enabled!
@@ -118,34 +116,38 @@ function template_main()
 
 	if (!$context['no_topic_listing'])
 	{
-	// Mobile action buttons (top)
-	echo '
-		<div class="mobile_buttons floatright">
-			<a class="button mobile_act">', $txt['mobile_action'], '</a>
-		</div>';
+		// Mobile action buttons (top)
+		echo '
+	<div class="mobile_buttons floatright">
+		<a class="button mobile_act">', $txt['mobile_action'], '</a>
+	</div>';
 
 		echo '
 	<div class="pagesection">
-		', $context['menu_separator'], '<a href="#bot" class="topbottom floatleft">', $txt['go_down'], '</a>
-		<div class="pagelinks floatleft">', $context['page_index'], '</div>
+		', $context['menu_separator'], '
+		<div class="pagelinks floatleft">
+			<a href="#bot" class="button">', $txt['go_down'], '</a>
+			', $context['page_index'], '
+		</div>
 		', template_button_strip($context['normal_buttons'], 'right'), '
 	</div>';
 
-	if ($context['description'] != '' || !empty($context['moderators']))
+		if ($context['description'] != '' || !empty($context['moderators']))
 		{
-		echo '
-	<div id="description_board" class="windowbg">
+			echo '
+	<div id="description_board" class="generic_list_wrapper">
 		<h3>', $context['name'], '</h3>
 		<p>';
-	if ($context['description'] != '')
-	echo '
-		', $context['description'], '&nbsp;';
 
-	if (!empty($context['moderators']))
-	echo '
-		', count($context['moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $context['link_moderators']), '.';
+			if ($context['description'] != '')
+				echo '
+			', $context['description'];
 
-	echo '
+			if (!empty($context['moderators']))
+				echo '
+			', count($context['moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $context['link_moderators']), '.';
+
+			echo '
 		</p>
 	</div>';
 		}
@@ -157,57 +159,62 @@ function template_main()
 
 		echo '
 		<div id="messageindex">';
+
 		if (!empty($settings['display_who_viewing']))
 		{
-		echo '
+			echo '
 			<div class="information">';
+
 			if ($settings['display_who_viewing'] == 1)
 				echo count($context['view_members']), ' ', count($context['view_members']) === 1 ? $txt['who_member'] : $txt['members'];
-		else
+
+			else
 				echo empty($context['view_members_list']) ? '0 ' . $txt['members'] : implode(', ', $context['view_members_list']) . (empty($context['view_num_hidden']) || $context['can_moderate_forum'] ? '' : ' (+ ' . $context['view_num_hidden'] . ' ' . $txt['hidden'] . ')');
 			echo $txt['who_and'], $context['view_num_guests'], ' ', $context['view_num_guests'] == 1 ? $txt['guest'] : $txt['guests'], $txt['who_viewing_board'];
 
 		echo '
 			</div>';
 		}
-	echo '
-		<div class="title_bar" id="topic_header">';
+
+		echo '
+			<div class="title_bar" id="topic_header">';
 
 		// Are there actually any topics to show?
 		if (!empty($context['topics']))
 		{
 			echo '
-					<div class="board_icon">&nbsp;</div>
-					<div class="info">', $context['topics_headers']['subject'], ' / ', $context['topics_headers']['starter'], '</div>
-					<div class="board_stats centertext">', $context['topics_headers']['replies'], ' / ', $context['topics_headers']['views'], '</div>
-					<div class="lastpost">', $context['topics_headers']['last_post'], '</div>';
+				<div class="board_icon"></div>
+				<div class="info">', $context['topics_headers']['subject'], ' / ', $context['topics_headers']['starter'], '</div>
+				<div class="board_stats centertext">', $context['topics_headers']['replies'], ' / ', $context['topics_headers']['views'], '</div>
+				<div class="lastpost">', $context['topics_headers']['last_post'], '</div>';
 
 			// Show a "select all" box for quick moderation?
 			if (!empty($context['can_quick_mod']) && $options['display_quick_mod'] == 1)
 				echo '
-					<div class="moderation"><input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');" class="input_check"></div>';
+				<div class="moderation">
+					<input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');">
+				</div>';
 
 			// If it's on in "image" mode, don't show anything but the column.
 			elseif (!empty($context['can_quick_mod']))
 				echo '
-					<div class="moderation">&nbsp;</div>';
+				<div class="moderation"></div>';
 		}
-		// No topics.... just say, "sorry bub".
+
+		// No topics... just say, "sorry bub".
 		else
 			echo '
-					<h3 class="titlebg">', $txt['topic_alert_none'], '</h3>';
+				<h3 class="titlebg">', $txt['topic_alert_none'], '</h3>';
 
 		echo '
-		</div>';
+			</div><!-- #topic_header -->';
 
 		// If this person can approve items and we have some awaiting approval tell them.
 		if (!empty($context['unapproved_posts_message']))
-		{
 			echo '
-				<div class="information">
-					<span class="alert">!</span> ', $context['unapproved_posts_message'], '
-				</div>';
-		}
+			<div class="information">
+				<span class="alert">!</span> ', $context['unapproved_posts_message'], '
+			</div>';
 
 		// Contain the topic list
 		echo '
@@ -216,32 +223,38 @@ function template_main()
 		foreach ($context['topics'] as $topic)
 		{
 			echo '
-			<div class="', $topic['css_class'], '">
-				<div class="board_icon">
-					<img src="', $topic['first_post']['icon_url'], '" alt="">
-					', $topic['is_posted_in'] ? '<i class="fa fa-user fa-lg posted"></i>' : '', '
-				</div>
+				<div class="', $topic['css_class'], '">
+					<div class="board_icon">
+						<img src="', $topic['first_post']['icon_url'], '" alt="">
+						', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '', '
+					</div>
 					<div class="info', !empty($context['can_quick_mod']) ? '' : ' info_block', '">
 						<div ', (!empty($topic['quick_mod']['modify']) ? 'id="topic_' . $topic['first_post']['id'] . '"  ondblclick="oQuickModifyTopic.modify_topic(\'' . $topic['id'] . '\', \'' . $topic['first_post']['id'] . '\');"' : ''), '>';
 
 			// Now we handle the icons
 			echo '
 							<div class="icons floatright">';
+
 			if ($topic['is_watched'])
 				echo '
 								<i class="fa fa-binoculars fa-lg floatright" title="', $txt['watching_this_topic'], '"></i>';
+
 			if ($topic['is_locked'])
 				echo '
 								<i class="fa fa-lock fa-lg floatright"></i>';
+
 			if ($topic['is_sticky'])
 				echo '
 								<i class="fa fa-thumb-tack fa-lg floatright"></i>';
+
 			if ($topic['is_redirect'])
 				echo '
 								<i class="fa fa-board_redirect fa-lg floatright"></i>';
+
 			if ($topic['is_poll'])
 				echo '
 								<i class="fa fa-bar-chart fa-lg floatright"></i>';
+
 			echo '
 							</div>';
 
@@ -252,10 +265,15 @@ function template_main()
 									<span id="msg_', $topic['first_post']['id'], '">', $topic['first_post']['link'], (!$topic['approved'] ? '&nbsp;<em>(' . $txt['awaiting_approval'] . ')</em>' : ''), '</span>
 								</span>
 							</div>
-							<p class="floatleft">', $txt['started_by'], ' ', $topic['first_post']['member']['link'], '</p>
-							', !empty($topic['pages']) ? '<span id="pages' . $topic['first_post']['id'] . '" class="topic_pages">&nbsp;' . $topic['pages'] . '</span>' : '', '
+							<p class="floatleft">
+								', $txt['started_by'], ' ', $topic['first_post']['member']['link'], '
+							</p>
+							', !empty($topic['pages']) ? '<span id="pages' . $topic['first_post']['id'] . '" class="topic_pages">' . $topic['pages'] . '</span>' : '', '
 							<br class="clear">
-						</div>
+						</div><!-- #topic_[first_post][id] -->
+					</div><!-- .info -->
+					<div class="board_stats centertext">
+						<p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p>
 					</div>
 					<div class="board_stats centertext"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>
 					<div class="lastpost">
@@ -267,9 +285,10 @@ function template_main()
 			{
 				echo '
 					<div class="moderation">';
+
 				if ($options['display_quick_mod'] == 1)
 					echo '
-						<input type="checkbox" name="topics[]" value="', $topic['id'], '" class="input_check">';
+						<input type="checkbox" name="topics[]" value="', $topic['id'], '">';
 				else
 				{
 					// Check permissions on each and show only the ones they are allowed to use.
@@ -286,62 +305,65 @@ function template_main()
 						echo '<a href="', $scripturl, '?action=quickmod;board=', $context['current_board'], '.', $context['start'], ';actions%5B', $topic['id'], '%5D=sticky;', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons sticky" title="', $topic['is_sticky'] ? $txt['set_nonsticky'] : $txt['set_sticky'], '"></span></a>';
 
 					if ($topic['quick_mod']['move'])
-						echo '<a href="', $scripturl, '?action=movetopic;current_board=', $context['current_board'], ';board=', $context['current_board'], '.', $context['start'], ';topic=', $topic['id'], '.0"><i class="fa fa-arrow-circle-o-right fa-fw fa-lg" title="', $txt['move_topic'], '"></i></a>';
+						echo '<a href="', $scripturl, '?action=movetopic;current_board=', $context['current_board'], ';board=', $context['current_board'], '.', $context['start'], ';topic=', $topic['id'], '.0"><span class="generic_icons move" title="', $txt['move_topic'], '"></span></a>';
 				}
 				echo '
-					</div>';
+					</div><!-- .moderation -->';
 			}
 			echo '
-				</div>';
+				</div><!-- $topic[css_class] -->';
 		}
 		echo '
-			</div>';
+			</div><!-- #topic_container -->';
 
 		if (!empty($context['can_quick_mod']) && $options['display_quick_mod'] == 1 && !empty($context['topics']))
 		{
 			echo '
-				<div class="righttext" id="quick_actions">
-					<select class="qaction" name="qaction"', $context['can_move'] ? ' onchange="this.form.move_to.disabled = (this.options[this.selectedIndex].value != \'move\');"' : '', '>
-						<option value="">--------</option>';
+			<div class="righttext" id="quick_actions">
+				<select class="qaction" name="qaction"', $context['can_move'] ? ' onchange="this.form.move_to.disabled = (this.options[this.selectedIndex].value != \'move\');"' : '', '>
+					<option value="">--------</option>';
 
 			foreach ($context['qmod_actions'] as $qmod_action)
 				if ($context['can_' . $qmod_action])
 					echo '
-						<option value="' . $qmod_action . '">' . $txt['quick_mod_' . $qmod_action] . '</option>';
+					<option value="' . $qmod_action . '">' . $txt['quick_mod_' . $qmod_action] . '</option>';
 
 			echo '
-					</select>';
+				</select>';
 
 			// Show a list of boards they can move the topic to.
 			if ($context['can_move'])
 				echo '
-			<span id="quick_mod_jump_to">&nbsp;</span>';
+				<span id="quick_mod_jump_to"></span>';
 
 			echo '
-					<input type="submit" value="', $txt['quick_mod_go'], '" onclick="return document.forms.quickModForm.qaction.value != \'\' &amp;&amp; confirm(\'', $txt['quickmod_confirm'], '\');" class="button_submit qaction">
-				</div>';
+				<input type="submit" value="', $txt['quick_mod_go'], '" onclick="return document.forms.quickModForm.qaction.value != \'\' &amp;&amp; confirm(\'', $txt['quickmod_confirm'], '\');" class="button qaction">
+			</div><!-- #quick_actions -->';
 		}
 
 		echo '
-	</div>';
+		</div><!-- #messageindex -->';
 
 		// Finish off the form - again.
 		if (!empty($context['can_quick_mod']) && $options['display_quick_mod'] > 0 && !empty($context['topics']))
 			echo '
-	<input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '">
+		<input type="hidden" name="' . $context['session_var'] . '" value="' . $context['session_id'] . '">
 	</form>';
 
-	// Mobile action buttons (bottom)
-	echo '
-		<div class="mobile_buttons floatright">
-			<a class="button mobile_act">', $txt['mobile_action'], '</a>
-		</div>';
+		// Mobile action buttons (bottom)
+		echo '
+	<div class="mobile_buttons floatright">
+		<a class="button mobile_act">', $txt['mobile_action'], '</a>
+	</div>';
 
 		echo '
 	<div class="pagesection">
 		', template_button_strip($context['normal_buttons'], 'right'), '
-		', $context['menu_separator'], '<a href="#main_content_section" class="topbottom floatleft" id="bot">', $txt['go_up'], '</a>
-		<div class="pagelinks floatleft">', $context['page_index'], '</div>
+		', $context['menu_separator'], '
+		<div class="pagelinks floatleft">
+			<a href="#main_content_section" class="button" id="bot">', $txt['go_up'], '</a>
+			', $context['page_index'], '
+		</div>
 	</div>';
 	}
 
@@ -350,45 +372,46 @@ function template_main()
 
 	if (!empty($context['can_quick_mod']) && $options['display_quick_mod'] == 1 && !empty($context['topics']) && $context['can_move'])
 		echo '
-			<script>
-				if (typeof(window.XMLHttpRequest) != "undefined")
-					aJumpTo[aJumpTo.length] = new JumpTo({
-						sContainerId: "quick_mod_jump_to",
-						sClassName: "qaction",
-						sJumpToTemplate: "%dropdown_list%",
-						iCurBoardId: ', $context['current_board'], ',
-						iCurBoardChildLevel: ', $context['jump_to']['child_level'], ',
-						sCurBoardName: "', $context['jump_to']['board_name'], '",
-						sBoardChildLevelIndicator: "==",
-						sBoardPrefix: "=> ",
-						sCatSeparator: "-----------------------------",
-						sCatPrefix: "",
-						bNoRedirect: true,
-						bDisabled: true,
-						sCustomName: "move_to"
-					});
-			</script>';
+	<script>
+		if (typeof(window.XMLHttpRequest) != "undefined")
+			aJumpTo[aJumpTo.length] = new JumpTo({
+				sContainerId: "quick_mod_jump_to",
+				sClassName: "qaction",
+				sJumpToTemplate: "%dropdown_list%",
+				iCurBoardId: ', $context['current_board'], ',
+				iCurBoardChildLevel: ', $context['jump_to']['child_level'], ',
+				sCurBoardName: "', $context['jump_to']['board_name'], '",
+				sBoardChildLevelIndicator: "==",
+				sBoardPrefix: "=> ",
+				sCatSeparator: "-----------------------------",
+				sCatPrefix: "",
+				bNoRedirect: true,
+				bDisabled: true,
+				sCustomName: "move_to"
+			});
+	</script>';
 
 	// Javascript for inline editing.
 	echo '
-<script>
-	var oQuickModifyTopic = new QuickModifyTopic({
-		aHidePrefixes: Array("lockicon", "stickyicon", "pages", "newicon"),
-		bMouseOnDiv: false,
-	});
-</script>';
+	<script>
+		var oQuickModifyTopic = new QuickModifyTopic({
+			aHidePrefixes: Array("lockicon", "stickyicon", "pages", "newicon"),
+			bMouseOnDiv: false,
+		});
+	</script>';
 
 	template_topic_legend();
 
 	// Lets pop the...
 	echo '
-			<div id="mobile_action" class="popup_container">
-				<div class="popup_window description">
-					<div class="popup_heading">', $txt['mobile_action'], '
-					<a href="javascript:void(0);" class="generic_icons hide_popup"></a></div>
-					', template_button_strip($context['normal_buttons']), '
-				</div>
-			</div>';
+	<div id="mobile_action" class="popup_container">
+		<div class="popup_window description">
+			<div class="popup_heading">', $txt['mobile_action'], '
+				<a href="javascript:void(0);" class="generic_icons hide_popup"></a>
+			</div>
+			', template_button_strip($context['normal_buttons']), '
+		</div>
+	</div>';
 }
 
 /**
@@ -401,7 +424,7 @@ function template_topic_legend()
 	echo '
 	<div class="tborder" id="topic_icons">
 		<div class="information">
-			<p class="floatright" id="message_index_jump_to">&nbsp;</p>';
+			<p class="floatright" id="message_index_jump_to"></p>';
 
 	if (empty($context['no_topic_listing']))
 		echo '
@@ -435,8 +458,8 @@ function template_topic_legend()
 
 	echo '
 			<br class="clear">
-		</div>
-	</div>';
+		</div><!-- .information -->
+	</div><!-- #topic_icons -->';
 }
 
 ?>

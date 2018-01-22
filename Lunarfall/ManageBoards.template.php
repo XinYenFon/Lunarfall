@@ -27,16 +27,16 @@ function template_main()
 
 	if (!empty($context['move_board']))
 		echo '
-		<div class="noticebox">
-			', $context['move_title'], ' [<a href="', $scripturl, '?action=admin;area=manageboards">', $txt['mboards_cancel_moving'], '</a>]', '
-		</div>';
+			<div class="noticebox">
+				', $context['move_title'], ' [<a href="', $scripturl, '?action=admin;area=manageboards">', $txt['mboards_cancel_moving'], '</a>]', '
+			</div>';
 
 	// No categories so show a label.
 	if (empty($context['categories']))
 		echo '
-		<div class="windowbg centertext">
-			', $txt['mboards_no_cats'], '
-		</div>';
+			<div class="windowbg centertext">
+				', $txt['mboards_no_cats'], '
+			</div>';
 
 	// Loop through every category, listing the boards in each as we go.
 	foreach ($context['categories'] as $category)
@@ -51,7 +51,7 @@ function template_main()
 
 		// Boards table header.
 		echo '
-		<form action="', $scripturl, '?action=admin;area=manageboards;sa=newboard;cat=', $category['id'], '" method="post" accept-charset="', $context['character_set'], '">
+			<form action="', $scripturl, '?action=admin;area=manageboards;sa=newboard;cat=', $category['id'], '" method="post" accept-charset="', $context['character_set'], '">
 				<ul id="category_', $category['id'], '" class="nolist">';
 
 		if (!empty($category['move_link']))
@@ -83,7 +83,7 @@ function template_main()
 
 				foreach ($board['move_links'] as $link)
 					echo '
-						<a href="', $link['href'], '" class="move_links" title="', $link['label'], '"><i class="fa fa-arrow-circle-', $link['class'], ' fa-lg" title="', $link['label'], '" style="padding: 0px; margin: 0px;"></i></a>';
+						<a href="', $link['href'], '" class="move_links" title="', $link['label'], '"><i class="fa fa-arrow-circle-', $link['class'], ' fa-lg" title="', $link['label'], '"></i></a>';
 
 				echo '
 					</li>';
@@ -93,14 +93,14 @@ function template_main()
 		// Button to add a new board.
 		echo '
 				</ul>
-				<input type="submit" value="', $txt['mboards_new_board'], '" class="button_submit">
+				<input type="submit" value="', $txt['mboards_new_board'], '" class="button">
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-		</form>';
+			</form>';
 	}
 
 	echo '
-		</div>
-	</div>';
+		</div><!-- .windowbg -->
+	</div><!-- #manage_boards -->';
 }
 
 /**
@@ -115,13 +115,13 @@ function template_modify_category()
 	<div id="manage_boards">
 		<form action="', $scripturl, '?action=admin;area=manageboards;sa=cat2" method="post" accept-charset="', $context['character_set'], '">
 			<input type="hidden" name="cat" value="', $context['category']['id'], '">
-				<div class="cat_bar">
-					<h3 class="catbg">
-						', isset($context['category']['is_new']) ? $txt['mboards_new_cat_name'] : $txt['catEdit'], '
-					</h3>
-				</div>
-				<div class="windowbg">
-					<dl class="settings">';
+			<div class="cat_bar">
+				<h3 class="catbg">
+					', isset($context['category']['is_new']) ? $txt['mboards_new_cat_name'] : $txt['catEdit'], '
+				</h3>
+			</div>
+			<div class="windowbg">
+				<dl class="settings">';
 
 	// If this isn't the only category, let the user choose where this category should be positioned down the board index.
 	if (count($context['category_order']) > 1)
@@ -147,21 +147,21 @@ function template_modify_category()
 						<span class="smalltext">', $txt['name_on_display'], '</span>
 					</dt>
 					<dd>
-						<input type="text" name="cat_name" value="', $context['category']['editable_name'], '" size="30" tabindex="', $context['tabindex']++, '" class="input_text">
+						<input type="text" name="cat_name" value="', $context['category']['editable_name'], '" size="30" tabindex="', $context['tabindex']++, '">
 					</dd>
 					<dt>
 						<strong>', $txt['mboards_description'], '</strong><br>
 						<span class="smalltext">', str_replace('{allowed_tags}', implode(', ', $context['description_allowed_tags']), $txt['mboards_cat_description_desc']), '</span>
 					</dt>
 					<dd>
-						<textarea name="cat_desc" rows="3" cols="35" style="width: 99%;">', $context['category']['description'], '</textarea>
+						<textarea name="cat_desc" rows="3" cols="35">', $context['category']['description'], '</textarea>
 					</dd>
 					<dt>
-							<strong>', $txt['collapse_enable'], '</strong><br>
+						<strong>', $txt['collapse_enable'], '</strong><br>
 						<span class="smalltext">', $txt['collapse_desc'], '</span>
 					</dt>
 					<dd>
-						<input type="checkbox" name="collapse"', $context['category']['can_collapse'] ? ' checked' : '', ' tabindex="', $context['tabindex']++, '" class="input_check">
+						<input type="checkbox" name="collapse"', $context['category']['can_collapse'] ? ' checked' : '', ' tabindex="', $context['tabindex']++, '">
 					</dd>';
 
 	// Show any category settings added by mods using the 'integrate_edit_category' hook.
@@ -171,12 +171,12 @@ function template_modify_category()
 		{
 			if (!empty($catset['dt']) && !empty($catset['dd']))
 				echo '
-						<dt class="clear', !is_numeric($catset_id) ? ' catset_' . $catset_id : '', '">
-							', $catset['dt'], '
-						</dt>
-						<dd', !is_numeric($catset_id) ? ' class="catset_' . $catset_id . '"' : '', '>
-							', $catset['dd'], '
-						</dd>';
+					<dt class="clear', !is_numeric($catset_id) ? ' catset_' . $catset_id : '', '">
+						', $catset['dt'], '
+					</dt>
+					<dd', !is_numeric($catset_id) ? ' class="catset_' . $catset_id . '"' : '', '>
+						', $catset['dd'], '
+					</dd>';
 		}
 	}
 
@@ -186,24 +186,24 @@ function template_modify_category()
 
 	if (isset($context['category']['is_new']))
 		echo '
-					<input type="submit" name="add" value="', $txt['mboards_add_cat_button'], '" onclick="return !isEmptyText(this.form.cat_name);" tabindex="', $context['tabindex']++, '" class="button_submit">';
+				<input type="submit" name="add" value="', $txt['mboards_add_cat_button'], '" onclick="return !isEmptyText(this.form.cat_name);" tabindex="', $context['tabindex']++, '" class="button">';
 	else
 		echo '
-					<input type="submit" name="edit" value="', $txt['modify'], '" onclick="return !isEmptyText(this.form.cat_name);" tabindex="', $context['tabindex']++, '" class="button_submit">
-					<input type="submit" name="delete" value="', $txt['mboards_delete_cat'], '" data-confirm="', $txt['catConfirm'], '" class="button_submit you_sure">';
+				<input type="submit" name="edit" value="', $txt['modify'], '" onclick="return !isEmptyText(this.form.cat_name);" tabindex="', $context['tabindex']++, '" class="button">
+				<input type="submit" name="delete" value="', $txt['mboards_delete_cat'], '" data-confirm="', $txt['catConfirm'], '" class="button you_sure">';
 	echo '
-					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-					<input type="hidden" name="', $context[$context['token_check'] . '_token_var'], '" value="', $context[$context['token_check'] . '_token'], '">';
+				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+				<input type="hidden" name="', $context[$context['token_check'] . '_token_var'], '" value="', $context[$context['token_check'] . '_token'], '">';
 
 	// If this category is empty we don't bother with the next confirmation screen.
 	if ($context['category']['is_empty'])
 		echo '
-					<input type="hidden" name="empty" value="1">';
+				<input type="hidden" name="empty" value="1">';
 
 	echo '
-			</div>
+			</div><!-- .windowbg -->
 		</form>
-	</div>';
+	</div><!-- #manage_boards -->';
 }
 
 /**
@@ -237,8 +237,8 @@ function template_confirm_category_delete()
 			</div>
 			<div class="windowbg">
 				<p>
-					<label for="delete_action0"><input type="radio" id="delete_action0" name="delete_action" value="0" class="input_radio" checked>', $txt['mboards_delete_option1'], '</label><br>
-					<label for="delete_action1"><input type="radio" id="delete_action1" name="delete_action" value="1" class="input_radio"', count($context['category_order']) == 1 ? ' disabled' : '', '>', $txt['mboards_delete_option2'], '</label>:
+					<label for="delete_action0"><input type="radio" id="delete_action0" name="delete_action" value="0" checked>', $txt['mboards_delete_option1'], '</label><br>
+					<label for="delete_action1"><input type="radio" id="delete_action1" name="delete_action" value="1"', count($context['category_order']) == 1 ? ' disabled' : '', '>', $txt['mboards_delete_option2'], '</label>:
 					<select name="cat_to"', count($context['category_order']) == 1 ? ' disabled' : '', '>';
 
 	foreach ($context['category_order'] as $cat)
@@ -249,14 +249,14 @@ function template_confirm_category_delete()
 	echo '
 					</select>
 				</p>
-				<input type="submit" name="delete" value="', $txt['mboards_delete_confirm'], '" class="button_submit">
-				<input type="submit" name="cancel" value="', $txt['mboards_delete_cancel'], '" class="button_submit">
+				<input type="submit" name="delete" value="', $txt['mboards_delete_confirm'], '" class="button">
+				<input type="submit" name="cancel" value="', $txt['mboards_delete_cancel'], '" class="button">
 				<input type="hidden" name="confirmation" value="1">
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 				<input type="hidden" name="', $context[$context['token_check'] . '_token_var'], '" value="', $context[$context['token_check'] . '_token'], '">
-			</div>
+			</div><!-- .windowbg -->
 		</form>
-	</div>';
+	</div><!-- #manage_boards -->';
 }
 
 /**
@@ -281,17 +281,16 @@ function template_modify_board()
 
 	// Option for choosing the category the board lives in.
 	echo '
-
 					<dt>
 						<strong>', $txt['mboards_category'], ':</strong>
-
 					</dt>
 					<dd>
 						<select name="new_cat" onchange="if (this.form.order) {this.form.order.disabled = this.options[this.selectedIndex].value != 0; this.form.board_order.disabled = this.options[this.selectedIndex].value != 0 || this.form.order.options[this.form.order.selectedIndex].value == \'\';}">';
-		foreach ($context['categories'] as $category)
-			echo '
-							<option', $category['selected'] ? ' selected' : '', ' value="', $category['id'], '">', $category['name'], '</option>';
+
+	foreach ($context['categories'] as $category)
 		echo '
+							<option', $category['selected'] ? ' selected' : '', ' value="', $category['id'], '">', $category['name'], '</option>';
+	echo '
 						</select>
 					</dd>';
 
@@ -304,8 +303,8 @@ function template_modify_board()
 					</dt>
 					<dd>';
 
-	// The first select box gives the user the option to position it before, after or as a child of another board.
-	echo '
+		// The first select box gives the user the option to position it before, after or as a child of another board.
+		echo '
 						<select id="order" name="placement" onchange="this.form.board_order.disabled = this.options[this.selectedIndex].value == \'\';">
 							', !isset($context['board']['is_new']) ? '<option value="">(' . $txt['mboards_unchanged'] . ')</option>' : '', '
 							<option value="after">' . $txt['mboards_order_after'] . '...</option>
@@ -313,14 +312,15 @@ function template_modify_board()
 							<option value="before">' . $txt['mboards_order_before'] . '...</option>
 						</select>';
 
-	// The second select box lists all the boards in the category.
-	echo '
+		// The second select box lists all the boards in the category.
+		echo '
 						<select id="board_order" name="board_order"', !isset($context['board']['is_new']) ? ' disabled' : '', '>
 							', !isset($context['board']['is_new']) ? '<option value="">(' . $txt['mboards_unchanged'] . ')</option>' : '';
-	foreach ($context['board_order'] as $order)
-		echo '
+
+		foreach ($context['board_order'] as $order)
+			echo '
 							<option', $order['selected'] ? ' selected' : '', ' value="', $order['id'], '">', $order['name'], '</option>';
-	echo '
+		echo '
 						</select>
 					</dd>';
 	}
@@ -332,14 +332,14 @@ function template_modify_board()
 						<span class="smalltext">', $txt['name_on_display'], '</span>
 					</dt>
 					<dd>
-						<input type="text" name="board_name" value="', $context['board']['name'], '" size="30" class="input_text">
+						<input type="text" name="board_name" value="', $context['board']['name'], '" size="30">
 					</dd>
 					<dt>
 						<strong>', $txt['mboards_description'], ':</strong><br>
 						<span class="smalltext">', str_replace('{allowed_tags}', implode(', ', $context['description_allowed_tags']), $txt['mboards_description_desc']), '</span>
 					</dt>
 					<dd>
-						<textarea name="desc" rows="3" cols="35" style="width:99%;">', $context['board']['description'], '</textarea>
+						<textarea name="desc" rows="3" cols="35">', $context['board']['description'], '</textarea>
 					</dd>
 					<dt>
 						<strong>', $txt['permission_profile'], ':</strong><br>
@@ -382,7 +382,7 @@ function template_modify_board()
 		if (empty($modSettings['deny_boards_access']))
 			echo '
 						<label for="groups_', $group['id'], '">
-							<input type="checkbox" name="groups[', $group['id'], ']" value="allow" id="groups_', $group['id'], '"', in_array($group['id'], $context['board_managers']) ? ' checked disabled' : ($group['allow'] ? ' checked' : ''), ' class="input_check">
+							<input type="checkbox" name="groups[', $group['id'], ']" value="allow" id="groups_', $group['id'], '"', in_array($group['id'], $context['board_managers']) ? ' checked disabled' : ($group['allow'] ? ' checked' : ''), '>
 							<span', $group['is_post_group'] ? ' class="post_group" title="' . $txt['mboards_groups_post_group'] . '"' : ($group['id'] == 0 ? ' class="regular_members" title="' . $txt['mboards_groups_regular_members'] . '"' : ''), '>
 								', $group['name'], '
 							</span>
@@ -398,13 +398,13 @@ function template_modify_board()
 									</label>
 								</td>
 								<td>
-									<input type="radio" name="groups[', $group['id'], ']" value="allow" id="groups_', $group['id'], '_a"', in_array($group['id'], $context['board_managers']) ? ' checked disabled' : ($group['allow'] ? ' checked' : ''), ' class="input_radio">
+									<input type="radio" name="groups[', $group['id'], ']" value="allow" id="groups_', $group['id'], '_a"', in_array($group['id'], $context['board_managers']) ? ' checked disabled' : ($group['allow'] ? ' checked' : ''), '>
 								</td>
 								<td>
-									<input type="radio" name="groups[', $group['id'], ']" value="ignore" id="groups_', $group['id'], '_x"', in_array($group['id'], $context['board_managers']) ? ' disabled' : (!$group['allow'] && !$group['deny'] ? ' checked' : ''), ' class="input_radio">
+									<input type="radio" name="groups[', $group['id'], ']" value="ignore" id="groups_', $group['id'], '_x"', in_array($group['id'], $context['board_managers']) ? ' disabled' : (!$group['allow'] && !$group['deny'] ? ' checked' : ''), '>
 								</td>
 								<td>
-									<input type="radio" name="groups[', $group['id'], ']" value="deny" id="groups_', $group['id'], '_d"', in_array($group['id'], $context['board_managers']) ? ' disabled' : ($group['deny'] ? ' checked' : ''), ' class="input_radio">
+									<input type="radio" name="groups[', $group['id'], ']" value="deny" id="groups_', $group['id'], '_d"', in_array($group['id'], $context['board_managers']) ? ' disabled' : ($group['deny'] ? ' checked' : ''), '>
 								</td>
 								<td></td>
 							</tr>';
@@ -412,7 +412,7 @@ function template_modify_board()
 	if (empty($modSettings['deny_boards_access']))
 		echo '
 						<span class="select_all_box">
-							<em>', $txt['check_all'], '</em> <input type="checkbox" class="input_check" onclick="invertAll(this, this.form, \'groups[\');">
+							<em>', $txt['check_all'], '</em> <input type="checkbox" onclick="invertAll(this, this.form, \'groups[\');">
 						</span>
 						<br><br>
 					</dd>';
@@ -422,13 +422,13 @@ function template_modify_board()
 								<td>
 								</td>
 								<td>
-									<input type="radio" name="select_all" class="input_radio" onclick="selectAllRadio(this, this.form, \'groups\', \'allow\');">
+									<input type="radio" name="select_all" onclick="selectAllRadio(this, this.form, \'groups\', \'allow\');">
 								</td>
 								<td>
-									<input type="radio" name="select_all" class="input_radio" onclick="selectAllRadio(this, this.form, \'groups\', \'ignore\');">
+									<input type="radio" name="select_all" onclick="selectAllRadio(this, this.form, \'groups\', \'ignore\');">
 								</td>
 								<td>
-									<input type="radio" name="select_all" class="input_radio" onclick="selectAllRadio(this, this.form, \'groups\', \'deny\');">
+									<input type="radio" name="select_all" onclick="selectAllRadio(this, this.form, \'groups\', \'deny\');">
 								</td>
 								<td>
 									<em>', $txt['check_all'], '</em>
@@ -444,7 +444,7 @@ function template_modify_board()
 						<span class="smalltext">', $txt['mboards_moderators_desc'], '</span><br>
 					</dt>
 					<dd>
-						<input type="text" name="moderators" id="moderators" value="', $context['board']['moderator_list'], '" size="30" class="input_text">
+						<input type="text" name="moderators" id="moderators" value="', $context['board']['moderator_list'], '" size="30">
 						<div id="moderator_container"></div>
 					</dd>
 					<dt>
@@ -452,7 +452,7 @@ function template_modify_board()
 						<span class="smalltext">', $txt['mboards_moderator_groups_desc'], '</span><br>
 					</dt>
 					<dd>
-						<input type="text" name="moderator_groups" id="moderator_groups" value="', $context['board']['moderator_groups_list'], '" size="30" class="input_text">
+						<input type="text" name="moderator_groups" id="moderator_groups" value="', $context['board']['moderator_groups_list'], '" size="30">
 						<div id="moderator_group_container"></div>
 					</dd>
 				</dl>
@@ -474,7 +474,7 @@ function template_modify_board()
 						<span class="smalltext">', $txt['mboards_redirect_desc'], '</span><br>
 					</dt>
 					<dd>
-						<input type="checkbox" id="redirect_enable" name="redirect_enable"', $context['board']['redirect'] != '' ? ' checked' : '', ' onclick="refreshOptions();" class="input_check">
+						<input type="checkbox" id="redirect_enable" name="redirect_enable"', $context['board']['redirect'] != '' ? ' checked' : '', ' onclick="refreshOptions();">
 					</dd>
 				</dl>
 
@@ -485,7 +485,7 @@ function template_modify_board()
 							<span class="smalltext">', $txt['mboards_redirect_url_desc'], '</span><br>
 						</dt>
 						<dd>
-							<input type="text" name="redirect_address" value="', $context['board']['redirect'], '" size="40" class="input_text">
+							<input type="text" name="redirect_address" value="', $context['board']['redirect'], '" size="40">
 						</dd>
 					</dl>
 				</div>';
@@ -499,7 +499,7 @@ function template_modify_board()
 							<span class="smalltext">', $txt['mboards_redirect_reset_desc'], '</span><br>
 						</dt>
 						<dd>
-							<input type="checkbox" name="reset_redirect" class="input_check">
+							<input type="checkbox" name="reset_redirect">
 							<em>(', sprintf($txt['mboards_current_redirects'], $context['board']['posts']), ')</em>
 						</dd>
 					</dl>
@@ -514,7 +514,7 @@ function template_modify_board()
 							<span class="smalltext">', $txt['mboards_count_posts_desc'], '</span><br>
 						</dt>
 						<dd>
-							<input type="checkbox" name="count"', $context['board']['count_posts'] ? ' checked' : '', ' class="input_check">
+							<input type="checkbox" name="count"', $context['board']['count_posts'] ? ' checked' : '', '>
 						</dd>
 					</dl>
 				</div>';
@@ -539,7 +539,7 @@ function template_modify_board()
 							</select>
 						</dd>
 					</dl>
-				</div>
+				</div><!-- #board_theme_div -->
 				<div id="override_theme_div">
 					<dl class="settings">
 						<dt>
@@ -547,7 +547,7 @@ function template_modify_board()
 							<span class="smalltext">', $txt['mboards_override_theme_desc'], '</span><br>
 						</dt>
 						<dd>
-							<input type="checkbox" name="override_theme"', $context['board']['override_theme'] ? ' checked' : '', ' class="input_check">
+							<input type="checkbox" name="override_theme"', $context['board']['override_theme'] ? ' checked' : '', '>
 						</dd>
 					</dl>
 				</div>';
@@ -594,70 +594,70 @@ function template_modify_board()
 	if (isset($context['board']['is_new']))
 		echo '
 				<input type="hidden" name="cur_cat" value="', $context['board']['category'], '">
-				<input type="submit" name="add" value="', $txt['mboards_new_board'], '" onclick="return !isEmptyText(this.form.board_name);" class="button_submit">';
+				<input type="submit" name="add" value="', $txt['mboards_new_board'], '" onclick="return !isEmptyText(this.form.board_name);" class="button">';
 	else
 		echo '
-				<input type="submit" name="edit" value="', $txt['modify'], '" onclick="return !isEmptyText(this.form.board_name);" class="button_submit">';
+				<input type="submit" name="edit" value="', $txt['modify'], '" onclick="return !isEmptyText(this.form.board_name);" class="button">';
 
 	if (!isset($context['board']['is_new']) && empty($context['board']['is_recycle']))
 		echo '
-				<input type="submit" name="delete" value="', $txt['mboards_delete_board'], '" data-confirm="', $txt['boardConfirm'], '" class="button_submit you_sure">';
+				<input type="submit" name="delete" value="', $txt['mboards_delete_board'], '" data-confirm="', $txt['boardConfirm'], '" class="button you_sure">';
 	echo '
-			</div>
+			</div><!-- .windowbg -->
 		</form>
-	</div>
+	</div><!-- #manage_boards -->
 
-<script>
-	var oModeratorSuggest = new smc_AutoSuggest({
-		sSelf: \'oModeratorSuggest\',
-		sSessionId: smf_session_id,
-		sSessionVar: smf_session_var,
-		sSuggestId: \'moderators\',
-		sControlId: \'moderators\',
-		sSearchType: \'member\',
-		bItemList: true,
-		sPostName: \'moderator_list\',
-		sURLMask: \'action=profile;u=%item_id%\',
-		sTextDeleteItem: \'', $txt['autosuggest_delete_item'], '\',
-		sItemListContainerId: \'moderator_container\',
-		aListItems: [';
+	<script>
+		var oModeratorSuggest = new smc_AutoSuggest({
+			sSelf: \'oModeratorSuggest\',
+			sSessionId: smf_session_id,
+			sSessionVar: smf_session_var,
+			sSuggestId: \'moderators\',
+			sControlId: \'moderators\',
+			sSearchType: \'member\',
+			bItemList: true,
+			sPostName: \'moderator_list\',
+			sURLMask: \'action=profile;u=%item_id%\',
+			sTextDeleteItem: \'', $txt['autosuggest_delete_item'], '\',
+			sItemListContainerId: \'moderator_container\',
+			aListItems: [';
 
 	foreach ($context['board']['moderators'] as $id_member => $member_name)
 		echo '
-					{
-						sItemId: ', JavaScriptEscape($id_member), ',
-						sItemName: ', JavaScriptEscape($member_name), '
-					}', $id_member == $context['board']['last_moderator_id'] ? '' : ',';
+				{
+					sItemId: ', JavaScriptEscape($id_member), ',
+					sItemName: ', JavaScriptEscape($member_name), '
+				}', $id_member == $context['board']['last_moderator_id'] ? '' : ',';
 
 	echo '
-		]
-	});
+			]
+		});
 
-	var oModeratorGroupSuggest = new smc_AutoSuggest({
-		sSelf: \'oModeratorGroupSuggest\',
-		sSessionId: smf_session_id,
-		sSessionVar: smf_session_var,
-		sSuggestId: \'moderator_groups\',
-		sControlId: \'moderator_groups\',
-		sSearchType: \'membergroups\',
-		bItemList: true,
-		sPostName: \'moderator_group_list\',
-		sURLMask: \'action=groups;sa=members;group=%item_id%\',
-		sTextDeleteItem: \'', $txt['autosuggest_delete_item'], '\',
-		sItemListContainerId: \'moderator_group_container\',
-		aListItems: [';
+		var oModeratorGroupSuggest = new smc_AutoSuggest({
+			sSelf: \'oModeratorGroupSuggest\',
+			sSessionId: smf_session_id,
+			sSessionVar: smf_session_var,
+			sSuggestId: \'moderator_groups\',
+			sControlId: \'moderator_groups\',
+			sSearchType: \'membergroups\',
+			bItemList: true,
+			sPostName: \'moderator_group_list\',
+			sURLMask: \'action=groups;sa=members;group=%item_id%\',
+			sTextDeleteItem: \'', $txt['autosuggest_delete_item'], '\',
+			sItemListContainerId: \'moderator_group_container\',
+			aListItems: [';
 
 	foreach ($context['board']['moderator_groups'] as $id_group => $group_name)
 		echo '
-					{
-						sItemId: ', JavaScriptEscape($id_group), ',
-						sItemName: ', JavaScriptEscape($group_name), '
-					}', $id_group == $context['board']['last_moderator_group_id'] ? '' : ',';
+				{
+					sItemId: ', JavaScriptEscape($id_group), ',
+					sItemName: ', JavaScriptEscape($group_name), '
+				}', $id_group == $context['board']['last_moderator_group_id'] ? '' : ',';
 
 		echo '
 			]
 		});
-</script>';
+	</script>';
 
 	// Javascript for deciding what to show.
 	echo '
@@ -715,22 +715,22 @@ function template_confirm_board_delete()
 			</div>
 			<div class="windowbg">
 				<p>', $txt['mboards_delete_board_contains'], '</p>
-					<ul>';
+				<ul>';
 
 	foreach ($context['children'] as $child)
 		echo '
-						<li>', $child['node']['name'], '</li>';
+					<li>', $child['node']['name'], '</li>';
 
 	echo '
-					</ul>
+				</ul>
 			</div>
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['mboards_delete_what_do'], '</h3>
 			</div>
 			<div class="windowbg">
 				<p>
-					<label for="delete_action0"><input type="radio" id="delete_action0" name="delete_action" value="0" class="input_radio" checked>', $txt['mboards_delete_board_option1'], '</label><br>
-					<label for="delete_action1"><input type="radio" id="delete_action1" name="delete_action" value="1" class="input_radio"', empty($context['can_move_children']) ? ' disabled' : '', '>', $txt['mboards_delete_board_option2'], '</label>:
+					<label for="delete_action0"><input type="radio" id="delete_action0" name="delete_action" value="0" checked>', $txt['mboards_delete_board_option1'], '</label><br>
+					<label for="delete_action1"><input type="radio" id="delete_action1" name="delete_action" value="1"', empty($context['can_move_children']) ? ' disabled' : '', '>', $txt['mboards_delete_board_option2'], '</label>:
 					<select name="board_to"', empty($context['can_move_children']) ? ' disabled' : '', '>';
 
 	foreach ($context['board_order'] as $board)
@@ -741,14 +741,14 @@ function template_confirm_board_delete()
 	echo '
 					</select>
 				</p>
-				<input type="submit" name="delete" value="', $txt['mboards_delete_confirm'], '" class="button_submit">
-				<input type="submit" name="cancel" value="', $txt['mboards_delete_cancel'], '" class="button_submit">
+				<input type="submit" name="delete" value="', $txt['mboards_delete_confirm'], '" class="button">
+				<input type="submit" name="cancel" value="', $txt['mboards_delete_cancel'], '" class="button">
 				<input type="hidden" name="confirmation" value="1">
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-				<input type="hidden" name="', $context['admin-be-' . $context['board']['id'] . '_token_var'], '" value="', $context['admin-be-' . $context['board']['id'] . '_token'], '"
-			</div>
+				<input type="hidden" name="', $context['admin-be-' . $context['board']['id'] . '_token_var'], '" value="', $context['admin-be-' . $context['board']['id'] . '_token'], '">
+			</div><!-- .windowbg -->
 		</form>
-	</div>';
+	</div><!-- #manage_boards -->';
 }
 
 ?>

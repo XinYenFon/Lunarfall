@@ -82,21 +82,23 @@ function template_find_members()
 				</div>
 				<div class="padding">
 					<strong>', $txt['find_username'], ':</strong><br>
-					<input type="text" name="search" id="search" value="', isset($context['last_search']) ? $context['last_search'] : '', '" style="margin-top: 4px; width: 96%;" class="input_text"><br>
+					<input type="text" name="search" id="search" value="', isset($context['last_search']) ? $context['last_search'] : '', '" style="margin-top: 4px; width: 96%;"><br>
 					<span class="smalltext"><em>', $txt['find_wildcards'], '</em></span><br>';
 
 	// Only offer to search for buddies if we have some!
 	if (!empty($context['show_buddies']))
 		echo '
-					<span class="smalltext"><label for="buddies"><input type="checkbox" class="input_check" name="buddies" id="buddies"', !empty($context['buddy_search']) ? ' checked' : '', '> ', $txt['find_buddies'], '</label></span><br>';
+					<span class="smalltext">
+						<label for="buddies"><input type="checkbox" name="buddies" id="buddies"', !empty($context['buddy_search']) ? ' checked' : '', '> ', $txt['find_buddies'], '</label>
+					</span><br>';
 
 	echo '
 					<div class="padding righttext">
-						<input type="submit" value="', $txt['search'], '" class="button_submit">
-						<input type="button" value="', $txt['find_close'], '" onclick="window.close();" class="button_submit">
+						<input type="submit" value="', $txt['search'], '" class="button">
+						<input type="button" value="', $txt['find_close'], '" onclick="window.close();" class="button">
 					</div>
-				</div>
-			</div>
+				</div><!-- .padding -->
+			</div><!-- .roundframe -->
 			<br>
 			<div class="roundframe">
 				<div class="cat_bar">
@@ -112,13 +114,11 @@ function template_find_members()
 				<ul class="padding">';
 
 		foreach ($context['results'] as $result)
-		{
 			echo '
 					<li class="windowbg">
-						<a href="', $result['href'], '" target="_blank" class="new_win"> <span class="generic_icons profile_sm"></span>
+						<a href="', $result['href'], '" target="_blank" rel="noopener"> <span class="generic_icons profile_sm"></span>
 						<a href="javascript:void(0);" onclick="addMember(this.innerHTML); return false;">', $result['name'], '</a>
 					</li>';
-		}
 
 		echo '
 				</ul>
@@ -128,8 +128,7 @@ function template_find_members()
 	}
 
 	echo '
-
-			</div>
+			</div><!-- .roundframe -->
 			<input type="hidden" name="input" value="', $context['input_box_name'], '">
 			<input type="hidden" name="delim" value="', $context['delimiter'], '">
 			<input type="hidden" name="quote" value="', $context['quote_results'] ? '1' : '0', '">
@@ -164,16 +163,14 @@ function template_manual()
 					<ul>';
 
 	foreach ($context['manual_sections'] as $section_id => $wiki_id)
-	{
 		echo '
-						<li><a href="', $context['wiki_url'], '/', $context['wiki_prefix'], $wiki_id, ($txt['lang_dictionary'] != 'en' ? '/' . $txt['lang_dictionary'] : ''), '" target="_blank" class="new_win">', $txt['manual_section_' . $section_id . '_title'], '</a> - ', $txt['manual_section_' . $section_id . '_desc'], '</li>';
-	}
+						<li><a href="', $context['wiki_url'], '/', $context['wiki_prefix'], $wiki_id, ($txt['lang_dictionary'] != 'en' ? '/' . $txt['lang_dictionary'] : ''), '" target="_blank" rel="noopener">', $txt['manual_section_' . $section_id . '_title'], '</a> - ', $txt['manual_section_' . $section_id . '_desc'], '</li>';
 
 	echo '
 					</ul>
 					<p>', sprintf($txt['manual_docs_and_credits'], $context['wiki_url'], $scripturl . '?action=credits'), '</p>
-				</div>
-			</div>';
+				</div><!-- #helpmain -->
+			</div><!-- #help_container -->';
 }
 
 /**

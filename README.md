@@ -1,6 +1,6 @@
 ## Lunarfall
 
-#### Theme Version: 0.5.1
+#### Theme Version: 0.5.2
 
 ![Imgur](https://i.imgur.com/TFPsu0H.png)
 

@@ -27,53 +27,51 @@ function template_recent()
 		<div class="pagesection">', $context['page_index'], '</div>';
 
 	if (empty($context['posts']))
-	{
 		echo '
-			<div class="windowbg">', $txt['no_messages'], '</div>';
-	}
+		<div class="windowbg">', $txt['no_messages'], '</div>';
 
 	foreach ($context['posts'] as $post)
 	{
 		echo '
-			<div class="', $post['css_class'], '">
-					<div class="counter">', $post['counter'], '</div>
-					<div class="topic_details">
-						<h5>', $post['board']['link'], ' / ', $post['link'], '</h5>
-						<span class="smalltext">', $txt['last_poster'], ' <strong>', $post['poster']['link'], ' </strong> - ', $post['time'], '</span>
-					</div>
-					<div class="list_posts">', $post['message'], '</div>';
+		<div class="', $post['css_class'], '">
+			<div class="counter">', $post['counter'], '</div>
+			<div class="topic_details">
+				<h5>', $post['board']['link'], ' / ', $post['link'], '</h5>
+				<span class="smalltext">', $txt['last_poster'], ' <strong>', $post['poster']['link'], ' </strong> - ', $post['time'], '</span>
+			</div>
+			<div class="list_posts">', $post['message'], '</div>';
 
 		if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 			echo '
-					<ul class="qbuttons">';
+			<ul class="qbuttons">';
 
 		// If they *can* reply?
 		if ($post['can_reply'])
 			echo '
-						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '"><i class="fa fa-reply fa-lg" title="', $txt['reply'], '"></i></a></li>';
+				<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '"><i class="fa fa-reply fa-lg" title="', $txt['reply'], '"></i></a></li>';
 
 		// If they *can* quote?
 		if ($post['can_quote'])
 			echo '
-						<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '"><i class="fa fa-quote-left title="', $txt['quote_action'], '"></i></a></li>';
+				<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '"><i class="fa fa-quote-left title="', $txt['quote_action'], '"></i></a></li>';
 
 		// How about... even... remove it entirely?!
 		if ($post['can_delete'])
 			echo '
-						<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';recent;', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['remove'], '</a></li>';
+				<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';recent;', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['remove'], '</a></li>';
 
 		if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 			echo '
-					</ul>';
+			</ul>';
 
 		echo '
-			</div>';
+		</div><!-- $post[css_class] -->';
 
 	}
 
 	echo '
 		<div class="pagesection">', $context['page_index'], '</div>
-	</div>';
+	</div><!-- #recent -->';
 }
 
 /**
@@ -88,7 +86,7 @@ function template_unread()
 
 	if ($context['showCheckboxes'])
 		echo '
-		<form action="', $scripturl, '?action=quickmod" method="post" accept-charset="', $context['character_set'], '" name="quickModForm" id="quickModForm" style="margin: 0;">
+		<form action="', $scripturl, '?action=quickmod" method="post" accept-charset="', $context['character_set'], '" name="quickModForm" id="quickModForm">
 			<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 			<input type="hidden" name="qaction" value="markread">
 			<input type="hidden" name="redirect_url" value="action=unread', (!empty($context['showing_all_topics']) ? ';all' : ''), $context['querystring_board_limits'], '">';
@@ -97,8 +95,11 @@ function template_unread()
 	{
 		echo '
 			<div class="pagesection">
-				', $context['menu_separator'], '<a href="#bot" class="topbottom floatleft">', $txt['go_down'], '</a>
-				<div class="pagelinks floatleft">', $context['page_index'], '</div>
+				', $context['menu_separator'], '
+				<div class="pagelinks floatleft">
+					<a href="#bot" class="button">', $txt['go_down'], '</a>
+					', $context['page_index'], '
+				</div>
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
 			</div>';
 
@@ -120,11 +121,11 @@ function template_unread()
 		if ($context['showCheckboxes'])
 			echo '
 					<div class="moderation">
-						<input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');" class="input_check">
+						<input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');">
 					</div>';
 
 		echo '
-				</div>
+				</div><!-- #topic_header -->
 				<div id="topic_container">';
 
 		foreach ($context['topics'] as $topic)
@@ -140,15 +141,19 @@ function template_unread()
 			// Now we handle the icons
 			echo '
 							<div class="icons floatright">';
+
 			if ($topic['is_locked'])
 				echo '
 								<i class="fa fa-lock fa-lg floatright"></i>';
+
 			if ($topic['is_sticky'])
 				echo '
 								<i class="fa fa-thumb-tack fa-lg floatright"></i>';
+
 			if ($topic['is_poll'])
 				echo '
 								<i class="fa fa-bar-chart fa-lg floatright"></i>';
+
 			echo '
 							</div>';
 
@@ -160,8 +165,8 @@ function template_unread()
 							<p class="floatleft">
 								', $topic['first_post']['started_by'], '
 							</p>
-							<small id="pages', $topic['first_post']['id'], '">&nbsp;', $topic['pages'], '</small>
-						</div>
+							<small id="pages', $topic['first_post']['id'], '">', $topic['pages'], '</small>
+						</div><!-- .info -->
 						<div class="board_stats centertext">
 							<p>
 								', $topic['replies'], ' ', $txt['replies'], '
@@ -176,26 +181,29 @@ function template_unread()
 			if ($context['showCheckboxes'])
 				echo '
 						<div class="moderation">
-							<input type="checkbox" name="topics[]" value="', $topic['id'], '" class="input_check">
+							<input type="checkbox" name="topics[]" value="', $topic['id'], '">
 						</div>';
 
-				echo '
-					</div>';
+			echo '
+					</div><!-- $topic[css_class] -->';
 		}
 
 		if (empty($context['topics']))
 			echo '
-						<div style="display: none;"></div>';
+					<div style="display: none;"></div>';
 
 		echo '
-				</div>
-			</div>';
+				</div><!-- #topic_container -->
+			</div><!-- #unread -->';
 
 		echo '
 			<div class="pagesection">
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
-				', $context['menu_separator'], '<a href="#recent" class="topbottom floatleft">', $txt['go_up'], '</a>
-				<div class="pagelinks">', $context['page_index'], '</div>
+				', $context['menu_separator'], '
+				<div class="pagelinks">
+					<a href="#recent" class="button">', $txt['go_up'], '</a>
+					', $context['page_index'], '
+				</div>
 			</div>';
 	}
 	else
@@ -211,7 +219,7 @@ function template_unread()
 		</form>';
 
 	echo '
-	</div>';
+	</div><!-- #recent -->';
 
 	if (empty($context['no_topic_listing']))
 		template_topic_legend();
@@ -229,7 +237,7 @@ function template_replies()
 
 	if ($context['showCheckboxes'])
 		echo '
-		<form action="', $scripturl, '?action=quickmod" method="post" accept-charset="', $context['character_set'], '" name="quickModForm" id="quickModForm" style="margin: 0;">
+		<form action="', $scripturl, '?action=quickmod" method="post" accept-charset="', $context['character_set'], '" name="quickModForm" id="quickModForm">
 			<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 			<input type="hidden" name="qaction" value="markread">
 			<input type="hidden" name="redirect_url" value="action=unreadreplies', (!empty($context['showing_all_topics']) ? ';all' : ''), $context['querystring_board_limits'], '">';
@@ -238,8 +246,11 @@ function template_replies()
 	{
 		echo '
 			<div class="pagesection">
-				', $context['menu_separator'], '<a href="#bot" class="topbottom floatleft">', $txt['go_down'], '</a>
-				<div class="pagelinks floatleft">', $context['page_index'], '</div>
+				', $context['menu_separator'], '
+				<div class="pagelinks floatleft">
+					<a href="#bot" class="button">', $txt['go_down'], '</a>
+					', $context['page_index'], '
+				</div>
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
 			</div>';
 
@@ -259,77 +270,85 @@ function template_replies()
 
 		// Show a "select all" box for quick moderation?
 		if ($context['showCheckboxes'])
-				echo '
+			echo '
 					<div class="moderation">
-						<input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');" class="input_check">
+						<input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');">
 					</div>';
 
 		echo '
-				</div>
+				</div><!-- #topic_header -->
 				<div id="topic_container">';
 
 		foreach ($context['topics'] as $topic)
 		{
 			echo '
-						<div class="', $topic['css_class'], '">
-							<div class="board_icon">
-								<img src="', $topic['first_post']['icon_url'], '" alt="">
-								', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '', '
-							</div>
-							<div class="info">';
+					<div class="', $topic['css_class'], '">
+						<div class="board_icon">
+							<img src="', $topic['first_post']['icon_url'], '" alt="">
+							', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '', '
+						</div>
+						<div class="info">';
 
 			// Now we handle the icons
 			echo '
-								<div class="icons floatright">';
+							<div class="icons floatright">';
+
 			if ($topic['is_locked'])
 				echo '
-									<i class="fa fa-lock fa-lg floatright"></i>';
+								<i class="fa fa-lock fa-lg floatright"></i>';
+
 			if ($topic['is_sticky'])
 				echo '
-									<i class="fa fa-thumb-tack fa-lg floatright"></i>';
+								<i class="fa fa-thumb-tack fa-lg floatright"></i>';
+
 			if ($topic['is_poll'])
 				echo '
-									<i class="fa fa-bar-chart fa-lg floatright"></i>';
-			echo '
-								</div>';
+								<i class="fa fa-bar-chart fa-lg floatright"></i>';
 
 			echo '
-								<div class="recent_title">
-									<a href="', $topic['new_href'], '" id="newicon', $topic['first_post']['id'], '"><span class="new_posts">' . $txt['new'] . '</span></a>
-									', $topic['is_sticky'] ? '<strong>' : '', '<span title="', $topic[(empty($modSettings['message_index_preview_first']) ? 'last_post' : 'first_post')]['preview'], '"><span id="msg_' . $topic['first_post']['id'] . '">', $topic['first_post']['link'], '</span>', $topic['is_sticky'] ? '</strong>' : '', '
-								</div>
-								<p class="floatleft">
-									', $topic['first_post']['started_by'], '
-								</p>
-								<small id="pages', $topic['first_post']['id'], '">&nbsp;', $topic['pages'], '</small>
-							</div>
-							<div class="board_stats centertext">
-								<p>
-									', $topic['replies'], ' ', $txt['replies'], '
-									<br>
-									', $topic['views'], ' ', $txt['views'], '
-								</p>
-							</div>
-							<div class="lastpost">
-								', sprintf($txt['last_post_topic'], '<a href="' . $topic['last_post']['href'] . '">' . $topic['last_post']['time'] . '</a>', $topic['last_post']['member']['link']), '
 							</div>';
+
+			echo '
+							<div class="recent_title">
+								<a href="', $topic['new_href'], '" id="newicon', $topic['first_post']['id'], '"><span class="new_posts">' . $txt['new'] . '</span></a>
+								', $topic['is_sticky'] ? '<strong>' : '', '<span title="', $topic[(empty($modSettings['message_index_preview_first']) ? 'last_post' : 'first_post')]['preview'], '"><span id="msg_' . $topic['first_post']['id'] . '">', $topic['first_post']['link'], '</span>', $topic['is_sticky'] ? '</strong>' : '', '
+							</div>
+							<p class="floatleft">
+								', $topic['first_post']['started_by'], '
+							</p>
+							<small id="pages', $topic['first_post']['id'], '">', $topic['pages'], '</small>
+						</div><!-- .info -->
+						<div class="board_stats centertext">
+							<p>
+								', $topic['replies'], ' ', $txt['replies'], '
+								<br>
+								', $topic['views'], ' ', $txt['views'], '
+							</p>
+						</div>
+						<div class="lastpost">
+							', sprintf($txt['last_post_topic'], '<a href="' . $topic['last_post']['href'] . '">' . $topic['last_post']['time'] . '</a>', $topic['last_post']['member']['link']), '
+						</div>';
 
 			if ($context['showCheckboxes'])
 				echo '
-							<div class="moderation">
-								<input type="checkbox" name="topics[]" value="', $topic['id'], '" class="input_check">
-							</div>';
-			echo '
+						<div class="moderation">
+							<input type="checkbox" name="topics[]" value="', $topic['id'], '">
 						</div>';
+
+			echo '
+					</div><!-- $topic[css_class] -->';
 		}
 
 		echo '
-					</div>
-			</div>
+				</div><!-- #topic_container -->
+			</div><!-- #unreadreplies -->
 			<div class="pagesection">
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
-				', $context['menu_separator'], '<a href="#recent" class="topbottom floatleft">', $txt['go_up'], '</a>
-				<div class="pagelinks">', $context['page_index'], '</div>
+				', $context['menu_separator'], '
+				<div class="pagelinks">
+					<a href="#recent" class="button">', $txt['go_up'], '</a>
+					', $context['page_index'], '
+				</div>
 			</div>';
 	}
 	else
@@ -345,7 +364,7 @@ function template_replies()
 		</form>';
 
 	echo '
-	</div>';
+	</div><!-- #recent -->';
 
 	if (empty($context['no_topic_listing']))
 		template_topic_legend();
