@@ -815,7 +815,7 @@ function template_search()
 			<div class="roundframe">
 				<div class="cat_bar">
 					<h3 class="catbg">
-						<i id="advanced_panel_toggle" class="fa toggle_up fa-lg floatright" style="display: none;"></i><a href="#" id="advanced_panel_link">', $txt['pm_search_choose_label'], '</a>
+						<i id="advanced_panel_toggle" class="fa caret-square-up fa-lg floatright" style="display: none;"></i><a href="#" id="advanced_panel_link">', $txt['pm_search_choose_label'], '</a>
 					</h3>
 				</div>
 				<div id="advanced_panel_div">
@@ -1155,7 +1155,7 @@ function template_send()
 		<br>
 		<div id="postDraftOptionsHeader" class="cat_bar">
 			<h3 class="catbg">
-				<i id="postDraftExpand" class="fa toggle_up fa-lg floatright" style="display: none;"></i> <strong><a href="#" id="postDraftExpandLink">', $txt['draft_load'], '</a></strong>
+				<i id="postDraftExpand" class="fa caret-square-up fa-lg floatright" style="display: none;"></i> <strong><a href="#" id="postDraftExpandLink">', $txt['draft_load'], '</a></strong>
 			</h3>
 		</div>
 		<div id="postDraftOptions" class="load_drafts padding">

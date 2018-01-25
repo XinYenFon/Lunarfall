@@ -740,15 +740,13 @@ img.sort, .sort {
 	display: block;
 }
 .profile_user_links ol {
-	margin: 0 10px;
+	margin: 0 5px;
 	font-size: 0; /* fix for extra space between inline-blocks */
 	clear: both;
 }
 .profile_user_links li {
 	display: inline-block;
 	font-size: .8rem;
-	min-width: 18ex;
-	width: 50%;
 	margin-bottom: 4px;
 }
 /* Fixes bug with border-box on scrollable js */
@@ -3377,11 +3375,8 @@ tr[id^='list_news_lists_'] textarea {
 }
 
 /* Lunarfall special */
-i {
+i, svg {
 	margin-right: 5px;
-}
-.toggle_up, .toggle_down {
-	margin: 5px;
 }
 .notify_dropdown a:hover,
 #pm_menu .unread:hover, #alerts_menu .unread:hover {

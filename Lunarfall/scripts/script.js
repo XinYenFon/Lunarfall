@@ -809,9 +809,9 @@ smc_Toggle.prototype.init = function ()
 			if (this.opt.aSwapImages[i].isCSS)
 			{
 				if (!this.opt.aSwapImages[i].cssCollapsed)
-					this.opt.aSwapImages[i].cssCollapsed = 'toggle_down';
+					this.opt.aSwapImages[i].cssCollapsed = 'fa-caret-square-down';
 				if (!this.opt.aSwapImages[i].cssExpanded)
-					this.opt.aSwapImages[i].cssExpanded = 'toggle_up';
+					this.opt.aSwapImages[i].cssExpanded = 'fa-caret-square-up';
 			}
 			else
 			{

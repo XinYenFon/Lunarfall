@@ -603,7 +603,7 @@ function template_browse()
 			<div id="advanced_box">
 				<div class="cat_bar">
 					<h3 class="catbg">
-						<i id="advanced_panel_toggle" class="fa toggle_down fa-lg floatright" style="display: none;"></i>
+						<i id="advanced_panel_toggle" class="fa caret-square-down fa-lg floatright" style="display: none;"></i>
 						<a href="#" id="advanced_panel_link">', $txt['package_advanced_button'], '</a>
 					</h3>
 				</div>
@@ -708,7 +708,7 @@ function template_servers()
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<a class="download_new_package">
-					<i class="fa toggle_down fa-lg floatright" alt="*" title="', $txt['show'], '"></i>
+					<i class="fa caret-square-down fa-lg floatright" alt="*" title="', $txt['show'], '"></i>
 					', $txt['download_new_package'], '
 				</a>
 			</h3>
@@ -876,7 +876,7 @@ function template_package_list()
 		{
 			echo '
 				<li>
-					<strong><i id="ps_img_', $i, '" class="fa toggle_up fa-lg" alt="*" style="display: none;"></i> ', $packageSection['title'], '</strong>';
+					<strong><i id="ps_img_', $i, '" class="fa caret-square-up fa-lg" alt="*" style="display: none;"></i> ', $packageSection['title'], '</strong>';
 
 			if (!empty($packageSection['text']))
 				echo '
@@ -917,7 +917,7 @@ function template_package_list()
 				{
 					// 1. Some mod [ Download ].
 					echo '
-						<strong><i id="ps_img_', $i, '_pkg_', $id, '" class="fa toggle_up fa-lg" alt="*" style="display: none;"></i> ', $package['can_install'] || !empty($package['can_emulate_install']) ? '<strong>' . $package['name'] . '</strong> <a href="' . $package['download']['href'] . '">[ ' . $txt['download'] . ' ]</a>': $package['name'], '</strong>
+						<strong><i id="ps_img_', $i, '_pkg_', $id, '" class="fa caret-square-up fa-lg" alt="*" style="display: none;"></i> ', $package['can_install'] || !empty($package['can_emulate_install']) ? '<strong>' . $package['name'] . '</strong> <a href="' . $package['download']['href'] . '">[ ' . $txt['download'] . ' ]</a>': $package['name'], '</strong>
 						<ul id="package_section_', $i, '_pkg_', $id, '" class="package_section">';
 
 					// Show the mod type?
@@ -1160,7 +1160,7 @@ function template_control_chmod()
 
 	echo '
 				<div class="bordercolor" id="ftp_error_div" style="', (!empty($context['package_ftp']['error']) ? '' : 'display:none;'), 'padding: 1px; margin: 1ex;">
-					<div class="windowbg2" id="ftp_error_innerdiv" style="padding: 1ex;">
+					<div class="windowbg" id="ftp_error_innerdiv" style="padding: 1ex;">
 						<tt id="ftp_error_message">', !empty($context['package_ftp']['error']) ? $context['package_ftp']['error'] : '', '</tt>
 					</div>
 				</div>';

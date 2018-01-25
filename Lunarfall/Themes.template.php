@@ -574,7 +574,7 @@ function template_set_settings()
 					', $txt['theme_options'], '
 				</h3>
 			</div>
-			<div class="windowbg2 noup">
+			<div class="windowbg">
 				<dl class="settings">';
 
 	$skeys = array_keys($context['settings']);
@@ -727,7 +727,7 @@ function template_pick()
 					<a href="', $scripturl, '?action=theme;sa=pick;u=', $context['current_member'], ';th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], !empty($theme['variants']) ? ';vrt=' . $theme['selected_variant'] : '', '">', $theme['name'], '</a>
 				</h3>
 			</div>
-			<div class="', $theme['selected'] ? 'windowbg' : 'windowbg2', ' noup">
+			<div class="', $theme['selected'] ? 'windowbg' : 'windowbg', '">
 				<div class="flow_hidden">
 					<div class="floatright">
 						<a href="', $scripturl, '?action=theme;sa=pick;u=', $context['current_member'], ';theme=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], '" id="theme_thumb_preview_', $theme['id'], '" title="', $txt['theme_preview'], '">

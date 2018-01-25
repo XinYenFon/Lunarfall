@@ -633,7 +633,7 @@ function template_edit_censored()
 									</dd>
 								</dl>
 								<input type="submit" name="save_censor" value="', $txt['save'], '" class="button">
-							</div><!-- .windowbg2 -->';
+							</div><!-- .windowbg -->';
 
 	// This table lets you test out your filters by typing in rude words and seeing what comes out.
 	echo '
@@ -691,7 +691,7 @@ function template_not_done()
 								<input type="submit" name="cont" value="', $txt['not_done_continue'], '" class="button">
 								', $context['continue_post_data'], '
 							</form>
-						</div><!-- .windowbg2 -->
+						</div><!-- .windowbg -->
 					</div><!-- #admincenter -->
 					<script>
 						var countdown = ', $context['continue_countdown'], ';
@@ -978,7 +978,7 @@ function template_show_settings()
 
 	if ($is_open)
 		echo '
-							</div><!-- .windowbg2 -->';
+							</div><!-- .windowbg -->';
 
 
 	// At least one token has to be used!
@@ -1078,7 +1078,7 @@ function template_edit_profile_field()
 							<div id="section_header" class="cat_bar">
 								<h3 class="catbg">', $context['page_title'], '</h3>
 							</div>
-							<div class="windowbg2 noup">
+							<div class="windowbg noup">
 								<fieldset>
 									<legend>', $txt['custom_edit_general'], '</legend>
 
@@ -1267,7 +1267,7 @@ function template_edit_profile_field()
 								<input type="submit" name="delete" value="', $txt['delete'], '" data-confirm="', $txt['custom_edit_delete_sure'], '" class="button you_sure">';
 
 	echo '
-							</div><!-- .windowbg2 -->
+							</div><!-- .windowbg -->
 							<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 							<input type="hidden" name="', $context['admin-ecp_token_var'], '" value="', $context['admin-ecp_token'], '">
 						</form>
@@ -1303,7 +1303,7 @@ function template_admin_search_results()
 								</h3>
 							</form>
 						</div><!-- #section_header -->
-						<div class="windowbg2">';
+						<div class="windowbg">';
 
 	if (empty($context['search_results']))
 	{
