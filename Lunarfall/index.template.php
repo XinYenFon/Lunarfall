@@ -42,9 +42,9 @@ function template_init()
 {
 	global $settings, $txt;
 
-	//loadCSSFile('font-awesome.css');
-	loadCSSFile('fa-svg-with-js.css');
-	loadJavaScriptFile('fontawesome-all.js');
+	loadCSSFile('font-awesome.css');
+	//loadCSSFile('fa-svg-with-js.css');
+	//loadJavaScriptFile('fontawesome-all.js');
 	/* $context, $options and $txt may be available for use, but may not be fully populated yet. */
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.

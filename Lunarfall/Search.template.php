@@ -138,7 +138,7 @@ function template_main()
 			<div class="roundframe alt">
 				<div class="title_bar">
 					<h4 class="titlebg">
-						<i id="advanced_panel_toggle" class="fa fa-toggle-down fa-lg floatright" style="display: none;"></i>
+						<i id="advanced_panel_toggle" class="fa toggle_down fa-lg floatright" style="display: none;"></i>
 						<a href="#" id="advanced_panel_link">', $txt['choose_board'], '</a>
 					</h4>
 				</div>

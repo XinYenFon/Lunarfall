@@ -122,7 +122,7 @@ function template_reported_posts_block()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<i id="reported_posts_toggle" class="fa fa-', !empty($context['admin_prefs']['mcrp']) ? 'caret-square-down' : 'caret-square-up', ' fa-lg floatright" style="display: none;"></i>
+				<i id="reported_posts_toggle" class="fa ', !empty($context['admin_prefs']['mcrp']) ? 'toggle_down' : 'toggle_up', ' fa-lg floatright" style="display: none;"></i>
 				<a href="', $scripturl, '?action=moderate;area=reportedposts" id="reported_posts_link">', $txt['mc_recent_reports'], '</a>
 			</h3>
 		</div>
@@ -327,7 +327,7 @@ function template_reported_members_block()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<i id="reported_members_toggle" class="fa fa-', !empty($context['admin_prefs']['mcru']) ? 'caret-square-down' : 'caret-square-up', ' fa-lg floatright" style="display: none;"></i>
+				<i id="reported_members_toggle" class="fa ', !empty($context['admin_prefs']['mcru']) ? 'toggle_down' : 'toggle_up', ' fa-lg floatright" style="display: none;"></i>
 				<a href="', $scripturl, '?action=moderate;area=reportedmembers" id="reported_members_link">', $txt['mc_recent_member_reports'], '</a>
 			</h3>
 		</div>

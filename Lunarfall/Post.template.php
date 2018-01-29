@@ -505,7 +505,7 @@ function template_main()
 		echo '
 					<div id="postDraftOptionsHeader" class="title_bar title_top">
 						<h4 class="titlebg">
-							<i id="postDraftExpand" class="fa caret-square-up fa-lg floatright" style="display: none;"></i> <strong><a href="#" id="postDraftExpandLink">', $txt['draft_load'], '</a></strong>
+							<i id="postDraftExpand" class="fa toggle_up fa-lg floatright" style="display: none;"></i> <strong><a href="#" id="postDraftExpandLink">', $txt['draft_load'], '</a></strong>
 						</h4>
 					</div>
 					<div id="postDraftOptions">

@@ -76,7 +76,7 @@ function template_main()
 		// If this category even can collapse, show a link to collapse it.
 		if ($category['can_collapse'])
 			echo '
-					<i id="category_', $category['id'], '_upshrink" class="fa fa-', $category['is_collapsed'] ? 'caret-square-down' : 'caret-square-up', ' floatright fa-lg" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'] ,'" style="display: none;"></i>';
+					<i id="category_', $category['id'], '_upshrink" class="fa ', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright fa-lg" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'] ,'" style="display: none;"></i>';
 
 		echo '
 					', $category['link'], '
@@ -200,7 +200,7 @@ function template_info_center()
 	<div id="info_center">
 		<div class="title_bar">
 			<h3 class="titlebg">
-				<i class="fa fa-caret-square-up fa-lg floatright" id="upshrink_ic" title="', $txt['hide_infocenter'], '" style="display: none;"></i>
+				<i class="fa toggle_up fa-lg floatright" id="upshrink_ic" title="', $txt['hide_infocenter'], '" style="display: none;"></i>
 				<a href="#" id="upshrink_link">', sprintf($txt['info_center_title'], $context['forum_name_html_safe']), '</a>
 			</h3>
 		</div>

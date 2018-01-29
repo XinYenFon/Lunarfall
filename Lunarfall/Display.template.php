@@ -1113,8 +1113,8 @@ function template_quickreply()
 				sImagesUrl: smf_images_url,
 				sContainerId: "quickReplyOptions",
 				sImageId: "quickReplyExpand",
-				sClassCollapsed: "fa-caret-square-up",
-				sClassExpanded: "fa-caret-square-down",
+				sClassCollapsed: "toggle_up",
+				sClassExpanded: "toggle_down",
 				sJumpAnchor: "quickreply",
 				bIsFull: true
 			});

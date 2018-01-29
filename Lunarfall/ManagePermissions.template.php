@@ -113,7 +113,7 @@ function template_permission_index()
 		echo '
 			<div class="cat_bar">
 				<h3 class="catbg">
-					<i id="permissions_panel_toggle" class="fa ', empty($context['show_advanced_options']) ? 'caret-square-down' : 'caret-square-up', ' fa-lg floatright" style="display: none;"></i>
+					<i id="permissions_panel_toggle" class="fa ', empty($context['show_advanced_options']) ? 'toggle_down' : 'toggle_up', ' fa-lg floatright" style="display: none;"></i>
 					<a href="#" id="permissions_panel_link">', $txt['permissions_advanced_options'], '</a>
 				</h3>
 			</div>
@@ -687,7 +687,7 @@ function template_inline_permissions()
 	// This looks really weird, but it keeps things nested properly...
 	echo '
 											<fieldset id="', $context['current_permission'], '">
-												<legend><a href="javascript:void(0);" onclick="document.getElementById(\'', $context['current_permission'], '\').style.display = \'none\';document.getElementById(\'', $context['current_permission'], '_groups_link\').style.display = \'block\'; return false;" class="caret-square-up"> ', $txt['avatar_select_permission'], '</a></legend>';
+												<legend><a href="javascript:void(0);" onclick="document.getElementById(\'', $context['current_permission'], '\').style.display = \'none\';document.getElementById(\'', $context['current_permission'], '_groups_link\').style.display = \'block\'; return false;" class="toggle_up"> ', $txt['avatar_select_permission'], '</a></legend>';
 
 	if (empty($modSettings['permission_enable_deny']))
 		echo '
@@ -748,7 +748,7 @@ function template_inline_permissions()
 	echo '
 											</fieldset>
 
-											<a href="javascript:void(0);" onclick="document.getElementById(\'', $context['current_permission'], '\').style.display = \'block\'; document.getElementById(\'', $context['current_permission'], '_groups_link\').style.display = \'none\'; return false;" id="', $context['current_permission'], '_groups_link" style="display: none;" class="caret-square-down"> ', $txt['avatar_select_permission'], '</a>
+											<a href="javascript:void(0);" onclick="document.getElementById(\'', $context['current_permission'], '\').style.display = \'block\'; document.getElementById(\'', $context['current_permission'], '_groups_link\').style.display = \'none\'; return false;" id="', $context['current_permission'], '_groups_link" style="display: none;" class="toggle_down"> ', $txt['avatar_select_permission'], '</a>
 
 											<script>
 												document.getElementById("', $context['current_permission'], '").style.display = "none";
