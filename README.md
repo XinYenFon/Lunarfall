@@ -2,7 +2,7 @@
 
 #### Theme Version: 0.5.2
 
-![Imgur](https://i.imgur.com/TFPsu0H.png)
+![Preview] (https://raw.githubusercontent.com/Antes/Lunarfall/master/Lunarfall/images/preview.png)
 
 ##### Description
 Lunarfall is a gaming theme for SMF 2.1 with dark/transparent color style. Theme won't be ported back to earlier versions of SMF (Simple Machines Forum).
