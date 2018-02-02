@@ -24,7 +24,7 @@ function template_main()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<a href="', $scripturl, '?action=helpadmin;help=themes" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+				<a href="', $scripturl, '?action=helpadmin;help=themes" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 				', $txt['themeadmin_title'], '
 			</h3>
 		</div>
@@ -341,7 +341,7 @@ function template_set_options()
 			<div class="information noup">
 				', $context['theme_options_reset'] ? $txt['themeadmin_reset_options_info'] : $txt['theme_options_defaults'], '
 			</div>
-			<div class="windowbg">';
+			<div class="windowbg">
 				<dl class="settings">';
 
 	$skeys = array_keys($context['options']);

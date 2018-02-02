@@ -1,5 +1,6 @@
 0.5.2 (XX January 2018)
 * catching core theme changes
+* Upgrade to Font-Awesome 5
 ! A small note, I'm not intending to keep this theme in fully working condition till RC1 so expect huge problems or some ignorance (Sorry :/)
 
 0.5.1 (7 August 2017)

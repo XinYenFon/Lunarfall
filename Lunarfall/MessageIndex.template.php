@@ -275,7 +275,6 @@ function template_main()
 					<div class="board_stats centertext">
 						<p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p>
 					</div>
-					<div class="board_stats centertext"><p>', $topic['replies'], ' ', $txt['replies'], '<br>', $topic['views'], ' ', $txt['views'], '</p></div>
 					<div class="lastpost">
 						<p>', sprintf($txt['last_post_topic'], '<a href="' . $topic['last_post']['href'] . '">' . $topic['last_post']['time'] . '</a>', $topic['last_post']['member']['link']), '</p>
 					</div>';

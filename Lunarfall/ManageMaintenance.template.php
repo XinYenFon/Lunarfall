@@ -284,7 +284,7 @@ function template_maintain_members()
 		</div><!-- .windowbg -->
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<a href="', $scripturl, '?action=helpadmin;help=maintenance_members" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'], '"></span></a> ', $txt['maintain_members'], '
+				<a href="', $scripturl, '?action=helpadmin;help=maintenance_members" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a> ', $txt['maintain_members'], '
 			</h3>
 		</div>
 		<div class="windowbg">

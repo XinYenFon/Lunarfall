@@ -93,7 +93,7 @@ function template_admin()
 							<a href="', $url, '" class="admin_group', !empty($item['inactive']) ? ' inactive' : '', '"><img class="large_admin_menu_icon_file" src="', $item['icon_file'], '" alt="">', $item['label'], '</a>';
 			else
 				echo '
-							<a href="', $url, '"><i class="fa fa-', $item['icon_class'], !empty($item['inactive']) ? ' inactive' : '', ' fa-3x"></i><br>', $item['label'], '</a>';
+							<a href="', $url, '"><i class="fa fa-', $item['plain_class'], !empty($item['inactive']) ? ' inactive' : '', ' fa-3x"></i><br>', $item['label'], '</a>';
 		}
 
 		echo '
@@ -833,7 +833,7 @@ function template_show_settings()
 				// Show the [?] button.
 				if ($config_var['help'])
 					echo '
-										<a id="setting_', $config_var['name'], '_help" href="', $scripturl, '?action=helpadmin;help=', $config_var['help'], '" onclick="return reqOverlayDiv(this.href);"><span class="generic_icons help" title="', $txt['help'], '"></span></a> ';
+										<a id="setting_', $config_var['name'], '_help" href="', $scripturl, '?action=helpadmin;help=', $config_var['help'], '" onclick="return reqOverlayDiv(this.href);"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a> ';
 
 				echo '
 										<a id="setting_', $config_var['name'], '"></a> <span', ($config_var['disabled'] ? ' style="color: #777777;"' : ($config_var['invalid'] ? ' class="error"' : '')), '><label for="', $config_var['name'], '">', $config_var['label'], '</label>', $subtext, ($config_var['type'] == 'password' ? '<br><em>' . $txt['admin_confirm_password'] . '</em>' : ''), '</span>
@@ -1108,7 +1108,7 @@ function template_edit_profile_field()
 											</select>
 										</dd>
 										<dt>
-											<a id="field_reg_require" href="', $scripturl, '?action=helpadmin;help=field_reg_require" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+											<a id="field_reg_require" href="', $scripturl, '?action=helpadmin;help=field_reg_require" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 											<strong><label for="reg">', $txt['custom_edit_registration'], ':</label></strong>
 										</dt>
 										<dd>
@@ -1144,7 +1144,7 @@ function template_edit_profile_field()
 											</select>
 										</dd>
 										<dt>
-											<a id="field_show_enclosed" href="', $scripturl, '?action=helpadmin;help=field_show_enclosed" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+											<a id="field_show_enclosed" href="', $scripturl, '?action=helpadmin;help=field_show_enclosed" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 											<strong><label for="enclose">', $txt['custom_edit_enclose'], ':</label></strong><br>
 											<span class="smalltext">', $txt['custom_edit_enclose_desc'], '</span>
 										</dt>
@@ -1190,7 +1190,7 @@ function template_edit_profile_field()
 											<input type="checkbox" name="bbc" id="bbc_dd"', $context['field']['bbc'] ? ' checked' : '', '>
 										</dd>
 										<dt id="options_dt">
-											<a href="', $scripturl, '?action=helpadmin;help=customoptions" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+											<a href="', $scripturl, '?action=helpadmin;help=customoptions" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 											<strong><label for="options_dd">', $txt['custom_edit_options'], ':</label></strong><br>
 											<span class="smalltext">', $txt['custom_edit_options_desc'], '</span>
 										</dt>
@@ -1216,7 +1216,7 @@ function template_edit_profile_field()
 									<legend>', $txt['custom_edit_advanced'], '</legend>
 									<dl class="settings">
 										<dt id="mask_dt">
-											<a id="custom_mask" href="', $scripturl, '?action=helpadmin;help=custom_mask" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+											<a id="custom_mask" href="', $scripturl, '?action=helpadmin;help=custom_mask" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 											<strong><label for="mask">', $txt['custom_edit_mask'], ':</label></strong><br>
 											<span class="smalltext">', $txt['custom_edit_mask_desc'], '</span>
 										</dt>

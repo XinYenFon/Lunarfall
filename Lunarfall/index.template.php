@@ -42,7 +42,7 @@ function template_init()
 {
 	global $settings, $txt;
 
-	loadCSSFile('font-awesome.css');
+	loadCSSFile('fontawesome-all.css');
 	//loadCSSFile('fa-svg-with-js.css');
 	//loadJavaScriptFile('fontawesome-all.js');
 	/* $context, $options and $txt may be available for use, but may not be fully populated yet. */

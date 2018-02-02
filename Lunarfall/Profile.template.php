@@ -71,7 +71,7 @@ function template_profile_popup()
 		echo '
 				<li>
 					<span class="preview" title="', !empty($item['title']) ? $item['title'] : $area['label'], '">
-					<a href="', $item_url, '"><i class="fa fa-', $area['icon_class'],' fa-lg fa-fw"></i></a></span>
+					<a href="', $item_url, '"><i class="fa fa-', $area['plain_class'],' fa-lg fa-fw"></i></a></span>
 				</li>';
 	}
 
@@ -3033,7 +3033,7 @@ function template_profile_timeformat_modify()
 	echo '
 							<dt>
 								<strong><label for="easyformat">', $txt['time_format'], ':</label></strong><br>
-								<a href="', $scripturl, '?action=helpadmin;help=time_format" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+								<a href="', $scripturl, '?action=helpadmin;help=time_format" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 								<span class="smalltext">
 									<label for="time_format">', $txt['date_format'], '</label>
 								</span>

@@ -472,7 +472,7 @@ function template_single_post($message)
 
 	// Show the message anchor and a "new" anchor if this message is new.
 	echo '
-				<div class="', $message['css_class'], '">
+				<div class="', $message['css_class'], ' nopad">
 					', $message['id'] != $context['first_message'] ? '
 					<a id="msg' . $message['id'] . '"></a>' . ($message['first_new'] ? '<a id="new"></a>' : '') : '', '
 					<div class="post_wrapper">';
@@ -853,9 +853,9 @@ function template_single_post($message)
 	// Share this post! I order no?
 		echo '
 						<ul class="post_socialshare qbuttons">
-							<li><a href="//facebook.com/sharer/sharer.php?u=', $message['href'], '" target="_blank"><i class="fa fa-facebook fa-lg fa-fw" title="', $txt['lunarfall_facebook'],'"></i></a></li>
-							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '"><i class="fa fa-twitter fa-lg fa-fw" title="', $txt['lunarfall_twitter'],'"></i></a></li>
-							<li><a href="//plus.google.com/share?url=', $message['href'], '"><i class="fa fa-google-plus fa-lg fa-fw" title="', $txt['lunarfall_gplus'],'"></i></a></li>
+							<li><a href="//facebook.com/sharer/sharer.php?u=', $message['href'], '" target="_blank"><i class="fab fa-facebook-f fa-lg fa-fw" title="', $txt['lunarfall_facebook'],'"></i></a></li>
+							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '"><i class="fab fa-twitter fa-lg fa-fw" title="', $txt['lunarfall_twitter'],'"></i></a></li>
+							<li><a href="//plus.google.com/share?url=', $message['href'], '"><i class="fab fa-google-plus-g fa-lg fa-fw" title="', $txt['lunarfall_gplus'],'"></i></a></li>
 						</ul>';
 	// Can i haz fun? k thx bai!
 	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
@@ -881,16 +881,16 @@ function template_single_post($message)
 		// Can the user modify the contents of this post?
 		if ($message['can_modify'])
 			echo '
-											<li><a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], '"><i class="fa fa-pencil fa-lg" title="', $txt['modify'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], '"><i class="fa fa-pencil-alt fa-lg" title="', $txt['modify'], '"></i></a></li>';
 
 		// How about... even... remove it entirely?!
 		if ($context['can_delete'] && ($context['topic_first_message'] == $message['id']))
 			echo '
-											<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['are_sure_remove_topic'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['remove_topic'], '</a></li>';
+											<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['are_sure_remove_topic'], '" class="you_sure"><i class="fa fa-times fa-lg" title="', $txt['remove_topic'], '"></i></a></li>';
 
 		elseif ($message['can_remove'] && ($context['topic_first_message'] != $message['id']))
 			echo '
-											<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message_question'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['remove'], '</a></li>';
+											<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message_question'], '" class="you_sure"><i class="fa fa-times fa-lg" title="', $txt['remove'], '"></i></a></li>';
 
 		// What about splitting it off the rest of the topic?
 		if ($context['can_split'] && !empty($context['real_num_replies']))

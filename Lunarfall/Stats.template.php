@@ -25,7 +25,7 @@ function template_main()
 		<div class="roundframe">
 			<div class="title_bar">
 				<h4 class="titlebg">
-					<i class="fa fa-area-chart fa-lg"></i> ', $txt['general_stats'], '
+					<i class="fa fa-chart-area fa-lg"></i> ', $txt['general_stats'], '
 				</h4>
 			</div>
 			<dl class="stats half_content nobb">

@@ -122,7 +122,7 @@ function template_permission_index()
 					<legend>', $txt['permissions_with_selection'], '</legend>
 					<dl class="settings">
 						<dt>
-							<a class="help" href="', $scripturl, '?action=helpadmin;help=permissions_quickgroups" onclick="return reqOverlayDiv(this.href);"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+							<a class="help" href="', $scripturl, '?action=helpadmin;help=permissions_quickgroups" onclick="return reqOverlayDiv(this.href);"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 							', $txt['permissions_apply_pre_defined'], ':
 						</dt>
 						<dd>

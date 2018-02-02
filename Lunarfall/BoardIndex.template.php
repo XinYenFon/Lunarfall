@@ -374,7 +374,7 @@ function template_ic_block_stats()
 	echo '
 			<div class="sub_bar">
 				<h4 class="subbg">
-					<a href="', $scripturl, '?action=stats" title="', $txt['more_stats'], '"><i class="fa fa-area-chart fa-lg"></i> ', $txt['forum_stats'], '</a>
+					<a href="', $scripturl, '?action=stats" title="', $txt['more_stats'], '"><i class="fa fa-chart-area fa-lg"></i> ', $txt['forum_stats'], '</a>
 				</h4>
 			</div>
 			<p class="inline">
@@ -394,7 +394,7 @@ function template_ic_block_online()
 	echo '
 			<div class="sub_bar">
 				<h4 class="subbg">
-					', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', '<i class="fa fa-group fa-lg"></i> ', $txt['online_users'], '', $context['show_who'] ? '</a>' : '', '
+					', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', '<i class="fa fa-users fa-lg"></i> ', $txt['online_users'], '', $context['show_who'] ? '</a>' : '', '
 				</h4>
 			</div>
 			<p class="inline">
