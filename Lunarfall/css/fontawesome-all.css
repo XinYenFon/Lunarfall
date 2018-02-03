@@ -851,7 +851,8 @@ readers do not read off random characters that represent icons */
 .fa-docker:before {
   content: "\f395"; }
 
-.fa-dollar-sign:before {
+.fa-dollar-sign:before,
+.fa-paid:before {
   content: "\f155"; }
 
 .fa-dot-circle:before {
@@ -945,7 +946,8 @@ readers do not read off random characters that represent icons */
 
 .fa-exclamation-triangle:before,
 .fa-members_watched:before,
-.check:before {
+.check:before,
+.fa-warning:before {
   content: "\f071"; }
 
 .fa-expand:before {
@@ -1192,8 +1194,7 @@ readers do not read off random characters that represent icons */
 .fa-goodreads-g:before {
   content: "\f3a9"; }
 
-.fa-google:before,
-.fa-engines:before {
+.fa-google:before {
   content: "\f1a0"; }
 
 .fa-google-drive:before {
@@ -1458,7 +1459,8 @@ readers do not read off random characters that represent icons */
 .fa-level-up-alt:before {
   content: "\f3bf"; }
 
-.fa-life-ring:before {
+.fa-life-ring:before,
+.fa-support:before {
   content: "\f1cd"; }
 
 .fa-lightbulb:before {
@@ -1752,8 +1754,7 @@ readers do not read off random characters that represent icons */
 .fa-paw:before {
   content: "\f1b0"; }
 
-.fa-paypal:before,
-.fa-paid:before {
+.fa-paypal:before {
   content: "\f1ed"; }
 
 .fa-pen-square:before {
@@ -2053,7 +2054,8 @@ readers do not read off random characters that represent icons */
 .fa-sistrix:before {
   content: "\f3ee"; }
 
-.fa-sitemap:before {
+.fa-sitemap:before,
+.fa-engines:before {
   content: "\f0e8"; }
 
 .fa-skyatlas:before {

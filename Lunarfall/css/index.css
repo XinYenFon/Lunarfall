@@ -3380,8 +3380,11 @@ i {
 .display_title i {
 	font-size: 23px;
 }
+#messageindex .info .icons {
+	padding: 5px 0;
+}
 #messageindex i {
-	margin: 3px;
+	margin: 0;
 }
 .buttonlist i {
 	display: none;

@@ -237,23 +237,23 @@ function template_main()
 
 			if ($topic['is_watched'])
 				echo '
-								<i class="fa fa-binoculars fa-lg floatright" title="', $txt['watching_this_topic'], '"></i>';
+								<i class="fa fa-binoculars fa-lg fa-fw" title="', $txt['watching_this_topic'], '"></i>';
 
 			if ($topic['is_locked'])
 				echo '
-								<i class="fa fa-lock fa-lg floatright"></i>';
+								<i class="fa fa-lock fa-lg fa-fw"></i>';
 
 			if ($topic['is_sticky'])
 				echo '
-								<i class="fa fa-thumb-tack fa-lg floatright"></i>';
+								<i class="fa fa-thumbtack fa-lg fa-fw"></i>';
 
 			if ($topic['is_redirect'])
 				echo '
-								<i class="fa fa-board_redirect fa-lg floatright"></i>';
+								<i class="fa fa-board_redirect fa-lg fa-fw"></i>';
 
 			if ($topic['is_poll'])
 				echo '
-								<i class="fa fa-bar-chart fa-lg floatright"></i>';
+								<i class="fa fa-chart-bar fa-lg fa-fw"></i>';
 
 			echo '
 							</div>';
@@ -429,12 +429,12 @@ function template_topic_legend()
 		echo '
 			<p class="floatleft">', !empty($modSettings['enableParticipation']) && $context['user']['is_logged'] ? '
 				<i class="fa fa-user fa-fw fa-lg"></i> ' . $txt['participation_caption'] . '<br>' : '', '
-				'. ($modSettings['pollMode'] == '1' ? '<i class="fa fa-bar-chart fa-fw fa-lg"></i> ' . $txt['poll'] : '') . '<br>
-				<i class="fa fa-arrow-circle-o-right fa-fw fa-lg"></i> ' . $txt['moved_topic'] . '<br>
+				'. ($modSettings['pollMode'] == '1' ? '<i class="fa fa-chart-bar fa-fw fa-lg"></i> ' . $txt['poll'] : '') . '<br>
+				<i class="fa fa-arrow-alt-circle-right fa-fw fa-lg"></i> ' . $txt['moved_topic'] . '<br>
 			</p>
 			<p>
 				<i class="fa fa-lock fa-fw fa-lg"></i> ' . $txt['locked_topic'] . '<br>
-				<i class="fa fa-thumb-tack fa-fw fa-lg"></i> ' . $txt['sticky_topic'] . '<br>
+				<i class="fa fa-thumbtack fa-fw fa-lg"></i> ' . $txt['sticky_topic'] . '<br>
 			</p>';
 
 	if (!empty($context['jump_to']))
