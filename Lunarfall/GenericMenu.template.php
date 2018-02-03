@@ -54,7 +54,7 @@ function template_generic_menu_mobile(&$menu_context)
 			<div class="popup_window description">
 				<div class="popup_heading">
 					', $txt['mobile_user_menu'], '
-					<a href="javascript:void(0);" class="generic_icons hide_popup"></a>
+					<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a>
 				</div>
 				', template_generic_menu($menu_context), '
 			</div>
@@ -94,7 +94,7 @@ function template_generic_menu(&$menu_context)
 
 			echo '
 								<li', !empty($area['subsections']) ? ' class="subsections"' : '', '>
-									<a class="', $area['icon_class'], !empty($area['selected']) ? ' chosen ' : '', '" href="', (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $i), $menu_context['extra_parameters'], '">', $area['icon'], $area['label'], '</a>';
+									<a class="', $area['icon_class'], !empty($area['selected']) ? ' chosen ' : '', '" href="', (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $i), $menu_context['extra_parameters'], '"><i class="fa fa-', $area['plain_class'],' fa-fw" title="', $area['label'], '"></i>', $area['label'], '</a>';
 
 			// Is this the current area, or just some area?
 			if (!empty($area['selected']) && empty($context['tabs']))

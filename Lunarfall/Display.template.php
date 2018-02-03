@@ -298,7 +298,7 @@ function template_main()
 			<div class="popup_window description">
 				<div class="popup_heading">
 					', $txt['mobile_action'], '
-					<a href="javascript:void(0);" class="generic_icons hide_popup"></a>
+					<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a>
 				</div>
 				', template_button_strip($context['normal_buttons']), '
 			</div>
@@ -311,7 +311,7 @@ function template_main()
 			<div class="popup_window description">
 				<div class="popup_heading">
 					', $txt['mobile_moderation'], '
-					<a href="javascript:void(0);" class="generic_icons hide_popup"></a>
+					<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a>
 				</div>
 				<div id="moderationbuttons_mobile">
 					', template_button_strip($context['mod_buttons'], 'bottom', array('id' => 'moderationbuttons_strip_mobile')), '

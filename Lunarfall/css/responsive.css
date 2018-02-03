@@ -16,6 +16,9 @@
 		padding: 0;
 		margin: 0 auto;
 	}
+	#mobile_user_menu a {
+		padding: 15px 0 !important;
+	}
 	h1.forumtitle a, h1.forumtitle {
 		padding: 5px 0 0 4px !important;
 		max-width: 300px;

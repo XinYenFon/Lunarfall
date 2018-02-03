@@ -406,7 +406,7 @@ function template_main()
 	<div id="mobile_action" class="popup_container">
 		<div class="popup_window description">
 			<div class="popup_heading">', $txt['mobile_action'], '
-				<a href="javascript:void(0);" class="generic_icons hide_popup"></a>
+				<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a>
 			</div>
 			', template_button_strip($context['normal_buttons']), '
 		</div>

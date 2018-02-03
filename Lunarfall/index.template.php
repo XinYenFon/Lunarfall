@@ -337,7 +337,7 @@ function template_body_above()
 				<div id="mobile_user_menu" class="popup_container">
 					<div class="popup_window description">
 						<div class="popup_heading">', $txt['mobile_user_menu'], '
-						<a href="javascript:void(0);" class="generic_icons hide_popup"></a></div>
+						<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a></div>
 						', template_menu(), '
 					</div>
 				</div>';
