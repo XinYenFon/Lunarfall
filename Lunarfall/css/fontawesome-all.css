@@ -331,10 +331,12 @@ readers do not read off random characters that represent icons */
 .fa-arrow-down:before {
   content: "\f063"; }
 
-.fa-arrow-left:before {
+.fa-arrow-left:before,
+.fa-floatleft:before {
   content: "\f060"; }
 
-.fa-arrow-right:before {
+.fa-arrow-right:before,
+.fa-floatright:before {
   content: "\f061"; }
 
 .fa-arrow-up:before {
@@ -636,7 +638,8 @@ readers do not read off random characters that represent icons */
   content: "\f1fe"; }
 
 .fa-chart-bar:before,
-.button_add_poll:before {
+.button_add_poll:before,
+.fa-poll:before {
   content: "\f080"; }
 
 .fa-chart-line:before {
@@ -940,7 +943,8 @@ readers do not read off random characters that represent icons */
   content: "\f1d1"; }
 
 .fa-envelope:before,
-.fa-mail:before {
+.fa-mail:before,
+.fa-email:before {
   content: "\f0e0"; }
 
 .fa-envelope-open:before {

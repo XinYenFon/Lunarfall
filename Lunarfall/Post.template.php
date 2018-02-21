@@ -819,16 +819,16 @@ function template_main()
 			echo '
 			<div class="windowbg">
 				<div id="msg', $post['id'], '">
-					<h5 class="floatleft">
+					<h5>
 						<span>', $txt['posted_by'], '</span> ', $post['poster'], '
 					</h5>
-					&nbsp;-&nbsp;', $post['time'];
+					', $post['time'];
 
 			if ($context['can_quote'])
 				echo '
 					<ul class="qbuttons" id="msg_', $post['id'], '_quote">
 						<li style="display:none;" id="quoteSelected_', $post['id'], '" data-msgid="', $post['id'], '"><a href="javascript:void(0)"><i class="fa fa-quote-left fa-lg" title="', $txt['quote_selected_action'] ,'"></i> ', $txt['quote_selected_action'] ,'</a></li>
-						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');"><i class="fa fa-quote-left fa-lg" title="', $txt['quote'], '"></i> ', $txt['quote'], '</a></li>
+						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');"><i class="fa fa-quote-left fa-lg" title="', $txt['quote'], '"></i></a></li>
 					</ul>';
 
 			echo '

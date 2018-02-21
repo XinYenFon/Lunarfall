@@ -75,7 +75,7 @@ function template_main()
 					<i class="fa fa-bar-chart fa-lg"></i>', $context['poll']['is_locked'] ? '<i class="fa fa-lock fa-lg"></i>' : '' ,' ', $context['poll']['question'], '
 				</h3>
 			</div>
-			<div class="windowbg">
+			<div class="windowbg noup">
 				<div id="poll_options">';
 
 		// Are they not allowed to vote but allowed to view the options?
@@ -129,7 +129,7 @@ function template_main()
 			echo '
 						</ul>
 						<div class="submitbutton">
-							<input type="submit" value="', $txt['poll_vote'], '" class="button">
+							<input type="submit" value="', $txt['poll_vote'], '" class="button floatright">
 							<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 						</div>
 					</form>';
@@ -820,29 +820,14 @@ function template_single_post($message)
 							</div><!-- #msg_[id]_footer -->';
 	}
 
-	// And stuff below the attachments.
-	if ($context['can_report_moderator'] || !empty($modSettings['enable_likes']) || $message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
+	// What you see is what you like
+	// @to-do add who liked what back at certain point.
+	if (!empty($message['likes']['can_like']))
 		echo '
-							<div class="under_message">';
-
-	// What about likes?
-	if (!empty($modSettings['enable_likes']))
-	{
-		echo '
-								<ul class="floatleft">';
-
-		if (!empty($message['likes']['can_like']))
-		{
-			echo '
-									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><span class="generic_icons ', $message['likes']['you'] ? 'unlike' : 'like', '"></span> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>';
-		}
-
-		echo '
-								</ul>';
-	}
-
-	if (!empty($context['can_see_likes']) || !empty($context['can_like']))
-	echo '
+							<div class="under_message">
+								<ul class="floatleft">
+									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><span class="generic_icons ', $message['likes']['you'] ? 'unlike' : 'like', '"></span> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>
+								</ul>
 							</div>';
 
 	// Show the member's signature?
@@ -857,6 +842,7 @@ function template_single_post($message)
 							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '"><i class="fab fa-twitter fa-lg fa-fw" title="', $txt['lunarfall_twitter'],'"></i></a></li>
 							<li><a href="//plus.google.com/share?url=', $message['href'], '"><i class="fab fa-google-plus-g fa-lg fa-fw" title="', $txt['lunarfall_gplus'],'"></i></a></li>
 						</ul>';
+
 	// Can i haz fun? k thx bai!
 	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
 	{
@@ -982,8 +968,7 @@ function template_single_post($message)
 	echo '
 						</div><!-- .moderatorbar -->
 					</div><!-- .post_wrapper -->
-				</div><!-- $message[css_class] -->
-				<hr class="post_separator">';
+				</div><!-- $message[css_class] -->';
 }
 
 /**

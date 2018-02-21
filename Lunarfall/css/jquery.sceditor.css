@@ -437,18 +437,25 @@ div.sceditor-dropdown img {
 }
 
 /* Fix Lunarfall :)*/
-.sceditor-group a, .sceditor-group .fa {
+.sceditor-group a {
 	padding: 3px;
+	display: inline-block;
 }
-.sceditor-container i {
+.sceditor-group i {
+	padding: 7px 3px;
 	margin: 0;
+	color: #9099A1;
 }
 .sceditor-group .fa-color {
 	color: red;
 }
-.sceditor-group .fa:hover {
-	background: #FFF;
+.sceditor-group .fa:hover,
+.sceditor-group .active i {
+	background: #CCC;
 	box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3) inset, -1px 0px rgba(0, 0, 0, 0.3) inset, 0px -1px 0px rgba(0, 0, 0, 0.2) inset;
 	border-top-left-radius: 2px;
 	border-bottom-right-radius: 2px;
+}
+.sceditor-group .disabled i {
+	opacity: 0.5;
 }

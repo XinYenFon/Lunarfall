@@ -44,14 +44,15 @@ function template_fatal_error()
 			<div ', $context['error_code'], 'class="padding">
 				', $context['error_message'], '
 			</div>
+			<div class="centertext">
+				<a class="button" href="javascript:document.location=document.referrer">', $txt['back'], '</a>
+			</div>
 		</div>
 	</div>';
 
 		// Show a back button (using javascript.)
 		echo '
-	<div class="centertext">
-		<a class="button" href="javascript:document.location=document.referrer">', $txt['back'], '</a>
-	</div>';
+';
 	}
 }
 

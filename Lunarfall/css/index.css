@@ -1166,6 +1166,7 @@ ul li.greeting {
 #content_section {
 	margin: 0 auto;
 	clear: both;
+	padding: 10px 0 0 0;
 }
 #main_content_section::after {
 	content:"";
@@ -1717,7 +1718,7 @@ dl {
 }
 .list_posts {
 	border-top: 1px solid #ddd;
-	box-shadow: 0 1px 0 #fff inset;
+	box-shadow: 0 1px 0 #2E3E4C inset;
 	padding-top: 12px;
 	clear: both;
 	word-break: hyphenate;
@@ -2658,8 +2659,8 @@ div#pollmoderation {
 .inner {
 	padding: 7px 8px 2px 2px;
 	margin: 0;
-	border-top: 1px solid #bfbfbf;
-	box-shadow: 0 1px 0 #fff inset;
+	border-top: 1px solid #2E3E4C;
+	box-shadow: 0 1px 0 #2E3E4C inset;
 	min-height: 85px;
 	word-break: hyphenate;
 	word-wrap: break-word;
@@ -2820,8 +2821,8 @@ ul.post_options li {
 	overflow: auto;
 	clear: right;
 	padding: 12px 0 3px 0;
-	border-top: 1px solid #bfbfbf;
-	box-shadow: 0 1px 0 #fff inset;
+	border-top: 1px solid #2E3E4C;
+	box-shadow: 0 1px 0 #2E3E4C inset;
 	line-height: 1.4em;
 	font-size: 0.9em;
 }
@@ -3097,7 +3098,7 @@ h3.profile_hd {
 /* Some new stuff */
 #display_head {
 	clear: both;
-	margin: -7px 0 15px 0;
+	margin: -10px 0 15px 0;
 }
 #display_head p {
 	color: #959595;
@@ -3329,7 +3330,6 @@ tr[id^='list_news_lists_'] textarea {
 .qbuttons {
 	float: right;
 	clear: right;
-	margin: 20px 0 0 0;
 	opacity: 0.3;
 	transition: 1s;
 }
@@ -3428,4 +3428,12 @@ i {
 }
 .sceditor-toolbar {
 	background: rgba( 0, 0, 0, 0.2 ) !important;
+}
+
+/* Try */
+#recent h5 {
+	display: inline-block;
+}
+#recent h5::after {
+	content: " - ";
 }
