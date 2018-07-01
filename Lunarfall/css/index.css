@@ -3397,6 +3397,7 @@ tr[id^='list_news_lists_'] textarea {
 /* Responsive Youtube embed */
 .videocontainer {
 	max-width: 560px;
+}
 /* Keep this here if I forgot something */
 .large_admin_menu_icon, .generic_icons {
 	background: url(../images/missing.png) no-repeat;
@@ -3407,6 +3408,7 @@ tr[id^='list_news_lists_'] textarea {
 .videocontainer div {
 	position: relative;
 	padding-bottom: 56.25%;
+}
 .nopad {
 	padding-bottom: 0;
 }
@@ -3416,6 +3418,7 @@ tr[id^='list_news_lists_'] textarea {
 	left: 0;
 	width: 100% !important;
 	height: 100% !important;
+}
 .likez {
 	margin: 5px;
 }
@@ -3456,6 +3459,7 @@ tr[id^='list_news_lists_'] textarea {
 	padding-bottom: 0.5em;
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 0.5em;
+}
 /* Social share on posts */
 .post_socialshare.qbuttons {
 	clear: left;
