@@ -82,7 +82,7 @@ function template_login()
 							document.getElementById("', !empty($context['from_ajax']) ? 'ajax_' : '', isset($context['default_username']) && $context['default_username'] != '' ? 'loginpass' : 'loginuser', '").focus();
 						}, 150);';
 
-	if (!empty($context['from_ajax']) && (empty($modSettings['force_ssl']) || $modSettings['force_ssl'] == 2))
+	if (!empty($context['from_ajax']))
 		echo '
 						form = $("#frmLogin");
 						form.submit(function(e) {
@@ -156,25 +156,24 @@ function template_login_tfa()
 	echo '
 				<form action="', $context['tfa_url'], '" method="post" id="frmTfa">
 					<div id="tfaCode">
-						', $txt['tfa_login_desc'], '<br>
-						<div>
+						<p style="margin-bottom: 0.5em">', $txt['tfa_login_desc'], '</p>
+						<div class="centertext">
 							<strong>', $txt['tfa_code'], ':</strong>
-							<input type="text" name="tfa_code" style="width: 150px;" value="', !empty($context['tfa_value']) ? $context['tfa_value'] : '', '">
-							<input type="submit" class="button" name="submit" value="', $txt['login'], '" style="float: none; margin: 0;"><br>
-						</div>
-						<br>
-						<div>
-							<input type="checkbox" value="1" name="tfa_preserve" id="tfa_preserve">
-							<label for="tfa_preserve">', $txt['tfa_preserve'], '</label>
+							<input type="text" name="tfa_code" value="', !empty($context['tfa_value']) ? $context['tfa_value'] : '', '">
+							<input type="submit" class="button" name="submit" value="', $txt['login'], '">
 						</div>
 						<hr>
-						<input type="button" class="button" name="backup" value="', $txt['tfa_backup'], '" style="float: none; margin: 0;">
+						<div class="centertext">
+							<input type="button" class="button" name="backup" value="', $txt['tfa_backup'], '">
+						</div>
 					</div>
 					<div id="tfaBackup" style="display: none;">
-						', $txt['tfa_backup_desc'], '<br>
-						<strong>', $txt['tfa_backup_code'], ': </strong>
-						<input type="text" name="tfa_backup" style="width: 150px;" value="', !empty($context['tfa_backup']) ? $context['tfa_backup'] : '', '">
-						<input type="submit" class="button" name="submit" value="', $txt['login'], '">
+						<p style="margin-bottom: 0.5em">', $txt['tfa_backup_desc'], '</p>
+						<div class="centertext">
+							<strong>', $txt['tfa_backup_code'], ': </strong>
+							<input type="text" name="tfa_backup" value="', !empty($context['tfa_backup']) ? $context['tfa_backup'] : '', '">
+							<input type="submit" class="button" name="submit" value="', $txt['login'], '">
+						</div>
 					</div>
 				</form>
 				<script>
@@ -325,7 +324,7 @@ function template_admin_login()
 
 	// Since this should redirect to whatever they were doing, send all the get data.
 	echo '
-	<form action="', !empty($modSettings['force_ssl']) && $modSettings['force_ssl'] < 2 ? strtr($scripturl, array('http://' => 'https://')) : $scripturl, $context['get_data'], '" method="post" accept-charset="', $context['character_set'], '" name="frmLogin" id="frmLogin">
+	<form action="', !empty($modSettings['force_ssl']) ? strtr($scripturl, array('http://' => 'https://')) : $scripturl, $context['get_data'], '" method="post" accept-charset="', $context['character_set'], '" name="frmLogin" id="frmLogin">
 		<div class="login" id="admin_login">
 			<div class="cat_bar">
 				<h3 class="catbg">

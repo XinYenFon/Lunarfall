@@ -96,7 +96,7 @@ function template_reported_posts()
 
 	echo '
 		<div class="pagesection">';
-	
+
 	if (!empty($context['total_reports']) && $context['total_reports'] >= $context['reports_how_many'])
 		echo '
 			<div class="pagelinks floatleft">' . $context['page_index'] . '</div>';

@@ -145,7 +145,6 @@ function template_folder()
 						}
 					}
 				}
-			}
 
 				while (theSelect.options.length > 2)
 					theSelect.options[2] = null;
@@ -218,7 +217,6 @@ function template_folder()
 
 		while ($message = $context['get_pmessage']('message'))
 		{
-
 			echo '
 			<div class="windowbg">
 				<div class="poster">';
@@ -430,18 +428,65 @@ function template_folder()
 
 			// If we're in the sent items, show who it was sent to besides the "To:" people.
 			if (!empty($message['recipients']['bcc']))
-				echo '
-					<br><span class="smalltext">&#171; <strong> ', $txt['pm_bcc'], ':</strong> ', implode(', ', $message['recipients']['bcc']), ' &#187;</span>';
+				echo '<br>
+							<span class="smalltext">&#171; <strong> ', $txt['pm_bcc'], ':</strong> ', implode(', ', $message['recipients']['bcc']), ' &#187;</span>';
 
 			if (!empty($message['is_replied_to']))
-				echo '
-					<br><span class="smalltext">&#171; ', $txt['pm_is_replied_to'], ' &#187;</span>';
+				echo '<br>
+							<span class="smalltext">&#171; ', $context['folder'] == 'sent' ? $txt['pm_sent_is_replied_to'] : $txt['pm_is_replied_to'], ' &#187;</span>';
 
 			echo '
-				</div>
-			</div>
-			<div class="post">
-				<div class="inner" id="msg_', $message['id'], '"', '>', $message['body'], '</div>';
+						</div><!-- .keyinfo -->
+					</div><!-- .flow_hidden -->
+					<div class="post">
+						<div class="inner" id="msg_', $message['id'], '"', '>
+							', $message['body'], '
+						</div>';
+
+			if ($message['can_report'] || $context['can_send_pm'])
+				echo '
+						<div class="under_message">';
+
+			if ($message['can_report'])
+				echo '
+							<a href="' . $scripturl . '?action=pm;sa=report;l=' . $context['current_label_id'] . ';pmsg=' . $message['id'] . '" class="floatright">' . $txt['pm_report_to_admin'] . '</a>';
+
+			echo '
+							<ul class="quickbuttons">';
+
+			// Show reply buttons if you have the permission to send PMs.
+			if ($context['can_send_pm'])
+			{
+				// You can't really reply if the member is gone.
+				if (!$message['member']['is_guest'])
+				{
+					// Is there than more than one recipient you can reply to?
+					if ($message['number_recipients'] > 1)
+						echo '
+								<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote;u=all"><span class="generic_icons reply_all_button"></span>', $txt['reply_to_all'], '</a></li>';
+
+					echo '
+								<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=', $message['member']['id'], '"><span class="generic_icons reply_button"></span>', $txt['reply'], '</a></li>
+								<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=' . $message['member']['id'], '"><span class="generic_icons quote"></span>', $txt['quote_action'], '</a></li>';
+				}
+				// This is for "forwarding" - even if the member is gone.
+				else
+					echo '
+								<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote"><span class="generic_icons quote"></span>', $txt['reply_quote'], '</a></li>';
+			}
+			echo '
+								<li><a href="', $scripturl, '?action=pm;sa=pmactions;pm_actions%5b', $message['id'], '%5D=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', addslashes($txt['remove_message_question']), '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['delete'], '</a></li>';
+
+			if (empty($context['display_mode']))
+				echo '
+								<li><input type="checkbox" name="pms[]" id="deletedisplay', $message['id'], '" value="', $message['id'], '" onclick="document.getElementById(\'deletelisting', $message['id'], '\').checked = this.checked;"></li>';
+
+			echo '
+							</ul>';
+
+			if ($message['can_report'] || $context['can_send_pm'])
+			echo '
+						</div><!-- .under_message -->';
 
 			// Are there any custom profile fields for above the signature?
 			if (!empty($message['custom_fields']['above_signature']))
@@ -529,50 +574,10 @@ function template_folder()
 			}
 
 			echo '
-			</div>
-		</div>
-		<div class="moderatorbar">
-		</div>
-	</div>';
-
-			echo '
-				<ul class="qbuttons">';
-
-			if ($message['can_report'])
-			echo '
-				<li><a href="' . $scripturl . '?action=pm;sa=report;l=' . $context['current_label_id'] . ';pmsg=' . $message['id'] . '"><i class="fa fa-exclamation-triangle fa-lg" title="' . $txt['pm_report_to_admin'] . '"></i></a></li>';
-
-			// Show reply buttons if you have the permission to send PMs.
-			if ($context['can_send_pm'])
-			{
-				// You can't really reply if the member is gone.
-				if (!$message['member']['is_guest'])
-				{
-					// Is there than more than one recipient you can reply to?
-					if ($message['number_recipients'] > 1)
-						echo '
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote;u=all"><i class="fa fa-mail-reply-all fa-lg" title="', $txt['reply_to_all'], '"></i></a></li>';
-
-					echo '
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';u=', $message['member']['id'], '"><i class="fa fa-mail-reply fa-lg" title="', $txt['reply'], '"></i></a></li>
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote', $context['folder'] == 'sent' ? '' : ';u=' . $message['member']['id'], '"><i class="fa fa-quote-left fa-lg" title="', $txt['quote_action'], '"></i></a></li>';
-				}
-				// This is for "forwarding" - even if the member is gone.
-				else
-					echo '
-					<li><a href="', $scripturl, '?action=pm;sa=send;f=', $context['folder'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';pmsg=', $message['id'], ';quote"><i class="fa fa-quote-left fa-lg" title="', $txt['reply_quote'], '"></i></a></li>';
-			}
-			echo '
-					<li><a href="', $scripturl, '?action=pm;sa=pmactions;pm_actions%5b', $message['id'], '%5D=delete;f=', $context['folder'], ';start=', $context['start'], $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', ';', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(\'', addslashes($txt['remove_message']), '?\');"><i class="fa fa-remove fa-lg" title="', $txt['delete'], '"></i></a></li>';
-
-			if (empty($context['display_mode']))
-				echo '
-					<li><input type="checkbox" name="pms[]" id="deletedisplay', $message['id'], '" value="', $message['id'], '" onclick="document.getElementById(\'deletelisting', $message['id'], '\').checked = this.checked;" class="input_check"></li>';
-
-			echo '
-				</ul>
-
-</div>';
+					</div><!-- .post -->
+				</div><!-- .postarea -->
+				<div class="moderatorbar"></div>
+			</div><!-- .windowbg -->';
 		}
 
 		if (empty($context['display_mode']))
@@ -597,7 +602,7 @@ function template_folder()
 		}
 
 		echo '
-		<br>';
+			<br>';
 	}
 
 	// Individual messages = buttom list!
@@ -1041,8 +1046,7 @@ function template_send()
 
 	echo '
 		<form action="', $scripturl, '?action=pm;sa=send2" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" class="flow_hidden" onsubmit="submitonce(this);">
-			<div class="roundframe noup">
-				<br class="clear">';
+			<div class="roundframe noup">';
 
 	// If there were errors for sending the PM, show them.
 	echo '
@@ -1107,22 +1111,35 @@ function template_send()
 					<dd id="pm_subject">
 						<input type="text" name="subject" value="', $context['subject'], '" tabindex="', $context['tabindex']++, '" size="80" maxlength="80"',isset($context['post_error']['no_subject']) ? ' class="error"' : '', '>
 					</dd>
-				</dl>
-				<hr>';
-
-	// Showing BBC?
-	if ($context['show_bbc'])
-		echo '
-				<div id="bbcBox_message"></div>';
-
-	// What about smileys?
-	if (!empty($context['smileys']['postform']) || !empty($context['smileys']['popup']))
-		echo '
-				<div id="smileyBox_message"></div>';
+				</dl>';
 
 	// Show BBC buttons, smileys and textbox.
 	echo '
 				', template_control_richedit($context['post_box_name'], 'smileyBox_message', 'bbcBox_message');
+
+
+	// If the admin enabled the pm drafts feature, show a draft selection box
+	if (!empty($context['drafts_pm_save']) && !empty($context['drafts']) && !empty($options['drafts_show_saved_enabled']))
+	{
+		echo '
+				<div id="postDraftOptionsHeader" class="title_bar title_top">
+					<h4 class="titlebg">
+						<span id="postDraftExpand" class="toggle_up floatright" style="display: none;"></span> <strong><a href="#" id="postDraftExpandLink">', $txt['drafts_show'], '</a></strong>
+					</h4>
+				</div>
+				<div id="postDraftOptions">
+					<dl class="settings">
+						<dt><strong>', $txt['subject'], '</strong></dt>
+						<dd><strong>', $txt['draft_saved_on'], '</strong></dd>';
+
+		foreach ($context['drafts'] as $draft)
+			echo '
+						<dt>', $draft['link'], '</dt>
+						<dd>', $draft['poster_time'], '</dd>';
+		echo '
+					</dl>
+				</div>';
+	}
 
 	// Require an image to be typed to save spamming?
 	if ($context['require_verification'])
@@ -1134,8 +1151,7 @@ function template_send()
 
 	// Send, Preview, spellcheck buttons.
 	echo '
-				<hr>
-				<span id="post_confirm_strip" class="righttext">
+				<span id="post_confirm_strip" class="floatright">
 					', template_control_richedit_buttons($context['post_box_name']), '
 				</span>
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
@@ -1147,30 +1163,6 @@ function template_send()
 				<br class="clear_right">
 			</div><!-- .roundframe -->
 		</form>';
-
-	// If the admin enabled the pm drafts feature, show a draft selection box
-	if (!empty($context['drafts_pm_save']) && !empty($context['drafts']) && !empty($options['drafts_show_saved_enabled']))
-	{
-		echo '
-		<br>
-		<div id="postDraftOptionsHeader" class="cat_bar">
-			<h3 class="catbg">
-				<i id="postDraftExpand" class="fa toggle_up fa-lg floatright" style="display: none;"></i> <strong><a href="#" id="postDraftExpandLink">', $txt['draft_load'], '</a></strong>
-			</h3>
-		</div>
-		<div id="postDraftOptions" class="load_drafts padding">
-			<dl class="settings">
-				<dt><strong>', $txt['subject'], '</strong></dt>
-				<dd><strong>', $txt['draft_saved_on'], '</strong></dd>';
-
-		foreach ($context['drafts'] as $draft)
-			echo '
-				<dt>', $draft['link'], '</dt>
-				<dd>', $draft['poster_time'], '</dd>';
-		echo '
-			</dl>
-		</div>';
-	}
 
 	echo '
 		<script>';
@@ -1292,7 +1284,7 @@ function template_send()
 					{
 						sId: \'postDraftExpandLink\',
 						msgExpanded: ', JavaScriptEscape($txt['draft_hide']), ',
-						msgCollapsed: ', JavaScriptEscape($txt['draft_load']), '
+						msgCollapsed: ', JavaScriptEscape($txt['drafts_show']), '
 					}
 				]
 			});';

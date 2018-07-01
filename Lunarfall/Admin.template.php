@@ -63,6 +63,7 @@ function template_admin()
 										<br>
 										<strong>', $txt['administrators'], ':</strong>
 										', implode(', ', $context['administrators']);
+
 	// If we have lots of admins... don't show them all.
 	if (!empty($context['more_admins_link']))
 		echo '
@@ -149,7 +150,6 @@ function template_admin()
 								</div>
 							'), ',
 							sUpdateNotificationLink: smf_scripturl + ', JavaScriptEscape('?action=admin;area=packages;pgdownload;auto;package=%package%;' . $context['session_var'] . '=' . $context['session_id']), '
-
 						});
 					</script>';
 }
@@ -675,15 +675,15 @@ function template_not_done()
 	if (!empty($context['continue_percent']))
 		echo '
 							<div class="progress_bar">
-								<div class="full_bar">', $context['continue_percent'], '%</div>
-								<div class="green_percent" style="width: ', $context['continue_percent'], '%;"></div>
+								<span>', $context['continue_percent'], '%</span>
+								<div class="bar" style="width: ', $context['continue_percent'], '%;"></div>
 							</div>';
 
 	if (!empty($context['substep_enabled']))
 		echo '
-							<div class="progress_bar">
-								<div class="full_bar">', $context['substep_title'], ' (', $context['substep_continue_percent'], '%)</div>
-								<div class="blue_percent" style="width: ', $context['substep_continue_percent'], '%;"></div>
+							<div class="progress_bar progress_blue">
+								<span>', $context['substep_title'], ' (', $context['substep_continue_percent'], '%)</span>
+								<div class="bar" style="width: ', $context['substep_continue_percent'], '%;"></div>
 							</div>';
 
 	echo '
@@ -1454,7 +1454,6 @@ function template_repair_boards()
 							<p class="padding">
 								<a href="', $scripturl, '?action=admin;area=maintain;sa=routine">', $txt['maintain_return'], '</a>
 							</p>';
-
 	}
 	else
 	{
@@ -1626,7 +1625,7 @@ function template_admin_quick_search()
 		echo '
 								<span class="floatright admin_search">
 									<span class="generic_icons filter centericon"></span>
-									<input type="search" name="search_term" value="', $txt['admin_search'], '" onclick="if (this.value == \'', $txt['admin_search'], '\') this.value = \'\';">
+									<input type="search" name="search_term" placeholder="', $txt['admin_search'], '">
 									<select name="search_type">
 										<option value="internal"', (empty($context['admin_preferences']['sb']) || $context['admin_preferences']['sb'] == 'internal' ? ' selected' : ''), '>', $txt['admin_search_type_internal'], '</option>
 										<option value="member"', (!empty($context['admin_preferences']['sb']) && $context['admin_preferences']['sb'] == 'member' ? ' selected' : ''), '>', $txt['admin_search_type_member'], '</option>

@@ -216,6 +216,8 @@ $txt['maintain_no_errors'] = 'Congratulations, no errors were found. Thanks for 
 
 $txt['maintain_tasks'] = 'Scheduled Tasks';
 $txt['maintain_tasks_desc'] = 'Manage all the tasks scheduled by SMF.';
+$txt['scheduled_tasks_settings'] = 'Settings';
+$txt['scheduled_tasks_settings_desc'] = 'Settings to control how scheduled tasks are run.';
 
 $txt['scheduled_log'] = 'Task Log';
 $txt['scheduled_log_desc'] = 'This log shows all the scheduled tasks that have been run on your forum.';
@@ -361,7 +363,7 @@ $txt['attach_dir_unused'] = 'Unused';
 $txt['attach_dir_empty'] = 'Empty';
 $txt['attach_dir_ok'] = 'OK';
 $txt['attach_dir_basedir'] = 'Base directory';
-$txt['attach_dir_desc'] = 'Create new directories or change the current directory below. <br>To create a new directory within the forum directory structure, use just the directory name. <br>To remove a directory, blank the path input field. Only empty directories can be removed. To see if a directory is empty, check for files or sub-directories in brackets next to the file count. <br> To rename a directory, simply change its name in the input field. Only directories without sub-directories may be renamed. Directories can be renamed as long as they do not contain a sub-directory.';
+$txt['attach_dir_desc'] = 'Create new directories or change the current directory below. <br>To create a new directory within the forum directory structure, use just the directory name. <br>To remove a directory, blank the path input field. Only empty directories can be removed. To see if a directory is empty, check for files or sub-directories in brackets next to the file count. <br> To rename a directory, simply change its name in the input field. Only directories without sub-directories may be renamed.';
 $txt['attach_dir_base_desc'] = 'You may use the area below to change the current base directory or create a new one. New base directories are also added to the Attachment Directory list. You may also designate an existing directory to be a base directory.';
 $txt['attach_dir_save_problem'] = 'Oops, there seems to be a problem.';
 $txt['attachments_no_create'] = 'Unable to create a new attachment directory. Please do so using a FTP client or your site file manager.';
@@ -550,7 +552,6 @@ $txt['removeNestedQuotes'] = 'Remove nested quotes when quoting';
 $txt['enableEmbeddedFlash'] = 'Embed flash into posts';
 $txt['enableEmbeddedFlash_warning'] = 'may be a security risk!';
 $txt['enableSpellChecking'] = 'Enable spell checking';
-$txt['enableSpellChecking_warning'] = 'this does not work on all servers.';
 $txt['disable_wysiwyg'] = 'Disable WYSIWYG editor';
 $txt['max_messageLength'] = 'Maximum allowed post size';
 $txt['max_messageLength_zero'] = '0 for no max.';

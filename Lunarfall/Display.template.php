@@ -89,7 +89,7 @@ function template_main()
 			{
 				echo '
 						<dt class="', $option['voted_this'] ? ' voted' : '', '">', $option['option'], '</dt>
-						<dd class="statsbar', $option['voted_this'] ? ' voted' : '', '">';
+						<dd class="statsbar generic_bar', $option['voted_this'] ? ' voted' : '', '">';
 
 				if ($context['allow_results_view'])
 					echo '
@@ -129,7 +129,7 @@ function template_main()
 			echo '
 						</ul>
 						<div class="submitbutton">
-							<input type="submit" value="', $txt['poll_vote'], '" class="button floatright">
+							<input type="submit" value="', $txt['poll_vote'], '" class="button">
 							<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 						</div>
 					</form>';
@@ -235,10 +235,11 @@ function template_main()
 		</div>';
 
 	// Mobile action - moderation buttons (top)
+	if (!empty($context['normal_buttons']))
 	echo '
 		<div class="mobile_buttons floatright">
 			<a class="button mobile_act">', $txt['mobile_action'], '</a>
-			', ($context['can_moderate_forum'] || $context['user']['is_mod']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
+			', !empty($context['mod_buttons']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
 		</div>';
 
 	// Show the topic information - icon, subject, etc.
@@ -258,10 +259,11 @@ function template_main()
 		</div><!-- #forumposts -->';
 
 	// Mobile action - moderation buttons (bottom)
+	if (!empty($context['normal_buttons']))
 	echo '
 		<div class="mobile_buttons floatright">
 			<a class="button mobile_act">', $txt['mobile_action'], '</a>
-			', ($context['can_moderate_forum'] || $context['user']['is_mod']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
+			', !empty($context['mod_buttons']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
 		</div>';
 
 	// Show the page index... "Pages: [1]".
@@ -304,8 +306,8 @@ function template_main()
 			</div>
 		</div>';
 
-	// Show the moderation button & pop only if user can moderate
-	if ($context['can_moderate_forum'] || $context['user']['is_mod'])
+	// Show the moderation button & pop (if there is anything to show)
+	if (!empty($context['mod_buttons']))
 		echo '
 		<div id="mobile_moderation" class="popup_container">
 			<div class="popup_window description">
@@ -557,7 +559,6 @@ function template_single_post($message)
 	// Don't show these things for guests.
 	if (!$message['member']['is_guest'])
 	{
-
 		// Show the post group if and only if they have no other group or the option is on, and they are in a post group.
 		if ((empty($modSettings['hide_post_group']) || empty($message['member']['group'])) && !empty($message['member']['post_group']))
 			echo '
@@ -621,7 +622,6 @@ function template_single_post($message)
 			foreach ($message['custom_fields']['standard'] as $custom)
 				echo '
 								<li class="custom ', $custom['col_name'], '">', $custom['title'], ': ', $custom['value'], '</li>';
-
 	}
 	// Otherwise, show the guest's email.
 	elseif (!empty($message['member']['email']) && $message['member']['show_email'])
@@ -680,7 +680,7 @@ function template_single_post($message)
 	// Some people don't want subject... The div is still required or quick edit breaks.
 	echo '
 								<div id="subject_', $message['id'], '" class="subject_title', (empty($modSettings['subject_toggle']) ? ' subject_hidden' : ''), '">
-									<a href="', $message['href'], '" rel="nofollow">', $message['subject'], '</a>
+									', $message['link'], '
 								</div>';
 
 	echo '
@@ -987,13 +987,29 @@ function template_quickreply()
 				</h3>
 			</div>
 			<div id="quickReplyOptions">
-				<div class="roundframe">
-					', empty($options['use_editor_quick_reply']) ? '
-					<p class="smalltext lefttext">' . $txt['quick_reply_desc'] . '</p>' : '', '
-					', $context['is_locked'] ? '<p class="alert smalltext">' . $txt['quick_reply_warning'] . '</p>' : '',
-					!empty($context['oldTopicError']) ? '<p class="alert smalltext">' . sprintf($txt['error_old_topic'], $modSettings['oldTopicDays']) . '</p>' : '', '
-					', $context['can_reply_approved'] ? '' : '<em>' . $txt['wait_for_approval'] . '</em>', '
-					', !$context['can_reply_approved'] && $context['require_verification'] ? '<br>' : '', '
+				<div class="roundframe">';
+
+	// Are we hiding the full editor?
+	if (empty($options['use_editor_quick_reply']))
+		echo '
+					<p class="smalltext lefttext">', $txt['quick_reply_desc'], '</p>';
+
+	// Is the topic locked?
+	if ($context['is_locked'])
+		echo '
+					<p class="alert smalltext">', $txt['quick_reply_warning'], '</p>';
+
+	// Show a warning if the topic is old
+	if (!empty($context['oldTopicError']))
+		echo '
+					<p class="alert smalltext">', sprintf($txt['error_old_topic'], $modSettings['oldTopicDays']), '</p>';
+
+	// Does the post need approval?
+	if (!$context['can_reply_approved'])
+		echo '
+					<p><em>', $txt['wait_for_approval'], '</em></p>';
+
+	echo '
 					<form action="', $scripturl, '?board=', $context['current_board'], ';action=post2" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="submitonce(this);">
 						<input type="hidden" name="topic" value="', $context['current_topic'], '">
 						<input type="hidden" name="subject" value="', $context['response_prefix'], $context['subject'], '">
@@ -1040,7 +1056,7 @@ function template_quickreply()
 								var text = \'\';
 								for (var i = 0, n = XMLDoc.getElementsByTagName(\'quote\')[0].childNodes.length; i < n; i++)
 									text += XMLDoc.getElementsByTagName(\'quote\')[0].childNodes[i].nodeValue;
-								$("#', $context['post_box_name'], '").data("sceditor").InsertText(text);
+								sceditor.instance($("#', $context['post_box_name'], '").get(0)).InsertText(text);
 
 								ajax_indicator(false);
 							}

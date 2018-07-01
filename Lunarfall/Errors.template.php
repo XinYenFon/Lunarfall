@@ -44,15 +44,14 @@ function template_fatal_error()
 			<div ', $context['error_code'], 'class="padding">
 				', $context['error_message'], '
 			</div>
-			<div class="centertext">
-				<a class="button" href="javascript:document.location=document.referrer">', $txt['back'], '</a>
-			</div>
 		</div>
 	</div>';
 
 		// Show a back button (using javascript.)
 		echo '
-';
+	<div class="centertext">
+		<a class="button" href="javascript:document.location=document.referrer">', $txt['back'], '</a>
+	</div>';
 	}
 }
 
@@ -140,32 +139,32 @@ function template_error_log()
 
 		if ($error['member']['session'] != '')
 			echo '
+							<br>
 							<a href="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';filter=session;value=', $error['member']['session'], '" title="', $txt['apply_filter'], ': ', $txt['filter_only_session'], '"><span class="generic_icons filter centericon"></span></a>
 							', $error['member']['session'], '<br>';
 
 		echo '
+						</div>
+						<div class="error_info">';
+
+		echo '
 							<a href="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';filter=error_type;value=', $error['error_type']['type'], '" title="', $txt['apply_filter'], ': ', $txt['filter_only_type'], '"><span class="generic_icons filter centericon"></span></a>
-							', $txt['error_type'], ': ', $error['error_type']['name'], '<br>
+							', $txt['error_type'], ': ', $error['error_type']['name'], ' <a href ="', $scripturl, '?action=admin;area=logs;sa=errorlog;backtrace=', $error['id'], '" onclick="return reqWin(this.href, 600, 480, false);"><span class="generic_icons details"></span></a><br>
 							<a class="error_message" href="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';filter=message;value=', $error['message']['href'], '" title="', $txt['apply_filter'], ': ', $txt['filter_only_message'], '"><span class="generic_icons filter"></span></a>
 							<span class="error_message">', $error['message']['html'], '</span>
-						</div>
-
-						<div class="error_location">
 							<a href="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';filter=url;value=', $error['url']['href'], '" title="', $txt['apply_filter'], ': ', $txt['filter_only_url'], '"><span class="generic_icons filter"></span></a>
 							<a href="', $error['url']['html'], '">', $error['url']['html'], '</a>
-						</div>';
+';
 
 		if (!empty($error['file']))
 			echo '
-						<div class="error_location">
-							<a href="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';filter=file;value=', $error['file']['search'], '" title="', $txt['apply_filter'], ': ', $txt['filter_only_file'], '"><span class="generic_icons filter"></span></a>
 							<div>
-								', $txt['file'], ': ', $error['file']['link'], '<br>
-								', $txt['line'], ': ', $error['file']['line'], '
-							</div>
-						</div>';
+								<a href="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';filter=file;value=', $error['file']['search'], '" title="', $txt['apply_filter'], ': ', $txt['filter_only_file'], '">'
+				. '					<span class="generic_icons filter"></span></a> ', $error['file']['link'], ' (', $txt['line'], ' ', $error['file']['line'], ')
+							</div>';
 
 		echo '
+						</div>
 					</td>
 					<td class="checkbox_column">
 						<input type="checkbox" name="delete[]" value="', $error['id'], '">
@@ -252,13 +251,98 @@ function template_attachment_errors()
 			<div class="padding">
 				<div class="noticebox">',
 					$context['error_message'], '
-				</div>',
-				!empty($context['back_link']) ? ('<a class="button" href="' . $scripturl . $context['back_link'] . '">' . $txt['back'] . '</a>') : '',
-				'<span style="float: right; margin:.5em;"></span>
+				</div>';
+	
+	if (!empty($context['back_link'])) 
+		echo '
+				<a class="button" href="', $scripturl, $context['back_link'], '">', $txt['back'], '</a>';
+
+	echo '
+				<span style="float: right; margin:.5em;"></span>
 				<a class="button" href="', $scripturl, $context['redirect_link'], '">', $txt['continue'], '</a>
 			</div>
 		</div>
 	</div>';
+}
+
+/**
+ * This template shows a backtrace of the given error
+ */
+function template_show_backtrace()
+{
+	global $context, $settings, $modSettings, $txt;
+
+	echo '<!DOCTYPE html>
+<html', $context['right_to_left'] ? ' dir="rtl"' : '', '>
+	<head>
+		<meta charset="', $context['character_set'], '">
+		<title>Backtrace</title>
+		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $modSettings['browser_cache'], '">
+	</head>
+	<body class="padding">';
+
+	if (!empty($context['error_info']))
+	{
+		echo '
+			<div class="cat_bar">
+				<h3 class="catbg">
+					', $txt['error'], '
+				</h3>
+			</div>
+			<div class="windowbg noup">
+				<ul class="padding">';
+
+		if (!empty($context['error_info']['error_type']))
+			echo '
+					<li>', $txt['error_type'], ': ', ucfirst($context['error_info']['error_type']), '</li>';
+
+		if (!empty($context['error_info']['message']))
+			echo '
+					<li>', $txt['error_message'], ': ', $context['error_info']['message'], '</li>';
+
+		if (!empty($context['error_info']['file']))
+			echo '
+					<li>', $txt['error_file'], ': ', $context['error_info']['file'], '</li>';
+
+		if (!empty($context['error_info']['line']))
+			echo '
+					<li>', $txt['error_line'], ': ', $context['error_info']['line'], '</li>';
+
+		if (!empty($context['error_info']['url']))
+			echo '
+					<li>', $txt['error_url'], ': ', $context['error_info']['url'], '</li>';
+
+
+		echo '
+				</ul>
+			</div>';
+	}
+
+	if (!empty($context['error_info']['backtrace']))
+	{
+		echo '
+			<div class="cat_bar">
+				<h3 class="catbg">
+					', $txt['backtrace_title'], '
+				</h3>
+			</div>
+			<div class="windowbg noup">
+				<ul class="padding">';
+
+		foreach ($context['error_info']['backtrace'] as $key => $value)
+		{
+				echo '
+					<li class="backtrace">', sprintf($txt['backtrace_info'], $key, $value->function, $value->file, $value->line, base64_encode($value->file)), '</li>';
+		}
+
+		echo '
+				</ul>
+			</div>';
+	}
+
+	echo '
+	</body>
+</html>';
 }
 
 ?>

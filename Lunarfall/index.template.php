@@ -43,8 +43,6 @@ function template_init()
 	global $settings, $txt;
 
 	loadCSSFile('fontawesome-all.css');
-	//loadCSSFile('fa-svg-with-js.css');
-	//loadJavaScriptFile('fontawesome-all.js');
 	/* $context, $options and $txt may be available for use, but may not be fully populated yet. */
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
@@ -92,11 +90,20 @@ function template_html_above()
 <head>
 	<meta charset="', $context['character_set'], '">';
 
-	/*	You don't need to manually load index.css, this will be set up for you. You can, of course, add
-		any other files you want, after template_css() has been run. Note that RTL will also be loaded for you.
+	/*
+		You don't need to manually load index.css, this will be set up for you.
+		Note that RTL will also be loaded for you.
 
-		The most efficient way of writing multi themes is to use a master index.css plus variant.css files.
-		If you've set them up properly (through $settings['theme_variants'], loadCSSFile will load the variant files for you.
+		The most efficient way of writing multi themes is to use a master
+		index.css plus variant.css files. If you've set them up properly
+		(through $settings['theme_variants']), the variant files will be loaded
+		for you automatically.
+
+		If you want to load other CSS files, the best way is to use the
+		'integrate_load_theme' integration hook and the loadCSSFile() function.
+		This approach will let you take advantage of SMF's automatic CSS
+		minimization and other benefits. You can, of course, manually add any
+		other files you want after template_css() has been run.
 	*/
 
 	// load in any css from mods or themes so they can overwrite if wanted

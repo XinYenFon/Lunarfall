@@ -727,7 +727,7 @@ function template_pick()
 					<a href="', $scripturl, '?action=theme;sa=pick;u=', $context['current_member'], ';th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], !empty($theme['variants']) ? ';vrt=' . $theme['selected_variant'] : '', '">', $theme['name'], '</a>
 				</h3>
 			</div>
-			<div class="', $theme['selected'] ? 'windowbg' : 'windowbg', '">
+			<div class="windowbg">
 				<div class="flow_hidden">
 					<div class="floatright">
 						<a href="', $scripturl, '?action=theme;sa=pick;u=', $context['current_member'], ';theme=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], '" id="theme_thumb_preview_', $theme['id'], '" title="', $txt['theme_preview'], '">
@@ -949,7 +949,6 @@ function template_edit_browse()
 
 	foreach ($context['theme_files'] as $file)
 	{
-
 		echo '
 				<tr class="windowbg">
 					<td>';

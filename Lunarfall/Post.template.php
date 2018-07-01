@@ -220,7 +220,7 @@ function template_main()
 
 		foreach ($context['all_timezones'] as $tz => $tzname)
 			echo '
-										<option value="', $tz, '"', $tz == $context['event']['tz'] ? ' selected' : '', '>', $tzname, '</option>';
+										<option', is_numeric($tz) ? ' value="" disabled' : ' value="' . $tz . '"', $tz === $context['event']['tz'] ? ' selected' : '', '>', $tzname, '</option>';
 
 		echo '
 									</select>
@@ -415,7 +415,9 @@ function template_main()
 											</div>
 										</div>
 									</div><!-- .attached_BBC -->
-									<div class="progressBar" role="progressBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+									<div class="progress_bar" role="progressBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+										<div class="bar"></div>
+									</div>
 									<div class="attach-ui">
 										<a data-dz-remove class="button cancel">', $txt['modify_cancel'] ,'</a>
 										<a class="button upload">', $txt['upload'] ,'</a>
@@ -423,7 +425,9 @@ function template_main()
 								</div><!-- .attach-info -->
 							</div><!-- #au-template -->
 						</div><!-- #au-previews -->
-						<div id ="maxFiles_progress" class="maxFiles_progress progressBar"><span></span></div>
+						<div id ="maxFiles_progress" class="maxFiles_progress progress_bar">
+							<div class="bar"></div>
+						</div>
 						<div id ="maxFiles_progress_text"></div>';
 
 		echo '
@@ -437,10 +441,15 @@ function template_main()
 									<a class="button" id="attach-cancelAll">', $txt['attached_cancelAll'] ,'</a>
 									<a class="button" id="attach-uploadAll">', $txt['attached_uploadAll'] ,'</a>
 									<a class="button fileinput-button">', $txt['attach_add'] ,'</a>
-									<div id="total-progress" class="progressBar" role="progressBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+									<div id="total-progress" class="progress_bar" role="progressBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+										<div class="bar"></div>
+									</div>
 									<div class="fallback">
-										<input type="file" multiple="multiple" name="attachment[]" id="attachment1" class="fallback"> (<a href="javascript:void(0);" onclick="cleanFileInput(\'attachment1\');">', $txt['clean_attach'], '</a>)
-								', empty($modSettings['attachmentSizeLimit']) ? '' : ('<input type="hidden" name="MAX_FILE_SIZE" value="' . $modSettings['attachmentSizeLimit'] * 1024 . '">');
+										<input type="file" multiple="multiple" name="attachment[]" id="attachment1" class="fallback"> (<a href="javascript:void(0);" onclick="cleanFileInput(\'attachment1\');">', $txt['clean_attach'], '</a>)';
+
+		if (!empty($modSettings['attachmentSizeLimit']))
+			echo '
+										<input type="hidden" name="MAX_FILE_SIZE" value="' . $modSettings['attachmentSizeLimit'] * 1024 . '">';
 
 		// Show more boxes if they aren't approaching that limit.
 		if ($context['num_allowed_attachments'] > 1)
@@ -597,8 +606,9 @@ function template_main()
 						if (textFields[i] in document.forms.postmodify)
 						{
 							// Handle the WYSIWYG editor.
-							if (textFields[i] == ', JavaScriptEscape($context['post_box_name']), ' && $("#', $context['post_box_name'], '").data("sceditor") != undefined)
-								x[x.length] = textFields[i] + \'=\' + $("#', $context['post_box_name'], '").data("sceditor").getText().html();
+							var e = $("#', $context['post_box_name'], '").get(0);
+							if (textFields[i] == ', JavaScriptEscape($context['post_box_name']), ' && sceditor.instance(e) != undefined)
+								x[x.length] = textFields[i] + \'=\' + sceditor.instance(e).getText().html();
 							else
 								x[x.length] = textFields[i] + \'=\' + document.forms.postmodify[textFields[i]].value.html();
 						}
@@ -696,7 +706,7 @@ function template_main()
 
 	if ($context['can_quote'])
 		echo '
-						newPostsHTML += \'<ul class="qbuttons" id="msg_\' + newPosts[i].getAttribute("id") + \'_quote"><li><a href="#postmodify" onclick="return insertQuoteFast(\\\'\' + newPosts[i].getAttribute("id") + \'\\\');">"><i class="fa fa-quote-left fa-lg" title="', $txt['quote'], '"></i><\' + \'/a></li></ul>\';';
+						newPostsHTML += \'<ul class="quickbuttons" id="msg_\' + newPosts[i].getAttribute("id") + \'_quote"><li><a href="#postmodify" onclick="return insertQuoteFast(\\\'\' + newPosts[i].getAttribute("id") + \'\\\');" class="quote_button"><span>', $txt['quote'], '</span><\' + \'/a></li></ul>\';';
 
 	echo '
 						newPostsHTML += \'<br class="clear">\';
@@ -789,7 +799,7 @@ function template_main()
 					{
 						sId: \'postDraftExpandLink\',
 						msgExpanded: ', JavaScriptEscape($txt['draft_hide']), ',
-						msgCollapsed: ', JavaScriptEscape($txt['draft_load']), '
+						msgCollapsed: ', JavaScriptEscape($txt['drafts_show']), '
 					}
 				]
 			});';
@@ -819,10 +829,10 @@ function template_main()
 			echo '
 			<div class="windowbg">
 				<div id="msg', $post['id'], '">
-					<h5>
+					<h5 class="floatleft">
 						<span>', $txt['posted_by'], '</span> ', $post['poster'], '
 					</h5>
-					', $post['time'];
+					&nbsp;-&nbsp;', $post['time'];
 
 			if ($context['can_quote'])
 				echo '
@@ -885,14 +895,15 @@ function template_main()
 			function onDocReceived(XMLDoc)
 			{
 				var text = \'\';
+				var e = $("#', $context['post_box_name'], '").get(0);
 
 				for (var i = 0, n = XMLDoc.getElementsByTagName(\'quote\')[0].childNodes.length; i < n; i++)
 					text += XMLDoc.getElementsByTagName(\'quote\')[0].childNodes[i].nodeValue;
-				$("#', $context['post_box_name'], '").data("sceditor").InsertText(text);
+				sceditor.instance(e).InsertText(text);
 			}
 			function onReceiveOpener(text)
 			{
-				$("#', $context['post_box_name'], '").data("sceditor").InsertText(text);
+				sceditor.instance(e).InsertText(text);
 			}
 		</script>';
 	}
@@ -1091,8 +1102,8 @@ function template_announcement_send()
 					', $txt['announce_sending'], ' <a href="', $scripturl, '?topic=', $context['current_topic'], '.0" target="_blank" rel="noopener">', $context['topic_subject'], '</a>
 				</p>
 				<div class="progress_bar">
-					<div class="full_bar">', $context['percentage_done'], '% ', $txt['announce_done'], '</div>
-					<div class="green_percent" style="width: ', $context['percentage_done'], '%;"></div>
+					<span>', $context['percentage_done'], '% ', $txt['announce_done'], '</span>
+					<div class="bar" style="width: ', $context['percentage_done'], '%;"></div>
 				</div>
 				<hr>
 				<div id="confirm_buttons">

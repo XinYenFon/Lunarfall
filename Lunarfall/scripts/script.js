@@ -326,6 +326,14 @@ function reqOverlayDiv(desktopURL, sHeader, sIcon)
 		},
 		error: function (xhr, textStatus, errorThrown) {
 			oPopup_body.html(textStatus);
+		},
+		statusCode: {
+			500: function() {
+				if (sHeader == 'Login')
+					oPopup_body.html(banned_text);
+				else
+					oPopup_body.html('500 Internal Server Error');
+			}
 		}
 	});
 	return false;
@@ -424,7 +432,7 @@ smc_Popup.prototype.show = function ()
 		icon = this.opt.icon ? '<img src="' + this.opt.icon + '" class="icon" alt=""> ' : '';
 
 	// Create the div that will be shown
-	$('body').append('<div id="' + this.popup_id + '" class="popup_container"><div class="' + popup_class + '"><div class="catbg popup_heading"><a href="javascript:void(0);"><i class="fa fa-close fa-lg red floatright"></i></a>' + icon + this.opt.heading + '</div><div class="popup_content">' + this.opt.content + '</div></div></div>');
+	$('body').append('<div id="' + this.popup_id + '" class="popup_container"><div class="' + popup_class + '"><div class="catbg popup_heading"><a href="javascript:void(0);" class="generic_icons hide_popup"></a>' + icon + this.opt.heading + '</div><div class="popup_content">' + this.opt.content + '</div></div></div>');
 
 	// Show it
 	this.popup_body = $('#' + this.popup_id).children('.popup_window');
@@ -1570,11 +1578,9 @@ function updateActionDef(optNum)
 
 function smc_resize(selector)
 {
-
 	var allElements = [];
 
 	$(selector).each(function(){
-
 		$thisElement = $(this);
 
 		// Get rid of the width and height attributes.
@@ -1587,13 +1593,10 @@ function smc_resize(selector)
 		$thisElement.aspectRatio = $thisElement.defaultHeight / $thisElement.defaultWidth;
 
 		allElements.push($thisElement);
-
 	});
 
 	$(window).resize(function(){
-
 		$(allElements).each(function(){
-
 			_innerElement = this;
 
 			// Get the new width and height.
@@ -1619,17 +1622,13 @@ function smc_resize(selector)
 	}).resize();
 }
 
-$(function()
-{
-	$('.buttonlist > .dropmenu').each(function(index, item)
-	{
-		$(item).prev().click(function(e)
-		{
+$(function() {
+	$('.buttonlist > .dropmenu').each(function(index, item) {
+		$(item).prev().click(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
 
-			if ($(item).is(':visible'))
-			{
+			if ($(item).is(':visible')) {
 				$(item).css('display', 'none');
 
 				return true;
@@ -1640,15 +1639,13 @@ $(function()
 			$(item).css('left', Math.max($(this).offset().left - $(item).width() + $(this).outerWidth(), 0));
 			$(item).height($(item).find('div:first').height());
 		});
-		$(document).click(function()
-		{
+		$(document).click(function() {
 			$(item).css('display', 'none');
 		});
 	});
 
 	// Generic confirmation message.
-	$(document).on('click', '.you_sure', function()
-	{
+	$(document).on('click', '.you_sure', function() {
 		var custom_message = $(this).attr('data-confirm');
 
 		return confirm(custom_message ? custom_message.replace(/-n-/g, "\n") : smf_you_sure);
@@ -1656,7 +1653,6 @@ $(function()
 
 	// Generic event for smfSelectText()
 	$('.smf_select_text').on('click', function(e) {
-
 		e.preventDefault();
 
 		// Do you want to target yourself?
@@ -1665,3 +1661,20 @@ $(function()
 		return typeof actOnElement !== "undefined" ? smfSelectText(actOnElement, true) : smfSelectText(this);
 	});
 });
+
+function avatar_fallback(e) {
+    var e = window.e || e;
+	var default_avatar = '/avatars/default.png';
+	var default_url = document.URL.substr(0,smf_scripturl.lastIndexOf('/')) + default_avatar;
+
+    if (e.target.tagName !== 'IMG' || !e.target.classList.contains('avatar') || e.target.src === default_url )
+        return;
+
+	e.target.src = default_url;
+	return true;
+}
+
+if (document.addEventListener)
+    document.addEventListener("error", avatar_fallback, true);
+else
+    document.attachEvent("error", avatar_fallback);

@@ -294,8 +294,8 @@ function template_maintain_members()
 					<select name="del_type">
 						<option value="activated" selected>', $txt['maintain_members_activated'], '</option>
 						<option value="logged">', $txt['maintain_members_logged_in'], '</option>
-					</select> 
-					', $txt['maintain_members_since2'], ' 
+					</select>
+					', $txt['maintain_members_since2'], '
 					<input type="number" name="maxdays" value="30" size="3">', $txt['maintain_members_since3'], '
 				</p>
 				<p>
