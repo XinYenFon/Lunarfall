@@ -70,7 +70,7 @@ function template_profile_popup()
 		$item_url = (isset($item['url']) ? $item['url'] : (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $item['area'])) . $menu_context['extra_parameters'];
 		echo '
 				<li>
-					', $area['icon'], '<a href="', $item_url, '">', !empty($item['title']) ? $item['title'] : $area['label'], '</a>
+					<a href="', $item_url, '"><i class="fa fa-', $area['plain_class'] ,' fa-fw" title="', !empty($item['title']) ? $item['title'] : $area['label'], '"></i></a>
 				</li>';
 	}
 
@@ -1954,7 +1954,7 @@ function template_alert_configuration()
 			echo '
 				<tr class="windowbg">
 					<td>
-						', $txt['alert_' . $alert_id], isset($alert_details['help']) ? '<a href="' . $scripturl . '?action=helpadmin;help=' . $alert_details['help'] . '" onclick="return reqOverlayDiv(this.href);" class="help floatright"><span class="generic_icons help" title="' . $txt['help'] . '"></span></a>' : '', '
+						', $txt['alert_' . $alert_id], isset($alert_details['help']) ? '<a href="' . $scripturl . '?action=helpadmin;help=' . $alert_details['help'] . '" onclick="return reqOverlayDiv(this.href);" class="help floatright"><i class="fa fa-question-circle fa-lg" title="' . $txt['help'] . '"></i></a>' : '', '
 					</td>';
 
 			foreach ($context['alert_bits'] as $type => $bitmask)

@@ -498,9 +498,6 @@ h3.grid_header {
 	vertical-align: middle;
 	margin: 0 8px 0 0;
 }
-#error_log .generic_icons {
-	margin: 0 5px 0 0;
-}
 #error_log .error_info {
 	float: right;
 	width: 50%;

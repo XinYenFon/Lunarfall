@@ -263,7 +263,7 @@ function template_modify_language_entries()
 			echo '
 				<fieldset>
 					<legend>
-						<a id="settings_language_', $group, '_help" href="', $scripturl, '?action=helpadmin;help=languages_', $group, '" onclick="return reqOverlayDiv(this.href);"><span class="generic_icons help" title="', $txt['help'], '"></span></a>
+						<a id="settings_language_', $group, '_help" href="', $scripturl, '?action=helpadmin;help=languages_', $group, '" onclick="return reqOverlayDiv(this.href);"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 						<span>', $txt['languages_' . $group], '</span>
 					</legend>
 					<dl class="settings" id="language_', $group, '">';

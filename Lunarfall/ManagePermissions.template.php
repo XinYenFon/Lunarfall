@@ -69,7 +69,7 @@ function template_permission_index()
 		echo '
 					<tr class="windowbg">
 						<td>
-							', !empty($group['help']) ? ' <a class="help" href="' . $scripturl . '?action=helpadmin;help=' . $group['help'] . '" onclick="return reqOverlayDiv(this.href);"><span class="generic_icons help" title="' . $txt['help'] . '"></span></a> ' : '<img class="icon" src="' . $settings['images_url'] . '/blank.png" alt="' . $txt['help'] . '">', '<span>', $group['name'], '</span>';
+							', !empty($group['help']) ? ' <a class="help" href="' . $scripturl . '?action=helpadmin;help=' . $group['help'] . '" onclick="return reqOverlayDiv(this.href);"><i class="fa fa-question-circle fa-lg" title="' . $txt['help'] . '"></i></a> ' : '<img class="icon" src="' . $settings['images_url'] . '/blank.png" alt="' . $txt['help'] . '">', '<span>', $group['name'], '</span>';
 
 		if (!empty($group['children']))
 			echo '
@@ -596,7 +596,7 @@ function template_modify_group_display($type)
 					echo '
 						<tr class="windowbg">
 							<td>
-								', $permission['show_help'] ? '<a href="' . $scripturl . '?action=helpadmin;help=permissionhelp_' . $permission['id'] . '" onclick="return reqOverlayDiv(this.href);" class="help"><span class="generic_icons help" title="' . $txt['help'] . '"></span></a>' : '', '
+								', $permission['show_help'] ? '<a href="' . $scripturl . '?action=helpadmin;help=permissionhelp_' . $permission['id'] . '" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="' . $txt['help'] . '"></i></a>' : '', '
 							</td>
 							<td class="lefttext full_width">', $permission['name'], '</td><td>';
 

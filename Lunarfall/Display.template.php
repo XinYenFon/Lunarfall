@@ -838,9 +838,9 @@ function template_single_post($message)
 	// Share this post! I order no?
 		echo '
 						<ul class="post_socialshare qbuttons">
-							<li><a href="//facebook.com/sharer/sharer.php?u=', $message['href'], '" target="_blank"><i class="fab fa-facebook-f fa-lg fa-fw" title="', $txt['lunarfall_facebook'],'"></i></a></li>
-							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '"><i class="fab fa-twitter fa-lg fa-fw" title="', $txt['lunarfall_twitter'],'"></i></a></li>
-							<li><a href="//plus.google.com/share?url=', $message['href'], '"><i class="fab fa-google-plus-g fa-lg fa-fw" title="', $txt['lunarfall_gplus'],'"></i></a></li>
+							<li><a href="//facebook.com/sharer/sharer.php?u=', $message['href'], '" target="_blank" title="', $txt['lunarfall_facebook'],'"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a></li>
+							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '" title="', $txt['lunarfall_twitter'],'"><i class="fab fa-twitter fa-lg fa-fw"></i></a></li>
+							<li><a href="//plus.google.com/share?url=', $message['href'], '" title="', $txt['lunarfall_gplus'],'"><i class="fab fa-google-plus-g fa-lg fa-fw"></i></a></li>
 						</ul>';
 
 	// Can i haz fun? k thx bai!
@@ -852,56 +852,56 @@ function template_single_post($message)
 		// Maybe they want to report this post to the moderator(s)?
 		if ($context['can_report_moderator'])
 			echo '
-							<li><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '"><i class="fa fa-flag fa-lg" title="', $txt['report_to_mod'], '"></i></a></li>';
+							<li><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '" title="', $txt['report_to_mod'], '"><i class="fa fa-flag fa-lg"></i></a></li>';
 
 		// Can they reply?
 		if ($context['can_quote'])
 			echo '
-							<li><a href="', $scripturl, '?action=post;quote=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';last_msg=', $context['topic_last_message'], '" onclick="return oQuickReply.quote(', $message['id'], ');"><i class="fa fa-quote-left fa-lg" title="', $txt['quote_action'], '"></i></a></li>';
+							<li><a href="', $scripturl, '?action=post;quote=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], ';last_msg=', $context['topic_last_message'], '" onclick="return oQuickReply.quote(', $message['id'], ');" title="', $txt['quote_action'], '"><i class="fa fa-quote-left fa-lg"></i></a></li>';
 
 		// Can the user modify the contents of this post?  Show the modify inline image.
 		if ($message['can_modify'])
 			echo '
-							<li><a title="', $txt['modify_msg'], '" id="modify_button_', $message['id'], '" onclick="oQuickModify.modifyMsg(\'', $message['id'], '\', \'', !empty($modSettings['toggle_subject']), '\')"><i class="fa fa-edit fa-lg" title="', $txt['quick_edit'], '"></i></a></li>';
+							<li><a title="', $txt['modify_msg'], '" id="modify_button_', $message['id'], '" onclick="oQuickModify.modifyMsg(\'', $message['id'], '\', \'', !empty($modSettings['toggle_subject']), '\')" title="', $txt['quick_edit'], '"><i class="fa fa-edit fa-lg"></i></a></li>';
 
 		// Can the user modify the contents of this post?
 		if ($message['can_modify'])
 			echo '
-											<li><a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], '"><i class="fa fa-pencil-alt fa-lg" title="', $txt['modify'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=post;msg=', $message['id'], ';topic=', $context['current_topic'], '.', $context['start'], '" title="', $txt['modify'], '"><i class="fa fa-pencil-alt fa-lg"></i></a></li>';
 
 		// How about... even... remove it entirely?!
 		if ($context['can_delete'] && ($context['topic_first_message'] == $message['id']))
 			echo '
-											<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['are_sure_remove_topic'], '" class="you_sure"><i class="fa fa-trash-alt fa-lg" title="', $txt['remove_topic'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['are_sure_remove_topic'], '" class="you_sure" title="', $txt['remove_topic'], '"><i class="fa fa-trash-alt fa-lg"></i></a></li>';
 
 		elseif ($message['can_remove'] && ($context['topic_first_message'] != $message['id']))
 			echo '
-											<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message_question'], '" class="you_sure"><i class="fa fa-trash fa-lg" title="', $txt['remove'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message_question'], '" class="you_sure" title="', $txt['remove'], '"><i class="fa fa-trash fa-lg"></i></a></li>';
 
 		// What about splitting it off the rest of the topic?
 		if ($context['can_split'] && !empty($context['real_num_replies']))
 			echo '
-											<li><a href="', $scripturl, '?action=splittopics;topic=', $context['current_topic'], '.0;at=', $message['id'], '"><i class="fa fa-random fa-lg" title="', $txt['split'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=splittopics;topic=', $context['current_topic'], '.0;at=', $message['id'], '" title="', $txt['split'], '"><i class="fa fa-random fa-lg"></i></a></li>';
 
 		// Can we issue a warning because of this post? Remember, we can't give guests warnings.
 		if ($context['can_issue_warning'] && !$message['is_message_author'] && !$message['member']['is_guest'])
 			echo '
-											<li><a href="', $scripturl, '?action=profile;area=issuewarning;u=', $message['member']['id'], ';msg=', $message['id'], '"><i class="fa fa-exclamation-triangle fa-lg" title="', $txt['issue_warning'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=profile;area=issuewarning;u=', $message['member']['id'], ';msg=', $message['id'], '" title="', $txt['issue_warning'], '"><i class="fa fa-exclamation-triangle fa-lg"></i></a></li>';
 
 		// Can we restore topics?
 		if ($context['can_restore_msg'])
 			echo '
-											<li><a href="', $scripturl, '?action=restoretopic;msgs=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-undo fa-lg" title="', $txt['restore_message'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=restoretopic;msgs=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', $txt['restore_message'], '"><i class="fa fa-undo fa-lg"></i></a></li>';
 
 		// Maybe we can approve it, maybe we should?
 		if ($message['can_approve'])
 			echo '
-											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-check fa-lg" title="', $txt['approve'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', $txt['approve'], '"><i class="fa fa-check fa-lg"></i></a></li>';
 
 		// Maybe we can unapprove it?
 		if ($message['can_unapprove'])
 			echo '
-											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-times fa-lg" title="', $txt['unapprove'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', $txt['unapprove'], '"><i class="fa fa-times fa-lg"></i></a></li>';
 
 		echo '
 										</ul>

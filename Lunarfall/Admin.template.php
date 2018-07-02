@@ -1296,7 +1296,7 @@ function template_admin_search_results()
 										<input type="hidden" name="search_type" value="', $context['search_type'], '">
 										<input type="submit" name="search_go" value="', $txt['admin_search_results_again'], '" class="button">
 									</span>
-									<span class="generic_icons filter"></span>
+									<i class="fa fa-search fa-lg"></i>
 									<span id="quick_search_results">
 										', sprintf($txt['admin_search_results_desc'], $context['search_term']), '
 									</span>
@@ -1624,7 +1624,7 @@ function template_admin_quick_search()
 	if ($context['user']['is_admin'])
 		echo '
 								<span class="floatright admin_search">
-									<span class="generic_icons filter centericon"></span>
+									<i class="fa fa-search fa-fw"></i>
 									<input type="search" name="search_term" placeholder="', $txt['admin_search'], '">
 									<select name="search_type">
 										<option value="internal"', (empty($context['admin_preferences']['sb']) || $context['admin_preferences']['sb'] == 'internal' ? ' selected' : ''), '>', $txt['admin_search_type_internal'], '</option>

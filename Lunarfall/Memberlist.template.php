@@ -51,7 +51,7 @@ function template_main()
 		if ($column['selected'])
 			echo '
 						<th scope="col" class="', $key, isset($column['class']) ? ' ' . $column['class'] : '', ' selected" style="width: auto;"' . (isset($column['colspan']) ? ' colspan="' . $column['colspan'] . '"' : '') . '>
-							<a href="' . $column['href'] . '" rel="nofollow">' . $column['label'] . '</a><span class="generic_icons sort_' . $context['sort_direction'] . '"></span></th>';
+							<a href="' . $column['href'] . '" rel="nofollow">' . $column['label'] . '</a><i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i></th>';
 
 		// This is just some column... show the link and be done with it.
 		else
