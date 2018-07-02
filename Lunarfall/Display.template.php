@@ -35,7 +35,7 @@ function template_main()
 	echo '
 		<div id="display_head" class="information">
 			<h2 class="display_title">
-				<span id="top_subject">', $context['subject'], '</span>', ($context['is_locked']) ? ' <span class="generic_icons lock"></span>' : '', ($context['is_sticky']) ? ' <span class="generic_icons sticky"></span>' : '', '
+				<span id="top_subject">', $context['subject'], '</span>', ($context['is_locked']) ? ' <i class="fa fa-lock"></i>' : '', ($context['is_sticky']) ? ' <i class="fa fa-thumbtack"></i>' : '', '
 			</h2>
 			<p>',$txt['started_by'], ' ', $context['topic_poster_name'], ', ', $context['topic_started_time'], '</p>';
 
@@ -169,10 +169,10 @@ function template_main()
 					<strong class="event_title"><a href="', $scripturl, '?action=calendar;event=', $event['id'], '">', $event['title'], '</a></strong>';
 
 			if ($event['can_edit'])
-				echo ' <a href="' . $event['modify_href'] . '"><span class="generic_icons calendar_modify" title="', $txt['calendar_edit'], '"></span></a>';
+				echo ' <a href="' . $event['modify_href'] . '"><i class="fa fa-pen" title="', $txt['calendar_edit'], '"></i></a>';
 
 			if ($event['can_export'])
-				echo ' <a href="' . $event['export_href'] . '"><span class="generic_icons calendar_export" title="', $txt['calendar_export'], '"></span></a>';
+				echo ' <a href="' . $event['export_href'] . '"><i class="fa fa-file-export" title="', $txt['calendar_export'], '"></span></a>';
 
 			echo '
 					<br>';
@@ -826,7 +826,7 @@ function template_single_post($message)
 		echo '
 							<div class="under_message">
 								<ul class="floatleft">
-									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><span class="generic_icons ', $message['likes']['you'] ? 'unlike' : 'like', '"></span> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>
+									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><i class="fa fa-thumbs', $message['likes']['you'] ? 'down' : 'up', '"></i> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>
 								</ul>
 							</div>';
 
@@ -852,7 +852,7 @@ function template_single_post($message)
 		// Maybe they want to report this post to the moderator(s)?
 		if ($context['can_report_moderator'])
 			echo '
-							<li><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '"><i class="fa fa-exclamation-triangle fa-lg" title="', $txt['report_to_mod'], '"></i></a></li>';
+							<li><a href="', $scripturl, '?action=reporttm;topic=', $context['current_topic'], '.', $message['counter'], ';msg=', $message['id'], '"><i class="fa fa-flag fa-lg" title="', $txt['report_to_mod'], '"></i></a></li>';
 
 		// Can they reply?
 		if ($context['can_quote'])
@@ -872,36 +872,36 @@ function template_single_post($message)
 		// How about... even... remove it entirely?!
 		if ($context['can_delete'] && ($context['topic_first_message'] == $message['id']))
 			echo '
-											<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['are_sure_remove_topic'], '" class="you_sure"><i class="fa fa-times fa-lg" title="', $txt['remove_topic'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=removetopic2;topic=', $context['current_topic'], '.', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['are_sure_remove_topic'], '" class="you_sure"><i class="fa fa-trash-alt fa-lg" title="', $txt['remove_topic'], '"></i></a></li>';
 
 		elseif ($message['can_remove'] && ($context['topic_first_message'] != $message['id']))
 			echo '
-											<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message_question'], '" class="you_sure"><i class="fa fa-times fa-lg" title="', $txt['remove'], '"></i></a></li>';
+											<li><a href="', $scripturl, '?action=deletemsg;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message_question'], '" class="you_sure"><i class="fa fa-trash fa-lg" title="', $txt['remove'], '"></i></a></li>';
 
 		// What about splitting it off the rest of the topic?
 		if ($context['can_split'] && !empty($context['real_num_replies']))
 			echo '
-											<li><a href="', $scripturl, '?action=splittopics;topic=', $context['current_topic'], '.0;at=', $message['id'], '"><span class="generic_icons split_button"></span>', $txt['split'], '</a></li>';
+											<li><a href="', $scripturl, '?action=splittopics;topic=', $context['current_topic'], '.0;at=', $message['id'], '"><i class="fa fa-random fa-lg" title="', $txt['split'], '"></i></a></li>';
 
 		// Can we issue a warning because of this post? Remember, we can't give guests warnings.
 		if ($context['can_issue_warning'] && !$message['is_message_author'] && !$message['member']['is_guest'])
 			echo '
-											<li><a href="', $scripturl, '?action=profile;area=issuewarning;u=', $message['member']['id'], ';msg=', $message['id'], '"><span class="generic_icons warn_button"></span>', $txt['issue_warning'], '</a></li>';
+											<li><a href="', $scripturl, '?action=profile;area=issuewarning;u=', $message['member']['id'], ';msg=', $message['id'], '"><i class="fa fa-exclamation-triangle fa-lg" title="', $txt['issue_warning'], '"></i></a></li>';
 
 		// Can we restore topics?
 		if ($context['can_restore_msg'])
 			echo '
-											<li><a href="', $scripturl, '?action=restoretopic;msgs=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons restore_button"></span>', $txt['restore_message'], '</a></li>';
+											<li><a href="', $scripturl, '?action=restoretopic;msgs=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-undo fa-lg" title="', $txt['restore_message'], '"></i></a></li>';
 
 		// Maybe we can approve it, maybe we should?
 		if ($message['can_approve'])
 			echo '
-											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons approve_button"></span>', $txt['approve'], '</a></li>';
+											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-check fa-lg" title="', $txt['approve'], '"></i></a></li>';
 
 		// Maybe we can unapprove it?
 		if ($message['can_unapprove'])
 			echo '
-											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons unapprove_button"></span>', $txt['unapprove'], '</a></li>';
+											<li><a href="', $scripturl, '?action=moderate;area=postmod;sa=approve;topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '"><i class="fa fa-times fa-lg" title="', $txt['unapprove'], '"></i></a></li>';
 
 		echo '
 										</ul>

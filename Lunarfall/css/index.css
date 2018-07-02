@@ -158,8 +158,8 @@ hr {
 	border: none;
 	margin: 12px 0;
 	height: 2px;
-	background: #2E3E4C;
-	box-shadow: 0 1px 0 #bbb inset;
+	background: #777777;
+	box-shadow: 0 1px 0 #777 inset;
 }
 /* This is about links */
 a, a:visited {
@@ -2972,8 +2972,7 @@ h3.catbg .icon {
 /* TitleBar & SubBar */
 .title_bar {
 	border: 1px solid #2E3E4C;
-	/*background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;*/
-	color: #666;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
 	margin: 5px 0 0 0;
 }
 .sub_bar {
@@ -3398,19 +3397,10 @@ tr[id^='list_news_lists_'] textarea {
 .videocontainer {
 	max-width: 560px;
 }
-/* Keep this here if I forgot something */
-.large_admin_menu_icon, .generic_icons {
-	background: url(../images/missing.png) no-repeat;
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-}
+
 .videocontainer div {
 	position: relative;
 	padding-bottom: 56.25%;
-}
-.nopad {
-	padding-bottom: 0;
 }
 .videocontainer iframe {
 	position: absolute;
@@ -3418,6 +3408,17 @@ tr[id^='list_news_lists_'] textarea {
 	left: 0;
 	width: 100% !important;
 	height: 100% !important;
+}
+
+/* Keep this here if I forgot something */
+.large_admin_menu_icon, .generic_icons {
+	background: url(../images/missing.png) no-repeat;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+.nopad {
+	padding-bottom: 0;
 }
 .likez {
 	margin: 5px;
@@ -3529,6 +3530,13 @@ i {
 .sceditor-toolbar {
 	background: rgba( 0, 0, 0, 0.2 ) !important;
 }
+div.sceditor-group {
+	background: none !important;
+	border: none !important;
+}
+.sceditor-button:hover, .sceditor-button:active, .sceditor-button.active {
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 5%) repeat scroll 0% 0% transparent !important;
+}
 
 /* Try */
 #recent h5 {
@@ -3536,4 +3544,19 @@ i {
 }
 #recent h5::after {
 	content: " - ";
+}
+
+.qbuttons > i::after {
+    content:attr(title);
+    position:absolute;
+    position:absolute;
+    left:100%;
+    margin-left:-10px;
+    top:-0.5em;
+    z-index:2;
+    padding:0.25em;
+    width:200px;
+    background-color:#f1f1f1;
+    text-align:center;
+    display:none; 
 }

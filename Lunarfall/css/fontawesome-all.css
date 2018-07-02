@@ -221,7 +221,8 @@ readers do not read off random characters that represent icons */
 .fa-center:before {
   content: "\f037"; }
 
-.fa-align-justify:before {
+.fa-align-justify:before,
+.fa-justify:before {
   content: "\f039"; }
 
 .fa-align-left:before,
@@ -990,7 +991,8 @@ readers do not read off random characters that represent icons */
 .fa-expand:before {
   content: "\f065"; }
 
-.fa-expand-arrows-alt:before {
+.fa-expand-arrows-alt:before,
+.fa-maximize:before {
   content: "\f31e"; }
 
 .fa-expeditedssl:before {
