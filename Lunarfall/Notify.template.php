@@ -20,7 +20,7 @@ function template_main()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<i class="fa fa-envelope-o fa-lg icon"></i>
+				<i class="fa fa-envelope fa-lg icon"></i>
 				', $txt['notify'], '
 			</h3>
 		</div>
@@ -42,7 +42,7 @@ function template_notify_board()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<i class="fa fa-envelope-o fa-lg icon"></i>
+				<i class="fa fa-envelope fa-lg icon"></i>
 				', $txt['notify'], '
 			</h3>
 		</div>

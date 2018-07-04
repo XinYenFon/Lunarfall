@@ -756,6 +756,9 @@ img.sort, .sort {
 	font-size: .8rem;
 	margin-bottom: 4px;
 }
+.profile_user_links a {
+	padding: 4px;
+}
 /* Fixes bug with border-box on scrollable js */
 .scrollable, .scrollable * {
 	box-sizing: content-box;
@@ -2193,7 +2196,7 @@ dl.addrules dt.floatleft {
 }
 
 .generic_list_wrapper, .windowbg, .windowbg2, #forumposts .approvebg, #forumposts .approvebg2 {
-	background: #f0f4f7;
+/*	background: #f0f4f7;*/
 	margin: 12px 0 0 0;
 	padding: 12px 16px;
 	border: 1px solid #2E3E4C;
@@ -2453,6 +2456,7 @@ span.postby {
 	font-weight: bold;
 	font-size: 1em;
 	padding: 0;
+	margin: 10px 0;
 }
 #topic_header input {
 	margin-top: 5px !important;
@@ -3523,9 +3527,11 @@ div.sceditor-group {
 	background: none !important;
 	border: none !important;
 }
-.sceditor-button:hover, .sceditor-button:active, .sceditor-button.active {
+.sceditor-button:hover, .sceditor-button:active, .sceditor-button.active,
+.profile_user_links a:hover {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 5%) repeat scroll 0% 0% transparent !important;
 }
+
 
 /* Try */
 #recent h5 {
@@ -3534,12 +3540,20 @@ div.sceditor-group {
 #recent h5::after {
 	content: " - ";
 }
-
-.qbuttons a {
+/* Online - Offline */
+.online {
+	color: #FFF;
+}
+.offline {
+	color: grey;
+}
+/* Icon title-pop */
+.qbuttons a, .profile_user_links a {
     display: inline;
     position: relative;
 }
-.qbuttons a::after {
+.qbuttons a::after,
+.profile_user_links a::after {
 	border: 1px solid #2E3E4C;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
     border-radius: 3px;
@@ -3553,6 +3567,11 @@ div.sceditor-group {
 	display: none;
 	right: 0;
 }
-.qbuttons a:hover::after {
+/* Small change since this part is in top-left */
+.profile_user_links a::after {
+	left: 0;
+}
+.qbuttons a:hover::after,
+.profile_user_links a:hover::after {
 	display: block;
 }

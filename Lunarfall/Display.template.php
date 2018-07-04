@@ -169,10 +169,10 @@ function template_main()
 					<strong class="event_title"><a href="', $scripturl, '?action=calendar;event=', $event['id'], '">', $event['title'], '</a></strong>';
 
 			if ($event['can_edit'])
-				echo ' <a href="' . $event['modify_href'] . '"><i class="fa fa-pen" title="', $txt['calendar_edit'], '"></i></a>';
+				echo ' <a href="' . $event['modify_href'] . '" title="', $txt['calendar_edit'], '"><i class="fas fa-pen"></i></a>';
 
 			if ($event['can_export'])
-				echo ' <a href="' . $event['export_href'] . '"><i class="fa fa-file-export" title="', $txt['calendar_export'], '"></span></a>';
+				echo ' <a href="' . $event['export_href'] . '" title="', $txt['calendar_export'], '"><i class="fas fa-file-export"></i></a>';
 
 			echo '
 					<br>';
@@ -600,17 +600,17 @@ function template_single_post($message)
 			// Don't show an icon if they haven't specified a website.
 			if (!empty($message['member']['website']['url']) && !isset($context['disabled_fields']['website']))
 				echo '
-										<li><a href="', $message['member']['website']['url'], '" title="' . $message['member']['website']['title'] . '" target="_blank" rel="noopener">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg centericon" title="' . $message['member']['website']['title'] . '"></i>' : $txt['www']), '</a></li>';
+										<li><a href="', $message['member']['website']['url'], '" title="' . $message['member']['website']['title'] . '" target="_blank" rel="noopener">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg" title="' . $message['member']['website']['title'] . '"></i>' : $txt['www']), '</a></li>';
 
 			// Since we know this person isn't a guest, you *can* message them.
 			if ($context['can_send_pm'])
 				echo '
-										<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<span class="generic_icons im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . ' centericon" title="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '"></span> ' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+										<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<i class="fab fa-facebook-messenger ' . ($message['member']['online']['is_online'] ? 'online' : 'offline') . ' fa-lg"></i> ' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
 
 			// Show the email if necessary
 			if (!empty($message['member']['email']) && $message['member']['show_email'])
 				echo '
-										<li class="email"><a href="mailto:' . $message['member']['email'] . '" rel="nofollow">', ($settings['use_image_buttons'] ? '<i class="fa fa-envelope-o fa-lg centericon" title="' . $txt['email'] . '"></i>' : $txt['email']), '</a></li>';
+										<li class="email"><a href="mailto:' . $message['member']['email'] . '" rel="nofollow">', ($settings['use_image_buttons'] ? '<i class="fa fa-envelope fa-lg centericon" title="' . $txt['email'] . '"></i>' : $txt['email']), '</a></li>';
 
 			echo '
 									</ol>
@@ -627,7 +627,7 @@ function template_single_post($message)
 	elseif (!empty($message['member']['email']) && $message['member']['show_email'])
 		echo '
 								<li class="email">
-									<a href="mailto:' . $message['member']['email'] . '" rel="nofollow">', ($settings['use_image_buttons'] ? '<i class="fa fa-envelope-o fa-lg centericon" title="' . $txt['email'] . '"></i>' : $txt['email']), '</a>
+									<a href="mailto:' . $message['member']['email'] . '" rel="nofollow">', ($settings['use_image_buttons'] ? '<i class="fa fa-envelope fa-lg centericon" title="' . $txt['email'] . '"></i>' : $txt['email']), '</a>
 								</li>';
 
 	// Show the IP to this user for this post - because you can moderate?

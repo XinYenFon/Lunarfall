@@ -959,7 +959,7 @@ function template_edit_browse()
 
 		elseif ($file['is_directory'])
 			echo '
-						<a href="', $file['href'], '" class="is_directory"><span class="generic_icons folder"></span>', $file['filename'], '</a>';
+						<a href="', $file['href'], '" class="is_directory"><i class="fa fa-folder fa-lg"></i>', $file['filename'], '</a>';
 
 		else
 			echo $file['filename'];
