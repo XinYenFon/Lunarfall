@@ -220,7 +220,7 @@ function template_summary()
 	// Email is only visible if it's your profile or you have the moderate_forum permission
 	if ($context['member']['show_email'])
 		echo '
-				<li><a href="mailto:', $context['member']['email'], '" title="', $context['member']['email'], '" rel="nofollow"><span class="generic_icons mail" title="' . $txt['email'] . '"></span></a></li>';
+				<li><a href="mailto:', $context['member']['email'], '" title="', $context['member']['email'], '" rel="nofollow" title="' . $txt['email'] . '"><i class="fa fa-envelope fa-lg"></i></a></li>';
 
 	// Don't show an icon if they haven't specified a website.
 	if ($context['member']['website']['url'] !== '' && !isset($context['disabled_fields']['website']))
@@ -527,17 +527,17 @@ function template_showPosts()
 			// If they *can* reply?
 			if ($post['can_reply'])
 				echo '
-					<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '"><i class="fa fa-reply fa-lg title="', $txt['reply'], '"></i></a></li>';
+					<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '" title="', $txt['reply'], '"><i class="fa fa-reply fa-lg"></i></a></li>';
 
 			// If they *can* quote?
 			if ($post['can_quote'])
 				echo '
-					<li><a href="', $scripturl . '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '"><i class="fa fa-quote-left fa-lg title="', $txt['quote_action'], '"></i></a></li>';
+					<li><a href="', $scripturl . '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '" title="', $txt['quote_action'], '"><i class="fa fa-quote-left fa-lg"></i></a></li>';
 
 			// How about... even... remove it entirely?!
 			if ($post['can_delete'])
 				echo '
-					<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'], '" class="you_sure"><i class="fa fa-remove fa-lg" title="', $txt['remove'], '"></i></a></li>';
+					<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'], '" class="you_sure" title="', $txt['remove'], '"><i class="fa fa-trash fa-lg"></i></a></li>';
 
 			if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
 				echo '
@@ -611,7 +611,7 @@ function template_showAlerts()
 					<td>', $alert['time'], '</td>
 					<td>
 						<ul class="qbuttons">
-							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['delete'], '</a></li>
+							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '" class="you_sure" title="', $txt['delete'], '"><i class="fa fa-trash fa-lg"></span></a></li>
 							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read'), ';aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons ', $alert['is_read'] != 0 ? 'unread_button' : 'read_button', '"></span>', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']), '</a></li>';
 
 					if ($context['showCheckboxes'])
@@ -705,8 +705,8 @@ function template_showDrafts()
 			</div>
 			<div class="floatright">
 				<ul class="qbuttons">
-						<li><a href="', $scripturl, '?action=post;', (empty($draft['topic']['id']) ? 'board=' . $draft['board']['id'] : 'topic=' . $draft['topic']['id']), '.0;id_draft=', $draft['id_draft'], '"><span class="generic_icons reply_button"></span>', $txt['draft_edit'], '</a></li>
-						<li><a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=showdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['draft_remove'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['draft_delete'], '</a></li>
+						<li><a href="', $scripturl, '?action=post;', (empty($draft['topic']['id']) ? 'board=' . $draft['board']['id'] : 'topic=' . $draft['topic']['id']), '.0;id_draft=', $draft['id_draft'], '" title="', $txt['draft_edit'], '"><i class="fa fa-reply fa-lg"></i></a></li>
+						<li><a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=showdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['draft_remove'], '" class="you_sure" title="', $txt['draft_delete'], '"><i class="fa fa-trash fa-lg"></i></a></li>
 				</ul>
 			</div><!-- .floatright -->
 		</div><!-- .windowbg -->';
@@ -787,7 +787,7 @@ function template_editBuddies()
 			if ($buddy['show_email'])
 				echo '
 					<td>
-						<a href="mailto:' . $buddy['email'] . '" rel="nofollow"><span class="generic_icons mail icon" title="' . $txt['email'] . ' ' . $buddy['name'] . '"></span></a>
+						<a href="mailto:' . $buddy['email'] . '" rel="nofollow" title="' . $txt['email'] . ' ' . $buddy['name'] . '"><i class="fa fa-globe fa-lg"></i></a>
 					</td>';
 
 			// Show the custom profile fields for this user.
@@ -798,7 +798,7 @@ function template_editBuddies()
 
 			echo '
 					<td>
-						<a href="', $scripturl, '?action=profile;area=lists;sa=buddies;u=', $context['id_member'], ';remove=', $buddy['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons delete" title="', $txt['buddy_remove'], '"></span></a>
+						<a href="', $scripturl, '?action=profile;area=lists;sa=buddies;u=', $context['id_member'], ';remove=', $buddy['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', $txt['buddy_remove'], '"><i class="fa fa-times fa-lg"></i></a>
 					</td>
 				</tr>';
 		}
@@ -908,7 +908,7 @@ function template_editIgnoreList()
 		if ($member['show_email'])
 			echo '
 					<td>
-						<a href="mailto:' . $member['email'] . '" rel="nofollow"><span class="generic_icons mail icon" title="' . $txt['email'] . ' ' . $member['name'] . '"></span></a>
+						<a href="mailto:' . $member['email'] . '" rel="nofollow" title="' . $txt['email'] . ' ' . $member['name'] . '"><i class="fa fa-envelope fa-lg"></span></a>
 					</td>';
 		echo '
 					<td>

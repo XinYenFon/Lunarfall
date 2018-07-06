@@ -105,7 +105,7 @@ function template_select()
 		echo '
 					<li class="windowbg" id="not_selected_', $message['id'], '">
 						<div class="message_header">
-							<a class="split_icon floatright" href="', $scripturl, '?action=splittopics;sa=selectTopics;subname=', $context['topic']['subject'], ';topic=', $context['topic']['id'], '.', $context['not_selected']['start'], ';start2=', $context['selected']['start'], ';move=down;msg=', $message['id'], '" onclick="return select(\'down\', ', $message['id'], ');"><span class="generic_icons split_sel" title="-&gt;"></span></a>
+							<a class="split_icon floatright" href="', $scripturl, '?action=splittopics;sa=selectTopics;subname=', $context['topic']['subject'], ';topic=', $context['topic']['id'], '.', $context['not_selected']['start'], ';start2=', $context['selected']['start'], ';move=down;msg=', $message['id'], '" onclick="return select(\'down\', ', $message['id'], ');"><i class="fa fa-plus fa-lg" title="-&gt;"></i></a>
 							', sprintf($txt['post_by_member'], $message['subject'], $message['poster']), '<br>
 							<em>', $message['time'], '</em>
 						</div>
@@ -135,7 +135,7 @@ function template_select()
 			echo '
 					<li class="windowbg" id="selected_', $message['id'], '">
 						<div class="message_header">
-							<a class="split_icon floatleft" href="', $scripturl, '?action=splittopics;sa=selectTopics;subname=', $context['topic']['subject'], ';topic=', $context['topic']['id'], '.', $context['not_selected']['start'], ';start2=', $context['selected']['start'], ';move=up;msg=', $message['id'], '" onclick="return select(\'up\', ', $message['id'], ');"><span class="generic_icons split_desel" title="&lt;-"></span></a>
+							<a class="split_icon floatleft" href="', $scripturl, '?action=splittopics;sa=selectTopics;subname=', $context['topic']['subject'], ';topic=', $context['topic']['id'], '.', $context['not_selected']['start'], ';start2=', $context['selected']['start'], ';move=up;msg=', $message['id'], '" onclick="return select(\'up\', ', $message['id'], ');"><i class="fa fa-minus fa-lg" title="&lt;-"></i></a>
 							', sprintf($txt['post_by_member'], $message['subject'], $message['poster']), '<br>
 							<em>', $message['time'], '</em>
 						</div>

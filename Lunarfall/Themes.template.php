@@ -229,7 +229,7 @@ function template_list_themes()
 
 			// Deleting.
 			echo '
-						<a href="', $scripturl, '?action=admin;area=theme;sa=remove;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tr_token_var'], '=', $context['admin-tr_token'], '" data-confirm="', $txt['theme_remove_confirm'], '" class="you_sure"><span class="generic_icons delete" title="', $txt['theme_remove'], '"></span></a>';
+						<a href="', $scripturl, '?action=admin;area=theme;sa=remove;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tr_token_var'], '=', $context['admin-tr_token'], '" data-confirm="', $txt['theme_remove_confirm'], '" class="you_sure" title="', $txt['theme_remove'], '"><i class="fa fa-trash fa-lg"></i></a>';
 
 			echo '
 					</span>';

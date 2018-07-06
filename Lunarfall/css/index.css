@@ -1493,11 +1493,6 @@ tr.windowbg td, tr.windowbg2 td, .table_grid tr td {
 .generic_menu {
 	margin: 5px 0;
 }
-/* Some lovely generic icons.
-------------------------------------------------- */
-.generic_icons.gender_None {
-	background: none;
-}
 /* This is a small fix for dropmenu icons */
 .dropmenu img {
 	margin: -3px 8px 0 0;
