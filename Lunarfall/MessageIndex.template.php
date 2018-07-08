@@ -426,13 +426,13 @@ function template_topic_legend()
 	if (empty($context['no_topic_listing']))
 		echo '
 			<p class="floatleft">', !empty($modSettings['enableParticipation']) && $context['user']['is_logged'] ? '
-				<i class="fa fa-user fa-fw fa-lg"></i> ' . $txt['participation_caption'] . '<br>' : '', '
-				'. ($modSettings['pollMode'] == '1' ? '<i class="fa fa-chart-bar fa-fw fa-lg"></i> ' . $txt['poll'] : '') . '<br>
-				<i class="fa fa-arrow-alt-circle-right fa-fw fa-lg"></i> ' . $txt['moved_topic'] . '<br>
+				<i class="fa fa-user fa-fw"></i> ' . $txt['participation_caption'] . '<br>' : '', '
+				'. ($modSettings['pollMode'] == '1' ? '<i class="fa fa-chart-bar fa-fw"></i> ' . $txt['poll'] : '') . '<br>
+				<i class="fa fa-arrow-alt-circle-right fa-fw"></i> ' . $txt['moved_topic'] . '<br>
 			</p>
 			<p>
-				<i class="fa fa-lock fa-fw fa-lg"></i> ' . $txt['locked_topic'] . '<br>
-				<i class="fa fa-thumbtack fa-fw fa-lg"></i> ' . $txt['sticky_topic'] . '<br>
+				<i class="fa fa-lock fa-fw"></i> ' . $txt['locked_topic'] . '<br>
+				<i class="fa fa-thumbtack fa-fw"></i> ' . $txt['sticky_topic'] . '<br>
 			</p>';
 
 	if (!empty($context['jump_to']))

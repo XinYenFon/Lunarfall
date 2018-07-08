@@ -1277,7 +1277,8 @@ readers do not read off random characters that represent icons */
 .fa-file:before {
   content: "\f15b"; }
 
-.fa-file-alt:before {
+.fa-file-alt:before,
+.fa-xx:before {
   content: "\f15c"; }
 
 .fa-file-archive:before {
@@ -3151,12 +3152,14 @@ readers do not read off random characters that represent icons */
 .fa-thermometer-three-quarters:before {
   content: "\f2c8"; }
 
-.fa-thumbs-down:before {
+.fa-thumbs-down:before,
+.fa-thumbdown:before {
   content: "\f165"; }
 
 .fa-thumbs-up:before,
 .fa-liked_messages:before,
-.fa-liked_users:before {
+.fa-liked_users:before,
+.fa-thumbup:before {
   content: "\f164"; }
 
 .fa-thumbtack:before,

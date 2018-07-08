@@ -212,7 +212,6 @@ body#help_popup {
 }
 .new_posts:hover {
 	text-decoration: none;
-	color: #444;
 	opacity: 1;
 }
 
@@ -607,7 +606,7 @@ table.table_grid td {
 	width: 5%;
 }
 
-.title_bar th {
+.title_bar th, .windowbg th {
 	padding: 4px 8px;
 }
 
@@ -1018,21 +1017,13 @@ img.sort, .sort {
 	font-weight: bold;
 }
 
+#languages_form, #search_form {
+	padding: 5px 0 0 0;
+}
 #languages_form {
-	padding: 4px 0 0 0;
+	margin: 0 0 0 10px;
 }
-#search_form {
-	padding: 3px 0 3px 0;
-	text-align: right;
-	min-width: 25em;
-}
-#search_form input[type="search"], #search_form select, #search_form .button {
-	padding: 2px;
-	margin: 2px;
-}
-#search_form select, #language_select {
-	margin: 1px;
-}
+
 /* The logo and slogan. */
 #header {
 	padding: 2px 2px 12px 2px;
@@ -3569,4 +3560,12 @@ div.sceditor-group {
 .qbuttons a:hover::after,
 .profile_user_links a:hover::after {
 	display: block;
+}
+
+/* Flex more */
+#topic_header,
+#topic_container .windowbg {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
