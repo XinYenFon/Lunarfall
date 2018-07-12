@@ -336,7 +336,7 @@ function template_main()
 	if (!empty($modSettings['additional_options_collapsable']))
 		echo '
 					<div id="postAdditionalOptionsHeader">
-						<strong><a href="#" id="postMoreExpandLink"> ', $context['can_post_attachment'] ? $txt['post_additionalopt_attach'] : $txt['post_additionalopt'], '</a></strong>
+						<strong><a href="#"><i id="postMoreExpandLink" class="fa fa-lg"></i>  ', $context['can_post_attachment'] ? $txt['post_additionalopt_attach'] : $txt['post_additionalopt'], '</a></strong>
 					</div>';
 
 	echo '

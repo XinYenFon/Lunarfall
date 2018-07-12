@@ -94,7 +94,7 @@ function template_generic_menu(&$menu_context)
 
 			echo '
 								<li', !empty($area['subsections']) ? ' class="subsections"' : '', '>
-									<a class="', $area['icon_class'], !empty($area['selected']) ? ' chosen ' : '', '" href="', (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $i), $menu_context['extra_parameters'], '"><i class="fa fa-', $area['plain_class'],' fa-fw" title="', $area['label'], '"></i>', $area['label'], '</a>';
+									<a class="', $area['icon_class'], !empty($area['selected']) ? ' chosen ' : '', '" href="', (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $i), $menu_context['extra_parameters'], '"><i class="fa fa-' , $i , ' fa-fw" title="', $area['label'], '"></i>', $area['label'], '</a>';
 
 			// Is this the current area, or just some area?
 			if (!empty($area['selected']) && empty($context['tabs']))

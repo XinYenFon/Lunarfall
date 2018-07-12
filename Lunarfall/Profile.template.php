@@ -908,11 +908,11 @@ function template_editIgnoreList()
 		if ($member['show_email'])
 			echo '
 					<td>
-						<a href="mailto:' . $member['email'] . '" rel="nofollow" title="' . $txt['email'] . ' ' . $member['name'] . '"><i class="fa fa-envelope fa-lg"></span></a>
+						<a href="mailto:' . $member['email'] . '" rel="nofollow" title="' . $txt['email'] . ' ' . $member['name'] . '"><i class="fa fa-envelope fa-lg"></i></a>
 					</td>';
 		echo '
 					<td>
-						<a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=lists;sa=ignore;remove=', $member['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons delete" title="', $txt['ignore_remove'], '"></span></a>
+						<a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=lists;sa=ignore;remove=', $member['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', $txt['ignore_remove'], '"><i class="fa fa-trash fa-lg"></i></a>
 					</td>
 				</tr>';
 	}
@@ -2732,7 +2732,7 @@ function template_profile_group_manage()
 	echo '
 							<dt>
 								<strong>', $txt['primary_membergroup'], ': </strong><br>
-								<span class="smalltext"><a href="', $scripturl, '?action=helpadmin;help=moderator_why_missing" onclick="return reqOverlayDiv(this.href);"><span class="generic_icons help"></span> ', $txt['moderator_why_missing'], '</a></span>
+								<span class="smalltext"><a href="', $scripturl, '?action=helpadmin;help=moderator_why_missing" onclick="return reqOverlayDiv(this.href);"><i class="fa fa-question-circle fa-lg"></i> ', $txt['moderator_why_missing'], '</a></span>
 							</dt>
 							<dd>
 								<select name="id_group" ', ($context['user']['is_owner'] && $context['member']['group_id'] == 1 ? 'onchange="if (this.value != 1 &amp;&amp; !confirm(\'' . $txt['deadmin_confirm'] . '\')) this.value = 1;"' : ''), '>';

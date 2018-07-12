@@ -3569,3 +3569,14 @@ div.sceditor-group {
 	flex-direction: row;
 	justify-content: space-between;
 }
+/* a drity fix */
+.board_icon i {
+	position: relative;
+	top: 25%;
+}
+.sceditor-button i {
+	position: relative;
+	top: 15%;
+	left: 20%;
+	margin: 0;
+}
