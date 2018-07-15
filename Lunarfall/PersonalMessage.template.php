@@ -1040,7 +1040,7 @@ function template_send()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-					<i class="fa fa-inbox fa-lg" title="', $txt['new_message'], '"></i> ', $txt['new_message'], '
+				<i class="fa fa-inbox fa-lg" title="', $txt['new_message'], '"></i> ', $txt['new_message'], '
 			</h3>
 		</div>';
 

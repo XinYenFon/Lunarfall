@@ -133,10 +133,6 @@ function template_error_log()
 							<a href="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';filter=ip;value=', $error['member']['ip'], '" title="', $txt['apply_filter'], ': ', $txt['filter_only_ip'], '"><i class="fa fa-search fa-fw"></i></a>
 							<strong><a href="', $scripturl, '?action=trackip;searchip=', $error['member']['ip'], '">', $error['member']['ip'], '</a></strong>';
 
-		echo '
-						</div>
-						<div class="error_info">';
-
 		if ($error['member']['session'] != '')
 			echo '
 							<br>
@@ -331,6 +327,12 @@ function template_show_backtrace()
 
 		foreach ($context['error_info']['backtrace'] as $key => $value)
 		{
+			//Check for existing
+			if (property_exists($value,'file') || empty($value->file))
+				$value->file = $txt['unknown'];
+			if (property_exists($value, 'line') || empty($value->line))
+				$value->line = -1;
+
 				echo '
 					<li class="backtrace">', sprintf($txt['backtrace_info'], $key, $value->function, $value->file, $value->line, base64_encode($value->file)), '</li>';
 		}

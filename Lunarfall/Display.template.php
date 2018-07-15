@@ -685,8 +685,8 @@ function template_single_post($message)
 
 	echo '
 								<h5>
-									<span class="messageicon" ', ($message['icon_url'] !== $settings['images_url'] . '/post/xx.png') ? '' : 'style="position: absolute; z-index: -1;"', '>
-										<img src="', $message['icon_url'] . '" alt=""', $message['can_modify'] ? ' id="msg_icon_' . $message['id'] . '"' : '', '>
+									<span class="messageicon">
+										<i ', $message['can_modify'] ? ' id="msg_icon_' . $message['id'] . '"' : '', ' class="fa fa-' . $message['icon'] . ' fa-lg"></i>
 									</span>
 									<a href="', $message['href'], '" rel="nofollow" title="', !empty($message['counter']) ? sprintf($txt['reply_number'], $message['counter'], ' - ') : '', $message['subject'], '" class="smalltext">', $message['time'], '</a>
 									<span class="page_number floatright">
