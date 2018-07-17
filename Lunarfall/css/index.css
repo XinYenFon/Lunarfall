@@ -3347,6 +3347,9 @@ tr[id^='list_news_lists_'] textarea {
 i {
 	margin: 5px;
 }
+.profile_user_links a {
+	padding: 5px;
+}
 .notify_dropdown a:hover,
 #pm_menu .unread:hover, #alerts_menu .unread:hover {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.4) 95%) repeat scroll 0% 0% transparent;
@@ -3434,7 +3437,6 @@ div.sceditor-group {
 .qbuttons a, .profile_user_links a {
     display: inline;
 	position: relative;
-	padding: 5px;
 }
 .qbuttons a::after,
 .profile_user_links a::after {

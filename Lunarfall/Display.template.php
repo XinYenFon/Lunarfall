@@ -242,6 +242,31 @@ function template_main()
 			', !empty($context['mod_buttons']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
 		</div>';
 
+	// Font selector (Beta) -this still missing remember option-
+	echo '
+		<div id="font_selector">
+			<select id="font_size_select" class="floatright block">
+				<option value="xx-small">xx-small</option>
+				<option value="x-small">x-small</option>
+				<option value="small" selected="selected">small</option>
+				<option value="medium">medium</option>
+				<option value="large">large</option>
+				<option value="x-large">x-large</option>
+				<option value="xx-large">xx-large</option>
+			</select>
+		</div>
+		<script>
+			$("#font_size_select").change(function() {
+				$(".inner").css("font-size", $(this).val());
+				if ($(this).val() == "large")
+					$(".inner").css("line-height", "1.1em");
+				else if ($(this).val() == "x-large")
+					$(".inner").css("line-height", "1.2em");
+				else if ($(this).val() == "xx-large")
+					$(".inner").css("line-height", "1.3em");
+			});
+		</script>';
+
 	// Show the topic information - icon, subject, etc.
 	echo '
 		<div id="forumposts">
