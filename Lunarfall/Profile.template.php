@@ -3161,7 +3161,7 @@ function template_tfasetup()
 					</div>
 					<div class="floatleft">
 						<form action="', $scripturl, '?action=profile;area=tfasetup" method="post">
-							<div class="title_top">
+							<div class="block">
 								<strong>', $txt['tfa_step1'], '</strong><br>';
 
 	if (!empty($context['tfa_pass_error']))
@@ -3173,12 +3173,12 @@ function template_tfasetup()
 	echo '
 								<input type="password" name="passwd" size="25"', !empty($context['tfa_pass_error']) ? ' class="error"' : '', !empty($context['tfa_pass_value']) ? ' value="' . $context['tfa_pass_value'] . '"' : '', '>
 							</div>
-							<div class="title_top">
+							<div class="block">
 								<strong>', $txt['tfa_step2'], '</strong>
 								<div class="smalltext">', $txt['tfa_step2_desc'], '</div>
 								<div class="tfacode">', $context['tfa_secret'], '</div>
 							</div>
-							<div class="title_top">
+							<div class="block">
 								<strong>', $txt['tfa_step3'], '</strong><br>';
 
 	if (!empty($context['tfa_error']))

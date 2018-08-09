@@ -1,0 +1,48 @@
+0.6.0 (TBD)
+* Font-Awesome 5 upgrade
+* catching curve2 changes
+
+0.5.2 (22 January 2018)
+* catching curve2 changes
+! A small note, I'm not intending to keep this theme in fully working condition till RC1 so expect huge problems or some ignorance (Sorry :/)
+
+0.5.1 (7 August 2017)
+* catching curve2 changes
+- (Known Issue) - due to changes in core we need to find a way to introduce font-icons on certain places till that day they'll be broken
+
+0.5.0 (1 May 2016)
+- removed lunarfall_dependencies, new changes to core allows us to get rid of this modification.
+* catching curve2 changes (probably the biggest changes)
+
+0.4.0 (8 July 2015)
++ Social share feature added for each post
+* caching curve2 changes
+
+0.3.0 (26 January 2015)
+* Font-Awesome updated to v4.3
++ Collapsed boards has less opacity (Big thanks to NanoSector for creating snip for me)
++ OG support added from Curve2
+- removed generic_icons.png
+- removed admin_icons_hd.png
+* background image changed (this made sure big screens 1080p 24''++ gets better view)
++ added credits to credits page
+* more icon conversation
+* more css corrections
+
+0.2.0 (13 December 2014)
++ Social media icons added.
++ Ability to disable FA-Icons.
+! Fixed the possible conflict with FA css loaded themes.
+- Removed some inline css.
+* Generic_menu changes for easier compatibility with FA Icons.
++ Added mod to make sure everything is in order (you can find lunarfall_dependencies in attachments).
+* More icon conversation to FA Icons.
+! Some small bug-fixes.
+
+0.1.0 (7 December 2014)
+- First release (Count as Alpha)
+
+! Bug fix
++ Added feature
+* Changed
+- Info

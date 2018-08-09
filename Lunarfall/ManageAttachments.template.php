@@ -116,16 +116,14 @@ function template_maintenance()
 		</div><!-- .windowbg -->
 	</div><!-- #manage_attachments -->';
 
-	echo '
-	<div id="transfer" class="cat_bar">
-		<h3 class="catbg">', $txt['attachment_transfer'], '</h3>
-	</div>';
-
 	if (!empty($context['results']))
 		echo '
 	<div class="noticebox">', $context['results'], '</div>';
 
 	echo '
+	<div id="transfer" class="cat_bar">
+		<h3 class="catbg">', $txt['attachment_transfer'], '</h3>
+	</div>
 	<div class="windowbg">
 		<form action="', $scripturl, '?action=admin;area=manageattachments;sa=transfer" method="post" accept-charset="', $context['character_set'], '">
 			<p>', $txt['attachment_transfer_desc'], '</p>

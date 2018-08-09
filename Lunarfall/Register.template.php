@@ -92,7 +92,7 @@ function template_registration_form()
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['registration_form'], '</h3>
 			</div>
-			<div class="title_bar title_top">
+			<div class="title_bar">
 				<h3 class="titlebg">', $txt['required_info'], '</h3>
 			</div>
 			<div class="roundframe noup">
@@ -169,7 +169,7 @@ function template_registration_form()
 	// If we have either of these, show the extra group.
 	if (!empty($context['profile_fields']) || !empty($context['custom_fields']))
 		echo '
-			<div class="title_bar title_top">
+			<div class="title_bar">
 				<h3 class="titlebg">', $txt['additional_information'], '</h3>
 			</div>
 			<div class="roundframe noup">
@@ -280,7 +280,7 @@ function template_registration_form()
 
 	if ($context['visual_verification'])
 		echo '
-			<div class="title_bar title_top">
+			<div class="title_bar">
 				<h3 class="titlebg">', $txt['verification'], '</h3>
 			</div>
 			<div class="roundframe">
@@ -351,7 +351,7 @@ function template_coppa()
 
 	// Formulate a nice complicated message!
 	echo '
-			<div class="title_bar title_top">
+			<div class="title_bar">
 				<h3 class="titlebg">', $context['page_title'], '</h3>
 			</div>
 			<div id="coppa" class="roundframe noup">
@@ -590,19 +590,17 @@ function template_edit_agreement()
 		echo '
 		<div class="errorbox">', $txt['admin_agreement_not_saved'], '</div>';
 
+	// Warning for if the file isn't writable.
+	if (!empty($context['warning']))
+		echo '
+		<div class="errorbox">', $context['warning'], '</div>';
+
 	// Just a big box to edit the text file ;)
 	echo '
 		<div id="admin_form_wrapper">
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['registration_agreement'], '</h3>
-			</div>';
-
-	// Warning for if the file isn't writable.
-	if (!empty($context['warning']))
-		echo '
-			<p class="error">', $context['warning'], '</p>';
-
-	echo '
+			</div>
 			<div class="windowbg" id="registration_agreement">';
 
 	// Is there more than one language to choose from?

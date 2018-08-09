@@ -512,7 +512,7 @@ function template_main()
 	if (!empty($modSettings['drafts_post_enabled']) && !empty($context['drafts']) && !empty($options['drafts_show_saved_enabled']))
 	{
 		echo '
-					<div id="postDraftOptionsHeader" class="title_bar title_top">
+					<div id="postDraftOptionsHeader" class="title_bar">
 						<h4 class="titlebg">
 							<i id="postDraftExpand" class="fa toggle_up fa-lg floatright" style="display: none;"></i> <strong><a href="#" id="postDraftExpandLink">', $txt['draft_load'], '</a></strong>
 						</h4>

@@ -34,11 +34,11 @@ abbr {
 input, button, select, textarea {
 	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
 	background: #fff;
-	outline: none !important;
+	outline: none;
 	border: 1px solid #bbb;
 	vertical-align: middle;
 	box-shadow: 0 2px 5px rgba(0,0,0,0.05) inset;
-	padding: 3px;
+	padding: 0.3em 0.4em;
 }
 input, button, select {
 	padding: 0 0.4em;
@@ -47,6 +47,10 @@ input, button, select {
 }
 select {
 	padding: 0.22em 0.2em; /* selects don't apply line-height */
+}
+/* Selects with more than one line */
+select[size] {
+	height: auto;
 }
 input[type="file"] {
 	padding: 2px;
@@ -1414,7 +1418,7 @@ dl.register_form dd {
 	vertical-align: middle;
 }
 
-tr.windowbg td, tr.windowbg2 td, .table_grid tr td {
+tr.windowbg td, .table_grid tr td {
 	padding: 4px 8px;
 }
 #credits p {
@@ -1834,6 +1838,9 @@ dl {
 #pick_theme {
 	width: 100%;
 	float: left;
+}
+#pick_theme .selected {
+	background: #cddbe6;
 }
 
 /* Signature preview */

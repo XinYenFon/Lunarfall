@@ -606,7 +606,7 @@ function template_edit_censored()
 								</div>
 								<div id="moreCensoredWords"></div>
 								<div class="block" style="display: none;" id="moreCensoredWords_link">
-									<a class="button" href="#;" onclick="addNewWord(); return false;">', $txt['censor_clickadd'], '</a><br>
+									<a class="button" href="#" onclick="addNewWord(); return false;">', $txt['censor_clickadd'], '</a><br>
 								</div>
 								<script>
 									document.getElementById("moreCensoredWords_link").style.display = "";
@@ -687,7 +687,14 @@ function template_not_done()
 							</div>';
 
 	echo '
-							<form action="', $scripturl, $context['continue_get_data'], '" method="post" accept-charset="', $context['character_set'], '" name="autoSubmit" id="autoSubmit">
+							<form action="', $scripturl, $context['continue_get_data'], '" method="post" accept-charset="', $context['character_set'], '" name="autoSubmit" id="autoSubmit">';
+
+	// Do we have a token?
+	if (isset($context['not_done_token']) && isset($context[$context['not_done_token'] . '_token'], $context[$context['not_done_token'] . '_token_var']))
+		echo '
+							<input type="hidden" name="', $context[$context['not_done_token'] . '_token_var'], '" value="', $context[$context['not_done_token'] . '_token'], '">';
+
+	echo '
 								<input type="submit" name="cont" value="', $txt['not_done_continue'], '" class="button">
 								', $context['continue_post_data'], '
 							</form>
@@ -1397,7 +1404,7 @@ function template_callback_question_answer_list()
 									<input type="text" name="answer[', $lang_id, '][', $q_id, '][]" value="', $answer, '" size="50" class="verification_answer">';
 
 				echo '
-									<div class="qa_add_answer"><a href="javascript:void(0);" onclick="return addAnswer(this);">[ ', $txt['setup_verification_add_answer'], ' ]</a></div>
+									<div class="qa_add_answer"><a href="javascript:void(0);">[ ', $txt['setup_verification_add_answer'], ' ]</a></div>
 								</dd>';
 			}
 
