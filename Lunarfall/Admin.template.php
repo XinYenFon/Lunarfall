@@ -28,6 +28,10 @@ function template_admin()
 	echo '
 						<div id="admin_main_section">';
 
+	// Sellout
+	echo '
+						<div id="donate_cat" class="block"><a href="https://www.patreon.com/Antesistan" id="donate_cat"><i class="fab fa-patreon fa-3x"></i></a></div>';
+
 	// Display the "live news" from simplemachines.org.
 	echo '
 							<div id="live_news" class="floatleft">

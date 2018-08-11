@@ -585,11 +585,21 @@ h3.config_hd {
 	max-width: 750px;
 }
 
+/* Sellout */
+.fa-patreon {
+	color: #F96854;
+}
 #donate_cat {
+	color: #FFF;
 	padding: 5px;
-	margin-bottom: 5px;
-	font-size: 1em;
+	text-decoration: none;
+	text-align: right;
+}
+#donate_cat a:hover {
+	text-decoration: none;
 }
 #donate_cat a:after {
-	content: "Consider Donating?";
+	content: "Consider Helping?";
+	font-size: 2em;
+	vertical-align: super;
 }
