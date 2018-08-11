@@ -1,6 +1,8 @@
-0.6.0 (TBD)
+0.6.0 (11 August 2018)
 * Font-Awesome 5 upgrade
 * catching curve2 changes
++ Added font-selector for post section (WIP still)
+(A Small note, release date is 11.08.2018 on GitHub, but can be different for SMF -official-)
 
 0.5.2 (22 January 2018)
 * catching curve2 changes

@@ -617,7 +617,8 @@ readers do not read off random characters that represent icons */
 .fa-calculator:before {
   content: "\f1ec"; }
 
-.fa-calendar:before {
+.fa-calendar:before,
+.fa-managecalendar:before {
   content: "\f133"; }
 
 .fa-calendar-alt:before {
@@ -837,7 +838,8 @@ readers do not read off random characters that represent icons */
 .fa-clipboard-check:before {
   content: "\f46c"; }
 
-.fa-clipboard-list:before {
+.fa-clipboard-list:before,
+.fa-manrules:before {
   content: "\f46d"; }
 
 .fa-clock:before,
@@ -890,7 +892,9 @@ readers do not read off random characters that represent icons */
   content: "\f013"; }
 
 .fa-cogs:before,
-.fa-features:before {
+.fa-features:before,
+.fa-settings:before,
+.fa-featuresettings:before {
   content: "\f085"; }
 
 .fa-coins:before {
@@ -1037,7 +1041,8 @@ readers do not read off random characters that represent icons */
   content: "\f210"; }
 
 .fa-database:before,
-.fa-scheduled:before {
+.fa-scheduled:before,
+.fa-scheduledtasks:before {
   content: "\f1c0"; }
 
 .fa-deaf:before {
@@ -1052,8 +1057,7 @@ readers do not read off random characters that represent icons */
 .fa-deskpro:before {
   content: "\f38f"; }
 
-.fa-desktop:before,
-.fa-server:before {
+.fa-desktop:before {
   content: "\f108"; }
 
 .fa-deviantart:before {
@@ -1117,7 +1121,8 @@ readers do not read off random characters that represent icons */
   content: "\f395"; }
 
 .fa-dollar-sign:before,
-.fa-paid:before {
+.fa-paid:before,
+.fa-paidsubscribe:before {
   content: "\f155"; }
 
 .fa-dolly:before {
@@ -1147,7 +1152,8 @@ readers do not read off random characters that represent icons */
 .fa-draft2digital:before {
   content: "\f396"; }
 
-.fa-drafting-compass:before {
+.fa-drafting-compass:before,
+.fa-drafts:before {
   content: "\f568"; }
 
 .fa-draw-polygon:before {
@@ -1212,10 +1218,13 @@ readers do not read off random characters that represent icons */
 
 .fa-envelope:before,
 .fa-mail:before,
+.fa-mailqueue:before,
+.fa-send:before,
 .fa-email:before {
   content: "\f0e0"; }
 
-.fa-envelope-open:before {
+.fa-envelope-open:before,
+.fa-sent:before {
   content: "\f2b6"; }
 
 .fa-envelope-square:before {
@@ -1227,7 +1236,8 @@ readers do not read off random characters that represent icons */
 .fa-equals:before {
   content: "\f52c"; }
 
-.fa-eraser:before {
+.fa-eraser:before,
+.fa-prune:before {
   content: "\f12d"; }
 
 .fa-erlang:before {
@@ -1255,7 +1265,8 @@ readers do not read off random characters that represent icons */
 .fa-exclamation-triangle:before,
 .fa-members_watched:before,
 .check:before,
-.fa-warning:before {
+.fa-warning:before,
+.fa-warnings:before {
   content: "\f071"; }
 
 .fa-expand:before {
@@ -1809,7 +1820,8 @@ readers do not read off random characters that represent icons */
   content: "\f453"; }
 
 .fa-home:before,
-.fa-administration:before {
+.fa-administration:before,
+.fa-index:before {
   content: "\f015"; }
 
 .fa-hooli:before {
@@ -2037,7 +2049,8 @@ readers do not read off random characters that represent icons */
   content: "\f3bf"; }
 
 .fa-life-ring:before,
-.fa-support:before {
+.fa-support:before,
+.fa-credits:before {
   content: "\f1cd"; }
 
 .fa-lightbulb:before {
@@ -2069,7 +2082,8 @@ readers do not read off random characters that represent icons */
   content: "\f03a"; }
 
 .fa-list-alt:before,
-.fa-boards:before {
+.fa-boards:before,
+.fa-manageboards:before {
   content: "\f022"; }
 
 .fa-list-ol:before,
@@ -2386,7 +2400,8 @@ readers do not read off random characters that represent icons */
 
 .fa-paint-brush:before,
 .fa-current_theme:before,
-.fa-themes:before {
+.fa-themes:before,
+.fa-theme:before {
   content: "\f1fc"; }
 
 .fa-paint-roller:before {
@@ -2406,6 +2421,7 @@ readers do not read off random characters that represent icons */
 
 .fa-paperclip:before,
 .fa-attachment:before,
+.fa-manageattachments:before,
 .fa-post_moderation_attach:before {
   content: "\f0c6"; }
 
@@ -2455,7 +2471,8 @@ readers do not read off random characters that represent icons */
   content: "\f14b"; }
 
 .fa-pencil-alt:before,
-.fa-posts:before {
+.fa-posts:before,
+.fa-postsettings:before {
   content: "\f303"; }
 
 .fa-pencil-ruler:before {
@@ -2598,7 +2615,8 @@ readers do not read off random characters that represent icons */
   content: "\f3e1"; }
 
 .fa-puzzle-piece:before,
-.fa-modifications:before {
+.fa-modifications:before,
+.fa-modsettings:before {
   content: "\f12e"; }
 
 .fa-python:before {
@@ -2777,7 +2795,8 @@ readers do not read off random characters that represent icons */
 .fa-scribd:before {
   content: "\f28a"; }
 
-.fa-search:before {
+.fa-search:before,
+.fa-managesearch:before {
   content: "\f002"; }
 
 .fa-search-minus:before {
@@ -2798,7 +2817,8 @@ readers do not read off random characters that represent icons */
 .fa-sellsy:before {
   content: "\f213"; }
 
-.fa-server:before {
+.fa-server:before,
+.fa-serversettings:before {
   content: "\f233"; }
 
 .fa-servicestack:before {
@@ -2868,7 +2888,8 @@ readers do not read off random characters that represent icons */
 
 .fa-sign-out-alt:before,
 .fa-logout:before,
-.fa-exit:before {
+.fa-exit:before,
+.fa-adminlogoff:before {
   content: "\f2f5"; }
 
 .fa-signal:before {
@@ -2884,7 +2905,8 @@ readers do not read off random characters that represent icons */
   content: "\f3ee"; }
 
 .fa-sitemap:before,
-.fa-engines:before {
+.fa-engines:before,
+.fa-sengines:before {
   content: "\f0e8"; }
 
 .fa-sith:before {
@@ -2912,7 +2934,8 @@ readers do not read off random characters that represent icons */
   content: "\f1e7"; }
 
 .fa-smile:before,
-.fa-smiley:before {
+.fa-smiley:before,
+.fa-smileys:before {
   content: "\f118"; }
 
 .fa-smile-beam:before {
@@ -3166,7 +3189,8 @@ readers do not read off random characters that represent icons */
 .fa-tag:before {
   content: "\f02b"; }
 
-.fa-tags:before {
+.fa-tags:before,
+.fa-manlabels:before {
   content: "\f02c"; }
 
 .fa-tape:before {
@@ -3376,7 +3400,8 @@ readers do not read off random characters that represent icons */
   content: "\f403"; }
 
 .fa-umbrella:before,
-.fa-security:before {
+.fa-security:before,
+.fa-antispam:before {
   content: "\f0e9"; }
 
 .fa-umbrella-beach:before {
@@ -3490,6 +3515,7 @@ readers do not read off random characters that represent icons */
 .fa-mlist:before,
 .fa-membergroups:before,
 .fa-starters:before,
+.fa-viewmembers:before,
 .fa-members_request:before {
   content: "\f0c0"; }
 
