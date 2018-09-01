@@ -22,7 +22,7 @@ function template_registration_agreement()
 			<div class="cat_bar">
 				<h3 class="catbg">', $txt['registration_agreement'], '</h3>
 			</div>
-			<div class="roundframe noup">
+			<div class="roundframe">
 				<p>', $context['agreement'], '</p>
 			</div>
 			<div id="confirm_buttons">';
@@ -477,7 +477,6 @@ function template_admin_register()
 	global $context, $scripturl, $txt, $modSettings;
 
 	echo '
-	<div id="admincenter">
 		<div id="admin_form_wrapper">
 			<form id="postForm" action="', $scripturl, '?action=admin;area=regcenter" method="post" accept-charset="', $context['character_set'], '" name="postForm">
 				<div class="cat_bar">
@@ -571,7 +570,6 @@ function template_admin_register()
 				</div><!-- #register_screen -->
 			</form>
 		</div><!-- #admin_form_wrapper -->
-	</div><!-- #admincenter -->
 	<br class="clear">';
 }
 

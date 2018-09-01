@@ -285,7 +285,7 @@ function template_show_backtrace()
 					', $txt['error'], '
 				</h3>
 			</div>
-			<div class="windowbg noup">
+			<div class="windowbg">
 				<ul class="padding">';
 
 		if (!empty($context['error_info']['error_type']))
@@ -322,7 +322,7 @@ function template_show_backtrace()
 					', $txt['backtrace_title'], '
 				</h3>
 			</div>
-			<div class="windowbg noup">
+			<div class="windowbg">
 				<ul class="padding">';
 
 		foreach ($context['error_info']['backtrace'] as $key => $value)

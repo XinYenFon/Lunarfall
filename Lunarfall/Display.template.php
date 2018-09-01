@@ -75,7 +75,7 @@ function template_main()
 					<i class="fa fa-bar-chart fa-lg"></i>', $context['poll']['is_locked'] ? '<i class="fa fa-lock fa-lg"></i>' : '' ,' ', $context['poll']['question'], '
 				</h3>
 			</div>
-			<div class="windowbg noup">
+			<div class="windowbg">
 				<div id="poll_options">';
 
 		// Are they not allowed to vote but allowed to view the options?
@@ -686,7 +686,7 @@ function template_single_post($message)
 	if (!$message['member']['is_guest'] && $message['member']['can_see_warning'])
 		echo '
 								<li class="warning">
-									', $context['can_issue_warning'] ? '<a href="' . $scripturl . '?action=profile;area=issuewarning;u=' . $message['member']['id'] . '">' : '', '<span class="generic_icons warning_', $message['member']['warning_status'], '"></span> ', $context['can_issue_warning'] ? '</a>' : '', '<span class="warn_', $message['member']['warning_status'], '">', $txt['warn_' . $message['member']['warning_status']], '</span>
+									', $context['can_issue_warning'] ? '<a href="' . $scripturl . '?action=profile;area=issuewarning;u=' . $message['member']['id'] . '">' : '', '<i class="fa fa-', $message['member']['warning_status'], ' fa-lg"></i> ', $context['can_issue_warning'] ? '</a>' : '', '<span class="warn_', $message['member']['warning_status'], '">', $txt['warn_' . $message['member']['warning_status']], '</span>
 								</li>';
 
 	// Are there any custom fields to show at the bottom of the poster info?
@@ -939,7 +939,7 @@ function template_single_post($message)
 
 		if ($message['can_approve'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'])
 			echo '
-								</ul><!-- .quickbuttons -->';
+								</ul><!-- .qbuttons -->';
 	}
 
 	if ($context['can_report_moderator'] || !empty($modSettings['enable_likes']) || $message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
