@@ -642,13 +642,16 @@ img.sort, .sort {
 	box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.08);
 }
 /* Level 1 button background. */
-.dropmenu li, #top_info > li {
+.dropmenu > li, #top_info > li {
+	display: inline-block;
 	margin: 0 2px 0 1px;
 	padding: 0 0 0.3em 0;
 	font-size: 0.9em;
 	line-height: 1.9em;
-	position: relative;
-	display: inline-block;
+}
+/* Disable default focus outlines */
+.dropmenu a {
+	outline: 0;
 }
 .dropmenu li {
 	margin: 0;
@@ -678,7 +681,7 @@ img.sort, .sort {
 	border-radius: 8px;
 }
 .dropmenu li .active .amt, #top_info li .active .amt {
-	background: none;
+	background: rgba(0,0,0,0.2);
 	color: inherit;
 }
 #top_info .top_menu.visible {
@@ -693,6 +696,7 @@ img.sort, .sort {
 	padding: 0 7px 0 7px;
 	margin: 0;
 	display: block;
+	border: 1px solid transparent;
 }
 /* Level 1 active button. */
 .dropmenu li a.active, #top_info li a.active {
@@ -714,6 +718,9 @@ img.sort, .sort {
 	display: inline-block;
 	margin: 0 9px;
 	vertical-align: middle;
+}
+.profile_user_avatar img.avatar {
+    max-width: 100px;
 }
 .profile_username {
 	font-size: 150%;
@@ -790,7 +797,8 @@ img.sort, .sort {
 	width: 17em;
 	font-size: 1em;
 }
-.dropmenu li li a {
+/* Necessary to allow highlighting of 1st level while hovering over submenu. */
+.dropmenu li:hover li a, .dropmenu li li a {
 	position: relative;
 	line-height: 2.2em;
 	padding: 0 7px !important;
@@ -841,7 +849,11 @@ img.sort, .sort {
 .dropmenu li li li a {
 	font-size: 1em;
 }
-.dropmenu li li:hover>a, .dropmenu li li a:hover {
+/* Levels 2 and 3 hover effects. */
+.dropmenu li li:hover {
+	border: none;
+}
+.dropmenu li li:hover>a, .dropmenu li li a:focus, .dropmenu li li a:hover {
 	color: #FFF;
 	text-decoration: none;
 	background: #212D3D;
@@ -1319,6 +1331,7 @@ fieldset.merge_options {
 ------------------------------------------------------- */
 .login {
 	width: 540px;
+	max-width: 100%;
 	margin: 0 auto;
 }
 .popup_content .login {
@@ -2128,6 +2141,7 @@ dl.addrules dt.floatleft {
 	position: relative;
 	background: none;
 	margin: 0;
+	height: auto !important; /* In case anything fishy happens in the situations where this used make sure it stays still */
 }
 #main_menu .popup_window, #genericmenu .popup_window {
 	position: relative;
@@ -2389,7 +2403,7 @@ span.postby {
 
 /* MessageIndex */
 /* Start with description and other things */
-#description_board {
+#description_board, .filter_row {
 	padding: 8px 10px;
 	border-bottom: none;
 	box-shadow: none;
@@ -3119,6 +3133,10 @@ h3.profile_hd {
 	line-height: 1.05em;
 	overflow-wrap: break-word;
 }
+#reported_posts .quickbuttons li a,
+#reported_members .quickbuttons li a {
+	background: none;
+}
 
 /* Some colors for generic usage */
 /* Sometimes there will be an error when you post */
@@ -3135,6 +3153,13 @@ h3.profile_hd {
 }
 .yellow, .check {
 	color: yellow;
+}
+/* Adding some classes for generic usage and JS rules */
+.hidden {
+	display: none;
+}
+.inline_block {
+	display: inline-block;
 }
 .block {
 	display: block;
@@ -3483,6 +3508,5 @@ div.sceditor-group {
 .sceditor-button i {
 	position: relative;
 	top: 15%;
-	left: 20%;
 	margin: 0;
 }

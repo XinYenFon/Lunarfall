@@ -33,7 +33,7 @@ function template_admin()
 							<div id="live_news" class="floatleft">
 								<div class="cat_bar">
 									<h3 class="catbg">
-										<a href="', $scripturl, '?action=helpadmin;help=live_news" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'],'"></i></a> ', $txt['live'], '
+										<a href="', $scripturl, '?action=helpadmin;help=live_news" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a> ', $txt['live'], '
 									</h3>
 								</div>
 								<div class="windowbg">
@@ -597,11 +597,11 @@ function template_edit_censored()
 									<input type="text" name="censor_vulgar[]" size="30"> =&gt; <input type="text" name="censor_proper[]" size="30">
 								</div>
 								<div id="moreCensoredWords"></div>
-								<div class="block" style="display: none;" id="moreCensoredWords_link">
+								<div class="block hidden" id="moreCensoredWords_link">
 									<a class="button" href="#" onclick="addNewWord(); return false;">', $txt['censor_clickadd'], '</a><br>
 								</div>
 								<script>
-									document.getElementById("moreCensoredWords_link").style.display = "";
+									document.getElementById("moreCensoredWords_link").classList.remove(\'hidden\');
 								</script>
 								<hr>
 								<dl class="settings">

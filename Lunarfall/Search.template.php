@@ -420,7 +420,7 @@ function template_results()
 		echo '
 	<div class="cat_bar">
 		<h3 class="catbg">
-			<i class="fa fa-search fa-lg"></i>&nbsp;', $txt['mlist_search_results'],':&nbsp;',$context['search_params']['search'],'
+			<i class="fa fa-search fa-lg"></i> ', $txt['mlist_search_results'], ': ', $context['search_params']['search'], '
 		</h3>
 	</div>
 	<div class="pagesection">
