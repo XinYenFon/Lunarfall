@@ -713,21 +713,21 @@ function template_single_post($message)
 									<span class="messageicon">
 										<i ', $message['can_modify'] ? ' id="msg_icon_' . $message['id'] . '"' : '', ' class="fa fa-' . $message['icon'] . ' fa-lg"></i>
 									</span>
-									<a href="', $message['href'], '" rel="nofollow" title="', !empty($message['counter']) ? sprintf($txt['reply_number'], $message['counter'], ' - ') : '', $message['subject'], '" class="smalltext">', $message['time'], '</a>
-									<span class="page_number floatright">
-										', !empty($message['counter']) ? ' #' . $message['counter'] : '', ' ', '
-									</span>';
+									<a href="', $message['href'], '" rel="nofollow" title="', !empty($message['counter']) ? sprintf($txt['reply_number'], $message['counter'], ' - ') : '', $message['subject'], '" class="smalltext">', $message['time'], '</a>';
 
 	// Show "<< Last Edit: Time by Person >>" if this post was edited. But we need the div even if it wasn't modified!
 	// Because we insert into it through AJAX and we don't want to stop themers moving it around if they so wish so they can put it where they want it.
 	echo '
-									<span class="smalltext modified floatright', !empty($modSettings['show_modify']) && !empty($message['modified']['name']) ? ' mvisible' : '','" id="modified_', $message['id'], '">';
+									<span class="smalltext modified', !empty($modSettings['show_modify']) && !empty($message['modified']['name']) ? ' mvisible' : '','" id="modified_', $message['id'], '">';
 
 	if (!empty($modSettings['show_modify']) && !empty($message['modified']['name']))
 		echo
 										$message['modified']['last_edit_text'];
 
 	echo '
+									</span>
+									<span class="page_number floatright">
+										', !empty($message['counter']) ? ' #' . $message['counter'] : '', ' ', '
 									</span>
 								</h5>
 								<div id="msg_', $message['id'], '_quick_mod"', $ignoring ? ' style="display:none;"' : '', '></div>
