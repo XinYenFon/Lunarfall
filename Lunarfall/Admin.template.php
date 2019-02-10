@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2018 Simple Machines and individual contributors
+ * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 4
+ * @version 2.1 RC1
  */
 
 /**
@@ -37,13 +37,13 @@ function template_admin()
 									</h3>
 								</div>
 								<div class="windowbg">
-									<div id="smfAnnouncements">', $txt['lfyi'], '</div>
+									<div id="smfAnnouncements">', $txt['smf_news_cant_connect'], '</div>
 								</div>
 							</div>';
 
 	// Show the user version information from their server.
 	echo '
-							<div id="supportVersionsTable" class="floatright">
+							<div id="support_info" class="floatright">
 								<div class="cat_bar">
 									<h3 class="catbg">
 										<a href="', $scripturl, '?action=admin;area=credits">', $txt['support_title'], '</a>
@@ -72,7 +72,7 @@ function template_admin()
 	echo '
 									</div><!-- #version_details -->
 								</div><!-- .windowbg -->
-							</div><!-- #supportVersionsTable -->
+							</div><!-- #support_info -->
 						</div><!-- #admin_main_section -->';
 
 	foreach ($context[$context['admin_menu_name']]['sections'] as $area_id => $area)
@@ -744,6 +744,28 @@ function template_show_settings()
 		echo '
 							<div class="information">', $context['settings_message'], '</div>';
 
+	// Filter out any redundant separators before we start the loop
+	$context['config_vars'] = array_filter($context['config_vars'], function ($v) use ($context)
+		{
+			static $config_vars, $prev;
+
+			$at_start = is_null($config_vars);
+			$config_vars = $at_start ? $context['config_vars'] : $config_vars;
+
+			$next = next($config_vars);
+			$at_end = key($config_vars) === null;
+
+			if (!$at_start && !$at_end)
+			{
+				$div_types = array('title', 'desc');
+				$at_start = isset($prev['type']) && in_array($prev['type'], $div_types);
+				$at_end = isset($next['type']) && in_array($next['type'], $div_types);
+			}
+
+			$prev = $v;
+			return ($v === '' && ($at_start || $at_end || $v === $next)) ? false : true;
+		});
+
 	// Now actually loop through all the variables.
 	$is_open = false;
 	foreach ($context['config_vars'] as $config_var)
@@ -901,10 +923,10 @@ function template_show_settings()
 				{
 					echo '
 										<fieldset id="', $config_var['name'], '">
-											<legend>', $txt['bbcTagsToUse_select'], '</legend>
+											<legend>', $txt['enabled_bbc_select'], '</legend>
 											<ul>';
 
-					foreach ($context['bbc_columns'] as $bbcColumn)
+					foreach ($context['bbc_sections'][$config_var['name']]['columns'] as $bbcColumn)
 					{
 						foreach ($bbcColumn as $bbcTag)
 							echo '
@@ -913,7 +935,7 @@ function template_show_settings()
 												</li>';
 					}
 					echo '					</ul>
-											<input type="checkbox" id="bbc_', $config_var['name'], '_select_all" onclick="invertAll(this, this.form, \'', $config_var['name'], '_enabledTags\');"', $context['bbc_sections'][$config_var['name']]['all_selected'] ? ' checked' : '', '> <label for="bbc_', $config_var['name'], '_select_all"><em>', $txt['bbcTagsToUse_select_all'], '</em></label>
+											<input type="checkbox" id="bbc_', $config_var['name'], '_select_all" onclick="invertAll(this, this.form, \'', $config_var['name'], '_enabledTags\');"', $context['bbc_sections'][$config_var['name']]['all_selected'] ? ' checked' : '', '> <label for="bbc_', $config_var['name'], '_select_all"><em>', $txt['enabled_bbc_select_all'], '</em></label>
 										</fieldset>';
 				}
 				// A simple message?
@@ -943,7 +965,7 @@ function template_show_settings()
 				}
 
 				echo isset($config_var['postinput']) ? '
-											' . $config_var['postinput'] : '','
+											' . $config_var['postinput'] : '', '
 									</dd>';
 			}
 		}
@@ -957,9 +979,10 @@ function template_show_settings()
 								<dl class="settings">';
 			else
 				echo '
-									<dd>
+									<dt>
 										<strong>' . $config_var . '</strong>
-									</dd>';
+									</dt>
+									<dd></dd>';
 		}
 	}
 
@@ -974,7 +997,6 @@ function template_show_settings()
 	if ($is_open)
 		echo '
 							</div><!-- .windowbg -->';
-
 
 	// At least one token has to be used!
 	if (isset($context['admin-ssc_token']))
@@ -1535,7 +1557,7 @@ function template_php_info()
 			{
 				if ($localmaster)
 				{
-					// heading row for the settings section of this categorys settings
+					// heading row for the settings section of this category's settings
 					echo '
 								<tr class="title_bar">
 									<td class="equal_table"><strong>', $txt['phpinfo_itemsettings'], '</strong></td>

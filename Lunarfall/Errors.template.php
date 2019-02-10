@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2018 Simple Machines and individual contributors
+ * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 4
+ * @version 2.1 RC1
  */
 
 // @todo
@@ -113,7 +113,7 @@ function template_error_log()
 	if (count($context['errors']) == 0)
 		echo '
 				<tr class="windowbg">
-					<td class="centertext" colspan="2">', $txt['errlog_no_entries'], '</td>
+					<td class="centertext" colspan="2">', $txt['errorlog_no_entries'], '</td>
 				</tr>';
 
 	// We have some errors, must be some mods installed :P
@@ -208,7 +208,7 @@ function template_show_file()
 	<head>
 		<meta charset="', $context['character_set'], '">
 		<title>', $context['file_data']['file'], '</title>
-		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $modSettings['browser_cache'], '">
+		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $context['browser_cache'], '">
 	</head>
 	<body>
 		<table class="errorfile_table">';
@@ -248,8 +248,8 @@ function template_attachment_errors()
 				<div class="noticebox">',
 					$context['error_message'], '
 				</div>';
-	
-	if (!empty($context['back_link'])) 
+
+	if (!empty($context['back_link']))
 		echo '
 				<a class="button" href="', $scripturl, $context['back_link'], '">', $txt['back'], '</a>';
 
@@ -273,7 +273,7 @@ function template_show_backtrace()
 	<head>
 		<meta charset="', $context['character_set'], '">
 		<title>Backtrace</title>
-		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $modSettings['browser_cache'], '">
+		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $context['browser_cache'], '">
 	</head>
 	<body class="padding">';
 
@@ -308,7 +308,6 @@ function template_show_backtrace()
 			echo '
 					<li>', $txt['error_url'], ': ', $context['error_info']['url'], '</li>';
 
-
 		echo '
 				</ul>
 			</div>';
@@ -328,12 +327,12 @@ function template_show_backtrace()
 		foreach ($context['error_info']['backtrace'] as $key => $value)
 		{
 			//Check for existing
-			if (!property_exists($value,'file') || empty($value->file))
+			if (!property_exists($value, 'file') || empty($value->file))
 				$value->file = $txt['unknown'];
 			if (!property_exists($value, 'line') || empty($value->line))
 				$value->line = -1;
 
-				echo '
+			echo '
 					<li class="backtrace">', sprintf($txt['backtrace_info'], $key, $value->function, $value->file, $value->line, base64_encode($value->file)), '</li>';
 		}
 

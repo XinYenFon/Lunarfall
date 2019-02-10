@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2018 Simple Machines and individual contributors
+ * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 4
+ * @version 2.1 RC1
  */
 
 /**
@@ -425,7 +425,7 @@ function template_set_options()
 						<input type="number"', $min . $max . $step;
 			}
 			elseif (isset($setting['type']) && $setting['type'] == 'url')
-				echo'
+				echo '
 						<input type="url"';
 
 			else
@@ -649,7 +649,7 @@ function template_set_settings()
 						<input type="number"', $min . $max . $step;
 			}
 			elseif (isset($setting['type']) && $setting['type'] == 'url')
-				echo'
+				echo '
 						<input type="url"';
 
 			else

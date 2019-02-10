@@ -4,14 +4,14 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2018 Simple Machines and individual contributors
+ * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 4
+ * @version 2.1 RC1
  */
 
 /**
- * This tempate handles displaying a topic
+ * This template handles displaying a topic
  */
 function template_main()
 {
@@ -28,7 +28,7 @@ function template_main()
 	if ($context['becomesUnapproved'])
 		echo '
 		<div class="noticebox">
-			', $txt['post_becomesUnapproved'], '
+			', $txt['post_becomes_unapproved'], '
 		</div>';
 
 	// Show new topic info here?
@@ -37,7 +37,7 @@ function template_main()
 			<h2 class="display_title">
 				<span id="top_subject">', $context['subject'], '</span>', ($context['is_locked']) ? ' <i class="fa fa-lock"></i>' : '', ($context['is_sticky']) ? ' <i class="fa fa-thumbtack"></i>' : '', '
 			</h2>
-			<p>',$txt['started_by'], ' ', $context['topic_poster_name'], ', ', $context['topic_started_time'], '</p>';
+			<p>', $txt['started_by'], ' ', $context['topic_poster_name'], ', ', $context['topic_started_time'], '</p>';
 
 	// Next - Prev
 	echo '
@@ -146,7 +146,7 @@ function template_main()
 		</div><!-- #poll -->
 		<div id="pollmoderation">';
 
-			template_button_strip($context['poll_buttons']);
+		template_button_strip($context['poll_buttons']);
 
 		echo '
 		</div>';
@@ -236,7 +236,7 @@ function template_main()
 
 	// Mobile action - moderation buttons (top)
 	if (!empty($context['normal_buttons']))
-	echo '
+		echo '
 		<div class="mobile_buttons floatright">
 			<a class="button mobile_act">', $txt['mobile_action'], '</a>
 			', !empty($context['mod_buttons']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
@@ -285,7 +285,7 @@ function template_main()
 
 	// Mobile action - moderation buttons (bottom)
 	if (!empty($context['normal_buttons']))
-	echo '
+		echo '
 		<div class="mobile_buttons floatright">
 			<a class="button mobile_act">', $txt['mobile_action'], '</a>
 			', !empty($context['mod_buttons']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
@@ -973,7 +973,6 @@ function template_single_post($message)
 								', $message['member']['signature'], '
 							</div>';
 
-
 	// Are there any custom profile fields for below the signature?
 	if (!empty($message['custom_fields']['below_signature']))
 	{
@@ -1004,14 +1003,14 @@ function template_quickreply()
 	global $context, $modSettings, $scripturl, $options, $txt;
 
 	echo '
-		<a id="quickreply"></a>
-		<div class="tborder" id="quickreplybox">
+		<a id="quickreply_anchor"></a>
+		<div class="tborder" id="quickreply">
 			<div class="cat_bar">
 				<h3 class="catbg">
 					', $txt['quick_reply'], '
 				</h3>
 			</div>
-			<div id="quickReplyOptions">
+			<div id="quickreply_options">
 				<div class="roundframe">';
 
 	// Are we hiding the full editor?
@@ -1104,8 +1103,8 @@ function template_quickreply()
 	echo '
 					</form>
 				</div><!-- .roundframe -->
-			</div><!-- #quickReplyOptions -->
-		</div><!-- #quickreplybox -->
+			</div><!-- #quickreply_options -->
+		</div><!-- #quickreply -->
 		<br class="clear">';
 
 	// Draft autosave available and the user has it enabled?
@@ -1137,16 +1136,16 @@ function template_quickreply()
 				iStart: ', $context['start'], ',
 				sScriptUrl: smf_scripturl,
 				sImagesUrl: smf_images_url,
-				sContainerId: "quickReplyOptions",
+				sContainerId: "quickreply_options",
 				sImageId: "quickReplyExpand",
 				sClassCollapsed: "toggle_up",
 				sClassExpanded: "toggle_down",
-				sJumpAnchor: "quickreply",
+				sJumpAnchor: "quickreply_anchor",
 				bIsFull: true
 			});
 			var oEditorID = "', $context['post_box_name'], '";
 			var oEditorObject = oEditorHandle_', $context['post_box_name'], ';
-			var oJumpAnchor = "quickreply";
+			var oJumpAnchor = "quickreply_anchor";
 		</script>';
 }
 

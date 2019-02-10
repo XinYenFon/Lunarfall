@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2018 Simple Machines and individual contributors
+ * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 4
+ * @version 2.1 RC1
  */
 
 /**
@@ -21,7 +21,7 @@ function template_recent()
 	<div id="recent" class="main_section">
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<span class="xx"></span>',$txt['recent_posts'],'
+				<span class="xx"></span>', $txt['recent_posts'], '
 			</h3>
 		</div>
 		<div class="pagesection">', $context['page_index'], '</div>';
@@ -164,7 +164,7 @@ function template_unread()
 							<p class="floatleft">
 								', $topic['first_post']['started_by'], '
 							</p>
-							', !empty($topic['pages']) ? '<span id="pages'.$topic['first_post']['id'].'" class="topic_pages">'.$topic['pages'].'</span>' : '', '
+							', !empty($topic['pages']) ? '<span id="pages' . $topic['first_post']['id'] . '" class="topic_pages">' . $topic['pages'] . '</span>' : '', '
 						</div><!-- .info -->
 						<div class="board_stats centertext">
 							<p>
@@ -315,7 +315,7 @@ function template_replies()
 							<p class="floatleft">
 								', $topic['first_post']['started_by'], '
 							</p>
-							', !empty($topic['pages']) ? '<span id="pages'.$topic['first_post']['id'].'" class="topic_pages">'.$topic['pages'].'</span>' : '', '
+							', !empty($topic['pages']) ? '<span id="pages' . $topic['first_post']['id'] . '" class="topic_pages">' . $topic['pages'] . '</span>' : '', '
 						</div><!-- .info -->
 						<div class="board_stats centertext">
 							<p>

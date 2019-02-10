@@ -1,5 +1,5 @@
 <?php
-// Version: 2.1 Beta 4; Modifications
+// Version: 2.1 RC1; Modifications
 
 // Lunarfall Post
 $txt['lunarfall_facebook'] = 'Share on Facebook';

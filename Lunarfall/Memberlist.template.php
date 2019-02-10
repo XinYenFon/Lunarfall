@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2018 Simple Machines and individual contributors
+ * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 4
+ * @version 2.1 RC1
  */
 
 /**
@@ -106,7 +106,7 @@ function template_main()
 			if (!empty($context['custom_profile_fields']['columns']))
 				foreach ($context['custom_profile_fields']['columns'] as $key => $column)
 					echo '
-						<td class="' , $key , ' centertext">', $member['options'][$key], '</td>';
+						<td class="', $key, ' centertext">', $member['options'][$key], '</td>';
 
 			echo '
 					</tr>';

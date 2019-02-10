@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines http://www.simplemachines.org
- * @copyright 2018 Simple Machines and individual contributors
+ * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 Beta 4
+ * @version 2.1 RC1
  */
 
 /**
@@ -110,7 +110,7 @@ function template_main()
 						<div class="bar" style="width: ', $item['percent'], '%;"></div>';
 			else
 				echo '
-						<div class="bar empty"></div>';			
+						<div class="bar empty"></div>';
 
 			echo '
 						<span>', $item['num'], '</span>

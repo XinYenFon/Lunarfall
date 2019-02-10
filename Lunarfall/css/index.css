@@ -72,7 +72,13 @@ img, input, select {
 textarea {
 	font-size: 1em;
 }
-.sceditor-container textarea, .sceditor-container textarea:focus  {
+
+/* Use a consistent monospace font everywhere */
+.monospace, .bbc_code, .phpcode, pre, #error_log span.error_message {
+	font-family: "DejaVu Sans Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+.sceditor-container textarea, .sceditor-container textarea:focus {
 	box-shadow: none;
 }
 #quick_edit_body_container textarea,
@@ -98,7 +104,7 @@ textarea:hover {
 input:focus, textarea:focus, button:focus, select:focus {
 	outline: none;
 	border: 1px solid #999;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.1) inset;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) inset;
 }
 /* Fieldsets are used to group elements */
 fieldset {
@@ -197,7 +203,7 @@ body#help_popup {
 	padding: 2px 4px;
 	font-size: 9px;
 	font-family: verdana, sans-serif;
-	box-shadow: 1px 2px 2px rgba(0,0,0,0.1), 0 -2px 4px rgba(0,0,0,0.1) inset;
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(0, 0, 0, 0.1) inset;
 	opacity: 0.7;
 	transition: 0.3s all;
 }
@@ -295,7 +301,7 @@ blockquote {
 }
 blockquote cite {
 	display: block;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	font-size: 0.9em;
 }
 blockquote cite::before {
@@ -316,7 +322,6 @@ blockquote cite::before {
 /* A code block - maybe PHP ;). */
 .bbc_code {
 	display: block;
-	font-family: "DejaVu Sans Mono", Monaco, Consolas, monospace;
 	font-size: 0.75em;
 	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
@@ -386,7 +391,7 @@ blockquote cite::before {
 	margin-left: 1em;
 	clear: right;
 }
-.postarea .bbc_img:hover {
+.postarea .bbc_img.resized:hover {
 	cursor: pointer;
 }
 .bbc_img.original_size {
@@ -436,7 +441,7 @@ strong[id^='child_list_']::after {
 .pagelinks .button {
 	padding: 0 5px;
 }
-.navPages {
+.nav_page {
 	padding: 0 1px;
 }
 .expand_pages {
@@ -681,7 +686,7 @@ img.sort, .sort {
 	border-radius: 8px;
 }
 .dropmenu li .active .amt, #top_info li .active .amt {
-	background: rgba(0,0,0,0.2);
+	background: rgba(0, 0, 0, 0.2);
 	color: inherit;
 }
 #top_info .top_menu.visible {
@@ -807,7 +812,8 @@ img.sort, .sort {
 	background: none !important;
 	box-shadow: none !important;
 }
-.dropmenu li li a>img {
+
+.dropmenu li li a > img {
 	vertical-align: middle;
 }
 /* The profile/pm menus are declared off .dropmenu li ul for consistency but have other characteristics. */
@@ -853,7 +859,8 @@ img.sort, .sort {
 .dropmenu li li:hover {
 	border: none;
 }
-.dropmenu li li:hover>a, .dropmenu li li a:focus, .dropmenu li li a:hover {
+
+.dropmenu li li:hover > a, .dropmenu li li a:focus, .dropmenu li li a:hover {
 	color: #FFF;
 	text-decoration: none;
 	background: #212D3D;
@@ -1001,7 +1008,7 @@ img.sort, .sort {
 	width: 90%;
 }
 #header::after {
-	content:"";
+	content: "";
 	display: block;
 	clear: both;
 }
@@ -1035,7 +1042,7 @@ img#smflogo {
 /*
 /* The user info, news, etc.*/
 #inner_section::after {
-	content:"";
+	content: "";
 	display: block;
 	clear: both;
 }
@@ -1137,7 +1144,7 @@ ul li.greeting {
 	padding: 10px 0 0 0;
 }
 #main_content_section::after {
-	content:"";
+	content: "";
 	display: block;
 	clear: both;
 }
@@ -1212,8 +1219,8 @@ ul li.greeting {
 	clear: both;
 }
 div.event_options {
-    line-height: 25px;
-    margin-top: 5px;
+	line-height: 25px;
+	margin-top: 5px;
 }
 #post_event span.label {
 	margin: 0 0.5em 0 2px;
@@ -1232,37 +1239,37 @@ div.event_options {
 	width: 50%;
 }
 .event_options_left div, .event_options_right div {
-    min-height: 25px;
-    margin-bottom: 5px;
+	min-height: 25px;
+	margin-bottom: 5px;
 }
 
 #post_event #event_main input {
-    margin: 0;
+	margin: 0;
 }
 #evtitle {
-    max-width: 100%;
+	max-width: 100%;
 }
 #event_time_input {
-    clear: left;
+	clear: left;
 }
 #event_time_input input[type="text"] {
 	width: 80px;
 	display: inline-block;
 }
 #post_event input[type="checkbox"] {
-    height: auto;
+	height: auto;
 }
 #post_event input[type="text"][disabled] {
 	color: transparent;
 }
 #post_event select, #event_options input[type="text"], #tz {
-    max-width: calc(100% - 75px);
+	max-width: calc(100% - 75px);
 }
 #post_event select, #event_location {
-    width: calc(100% - 75px);
+	width: calc(100% - 75px);
 }
 #post_event input[type="checkbox"] + select {
-    max-width: calc(100% - 95px);
+	max-width: calc(100% - 95px);
 }
 
 /* Styles for the recent messages section.
@@ -1431,7 +1438,7 @@ dl.register_form dd {
 	vertical-align: middle;
 }
 
-tr.windowbg td, .table_grid tr td {
+tr.windowbg td, tr.bg td, .table_grid tr td {
 	padding: 4px 8px;
 }
 #credits p {
@@ -1545,12 +1552,12 @@ tr.windowbg td, .table_grid tr td {
 	border-radius: 2px;
 	position: relative;
 	overflow: hidden;
-	color: rgba(0,0,0,0.6);
+	color: rgba(0, 0, 0, 0.6);
 }
 .generic_bar span, .progress_bar span {
 	position: relative;
 	z-index: 2;
-	text-shadow: 1px 1px rgba(255,255,255,.4);
+	text-shadow: 1px 1px rgba(255, 255, 255, .4);
 	display: inline-block;
 	padding: 0 5px;
 }
@@ -1563,7 +1570,7 @@ tr.windowbg td, .table_grid tr td {
 	background: orange;
 	transition: width .3s;
 	border-radius: 1px;
-	box-shadow: 4px -4px 8px rgba(0,0,0,0.1) inset,
+	box-shadow: 4px -4px 8px rgba(0, 0, 0, 0.1) inset,
 		4px 4px 8px rgba(255,255,255,0.3) inset;
 	display: block;
 }
@@ -1573,7 +1580,7 @@ tr.windowbg td, .table_grid tr td {
 .generic_bar.vertical .bar {
 	right: 0;
 	top: auto;
-	box-shadow: 4px -4px 4px rgba(0,0,0,0.1) inset,
+	box-shadow: 4px -4px 4px rgba(0, 0, 0, 0.1) inset,
 		4px 4px 4px rgba(255,255,255,0.3) inset;
 }
 
@@ -1581,7 +1588,7 @@ tr.windowbg td, .table_grid tr td {
 	border-radius: 4px;
 	text-align: center;
 	font-weight: bold;
-	color: rgba(0,0,0,0.8);
+	color: rgba(0, 0, 0, 0.8);
 }
 .progress_bar .bar {
 	box-shadow: -1px 1px 0 rgba(255, 255, 255, 0.25) inset,
@@ -1605,7 +1612,6 @@ tr.windowbg td, .table_grid tr td {
 .progress_blue .bar {
 	background-color: #34c2e3;
 }
-
 
 /* Styles for the profile section.
 ------------------------------------------------- */
@@ -1958,7 +1964,7 @@ dl.stats {
 #personal_messages .pm_inline_time {
 	display: none;
 }
-#searchLabelsExpand li {
+#search_labels li {
 	padding: 4px 6px;
 }
 #manrules div.righttext {
@@ -2003,7 +2009,7 @@ dl.addrules dt.floatleft {
 #mlist .website_url {
 	width: 70px;
 }
-#mlist .icq, #mlist .aim, #mlist .yim, #mlist .skype {
+#mlist .icq, #mlist .skype {
 	width: 30px;
 }
 #mlist .post_count {
@@ -2101,7 +2107,7 @@ dl.addrules dt.floatleft {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(40,64,80,0.5);
+	background: rgba(40, 64, 80, 0.5);
 	z-index: 5;
 }
 .popup_window {
@@ -2109,7 +2115,7 @@ dl.addrules dt.floatleft {
 	width: 480px;
 	z-index: 99;
 	padding: 0 6px 6px 6px;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 	border: 1px solid #777;
 	overflow: visible !important;
 	background: #fff;
@@ -2346,7 +2352,7 @@ span.postby {
 #info_center .sub_bar:first-child {
 	border-top: none;
 }
-#upshrinkHeaderIC {
+#upshrink_stats {
 	margin-top: 4px;
 }
 #ic_recentposts {
@@ -2385,7 +2391,7 @@ span.postby {
 #ic_recentposts .windowbg {
 	background: none;
 }
-#upshrinkHeaderIC p.inline {
+#upshrink_stats p.inline {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.4) 95%) repeat scroll 0% 0% transparent;
 	border: 1px solid #28394D;
 	margin: 0;
@@ -2393,11 +2399,11 @@ span.postby {
 	line-height: 1.6em;
 	font-size: 0.9em;
 }
-#upshrinkHeaderIC p.inline span {
+#upshrink_stats p.inline span {
 	margin: 0;
 	padding: 4px 0 0 0;
 }
-#upshrinkHeaderIC span.membergroups {
+#upshrink_stats span.membergroups {
 	display: block;
 }
 
@@ -2619,7 +2625,7 @@ div#pollmoderation {
 	vertical-align: middle;
 }
 .poster img.avatar {
-    max-width: 100%;
+	max-width: 100%;
 }
 .postarea, .moderatorbar {
 	margin: 0 0 0 175px;
@@ -2640,6 +2646,11 @@ div#pollmoderation {
 	padding: 1px 0 5px 0;
 	line-height: 1.5em;
 	font-size: 0.9em;
+}
+.keyinfo h5::after {
+	content: "";
+	clear: right;
+	display: block;
 }
 .keyinfo h5 a, .keyinfo h5 a strong {
 	color: #A85400;
@@ -2694,8 +2705,8 @@ img.smiley {
 .attached {
 	padding: 0 6px 8px 6px;
 	max-width: 100%;
-	display:inline-block;
-	vertical-align:top;
+	display: inline-block;
+	vertical-align: top;
 }
 .attachments_top {
 	margin: 0 auto;
@@ -2714,10 +2725,10 @@ img.smiley {
 	text-transform: capitalize;
 }
 /* Styles for the quick reply area. */
-#quickreplybox {
+#quickreply {
 	clear: both;
 }
-#quickReplyOptions .roundframe {
+#quickreply_options .roundframe {
 	margin: 0;
 	padding: 8px 10% 12px 10%;
 }
@@ -2760,16 +2771,16 @@ ul.post_options li {
 	width: 49%;
 	float: left;
 }
-#postAdditionalOptionsHeader {
+#post_additional_options_header {
 	margin-top: 0.5em;
 }
-#postAdditionalOptions {
+#post_additional_options {
 	overflow: hidden;
 }
-#postAdditionalOptions .progress_bar {
+#post_additional_options .progress_bar {
 	height: 22px;
 }
-#postMoreOptions, #postAttachment, #postAttachment2 {
+#post_settings, #postAttachment, #postAttachment2 {
 	border-top: 1px solid #ddd;
 	margin: -1px 0 0 0;
 	padding: 10px;
@@ -2787,22 +2798,22 @@ ul.post_options li {
 #postAttachment dt, #postAttachment2 dt {
 	font-weight: bold;
 }
-#postDraftOptions {
+#post_draft_options {
 	background: #fdfdfd;
 	border: 1px solid #aaa;
 	border-left: 1px solid #bbb;
 	border-top: none;
 }
-#postDraftOptions .settings dd, #postDraftOptions .settings dt {
+#post_draft_options .settings dd, #post_draft_options .settings dt {
 	width: 50%;
 	border-top: 1px solid #e4e4e4;
 	padding: 5px 10px;
 	margin: 0;
 }
-#postDraftOptions .settings dd:first-of-type, #postDraftOptions .settings dt:first-child {
+#post_draft_options .settings dd:first-of-type, #post_draft_options .settings dt:first-child {
 	border-top: none; /* Some people are OCD, like me. :P */
 }
-#postDraftOptions .settings strong {
+#post_draft_options .settings strong {
 	color: #555;
 }
 #post_confirm_strip /* < That may be deprecated. */, #shortcuts {
@@ -3196,30 +3207,30 @@ h3.profile_hd {
 	justify-content: space-between;
 	align-items: center;
 }
-#au-previews div.descbox > div,
-#au-previews div.errorbox > div,
-#au-previews div.infobox > div {
+#attachment_previews div.descbox > div,
+#attachment_previews div.errorbox > div,
+#attachment_previews div.infobox > div {
 	padding: 10px;
 }
-#au-previews .attach-preview {
+#attachment_previews .attach-preview {
 	flex: 0 0 auto;
 	width: 170px;
 }
-#au-previews .attach-info {
+#attachment_previews .attachment_info {
 	flex: 1 1 auto;
 	width: 250px;
 }
-#au-previews .attach-ui {
+#attachment_previews .attach-ui {
 	min-height: 36px;
 }
 input[name="attachBBC"] {
 	width: 100%;
 	margin-top: 10px;
 }
-.attach-info .progress_bar, .attach-info .attached_BBC, a#attach-cancelAll, a#attach-uploadAll {
+.attachment_info .progress_bar, .attachment_info .attached_BBC, a#attach_cancel_all, a#attach_upload_all {
 	display: none;
 }
-.attach-info .progress_bar {
+.attachment_info .progress_bar {
 	margin: 6px 0;
 }
 .attached_BBC_width_height label {
@@ -3230,17 +3241,17 @@ input[name="attachBBC"] {
 	margin: 10px 1em 0 0;
 	display: inline-block;
 }
-.attach-info input[type="number"] {
+.attachment_info input[type="number"] {
 	width: 5em;
 }
-#attachUpload {
-	min-height:50px;
+#attachment_upload {
+	min-height: 50px;
 }
-#total-progress {
-	width:50%;
-	display:none;
+#total_progress {
+	width: 50%;
+	display: none;
 }
-#maxFiles_progress, #maxFiles_progress_text {
+#max_files_progress, #max_files_progress_text {
 	display: none;
 }
 
