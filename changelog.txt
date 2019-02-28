@@ -1,3 +1,8 @@
+0.6.2 (28 February 2019)
+* RC1 ready
+* Font-Awesome updated to 5.7.1
+- (Known Issue) Likes requires changes... Its half broken.
+
 0.6.1 (1 September 2018)
 * Catchup release for beta4 (Cutting Edge)
 

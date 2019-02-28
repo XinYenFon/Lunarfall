@@ -845,16 +845,6 @@ function template_single_post($message)
 							</div><!-- #msg_[id]_footer -->';
 	}
 
-	// What you see is what you like
-	// @to-do add who liked what back at certain point.
-	if (!empty($message['likes']['can_like']))
-		echo '
-							<div class="under_message">
-								<ul class="floatleft">
-									<li class="like_button" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><i class="fa fa-thumbs', $message['likes']['you'] ? 'down' : 'up', '"></i> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a></li>
-								</ul>
-							</div>';
-
 	// Show the member's signature?
 	if (!empty($message['member']['signature']) && empty($options['show_no_signatures']) && $context['signature_enabled'])
 		echo '
@@ -865,14 +855,18 @@ function template_single_post($message)
 						<ul class="post_socialshare qbuttons">
 							<li><a href="//facebook.com/sharer/sharer.php?u=', $message['href'], '" target="_blank" title="', $txt['lunarfall_facebook'],'"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a></li>
 							<li><a href="//twitter.com/share?text='. $message['subject'].'&url='. $message['href']. '" title="', $txt['lunarfall_twitter'],'"><i class="fab fa-twitter fa-lg fa-fw"></i></a></li>
-							<li><a href="//plus.google.com/share?url=', $message['href'], '" title="', $txt['lunarfall_gplus'],'"><i class="fab fa-google-plus-g fa-lg fa-fw"></i></a></li>
 						</ul>';
 
 	// Can i haz fun? k thx bai!
-	if ($message['can_approve'] || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
+	if ($message['can_approve'] || !empty($message['likes']['can_like']) || $message['can_unapprove'] || $context['can_reply'] || $message['can_modify'] || $message['can_remove'] || $context['can_split'] || $context['can_restore_msg'] || $context['can_quote'])
 	{
 		echo '
 						<ul class="qbuttons">';
+
+		// Likes
+		if (!empty($message['likes']['can_like']))
+			echo '
+							<li id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '><a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like" title="', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '"><i class="fa fa-thumbs-', $message['likes']['you'] ? 'down' : 'up', ' fa-lg"></i></a></li>';
 
 		// Maybe they want to report this post to the moderator(s)?
 		if ($context['can_report_moderator'])

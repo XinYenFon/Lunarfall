@@ -58,12 +58,9 @@ function template_like()
 {
 	global $context, $scripturl, $txt;
 
-	echo '
-	<ul class="floatleft">';
-
 	if (!empty($context['data']['can_like']))
 		echo '
-		<li class="like_button" id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '>
+		<li id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '>
 			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_like"><i class="fa fa-thumbs', $message['likes']['you'] ? 'down' : 'up', '"></i> ', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a>
 		</li>';
 
@@ -84,9 +81,6 @@ function template_like()
 		echo '
 		<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=' . $context['data']['type'] . ';js=1;like=' . $context['data']['id_content'] . ';' . $context['session_var'] . '=' . $context['session_id'], comma_format($count)), '</li>';
 	}
-
-	echo '
-	</ul>';
 }
 
 /**
