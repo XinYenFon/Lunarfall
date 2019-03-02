@@ -100,10 +100,10 @@ function template_show_upcoming_list($grid_name)
 						<strong class="event_title">', $event['link'], '</strong>';
 
 				if ($event['can_edit'])
-					echo ' <a href="' . $event['modify_href'] . '"><span class="main_icons calendar_modify" title="', $txt['calendar_edit'], '"></span></a>';
+					echo ' <a href="' . $event['modify_href'] . '" title="', $txt['calendar_edit'], '"><i class="fas fa-pen"></i></a>';
 
 				if ($event['can_export'])
-					echo ' <a href="' . $event['export_href'] . '"><span class="main_icons calendar_export" title="', $txt['calendar_export'], '"></span></a>';
+					echo ' <a href="' . $event['export_href'] . '" title="', $txt['calendar_export'], '"><i class="fas fa-file-export"></i></a>';
 
 				echo '
 						<br>';
@@ -469,15 +469,15 @@ function template_show_month_grid($grid_name, $is_mini = false)
 								// If they can edit the event, show an icon they can click on....
 								if ($event['can_edit'])
 									echo '
-									<a class="modify_event" href="', $event['modify_href'], '">
-										<span class="main_icons calendar_modify" title="', $txt['calendar_edit'], '"></span>
+									<a class="modify_event" href="', $event['modify_href'], '" title="', $txt['calendar_edit'], '">
+										<i class="fas fa-pen"></i>
 									</a>';
 
 								// Exporting!
 								if ($event['can_export'])
 									echo '
-									<a class="modify_event" href="', $event['export_href'], '">
-										<span class="main_icons calendar_export" title="', $txt['calendar_export'], '"></span>
+									<a class="modify_event" href="', $event['export_href'], '" title="', $txt['calendar_export'], '">
+										<i class="fas fa-file-export"></i>
 									</a>';
 
 								echo '
@@ -653,15 +653,15 @@ function template_show_week_grid($grid_name)
 						// If they can edit the event, show a star they can click on....
 						if (!empty($event['can_edit']))
 							echo '
-									<a class="modify_event" href="', $event['modify_href'], '">
-										<span class="main_icons calendar_modify" title="', $txt['calendar_edit'], '"></span>
+									<a class="modify_event" href="', $event['modify_href'], '" title="', $txt['calendar_edit'], '">
+										<i class="fas fa-pen"></i>
 									</a>';
 
 						// Can we export? Sweet.
 						if (!empty($event['can_export']))
 							echo '
-									<a class="modify_event" href="', $event['export_href'], '">
-										<span class="main_icons calendar_export" title="', $txt['calendar_export'], '"></span>
+									<a class="modify_event" href="', $event['export_href'], '" title="', $txt['calendar_export'], '">
+										<i class="fas fa-file-export"></i>
 									</a>';
 
 						echo '

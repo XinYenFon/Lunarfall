@@ -35,11 +35,11 @@ function template_popup()
 		echo '
 				<li>
 					', $like_details['profile']['avatar']['image'], '
-					<span>
-						', $like_details['profile']['link_color'], '<br>
+					<span class="like_profile">
+						', $like_details['profile']['link_color'], '
 						<span class="description">', $like_details['profile']['group'], '</span>
 					</span>
-					<span class="floatright">', $like_details['time'], '</span>
+					<span class="floatright like_time">', $like_details['time'], '</span>
 				</li>';
 
 	echo '
@@ -58,10 +58,13 @@ function template_like()
 {
 	global $context, $scripturl, $txt;
 
+	echo '
+	<ul class="floatleft">';
+
 	if (!empty($context['data']['can_like']))
 		echo '
-		<li id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '>
-			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_like"><i class="fa fa-thumbs', $message['likes']['you'] ? 'down' : 'up', '"></i> ', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a>
+		<li class="smflikebutton" id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '>
+			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_like"><i class="', $context['data']['already_liked'] ? 'fas' : 'far', ' fa-heart fa-lg"></i> ', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a>
 		</li>';
 
 	if (!empty($context['data']['count']))
@@ -81,6 +84,9 @@ function template_like()
 		echo '
 		<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=' . $context['data']['type'] . ';js=1;like=' . $context['data']['id_content'] . ';' . $context['session_var'] . '=' . $context['session_id'], comma_format($count)), '</li>';
 	}
+
+	echo '
+	</ul>';
 }
 
 /**

@@ -66,7 +66,7 @@ function template_error_log()
 		<form action="', $scripturl, '?action=admin;area=logs;sa=errorlog', $context['sort_direction'] == 'down' ? ';desc' : '', ';start=', $context['start'], $context['has_filter'] ? $context['filter']['href'] : '', '" method="post" accept-charset="', $context['character_set'], '">
 			<div class="cat_bar">
 				<h3 class="catbg">
-					<a href="', $scripturl, '?action=helpadmin;help=error_log" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a> ', $txt['errlog'], '
+					<a href="', $scripturl, '?action=helpadmin;help=error_log" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a> ', $txt['errorlog'], '
 				</h3>
 			</div>
 			<div class="pagesection">

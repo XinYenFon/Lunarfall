@@ -385,18 +385,18 @@ function template_folder()
 				if (!empty($message['custom_fields']['standard']))
 					foreach ($message['custom_fields']['standard'] as $custom)
 						echo '
-						<li class="custom ', $custom['col_name'] ,'">', $custom['title'], ': ', $custom['value'], '</li>';
+						<li class="custom ', $custom['col_name'], '">', $custom['title'], ': ', $custom['value'], '</li>';
 
 				// Are we showing the warning status?
 				if ($message['member']['can_see_warning'])
 					echo '
-						<li class="warning">', $context['can_issue_warning'] ? '<a href="' . $scripturl . '?action=profile;area=issuewarning;u=' . $message['member']['id'] . '">' : '', '<span class="generic_icons warning_', $message['member']['warning_status'], '"></span>', $context['can_issue_warning'] ? '</a>' : '', '<span class="warn_', $message['member']['warning_status'], '">', $txt['warn_' . $message['member']['warning_status']], '</span></li>';
+						<li class="warning">', $context['can_issue_warning'] ? '<a href="' . $scripturl . '?action=profile;area=issuewarning;u=' . $message['member']['id'] . '">' : '', '<span class="main_icons warning_', $message['member']['warning_status'], '"></span>', $context['can_issue_warning'] ? '</a>' : '', '<span class="warn_', $message['member']['warning_status'], '">', $txt['warn_' . $message['member']['warning_status']], '</span></li>';
 
 				// Are there any custom fields to show at the bottom of the poster info?
 				if (!empty($message['custom_fields']['bottom_poster']))
 					foreach ($message['custom_fields']['bottom_poster'] as $custom)
 						echo '
-						<li class="custom ', $custom['col_name'] ,'">', $custom['value'], '</li>';
+						<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 			}
 
 			// Done with the information about the poster... on to the post itself.

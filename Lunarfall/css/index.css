@@ -40,6 +40,18 @@ input, button, select, textarea {
 	box-shadow: 0 2px 5px rgba(0,0,0,0.05) inset;
 	padding: 0.3em 0.4em;
 }
+input:hover, textarea:hover, button:hover, select:hover {
+	outline: none;
+	border-color: #82a2bc;
+}
+textarea:hover {
+	background: #fbfbfb;
+}
+input:focus, textarea:focus, button:focus, select:focus {
+	outline: none;
+	border-color: #7fb0d8;
+	background: #fff;
+}
 input, button, select {
 	padding: 0 0.4em;
 	height: 2em;
@@ -61,7 +73,7 @@ input[type="submit"]::-moz-focus-inner, button::-moz-focus-inner {
 	border: 0;
 }
 /* Prevent inputs and images overflowing */
-img, input, select {
+img, input, select, textarea {
 	max-width: 100%;
 }
 /* This is a specific issue on Ubuntu - Chrome */
@@ -91,20 +103,25 @@ dd textarea {
 input, button, select {
 	font-size: 0.9em;
 }
+/* Number inputs don't support size nor width, so add some common ones here and set a default... */
+input[type="number"] {
+	padding-right: 0; /* Removes weird white space after arrows in some browsers */
+	width: calc(4ch + 15px + 0.8em);
+}
+input[type="number"][size="2"], input[type="number"][size="1"] {
+	width: calc(2ch + 15px + 0.8em);
+}
+input[type="number"][size="3"] {
+	width: calc(3ch + 15px + 0.8em);
+}
+input[type="number"][size="5"] {
+	width: calc(5ch + 15px + 0.8em);
+}
+input[type="number"][size="6"] {
+	width: calc(6ch + 15px + 0.8em);
+}
 select option {
 	padding: 0 4px;
-}
-input:hover, textarea:hover, button:hover, select:hover {
-	outline: none;
-	border: 1px solid #999;
-}
-textarea:hover {
-	background: #fbfbfb;
-}
-input:focus, textarea:focus, button:focus, select:focus {
-	outline: none;
-	border: 1px solid #999;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) inset;
 }
 /* Fieldsets are used to group elements */
 fieldset {
@@ -145,10 +162,11 @@ input[type="checkbox"], input[type="radio"] {
 	display: none;
 }
 /* Give disabled input elements a different style */
-input[disabled], textarea[disabled], select[disabled] {
+input[disabled], textarea[disabled], select[disabled], .button.disabled, .button[disabled]:hover {
 	background: #eee;
 	color: #999;
 	opacity: 0.8;
+	cursor: default;
 }
 /* Standard horizontal rule.. ([hr], etc.) */
 hr {
@@ -176,20 +194,25 @@ body#help_popup {
 
 #likes li {
 	clear: both;
+	padding: 1px 0;
 }
 #likes .avatar {
-	max-height: 90px;
-	max-width: 90px;
+	max-height: 45px;
+	max-width: 45px;
 	padding: 0 10px 0 0;
 }
-#likes span {
+#likes .avatar, #likes li .like_profile {
+	vertical-align: middle;
 	display: inline-block;
-	vertical-align: top;
+}
+#likes li .like_time {
+	padding: 4px 0;
 }
 #likes .description {
 	font-style: italic;
 	opacity: 0.4;
 	font-size: 0.9em;
+	display: block;
 }
 
 /* The "new" button */
@@ -303,6 +326,7 @@ blockquote cite {
 	display: block;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	font-size: 0.9em;
+	margin-bottom: 3px;
 }
 blockquote cite::before {
 	color: #aaa;
@@ -322,7 +346,7 @@ blockquote cite::before {
 /* A code block - maybe PHP ;). */
 .bbc_code {
 	display: block;
-	font-size: 0.75em;
+	font-size: 0.85em;
 	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
 	border-top: 2px solid #bbb;
@@ -331,7 +355,7 @@ blockquote cite::before {
 	padding: 3px 12px;
 	overflow: auto;
 	white-space: nowrap;
-	resize: vertical;
+	max-height: 25em;
 }
 /* The "Quote:" and "Code:" header parts... */
 .codeheader, .quoteheader {
@@ -342,6 +366,10 @@ blockquote cite::before {
 /* For links to change the code stuff... */
 .codeoperation {
 	font-weight: normal;
+}
+/* Expand code bbc */
+.expand_code {
+	max-height: none;
 }
 /* Let's get a bit more flexibility in font sizes for quotes and code. */
 /* We just need to stop em compounding when elements are nested. */
@@ -725,7 +753,7 @@ img.sort, .sort {
 	vertical-align: middle;
 }
 .profile_user_avatar img.avatar {
-    max-width: 100px;
+	max-width: 100px;
 }
 .profile_username {
 	font-size: 150%;
@@ -1006,6 +1034,8 @@ img.sort, .sort {
 #header {
 	padding: 2px 2px 12px 2px;
 	width: 90%;
+	display: flex;
+	align-items: flex-end;
 }
 #header::after {
 	content: "";
@@ -1017,8 +1047,8 @@ h1.forumtitle {
 	font-size: 1.8em;
 	font-family: "Tahoma", sans-serif;
 	padding: 22px 12px 6px 10px;
-	float: left;
 	font-weight: normal;
+	flex: 1 1 auto;
 }
 h1.forumtitle a {
 	color: #a85400;
@@ -1455,8 +1485,10 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 }
 .errorfile_table td.current {
 	font-weight: bold;
-	border: 1px solid black;
+	border-top: 1px solid rgba(0, 0, 0, 0.2);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	border-width: 1px 0 1px 1px;
+	background: rgba(245, 141, 15, 0.2);
 }
 
 .generic_menu {
@@ -1703,6 +1735,9 @@ dl {
 }
 #smileypr {
 	margin-left: 10px;
+}
+.edit_avatar_img {
+	margin: 0 0 1em;
 }
 
 /* Activity by time */
@@ -2054,6 +2089,9 @@ dl.addrules dt.floatleft {
 	margin: 0 0 0 6px;
 	text-align: left;
 }
+#search_results {
+	margin-bottom: 5px;
+}
 
 /* Styles for the help section.
 ------------------------------------------------- */
@@ -2065,7 +2103,7 @@ dl.addrules dt.floatleft {
 	margin: 12px 0 0 0;
 	padding: 8px 20px 12px 20px;
 	border: 1px solid #ddd;
-	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
+	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
 	overflow: auto;
 }
 #helpmain p {
@@ -2096,7 +2134,7 @@ dl.addrules dt.floatleft {
 	color: #333;
 	background: #fff;
 	border: 1px solid #aaa;
-	box-shadow: 1px 2px 4px rgba(0,0,0,0.2), 0 0px 10px rgba(0,0,0,0.05) inset;
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2), 0 0px 10px rgba(0,0,0,0.05) inset;
 }
 
 /* Styles for popup windows */
@@ -2134,7 +2172,7 @@ dl.addrules dt.floatleft {
 	padding: 10px 8px;
 	border: 1px solid #bbb;
 	border-bottom: 1px solid #ddd;
-	box-shadow: 0 -2px 3px rgba(0,0,0,0.15), 0 1px 1px rgba(255,255,255,0.2);
+	box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 #main_menu .popup_heading, #genericmenu .popup_heading {
 	display: none;
@@ -2284,6 +2322,9 @@ h3 .collapse {
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 }
+.boardindex_table .board_stats:last-child p {
+	border-right: none;
+}
 .info {
 	overflow: hidden;
 	overflow-wrap: break-word;
@@ -2414,7 +2455,7 @@ span.postby {
 	border-bottom: none;
 	box-shadow: none;
 }
-#description_board h3, #description_board p {
+#description_board h3, #description_board div {
 	display: inline-block;
 }
 #description_board h3::after {
@@ -2887,8 +2928,8 @@ div.cat_bar {
 	background: #0E151E;
 	border-bottom: 1px solid #777;
 	padding: 0;
-	box-shadow: 0 16px 20px rgba(255,255,255,0.15) inset;
-	text-shadow: -1px -1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 16px 20px rgba(255, 255, 255, 0.15) inset;
+	text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
 }
 .cat_bar h3 {
 	padding: 8px 12px 6px 12px;
@@ -2922,7 +2963,7 @@ h3.catbg a:hover {
 .roundframe {
 	margin: 10px 0 0 0;
 	padding: 12px 16px;
-	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
+	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
 	overflow: auto;
 }
 /* TitleBar & SubBar */
@@ -2996,7 +3037,7 @@ p.information img {
 	margin-top: 18px;
 	background: #fff;
 	border: 1px solid #ddd;
-	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 	min-width: 120px;
 	z-index: 11110 !important;
 }
@@ -3218,6 +3259,8 @@ span.member.hidden {
 }
 #attachment_previews .attach-ui {
 	min-height: 36px;
+	padding: 10px 0;
+	float: right;
 }
 input[name="attachBBC"] {
 	width: 100%;
