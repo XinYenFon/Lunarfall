@@ -1,6 +1,6 @@
 ## Lunarfall
 
-#### Theme Version: 0.6.2 (X XXX 2018)
+#### Theme Version: 0.6.4 (15 March 2019)
 Release date is for GitHub, official SMF release may be later.
 
 <img src="https://raw.githubusercontent.com/Antes/Lunarfall/master/Lunarfall/images/thumbnail.png">

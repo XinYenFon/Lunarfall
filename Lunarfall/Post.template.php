@@ -568,7 +568,7 @@ function template_main()
 		$newPostsHTML .= '
 			<ul class="quickbuttons sf-js-enabled sf-arrows" id="msg_%PostID%_quote" style="touch-action: pan-y;">
 				<li id="post_modify">
-					<a href="#postmodify" onclick="return insertQuoteFast(%PostID%);" class="quote_button"><span class="generic_icons quote"></span>' . $txt['quote'] . '</a>
+					<a href="#postmodify" onclick="return insertQuoteFast(%PostID%);" class="quote_button" title="' . $txt['quote'] . '"><i class="fas fa-quote-right fa-lg"></i></a>
 				</li>
 			</ul>';
 

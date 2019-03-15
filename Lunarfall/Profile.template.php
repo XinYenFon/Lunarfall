@@ -608,13 +608,13 @@ function template_showAlerts()
 				<tr class="windowbg">
 					<td class="alert_text">
 						', $alert['text'], '
-						<span class="alert_inline_time"><span class="generic_icons time_online"></span> ', $alert['time'], '</span>
+						<span class="alert_inline_time"><i class="fas fa-clock"></i> ', $alert['time'], '</span>
 					</td>
 					<td class="alert_time">', $alert['time'], '</td>
 					<td class="alert_buttons">
 						<ul class="qbuttons">
-							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '" class="you_sure"><span class="generic_icons remove_button"></span>', $txt['delete'], '</a></li>
-							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read'), ';aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons ', $alert['is_read'] != 0 ? 'unread_button' : 'read_button', '"></span>', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']), '</a></li>';
+							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '" class="you_sure" title="', $txt['delete'], '"><i class="fas fa-times"></i></a></li>
+							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read'), ';aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '" title="', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']), '"><i class="fas ', $alert['is_read'] != 0 ? 'fa-undo' : 'fa-check', ' "></i></a></li>';
 
 			if ($context['showCheckboxes'])
 				echo '
@@ -789,7 +789,7 @@ function template_editBuddies()
 			if ($buddy['show_email'])
 				echo '
 					<td class="buddy_email centertext">
-						<a href="mailto:' . $buddy['email'] . '" rel="nofollow"><span class="generic_icons mail icon" title="' . $txt['email'] . ' ' . $buddy['name'] . '"></span></a>
+						<a href="mailto:' . $buddy['email'] . '" rel="nofollow" title="' . $txt['email'] . ' ' . $buddy['name'] . '"><i class="fas fa-envelope"></i></a>
 					</td>';
 
 			// Show the custom profile fields for this user.
@@ -800,7 +800,7 @@ function template_editBuddies()
 
 			echo '
 					<td class="centertext buddy_remove">
-						<a href="', $scripturl, '?action=profile;area=lists;sa=buddies;u=', $context['id_member'], ';remove=', $buddy['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons delete" title="', $txt['buddy_remove'], '"></span></a>
+						<a href="', $scripturl, '?action=profile;area=lists;sa=buddies;u=', $context['id_member'], ';remove=', $buddy['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', $txt['buddy_remove'], '"><i class="fas fa-user-minus"></i></a>
 					</td>
 				</tr>';
 		}
@@ -910,11 +910,11 @@ function template_editIgnoreList()
 		if ($context['can_moderate_forum'])
 			echo '
 					<td class="centertext buddy_email">
-						<a href="mailto:' . $member['email'] . '" rel="nofollow"><span class="generic_icons mail icon" title="' . $txt['email'] . ' ' . $member['name'] . '"></span></a>
+						<a href="mailto:' . $member['email'] . '" rel="nofollow" title="' . $txt['email'] . ' ' . $member['name'] . '"><i class="fas fa-envelope fa-lg"></i></a>
 					</td>';
 		echo '
 					<td class="centertext buddy_remove">
-						<a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=lists;sa=ignore;remove=', $member['id'], ';', $context['session_var'], '=', $context['session_id'], '"><span class="generic_icons delete" title="', $txt['ignore_remove'], '"></span></a>
+						<a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=lists;sa=ignore;remove=', $member['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', $txt['ignore_remove'], '"><i class="fas fa-trash fa-lg"></i></a>
 					</td>
 				</tr>';
 	}

@@ -592,7 +592,7 @@ function template_modify_group_display($type)
 					echo '
 						<tr class="windowbg">
 							<td>
-								', $permission['show_help'] ? '<a href="' . $scripturl . '?action=helpadmin;help=permissionhelp_' . $permission['id'] . '" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="' . $txt['help'] . '"></span></a>' : '', '
+								', $permission['show_help'] ? '<a href="' . $scripturl . '?action=helpadmin;help=permissionhelp_' . $permission['id'] . '" onclick="return reqOverlayDiv(this.href);" class="help" title="' . $txt['help'] . '"><i class="fas fa-question-circle"></i></a>' : '', '
 							</td>
 							<td class="lefttext full_width">
 								', $permission['name'], (!empty($permission['note']) ? '<br>

@@ -696,8 +696,7 @@ img.sort, .sort {
 .dropmenu li:last-child {
 	border-right: none;
 }
-.dropmenu li a{
-/*	background: #416C8A;*/
+.dropmenu li a {
 	padding: 15px !important;
 	color: #67C1F5;
 	margin: 0;
@@ -729,7 +728,6 @@ img.sort, .sort {
 	padding: 0 7px 0 7px;
 	margin: 0;
 	display: block;
-	border: 1px solid transparent;
 }
 /* Level 1 active button. */
 .dropmenu li a.active, #top_info li a.active {
@@ -741,7 +739,6 @@ img.sort, .sort {
 	color: #fff;
 	cursor: pointer;
 	text-decoration: none;
-	box-shadow: 0 4px 4px rgba(255,255,255,0.1) inset;
 }
 /* User information. */
 #profile_menu_top::after {
@@ -810,18 +807,17 @@ img.sort, .sort {
 	font-weight: bold;
 }
 /* Levels 2 and 3 submenu wrapper. */
-.dropmenu li ul {
-	top: 4.5em !important;
-}
 .dropmenu li ul, .top_menu {
 	z-index: 90;
 	position: absolute;
-	top: 2.25em;
 	display: none;
 	min-width: 18.2em;
 	padding: 0.5em;
 	font-weight: normal;
-	box-shadow: 3px 3px 4px rgba(0,0,0,0.3);
+	border: solid 1px #999;
+	border-left: solid 1px #bbb;
+	border-top: solid 1px #ccc;
+	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
 }
 /* Level 2 link background. */
 .dropmenu li li {
@@ -832,13 +828,10 @@ img.sort, .sort {
 }
 /* Necessary to allow highlighting of 1st level while hovering over submenu. */
 .dropmenu li:hover li a, .dropmenu li li a {
-	position: relative;
+	background: none;
+	padding: 3px 9px !important;
+	border: none;
 	line-height: 2.2em;
-	padding: 0 7px !important;
-	display: block;
-	color: #FFF !important;
-	background: none !important;
-	box-shadow: none !important;
 }
 
 .dropmenu li li a > img {
@@ -904,7 +897,6 @@ img.sort, .sort {
 /* Reposition as visible on hover. */
 .dropmenu li li:hover ul, .dropmenu li li ul {
 	left: -14px;
-	top: 2em !important;
 }
 .dropmenu li li.subsections > a::after {
 	position: absolute;
@@ -1754,10 +1746,6 @@ dl {
 }
 .activity_stats li span {
 	display: block;
-	border: 1px solid #666;
-	border-left: none;
-	border-right: none;
-	background: #eee;
 }
 .activity_stats li.last span {
 	border-right: none;
@@ -2213,10 +2201,10 @@ dl.addrules dt.floatleft {
 }
 /* Here comes the glory... */
 .windowbg:nth-of-type(even) {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.5) 100%) repeat scroll 0% 0% transparent;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 100%, rgba(0, 0, 0, 0.5) 0%) repeat scroll 100% 100% transparent;
 }
 .windowbg:nth-of-type(odd) {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 5%) repeat scroll 0% 0% transparent;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 0%) repeat scroll 100% 100% transparent;
 }
 
 /* Special treatment for #forumposts area */
@@ -2969,7 +2957,7 @@ h3.catbg a:hover {
 /* TitleBar & SubBar */
 .title_bar {
 	border: 1px solid #2E3E4C;
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 100%, rgba(0, 0, 0, 0.7) 0%) repeat scroll 0% 0% transparent;
 	margin: 5px 0 0 0;
 }
 .sub_bar {

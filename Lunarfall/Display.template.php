@@ -757,7 +757,7 @@ function template_single_post($message)
 							</div><!-- .post -->';
 
 	// What about likes?
-	if (!empty($modSettings['enable_likes']) | !empty($message['likes']['count']))
+	if (!empty($modSettings['enable_likes']) & (!empty($context['data']['can_like']) | !empty($message['likes']['count'])))
 	{
 		echo '
 								<ul class="floatleft under_message">';
@@ -882,11 +882,6 @@ function template_single_post($message)
 			echo '
 							</div><!-- #msg_[id]_footer -->';
 	}
-
-	// Show the member's signature?
-	if (!empty($message['member']['signature']) && empty($options['show_no_signatures']) && $context['signature_enabled'])
-		echo '
-			<div class="signature" id="msg_', $message['id'], '_signature"', $ignoring ? ' style="display:none;"' : '', '>', $message['member']['signature'], '</div>';
 
 	echo '
 						</div><!-- .postarea -->
