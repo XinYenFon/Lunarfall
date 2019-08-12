@@ -86,7 +86,7 @@ textarea {
 }
 
 /* Use a consistent monospace font everywhere */
-.monospace, .bbc_code, .phpcode, pre, #error_log span.error_message {
+.monospace, .bbc_code, .phpcode, pre, #error_log span.error_message, #backtrace span.error_message {
 	font-family: "DejaVu Sans Mono", Menlo, Monaco, Consolas, monospace;
 }
 
@@ -466,9 +466,6 @@ strong[id^='child_list_']::after {
 #main_content_section .pagesection {
 	margin: 4px 0 0 0;
 }
-.pagelinks .button {
-	padding: 0 5px;
-}
 .nav_page {
 	padding: 0 1px;
 }
@@ -777,31 +774,63 @@ img.sort, .sort {
 	margin-top: 5px;
 	border-top: 1px solid #ddd;
 }
-.top_menu.scrollable .unread {
+.unread_notify {
 	border-bottom: 1px solid #ddd;
 }
-.top_menu.scrollable .no_unread {
+.no_unread {
 	margin-top: 5px;
 	text-align: center;
 }
-.top_menu.scrollable .unread:hover {
+.unread_notify:hover {
 	background: #eee;
+	text-decoration: none;
 }
-.top_menu.scrollable .unread:last-of-type {
+.unread_notify:last-child {
 	border-bottom: none;
 }
-.top_menu.scrollable .avatar {
+.unread_notify {
+	display: flex;
+	align-items: center;
+	padding: 6px 5px;
+	line-height: 20px;
+}
+.unread_notify.alert_read {
+	opacity: 0.5;
+	outline: none;
+	filter: grayscale(1);
+}
+.unread_notify strong {
+	font-weight: 600;
+}
+.unread_notify .avatar {
 	width: 40px;
 	height: 40px;
 	object-fit: scale-down;
-	margin: 4px;
+	margin: 4px 4px 4px 0;
 	display: inline-block;
 	color: transparent; /* For broken images */
+	vertical-align: bottom;
 }
-.top_menu.scrollable .details {
-	max-width: 80%;
+.unread_notify_image {
+	position: relative;
+	width: 44px;
+	margin-right: 4px;
+	text-align: center;
+}
+.unread_notify_image span.alert_icon {
+	display: block;
+	line-height: 1em;
+}
+.unread_notify_image .avatar + .alert_icon {
+	width: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.unread_notify .details {
 	display: inline-block;
 	vertical-align: top;
+	max-width: calc(100% - 48px);
 }
 #pm_menu .subject {
 	font-weight: bold;
@@ -969,6 +998,12 @@ img.sort, .sort {
 .buttonrow .button:not(:last-child) {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
+	border-right: none;
+}
+/* in a titlebg, the buttonlist is of small height */
+.titlebg .buttonlist {
+	margin: 0;
+	padding: 0;
 }
 
 /* Styles for the general looks of the theme.
@@ -996,7 +1031,7 @@ img.sort, .sort {
 	clear: both;
 }
 #top_section::after {
-	content:"";
+	content: "";
 	display: block;
 	clear: both;
 }
@@ -1785,7 +1820,6 @@ dl {
 	float: left;
 }
 .topic_details {
-	width: 94%;
 	padding: 0 4px 4px 4px;
 }
 .list_posts {
@@ -2192,7 +2226,7 @@ dl.addrules dt.floatleft {
 	margin: -4px 4px 0 0;
 }
 
-.generic_list_wrapper, .windowbg, #forumposts .approvebg, #forumposts .approvebg2 {
+.generic_list_wrapper, .windowbg, .approvebg, .approvebg2 {
 	margin: 12px 0 0 0;
 	padding: 12px 16px;
 	border: 1px solid #2E3E4C;
@@ -2200,15 +2234,15 @@ dl.addrules dt.floatleft {
 	overflow: auto;
 }
 /* Here comes the glory... */
-.windowbg:nth-of-type(even) {
+.windowbg:nth-of-type(even), .bg.even {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 100%, rgba(0, 0, 0, 0.5) 0%) repeat scroll 100% 100% transparent;
 }
-.windowbg:nth-of-type(odd) {
+.windowbg:nth-of-type(odd), .bg.odd {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 0%) repeat scroll 100% 100% transparent;
 }
 
 /* Special treatment for #forumposts area */
-#forumposts .windowbg, #forumposts .approvebg, #forumposts .approvebg2 {
+#forumposts .windowbg, #forumposts .approvebg, #forumposts .approvebg2, #pmFolder .windowbg {
 	overflow: visible;
 }
 /* Nobody wants locked topics to stand out much. */
@@ -2248,10 +2282,10 @@ tr.windowbg {
 }
 
 /* Colors for background of posts requiring approval */
-#forumposts .approvebg {
+.approvebg {
 	background: #ffeaea;
 }
-#forumposts .approvebg2 {
+.approvebg2 {
 	background: #fff2f2;
 }
 
@@ -2901,10 +2935,6 @@ ul.post_options li {
 #moderationbuttons {
 	float: left;
 }
-#moderationbuttons_strip {
-	float: left;
-	margin: 4px 0 4px -4px;
-}
 #moderationbuttons ul li {
 	padding: 0 6px 4px 0;
 	margin: 0;
@@ -2977,6 +3007,11 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 .titlebg a, .subbg a {
 	background: none;
 	text-decoration: none;
+}
+.title_bar + .windowbg, .title_bar + .roundframe {
+	margin-top: -1px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 /* Other */
@@ -3216,10 +3251,6 @@ span.member.hidden {
 	background-color: #e8edf0;
 }
 
-#alerts tr.windowbg td {
-	border-right: 1px solid #ddd;
-}
-
 .centerbox {
 	top: 50%;
 	left: 50%;
@@ -3355,6 +3386,12 @@ tr[id^='list_news_lists_'] textarea {
 	height: 100% !important;
 }
 
+.backtrace:not(:last-child) {
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 0.5em;
+}
+
 /* Keep this here if I forgot something */
 .large_admin_menu_icon, .generic_icons {
 	background: url(../images/missing.png) no-repeat;
@@ -3401,11 +3438,6 @@ tr[id^='list_news_lists_'] textarea {
 	border-top-right-radius: 3px;
 }
 
-.backtrace:not(:last-child) {
-	padding-bottom: 0.5em;
-	border-bottom: 1px solid #ddd;
-	margin-bottom: 0.5em;
-}
 /* Social share on posts */
 .post_socialshare.qbuttons {
 	clear: left;
@@ -3543,5 +3575,5 @@ div.sceditor-group {
 .sceditor-button i {
 	position: relative;
 	top: 15%;
-	margin: 0;
+	margin: 5px 0;
 }

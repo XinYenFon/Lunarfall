@@ -7,7 +7,7 @@
  * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC1
+ * @version 2.1 RC2
  */
 
 /**
@@ -29,7 +29,7 @@ function template_maintain_database()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['maintain_optimize'], '</h3>
 		</div>
-		<div class="windowbg">
+		<div class="windowbg noup">
 			<form action="', $scripturl, '?action=admin;area=maintain;sa=database;activity=optimize" method="post" accept-charset="', $context['character_set'], '">
 				<p>', $txt['maintain_optimize_info'], '</p>
 				<input type="submit" value="', $txt['maintain_run_now'], '" class="button">
@@ -44,7 +44,7 @@ function template_maintain_database()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt[$context['convert_to'] . '_title'], '</h3>
 		</div>
-		<div class="windowbg">
+		<div class="windowbg noup">
 			<form action="', $scripturl, '?action=admin;area=maintain;sa=database;activity=convertmsgbody" method="post" accept-charset="', $context['character_set'], '">
 				<p>', $txt['mediumtext_introduction'], '</p>',
 				$context['convert_to_suggest'] ? '<p class="infobox">' . $txt['convert_to_suggest_text'] . '</p>' : '', '
@@ -60,7 +60,7 @@ function template_maintain_database()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['entity_convert_title'], '</h3>
 		</div>
-		<div class="windowbg">
+		<div class="windowbg noup">
 			<form action="', $scripturl, '?action=admin;area=maintain;sa=database;activity=convertentities" method="post" accept-charset="', $context['character_set'], '">
 				<p>', $txt['entity_convert_introduction'], '</p>
 				<input type="submit" value="', $txt['maintain_run_now'], '" class="button">

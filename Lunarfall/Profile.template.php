@@ -7,7 +7,7 @@
  * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC1
+ * @version 2.1 RC2
  */
 
 /**
@@ -105,13 +105,18 @@ function template_alerts_popup()
 	else
 	{
 		foreach ($context['unread_alerts'] as $id_alert => $details)
+		{
 			echo '
-			<div class="unread">
-				', !empty($details['sender']) ? $details['sender']['avatar']['image'] : '', '
-				<div class="details">
-					', !empty($details['icon']) ? $details['icon'] : '', '<span>', $details['text'], '</span> - ', $details['time'], '
+			<', !$details['show_links'] ? 'a href="' . $scripturl . '?action=profile;area=showalerts;alert=' . $id_alert . '" onclick="this.classList.add(\'alert_read\')"' : 'div', ' class="unread_notify">
+				<div class="unread_notify_image">
+					', empty($details['sender']['avatar']['image']) ? '' : $details['sender']['avatar']['image'] . '
+					', $details['icon'], '
 				</div>
-			</div>';
+				<div class="details">
+					<span class="alert_text">', $details['text'], '</span> - <span class="alert_time">', $details['time'], '</span>
+				</div>
+			</', !$details['show_links'] ? 'a' : 'div', '>';
+		}
 	}
 
 	echo '
@@ -125,6 +130,8 @@ function template_alerts_popup()
 						ajax_indicator(false);
 						$("#alerts_menu_top span.amt").remove();
 						$("#alerts_menu div.alerts_unread").html(data);
+						if (typeof localStorage != "undefined")
+							localStorage.setItem("alertsCounter", 0);
 					}
 				);
 				return false;
@@ -505,46 +512,26 @@ function template_showPosts()
 					<strong><a href="', $scripturl, '?board=', $post['board']['id'], '.0">', $post['board']['name'], '</a> / <a href="', $scripturl, '?topic=', $post['topic'], '.', $post['start'], '#msg', $post['id'], '">', $post['subject'], '</a></strong>
 				</h5>
 				<span class="smalltext">', $post['time'], '</span>
-			</div>
-			<div class="list_posts">';
+			</div>';
 
 			if (!$post['approved'])
 				echo '
-				<div class="approve_post">
-					<em>', $txt['post_awaiting_approval'], '</em>
-				</div>';
-
-			echo '
-				', $post['body'], '
+			<div class="noticebox">
+				', $txt['post_awaiting_approval'], '
 			</div>';
 
-			if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
-				echo '
-			<div class="floatright">
-				<ul class="qbuttons">';
+			echo '
+			<div class="post">
+				<div class="inner">
+					', $post['body'], '
+				</div>
+			</div><!-- .post -->';
 
-			// If they *can* reply?
-			if ($post['can_reply'])
-				echo '
-					<li><a href="', $scripturl, '?action=post;topic=', $post['topic'], '.', $post['start'], '" title="', $txt['reply'], '"><i class="fa fa-reply fa-lg"></i></a></li>';
-
-			// If they *can* quote?
-			if ($post['can_quote'])
-				echo '
-					<li><a href="', $scripturl . '?action=post;topic=', $post['topic'], '.', $post['start'], ';quote=', $post['id'], '" title="', $txt['quote_action'], '"><i class="fa fa-quote-left fa-lg"></i></a></li>';
-
-			// How about... even... remove it entirely?!
-			if ($post['can_delete'])
-				echo '
-					<li><a href="', $scripturl, '?action=deletemsg;msg=', $post['id'], ';topic=', $post['topic'], ';profile;u=', $context['member']['id'], ';start=', $context['start'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['remove_message'], '" class="you_sure" title="', $txt['remove'], '"><i class="fa fa-trash fa-lg"></i></a></li>';
-
-			if ($post['can_reply'] || $post['can_quote'] || $post['can_delete'])
-				echo '
-				</ul>
-			</div><!-- .floatright -->';
+			// Post options
+			template_quickbuttons($post['quickbuttons'], 'profile_showposts');
 
 			echo '
-		</div><!-- $post[css_class] -->';
+		</div><!-- .', $post['css_class'], ' -->';
 		}
 	}
 	else
@@ -566,7 +553,7 @@ function template_showPosts()
 }
 
 /**
- * Template for showing alerts within the alerts popup
+ * Template for showing all alerts
  */
 function template_showAlerts()
 {
@@ -606,22 +593,25 @@ function template_showAlerts()
 		{
 			echo '
 				<tr class="windowbg">
-					<td class="alert_text">
-						', $alert['text'], '
-						<span class="alert_inline_time"><i class="fas fa-clock"></i> ', $alert['time'], '</span>
+					<td class="alert_image">
+						<div>
+							', empty($alert['sender']['avatar']['image']) ? '' : $alert['sender']['avatar']['image'] . '
+							', $alert['icon'], '
+						</div>
 					</td>
-					<td class="alert_time">', $alert['time'], '</td>
-					<td class="alert_buttons">
-						<ul class="qbuttons">
-							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=remove;aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '" class="you_sure" title="', $txt['delete'], '"><i class="fas fa-times"></i></a></li>
-							<li><a href="', $scripturl, '?action=profile;u=', $context['id_member'], ';area=showalerts;do=', ($alert['is_read'] != 0 ? 'unread' : 'read'), ';aid=', $id, ';', $context['session_var'], '=', $context['session_id'], '" title="', ($alert['is_read'] != 0 ? $txt['mark_unread'] : $txt['mark_read_short']), '"><i class="fas ', $alert['is_read'] != 0 ? 'fa-undo' : 'fa-check', ' "></i></a></li>';
+					<td class="alert_text">
+						<div>', $alert['text'], '</div>
+						<time class="alert_inline_time" datetime="', $alert['alert_time'], '">', $alert['time'], '</time>
+					</td>
+					<td class="alert_time">
+						<time datetime="', $alert['alert_time'], '">', $alert['time'], '</time>
+					</td>
+					<td class="alert_buttons">';
 
-			if ($context['showCheckboxes'])
-				echo '
-							<li><input type="checkbox" name="mark[', $id, ']" value="', $id, '"></li>';
+			// Alert options
+			template_quickbuttons($alert['quickbuttons'], 'profile_alerts');
 
 			echo '
-						</ul>
 					</td>
 				</tr>';
 		}
@@ -643,6 +633,7 @@ function template_showAlerts()
 						<option value="remove">', $txt['quick_mod_remove'], '</option>
 					</select>
 					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="start" value="', $context['start'], '">
 					<input type="submit" name="req" value="', $txt['quick_mod_go'], '" class="button you_sure">
 				</div>';
 
@@ -705,11 +696,12 @@ function template_showDrafts()
 			<div class="list_posts">
 				', $draft['body'], '
 			</div>
-			<div class="floatright">
-				<ul class="qbuttons">
-						<li><a href="', $scripturl, '?action=post;', (empty($draft['topic']['id']) ? 'board=' . $draft['board']['id'] : 'topic=' . $draft['topic']['id']), '.0;id_draft=', $draft['id_draft'], '" title="', $txt['draft_edit'], '"><i class="fa fa-reply fa-lg"></i></a></li>
-						<li><a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=showdrafts;delete=', $draft['id_draft'], ';', $context['session_var'], '=', $context['session_id'], '" data-confirm="', $txt['draft_remove'], '" class="you_sure" title="', $txt['draft_delete'], '"><i class="fa fa-trash fa-lg"></i></a></li>
-				</ul>
+			<div class="floatright">';
+
+			// Draft buttons
+			template_quickbuttons($draft['quickbuttons'], 'profile_drafts');
+
+			echo '
 			</div><!-- .floatright -->
 		</div><!-- .windowbg -->';
 		}
@@ -1728,7 +1720,7 @@ function template_profile_theme_settings()
 		{
 			// Avoid double separators and empty titled sections
 			$empty_section = true;
-			for ($j=$i+1; $j <= count($context['theme_options']); $j++)
+			for ($j=$i+1; $j < count($context['theme_options']); $j++)
 			{
 				// Found another separator, so we're done
 				if (!is_array($context['theme_options'][$j]))
@@ -1822,7 +1814,7 @@ function template_profile_theme_settings()
 
 			foreach ($setting['options'] as $value => $label)
 				echo '
-							<option value="', $value, '"', $value == $context['member']['options'][$setting['id']] ? ' selected' : '', '>', $label, '</option>';
+							<option value="', $value, '"', isset($context['member']['options'][$setting['id']]) && $value == $context['member']['options'][$setting['id']] ? ' selected' : '', '>', $label, '</option>';
 
 			echo '
 						</select>';
@@ -1882,7 +1874,7 @@ function template_alert_configuration()
 				<dl class="settings">';
 
 	// Allow notification on announcements to be disabled?
-	if (!empty($modSettings['allow_disableAnnounce']))
+	if ($context['can_disable_announce'])
 		echo '
 					<dt>
 						<label for="notify_announcements">', $txt['notify_important_email'], '</label>
@@ -3097,7 +3089,7 @@ function template_profile_theme_pick()
 								<strong>', $txt['current_theme'], ':</strong>
 							</dt>
 							<dd>
-								', $context['member']['theme']['name'], ' [<a href="', $scripturl, '?action=theme;sa=pick;u=', $context['id_member'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['change'], '</a>]
+								', $context['member']['theme']['name'], ' <a class="button" href="', $scripturl, '?action=theme;sa=pick;u=', $context['id_member'], '">', $txt['change'], '</a>
 							</dd>';
 }
 
@@ -3167,7 +3159,7 @@ function template_tfasetup()
 								</div>';
 
 	echo '
-								<input type="password" name="passwd" size="25"', !empty($context['tfa_pass_error']) ? ' class="error"' : '', !empty($context['tfa_pass_value']) ? ' value="' . $context['tfa_pass_value'] . '"' : '', '>
+								<input type="password" name="oldpasswrd" size="25"', !empty($context['password_auth_failed']) ? ' class="error"' : '', !empty($context['tfa_pass_value']) ? ' value="' . $context['tfa_pass_value'] . '"' : '', '>
 							</div>
 							<div class="block">
 								<strong>', $txt['tfa_step2'], '</strong>

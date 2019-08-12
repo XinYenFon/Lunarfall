@@ -7,7 +7,7 @@
  * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC1
+ * @version 2.1 RC2
  */
 
 /**
@@ -236,8 +236,6 @@ function template_merge()
 				</div>
 				<div class="windowbg">
 					<ul class="merge_topics">';
-
-		$merge_button = create_button('merge', 'merge', '');
 
 		foreach ($context['topics'] as $topic)
 			echo '

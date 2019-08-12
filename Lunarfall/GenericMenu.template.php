@@ -7,7 +7,7 @@
  * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC1
+ * @version 2.1 RC2
  */
 
 /**
@@ -87,7 +87,7 @@ function template_generic_menu(&$menu_context)
 				continue;
 
 			echo '
-								<li', !empty($area['subsections']) ? ' class="subsections"' : '', '>
+								<li', !empty($area['subsections']) && empty($area['hide_subsections']) ? ' class="subsections"' : '', '>
 									<a class="', $area['icon_class'], !empty($area['selected']) ? ' chosen ' : '', '" href="', (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $i), $menu_context['extra_parameters'], '"><i class="fa fa-', $area['plain_class'] ,' fa-fw"></i>', $area['label'], !empty($area['amt']) ? ' <span class="amt">' . $area['amt'] . '</span>' : '', '</a>';
 
 			// Is this the current area, or just some area?
@@ -95,7 +95,7 @@ function template_generic_menu(&$menu_context)
 				$context['tabs'] = isset($area['subsections']) ? $area['subsections'] : array();
 
 			// Are there any subsections?
-			if (!empty($area['subsections']))
+			if (!empty($area['subsections']) && empty($area['hide_subsections']))
 			{
 				echo '
 									<ul>';
@@ -206,9 +206,9 @@ function template_generic_menu_tabs(&$menu_context)
 		// Show an icon and/or a help item?
 		if (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class']) || !empty($selected_tab['icon']) || !empty($tab_context['icon']) || !empty($selected_tab['help']) || !empty($tab_context['help']))
 		{
-			if (empty($settings['disable_fa_icons']))
+			if (empty($settings['disable_fa_icons']) & (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class'])))
 				echo '
-								<i class="fa fa-' . $tab_context['icon']  . ' fa-lg"></i>';
+								<i class="fa fa-', !empty($selected_tab['icon_class']) ? $selected_tab['icon_class'] : $tab_context['icon_class'], ' fa-lg"></i>';
 			elseif (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class']))
 				echo '
 								<span class="', !empty($selected_tab['icon_class']) ? $selected_tab['icon_class'] : $tab_context['icon_class'], ' icon"></span>';

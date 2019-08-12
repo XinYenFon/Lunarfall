@@ -7,7 +7,7 @@
  * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC1
+ * @version 2.1 RC2
  */
 
 /**
@@ -84,7 +84,7 @@ function template_main()
  */
 function template_select()
 {
-	global $context, $txt, $scripturl;
+	global $context, $txt, $scripturl, $options;
 
 	echo '
 	<div id="split_topics">
@@ -113,7 +113,6 @@ function template_select()
 					</li>';
 
 	echo '
-					<li class="dummy">
 				</ul>
 			</div><!-- #not_selected -->
 			<div id="selected" class="floatright">
@@ -143,7 +142,6 @@ function template_select()
 					</li>';
 
 	echo '
-					<li class="dummy">
 				</ul>
 			</div><!-- #selected -->
 			<br class="clear">
@@ -162,8 +160,8 @@ function template_select()
 
 		function select(direction, msg_id)
 		{
-				getXMLDocument(smf_prepareScriptUrl(smf_scripturl) + "action=splittopics;sa=selectTopics;subname=', $context['topic']['subject'], ';topic=', $context['topic']['id'], '." + start[0] + ";start2=" + start[1] + ";move=" + direction + ";msg=" + msg_id + ";xml;splitjs", onDocReceived);
-				return false;
+			getXMLDocument(smf_prepareScriptUrl(smf_scripturl) + "action=splittopics;sa=selectTopics;subname=', $context['topic']['subject'], ';topic=', $context['topic']['id'], '." + start[0] + ";start2=" + start[1] + ";move=" + direction + ";msg=" + msg_id + ";xml;splitjs", onDocReceived);
+			return false;
 		}
 		function onDocReceived(XMLDoc)
 		{
@@ -194,7 +192,7 @@ function template_select()
 					oListItems = curList.getElementsByTagName("LI");
 					for (j = 0; j < oListItems.length; j++)
 					{
-						if (parseInt(oListItems[j].id.substr(curSection.length + 1)) < curId)
+						if (parseInt(oListItems[j].id.substr(curSection.length + 1)) ' . (empty($options['view_newest_first']) ? '>' : '<') . ' curId)
 						{
 							// This would be a nice place to insert the row.
 							sInsertBeforeId = oListItems[j].id;
@@ -216,9 +214,6 @@ function template_select()
 						curList.appendChild(newItem);
 				}
 			}
-			// After all changes, make sure the window backgrounds are still correct for both lists.
-			applyWindowClasses(document.getElementById("messages_selected"));
-			applyWindowClasses(document.getElementById("messages_not_selected"));
 		}
 	</script>';
 }

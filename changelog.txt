@@ -1,3 +1,9 @@
+0.6.5 (12 August 2019)
+* Icon changes
+* Sync with Curve2
+* RC2 ready
+* Font-Awesome updated to 5.10.1
+
 0.6.4 (15 March 2019)
 * Icon changes (fixes)
 * Sync with Curve2

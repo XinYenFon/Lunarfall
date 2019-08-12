@@ -7,7 +7,7 @@
  * @copyright 2019 Simple Machines and individual contributors
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC1
+ * @version 2.1 RC2
  */
 
 /**
@@ -36,7 +36,7 @@ function template_modifyset()
 	if ($context['current_set']['is_new'] && !empty($modSettings['smiley_enable']))
 	{
 		echo '
-		<div class="information">
+		<div class="information noup">
 			', $txt['smiley_set_import_info'], '
 		</div>';
 	}
