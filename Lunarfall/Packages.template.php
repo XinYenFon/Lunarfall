@@ -152,6 +152,8 @@ function template_view_package()
 				</thead>
 				<tbody>';
 
+		$i = 1;
+		$j = 1;
 		$action_num = 1;
 		$js_operations = array();
 		foreach ($context['actions'] as $packageaction)
@@ -177,6 +179,7 @@ function template_view_package()
 							<table class="full_width">';
 
 				// Show the operations.
+				$operation_num = 1;
 				foreach ($packageaction['operations'] as $operation)
 				{
 					// Determine the position text.
@@ -267,6 +270,7 @@ function template_view_package()
 						<td colspan="5">
 							<table class="full_width">';
 
+						$operation_num = 1;
 						foreach ($action['operations'] as $operation)
 						{
 							// Determine the position text.

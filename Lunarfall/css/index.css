@@ -12,6 +12,11 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 }
+::selection {
+	text-shadow: none;
+	background: #99d4ff;
+	color: rgba(0, 0, 0, 0.6);
+}
 /* General reset */
 * {
 	box-sizing: border-box;
@@ -156,6 +161,7 @@ input[type="checkbox"], input[type="radio"] {
 	border: none;
 	background: none;
 	vertical-align: middle;
+	box-shadow: none;
 	margin: 0 3px;
 }
 .moderationbuttons_mobile_check {
@@ -272,7 +278,7 @@ body#help_popup {
 h3.largetext {
 	font-size: large;
 }
-.xlarge_text {
+.xlargetext {
 	font-size: x-large;
 }
 .centertext, .centercol {
@@ -1255,7 +1261,7 @@ ul li.greeting {
 
 /* The jump to box */
 #display_jump_to {
-	padding: 11px 5px 5px 0;
+	padding: 11px 0 5px 0;
 	float: right;
 	font-size: 1em;
 }
@@ -1373,6 +1379,9 @@ ul.split_messages li a.split_icon {
 }
 ul.split_messages li a.split_icon:hover {
 	opacity: 1;
+}
+.split_messages, .message_header {
+	margin-bottom: 8px;
 }
 /* Styles for the merge topic section. */
 ul.merge_topics li {
@@ -1521,11 +1530,7 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 .generic_menu {
 	margin: 5px 0;
 }
-/* This is a small fix for dropmenu icons */
-.dropmenu img {
-	margin: -3px 8px 0 0;
-	vertical-align: middle;
-}
+
 
 /* Styles for (fatal) errors.
 ------------------------------------------------- */
@@ -1737,7 +1742,6 @@ dl {
 	width: 35%;
 	margin: 0 0 3px 0;
 	font-weight: bold;
-	clear: both;
 }
 #detailedinfo dd, #tracking dd {
 	width: 65%;
@@ -2047,6 +2051,39 @@ dl.addrules dt.floatleft {
 #alerts .alert_inline_time {
 	display: none;
 }
+#alerts .quickbuttons {
+	display: flex;
+	margin: 4px 0;
+}
+#alerts .quickbuttons li, #alerts .alert_time {
+	white-space: nowrap;
+}
+#alerts .alert_image {
+	width: 65px;
+	padding: 6px 0;
+	text-align: center;
+	vertical-align: middle;
+}
+#alerts .alert_image > div {
+	position: relative;
+}
+#alerts .alert_image .avatar {
+	max-width: 80%;
+	max-height: 80%;
+	margin-top: 4px;
+	vertical-align: bottom;
+}
+#alerts .alert_image span.alert_icon {
+	display: block;
+	width: 100%;
+	line-height: 1em;
+}
+#alerts .alert_image .avatar + .alert_icon {
+	width: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
 
 /* Styles for the memberlist section.
 ------------------------------------------------- */
@@ -2321,9 +2358,6 @@ div#manage_boards dl dd textarea[name=desc] {
 h3 .collapse {
 	float: right;
 	margin: 4px 4px 0 0;
-}
-.cat_bar .desc {
-	color: #FFF;
 }
 .board_icon {
 	text-align: center;
@@ -2843,16 +2877,13 @@ ul.post_options li {
 #post_additional_options .progress_bar {
 	height: 22px;
 }
-#post_settings, #postAttachment, #postAttachment2 {
+#post_settings, #postAttachment, #postAttachment2, #attachment_previews {
 	border-top: 1px solid #ddd;
 	margin: -1px 0 0 0;
 	padding: 10px;
 }
-#postAttachment dd {
-	margin: 2px 12px;
-}
-#postAttachment2 dd {
-	margin: 4px 12px;
+#postAttachment dd, #postAttachment2 dd {
+	margin: 4px 0;
 }
 #postAttachment dd {
 	width: 45%;
@@ -2879,7 +2910,7 @@ ul.post_options li {
 #post_draft_options .settings strong {
 	color: #555;
 }
-#post_confirm_strip /* < That may be deprecated. */, #shortcuts {
+#post_confirm_buttons, #shortcuts {
 	padding: 12px 0;
 }
 #post_confirm_buttons .smalltext {
@@ -2935,6 +2966,10 @@ ul.post_options li {
 #moderationbuttons {
 	float: left;
 }
+#moderationbuttons_strip {
+	float: left;
+	margin: 4px 0 4px;
+}
 #moderationbuttons ul li {
 	padding: 0 6px 4px 0;
 	margin: 0;
@@ -2976,6 +3011,9 @@ h3.catbg a:hover {
 	margin-top: -1px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+}
+.cat_bar + .title_bar {
+	margin-top: 0;
 }
 /* Roundframe */
 .roundframe {
@@ -3262,6 +3300,7 @@ span.member.hidden {
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
+	margin-top: 12px;
 }
 #attachment_previews div.descbox > div,
 #attachment_previews div.errorbox > div,
@@ -3285,7 +3324,7 @@ input[name="attachBBC"] {
 	width: 100%;
 	margin-top: 10px;
 }
-.attachment_info .progress_bar, .attachment_info .attached_BBC, a#attach_cancel_all, a#attach_upload_all {
+.attachment_info .progress_bar, .attachment_info .attached_BBC, a#attach_cancel_all, a#attach_upload_all, .attach-ui {
 	display: none;
 }
 .attachment_info .progress_bar {
@@ -3304,6 +3343,9 @@ input[name="attachBBC"] {
 }
 #attachment_upload {
 	min-height: 50px;
+}
+#drop_zone_ui {
+	display: none;
 }
 #total_progress {
 	width: 50%;

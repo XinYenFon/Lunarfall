@@ -886,6 +886,9 @@ function template_single_post($message)
 								</ul>';
 	}
 
+	// Show the quickbuttons, for various operations on posts.
+	template_quickbuttons($message['quickbuttons'], 'post');
+
 	echo '
 							</div><!-- .under_message -->
 						</div><!-- .postarea -->
@@ -1037,7 +1040,6 @@ function template_quickreply()
 
 	// Finally, the submit buttons.
 	echo '
-						<br class="clear_right">
 						<span id="post_confirm_buttons" class="floatright">
 							', template_control_richedit_buttons($context['post_box_name']), '
 						</span>';
