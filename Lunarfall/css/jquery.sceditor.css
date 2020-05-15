@@ -28,7 +28,6 @@
 	display: flex;
 	-ms-flex-direction: column;
 	flex-direction: column;
-	position: relative;
 	background: #fff;
 	border: 1px solid #d9d9d9;
 	font-size: 13px;
@@ -36,7 +35,6 @@
 	color: #222;
 	line-height: 1;
 	font-weight: bold;
-	height: 250px;
 	border-radius: 4px;
 	background-clip: padding-box;
 	min-width: 100%;

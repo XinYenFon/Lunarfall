@@ -4,9 +4,9 @@
  * Simple Machines Forum (SMF)
  *
  * @package SMF
- * @author Simple Machines http://www.simplemachines.org
- * @copyright 2019 Simple Machines and individual contributors
- * @license http://www.simplemachines.org/about/smf/license.php BSD
+ * @author Simple Machines https://www.simplemachines.org
+ * @copyright 2020 Simple Machines and individual contributors
+ * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC2
  */
@@ -113,7 +113,7 @@ function template_permission_index()
 		echo '
 			<div class="cat_bar">
 				<h3 class="catbg">
-					<i id="permissions_panel_toggle" class="fa ', empty($context['show_advanced_options']) ? 'toggle_down' : 'toggle_up', ' fa-lg floatright" style="display: none;"></i>
+					<i id="permissions_panel_toggle" class="fas ', empty($context['show_advanced_options']) ? 'toggle_down' : 'toggle_up', ' fa-lg floatright" style="display: none;"></i>
 					<a href="#" id="permissions_panel_link">', $txt['permissions_advanced_options'], '</a>
 				</h3>
 			</div>

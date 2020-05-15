@@ -3,9 +3,9 @@
  * Simple Machines Forum (SMF)
  *
  * @package SMF
- * @author Simple Machines http://www.simplemachines.org
- * @copyright 2019 Simple Machines and individual contributors
- * @license http://www.simplemachines.org/about/smf/license.php BSD
+ * @author Simple Machines https://www.simplemachines.org
+ * @copyright 2020 Simple Machines and individual contributors
+ * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC2
  */
@@ -41,6 +41,11 @@ function template_view_package()
 		</div>
 		<br>';
 
+	if (!empty($context['package_blacklist_found']))
+		echo '
+		<div class="errorbox">', $txt['package_validation_blacklist_found'], '
+		</div>';
+
 	// Do errors exist in the install? If so light them up like a christmas tree.
 	if ($context['has_failure'])
 		echo '
@@ -49,6 +54,31 @@ function template_view_package()
 			', sprintf($txt['package_will_fail_warning'], $txt['package_' . ($context['uninstalling'] ? 'uninstall' : 'install')]),
 			!empty($context['failure_details']) ? '<br><br><strong>' . $context['failure_details'] . '</strong>' : '', '
 		</div>';
+
+	// Validation info?
+	if (!empty($context['validation_tests']))
+	{
+		echo '
+		<div class="title_bar">
+			<h3 class="titlebg">', $txt['package_validaiton_results'], '</h3>
+		</div>
+		<div id="package_validation">
+			<table class="table_grid">';
+
+		foreach ($context['validation_tests'] as $id_server => $result)
+		{
+			echo '
+			<tr>
+				<td>', $context['package_servers'][$id_server]['name'], '</td>
+				<td>', $txt[isset($result[$context['package_sha256_hash']]) ? $result[$context['package_sha256_hash']] : 'package_validation_status_unknown'], '</td>
+			</tr>';
+		}
+
+		echo '
+			</table>
+		</div>
+		<br>';
+	}
 
 	// Display the package readme if one exists
 	if (isset($context['package_readme']))
@@ -167,7 +197,7 @@ function template_view_package()
 						<td style="width: 30px;">', $i++, '.</td>
 						<td style="width: 23%;">', $packageaction['type'], '</td>
 						<td style="width: 50%;">', $packageaction['action'], '</td>
-						<td style="width: 20%;">', $packageaction['description'], '</td>
+						<td style="width: 20%;"><strong', !empty($packageaction['failed']) ? ' class="error"' : '', '>', $packageaction['description'], '</strong></td>
 					</tr>';
 
 			// Is there water on the knee? Operation!
@@ -195,7 +225,7 @@ function template_view_package()
 									<td width="30">', $operation_num++, '.</td>
 									<td width="23%">', $txt[$operation_text], '</td>
 									<td width="50%">', $operation['action'], '</td>
-									<td width="20%">', $operation['description'], !empty($operation['ignore_failure']) ? ' (' . $txt['operation_ignore'] . ')' : '', '</td>
+									<td width="20%"><strong', !empty($operation['failed']) ? ' class="error"' : '', '>', $operation['description'], !empty($operation['ignore_failure']) ? ' (' . $txt['operation_ignore'] . ')' : '', '</strong></td>
 								</tr>';
 				}
 
@@ -259,7 +289,7 @@ function template_view_package()
 						</td>
 						<td width="23%">', $action['type'], '</td>
 						<td width="50%">', $action['action'], '</td>
-						<td width="20%"><strong>', $action['description'], '</strong></td>
+						<td width="20%"><strong', !empty($action['failed']) ? ' class="error"' : '', '>', $action['description'], '</strong></td>
 					</tr>';
 
 					// Is there water on the knee? Operation!
@@ -286,7 +316,7 @@ function template_view_package()
 									<td width="30">', $operation_num++, '.</td>
 									<td width="23%">', $txt[$operation_text], '</td>
 									<td width="50%">', $operation['action'], '</td>
-									<td width="20%">', $operation['description'], !empty($operation['ignore_failure']) ? ' (' . $txt['operation_ignore'] . ')' : '', '</td>
+									<td width="20%"><strong', !empty($operation['failed']) ? ' class="error"' : '', '>', $operation['description'], !empty($operation['ignore_failure']) ? ' (' . $txt['operation_ignore'] . ')' : '', '</strong></td>
 								</tr>';
 						}
 
@@ -372,7 +402,7 @@ function template_view_package()
 	// And a bit more for database changes.
 	if ($context['uninstalling'] && !empty($context['database_changes']))
 		echo '
-		makeToggle(document.getElementById(\'db_changes_div\'), ', JavaScriptEscape($txt['package_db_uninstall_details']) , ');';
+		makeToggle(document.getElementById(\'db_changes_div\'), ', JavaScriptEscape($txt['package_db_uninstall_details']), ');';
 
 	echo '
 	</script>';
@@ -565,22 +595,18 @@ function template_browse()
 	echo '
 		</div><!-- #admin_form_wrapper -->';
 
-	$mods_available = false;
-	foreach ($context['modification_types'] as $type)
-	{
-		if (!empty($context['available_' . $type]))
-		{
-			template_show_list('packages_lists_' . $type);
-			$mods_available = true;
-		}
-	}
-
-	if (!$mods_available)
+	if ($context['available_packages'] == 0)
 		echo '
 		<div class="noticebox">', $txt['no_packages'], '</div>';
 	else
+	{
+		foreach ($context['modification_types'] as $type)
+			if (!empty($context['packages_lists_' . $type]['rows']))
+				template_show_list('packages_lists_' . $type);
+
 		echo '
 		<br>';
+	}
 
 	// The advanced (emulation) box, collapsed by default
 	echo '
@@ -1405,7 +1431,7 @@ function template_file_permissions()
 						linkData.onclick = dynamicExpandFolder;
 
 						var folderImage = document.createElement("i");
-						folderImage.className = "fa fa-folder fa-lg";
+						folderImage.className = "fas fa-folder";
 						linkData.appendChild(folderImage);
 
 						linkData.appendChild(fileName);
@@ -1553,7 +1579,7 @@ function template_file_permissions()
 
 		if (!empty($dir['type']) && ($dir['type'] == 'dir' || $dir['type'] == 'dir_recursive'))
 			echo '
-							<i class="fa fa-folder fa-lg"></i>';
+							<i class="fas fa-folder"></i>';
 
 		echo '
 							', $name, '
@@ -1678,7 +1704,7 @@ function template_permission_show_contents($ident, $contents, $level, $has_more 
 
 			if (!empty($dir['type']) && ($dir['type'] == 'dir' || $dir['type'] == 'dir_recursive'))
 				echo '
-						<i class="fa fa-folder fa-lg"></i>';
+						<i class="fas fa-folder"></i>';
 
 			echo '
 						', $name, '

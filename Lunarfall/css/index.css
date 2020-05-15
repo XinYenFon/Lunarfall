@@ -149,7 +149,7 @@ strong, .strong {
 .cat_bar strong {
 	color: #fff;
 }
-em {
+em, .em {
 	font-style: italic;
 }
 /* Default <strong> color on these tags */
@@ -294,6 +294,9 @@ h3.largetext {
 	margin-left: 0;
 	margin-right: auto;
 	text-align: left;
+}
+.justifytext {
+	text-align: justify;
 }
 .double_height {
 	line-height: 2em;
@@ -471,6 +474,9 @@ strong[id^='child_list_']::after {
 }
 #main_content_section .pagesection {
 	margin: 4px 0 0 0;
+}
+.pagelinks .button {
+	padding: 0 5px;
 }
 .nav_page {
 	padding: 0 1px;
@@ -1090,9 +1096,7 @@ h1.forumtitle a {
 /* Float these items to the right */
 #siteslogan, img#smflogo {
 	padding-right: 2px;
-	float: right;
-	line-height: 50px;
-	font-size: 1.8em;
+	font-size: 1.4em;
 }
 /* Tweak the SMF logo */
 img#smflogo {
@@ -2910,11 +2914,26 @@ ul.post_options li {
 #post_draft_options .settings strong {
 	color: #555;
 }
+#post_confirm_buttons {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+}
 #post_confirm_buttons, #shortcuts {
 	padding: 12px 0;
 }
 #post_confirm_buttons .smalltext {
-	padding: 0 10px;
+	flex: 1;
+	word-break: break-word;
+	margin: 0 5px 0 0;
+}
+#post_confirm_buttons .post_button_container {
+	vertical-align: top;
+}
+#post_confirm_buttons .padding {
+	flex: 1 100%;
 }
 .post_verification {
 	margin-top: 6px;
@@ -3416,7 +3435,17 @@ tr[id^='list_news_lists_'] textarea {
 .videocontainer {
 	max-width: 560px;
 }
-.videocontainer div {
+.centertext .videocontainer,
+.justifytext .videocontainer {
+	margin: 0 auto;
+}
+.righttext .videocontainer {
+	margin: 0 0 0 auto;
+}
+.lefttext .videocontainer {
+	margin: 0 auto 0 0;
+}
+.videocontainer > div {
 	position: relative;
 	padding-bottom: 56.25%;
 }
@@ -3427,11 +3456,20 @@ tr[id^='list_news_lists_'] textarea {
 	width: 100% !important;
 	height: 100% !important;
 }
+.videocontainer video {
+	object-fit: contain;
+	background: black;
+}
 
 .backtrace:not(:last-child) {
 	padding-bottom: 0.5em;
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 0.5em;
+}
+
+/* To break or not to break that is the question indeed */
+.word_break {
+	word-break: break-all;
 }
 
 /* Keep this here if I forgot something */

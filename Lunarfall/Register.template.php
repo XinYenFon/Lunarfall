@@ -3,9 +3,9 @@
  * Simple Machines Forum (SMF)
  *
  * @package SMF
- * @author Simple Machines http://www.simplemachines.org
- * @copyright 2019 Simple Machines and individual contributors
- * @license http://www.simplemachines.org/about/smf/license.php BSD
+ * @author Simple Machines https://www.simplemachines.org
+ * @copyright 2020 Simple Machines and individual contributors
+ * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC2
  */
@@ -115,7 +115,7 @@ function template_registration_form()
 						</dd>
 					</dl>
 					<dl class="register_form" id="password1_group">
-						<dt><strong><label for="smf_autov_pwmain">', ucwords($txt['choose_pass']), ':</label></strong></dt>
+						<dt><strong><label for="smf_autov_pwmain">', $txt['choose_pass'], ':</label></strong></dt>
 						<dd>
 							<input type="password" name="passwrd1" id="smf_autov_pwmain" size="50" tabindex="', $context['tabindex']++, '">
 							<span id="smf_autov_pwmain_div" style="display: none;">
@@ -125,7 +125,7 @@ function template_registration_form()
 					</dl>
 					<dl class="register_form" id="password2_group">
 						<dt>
-							<strong><label for="smf_autov_pwverify">', ucwords($txt['verify_pass']), ':</label></strong>
+							<strong><label for="smf_autov_pwverify">', $txt['verify_pass'], ':</label></strong>
 						</dt>
 						<dd>
 							<input type="password" name="passwrd2" id="smf_autov_pwverify" size="50" tabindex="', $context['tabindex']++, '">
@@ -133,11 +133,7 @@ function template_registration_form()
 								<i id="smf_autov_pwverify_img" class="fa fa-lg"></i>
 							</span>
 						</dd>
-					</dl>';
-
-	// Allow notification on announcements to be disabled?
-	if (!empty($modSettings['allow_disableAnnounce']))
-		echo '
+					</dl>
 					<dl class="register_form" id="notify_announcements">
 						<dt>
 							<strong><label for="notify_announcements">', $txt['notify_announcements'], ':</label></strong>

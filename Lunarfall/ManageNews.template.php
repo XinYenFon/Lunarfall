@@ -3,9 +3,9 @@
  * Simple Machines Forum (SMF)
  *
  * @package SMF
- * @author Simple Machines http://www.simplemachines.org
- * @copyright 2019 Simple Machines and individual contributors
- * @license http://www.simplemachines.org/about/smf/license.php BSD
+ * @author Simple Machines https://www.simplemachines.org
+ * @copyright 2020 Simple Machines and individual contributors
+ * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC2
  */
@@ -214,14 +214,13 @@ function template_email_members_compose()
 					</dl>
 				</div>
 				<dl id="post_header">
-					<dt class="clear_left">
-						<span', (isset($context['post_error']['no_subject']) ? ' class="error"' : ''), ' id="caption_subject">', $txt['subject'], ':</span>
+					<dt>
+						<label', (isset($context['post_error']['no_subject']) ? ' class="error"' : ''), ' for="subject" id="caption_subject">', $txt['subject'], '</label>
 					</dt>
 					<dd id="pm_subject">
-						<input type="text" name="subject" value="', $context['subject'], '" tabindex="', $context['tabindex']++, '" size="60" maxlength="60"', isset($context['post_error']['no_subject']) ? ' class="error"' : '', '>
+						<input type="text" id="subject" name="subject" value="', $context['subject'], '" tabindex="', $context['tabindex']++, '" size="80" maxlength="84"', isset($context['post_error']['no_subject']) ? ' class="error"' : '', '>
 					</dd>
 				</dl>
-				<hr class="clear">
 				<div id="bbcBox_message"></div>';
 
 	// What about smileys?
