@@ -7,7 +7,7 @@
  * @copyright 2020 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC2
+ * @version 2.1 RC3
  */
 
 /**
@@ -521,7 +521,7 @@ function template_topic_legend()
 		echo '
 			<p class="floatleft">', !empty($modSettings['enableParticipation']) && $context['user']['is_logged'] ? '
 				<i class="fa fa-user fa-fw"></i> ' . $txt['participation_caption'] . '<br>' : '', '
-				'. ($modSettings['pollMode'] == '1' ? '<i class="fa fa-chart-bar fa-fw"></i> ' . $txt['poll'] : '') . '<br>
+				' . ($modSettings['pollMode'] == '1' ? '<i class="fa fa-chart-bar fa-fw"></i> ' . $txt['poll'] : '') . '<br>
 				<i class="fa fa-arrow-alt-circle-right fa-fw"></i> ' . $txt['moved_topic'] . '<br>
 			</p>
 			<p>

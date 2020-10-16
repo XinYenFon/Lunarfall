@@ -3141,7 +3141,8 @@ readers do not read off random characters that represent icons */
 .fa-rainbow:before {
   content: "\f75b"; }
 
-.fa-random:before {
+.fa-random:before,
+.fa-split_button:before {
   content: "\f074"; }
 
 .fa-raspberry-pi:before {

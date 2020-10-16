@@ -7,7 +7,7 @@
  * @copyright 2020 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC2
+ * @version 2.1 RC3
  */
 
 /*	This template is, perhaps, the most important template in the theme. It
@@ -98,7 +98,7 @@ function template_html_above()
 
 	*	Short example:
 			- CSS: loadCSSFile('filename.css', array('minimize' => true));
-			- JS:  loadJavaScriptFile('filename.css', array('minimize' => true));
+			- JS:  loadJavaScriptFile('filename.js', array('minimize' => true));
 			You can also read more detailed usages of the parameters for these
 			functions on the SMF wiki.
 
@@ -657,7 +657,7 @@ function template_quickbuttons($list_items, $list_class = null, $output_method =
 
 	// Print the quickbuttons
 	$output = '
-		<ul class="qbuttons quickbuttons' . (!empty($list_class) ? ' quickbuttons_' . $list_class : '') . '">';
+		<ul class="qbuttons' . (!empty($list_class) ? ' quickbuttons_' . $list_class : '') . '">';
 
 	// This is used for a list item or a sublist item
 	$list_item_format = function($li)
@@ -669,8 +669,8 @@ function template_quickbuttons($list_items, $list_class = null, $output_method =
 			$html .= $li['content'];
 		else
 			$html .= '
-				<a' . (!empty($li['href']) ? ' href="' . $li['href'] . '"' : '') . (!empty($li['javascript']) ? $li['javascript'] : '') . '>
-					' . (!empty($li['icon']) ? '<span class="main_icons ' . $li['icon'] . '"></span>' : '') . (!empty($li['label']) ? $li['label'] : '') . '
+				<a' . (!empty($li['href']) ? ' href="' . $li['href'] . '"' : '') . (!empty($li['javascript']) ? $li['javascript'] : '') . (!empty($li['label']) ? 'title="' . $li['label'] . '"' : '') . '>
+					' . (!empty($li['icon']) ? '<i class="fas fa-' . $li['icon'] . ' fa-lg fa-fw"></i>' : '') . '
 				</a>';
 
 		$html .= '
@@ -684,16 +684,10 @@ function template_quickbuttons($list_items, $list_class = null, $output_method =
 		// Handle the sublist
 		if ($key == 'more')
 		{
-			$output .= '
-			<li class="post_options">' . $txt['post_options'] . '
-				<ul>';
 
 			foreach ($li as $subli)
 				$output .= $list_item_format($subli);
 
-			$output .= '
-				</ul>
-			</li>';
 		}
 		// Ordinary list item
 		else

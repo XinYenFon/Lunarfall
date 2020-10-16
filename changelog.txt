@@ -1,3 +1,8 @@
+0.7.0 (17 October 2020)
+* Sync with Curve2
+* RC3 ready
+(Note: Other planned updates and fixes will be done later -0.7.1, 0.7.2 etc...)
+
 0.6.5 (12 August 2019)
 * Icon changes
 * Sync with Curve2
