@@ -26,11 +26,6 @@
 	margin-top: 0;
 	margin-bottom: 0;
 }
-.table_caption, tr.table_caption td {
-	color: #000;
-	font-size: 10px;
-	font-weight: bold;
-}
 .additional_row div.floatleft {
 	padding: 0 10px;
 }
@@ -154,6 +149,7 @@ body#chrome #quick_search form input {
 }
 
 fieldset.admin_group legend {
+	color: #555;
 	background: #eaf1f4;
 	border: 1px solid #cacdd3;
 	padding: 1px 5px;
@@ -506,15 +502,6 @@ h3.grid_header {
 }
 
 /* Styles for the Report generation */
-#report_buttons {
-	min-height: 2.4em;
-	padding: 3px 0;
-}
-.report_results th {
-	border-left: 1px solid #ddd;
-	border-right: 1px solid #ddd;
-}
-
 #support_credits .sub_bar {
 	padding: 6px 0px 5px 0px;
 }

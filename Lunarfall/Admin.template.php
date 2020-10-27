@@ -26,14 +26,14 @@ function template_admin()
 
 	// Sellout
 	echo '
-						<div id="donate_cat" class="block"><a href="https://www.patreon.com/Antesistan" id="donate_cat"><i class="fab fa-patreon fa-3x"></i></a></div>';
+						<div id="donate_cat" class="block"><a href="https://www.patreon.com/XinYenFon" id="donate_cat"><i class="fab fa-patreon fa-3x"></i></a></div>';
 
 	// Display the "live news" from simplemachines.org.
 	echo '
 							<div id="live_news" class="floatleft">
 								<div class="cat_bar">
 									<h3 class="catbg">
-										<a href="', $scripturl, '?action=helpadmin;help=live_news" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a> ', $txt['live'], '
+										<a href="', $scripturl, '?action=helpadmin;help=live_news" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fas fa-question-circle fa-lg" title="', $txt['help'], '"></i></a> ', $txt['live'], '
 									</h3>
 								</div>
 								<div class="windowbg">
@@ -94,7 +94,7 @@ function template_admin()
 							<a href="', $url, '" class="admin_group', !empty($item['inactive']) ? ' inactive' : '', '"><img class="large_admin_menu_icon_file" src="', $item['icon_file'], '" alt="">', $item['label'], '</a>';
 			else
 				echo '
-							<a href="', $url, '"><i class="fa fa-', $item['plain_class'], !empty($item['inactive']) ? ' inactive' : '', ' fa-3x"></i><br>', $item['label'], '</a>';
+							<a href="', $url, '"><i class="fas fa-', $item['plain_class'], !empty($item['inactive']) ? ' inactive' : '', ' fa-3x"></i><br>', $item['label'], '</a>';
 		}
 
 		echo '

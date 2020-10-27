@@ -1,0 +1,360 @@
+.fa-align-center:before,
+.fa-center:before {
+content: "\f037"; }
+
+.fa-align-justify:before,
+.fa-justify:before {
+content: "\f039"; }
+
+.fa-align-left:before,
+.fa-left:before {
+content: "\f036"; }
+
+.fa-align-right:before,
+.fa-right:before {
+content: "\f038"; }
+
+.fa-arrow-left:before,
+.fa-floatleft:before {
+content: "\f060"; }
+
+.fa-arrow-right:before,
+.fa-floatright:before {
+content: "\f061"; }
+
+.fa-arrows-alt-v:before,
+.fa-horizontalrule:before {
+content: "\f338"; }
+
+.fa-ban:before,
+.fa-disable:before {
+content: "\f05e"; }
+
+.fa-bell:before,
+.button_notify:before {
+content: "\f0f3"; }
+
+.fa-book:before,
+.fa-reports:before {
+content: "\f02d"; }
+
+.fa-calendar:before,
+.fa-managecalendar:before {
+content: "\f133"; }
+
+.fa-caret-square-down:before,
+.toggle_down:before {
+content: "\f150"; }
+
+.fa-caret-square-up:before,
+.toggle_up:before {
+content: "\f151"; }
+
+.fa-chart-area:before,
+.fa-stats:before,
+.fa-statistics:before {
+content: "\f1fe"; }
+
+.fa-chart-bar:before,
+.button_add_poll:before,
+.fa-poll:before {
+content: "\f080"; }
+
+.fa-check:before,
+.valid:before,
+.fa-enable:before {
+content: "\f00c"; }
+
+.fa-clipboard-list:before,
+.fa-manrules:before {
+content: "\f46d"; }
+
+.fa-clock:before,
+.fa-time_online:before {
+content: "\f017"; }
+
+.fa-cogs:before,
+.fa-features:before,
+.fa-settings:before,
+.fa-featuresettings:before {
+content: "\f085"; }
+
+.fa-comment:before,
+.fa-board_off:before {
+content: "\f075"; }
+
+.fa-comment-alt:before,
+.fa-board_on:before {
+content: "\f27a"; }
+
+.fa-comments:before,
+.fa-board_on2:before {
+content: "\f086"; }
+
+.fa-compass:before,
+.button_merge:before {
+content: "\f14e"; }
+
+.fa-cubes:before,
+.fa-packages:before {
+content: "\f1b3"; }
+
+.fa-database:before,
+.fa-scheduled:before,
+.fa-scheduledtasks:before {
+content: "\f1c0"; }
+
+.fa-dollar-sign:before,
+.fa-paid:before,
+.fa-paidsubscribe:before {
+content: "\f155"; }
+
+.fa-drafting-compass:before,
+.fa-drafts:before,
+.fa-showdrafts:before {
+content: "\f568"; }
+
+.fa-edit:before,
+.fa-quick_edit_button:before {
+content: "\f044"; }
+
+.fa-envelope:before,
+.fa-mail:before,
+.fa-mailqueue:before,
+.fa-send:before,
+.fa-email:before {
+content: "\f0e0"; }
+
+.fa-envelope-open:before,
+.fa-sent:before {
+content: "\f2b6"; }
+
+.fa-eraser:before,
+.fa-prune:before {
+content: "\f12d"; }
+
+.fa-exclamation:before,
+.fa-alerts:before,
+.fa-showalerts:before {
+content: "\f12a"; }
+
+.fa-exclamation-triangle:before,
+.fa-members_watched:before,
+.lf-check:before,
+.fa-warning:before,
+.fa-warnings:before {
+content: "\f071"; }
+
+.fa-expand-arrows-alt:before,
+.fa-maximize:before {
+content: "\f31e"; }
+
+.fa-file-alt:before,
+.fa-xx:before {
+content: "\f15c"; }
+
+.fa-fire-extinguisher:before,
+.fa-moderate:before {
+content: "\f134"; }
+
+.fa-flag:before,
+.fa-error:before {
+content: "\f024"; }
+
+.fa-font:before,
+.fa-color:before {
+content: "\f031"; }
+
+.fa-forward:before,
+.fa-board_redirect:before,
+.button_move:before {
+content: "\f04e"; }
+
+.fa-history:before,
+.fa-logs:before {
+content: "\f1da"; }
+
+.fa-home:before,
+.fa-administration:before,
+.fa-index:before {
+content: "\f015"; }
+
+.fa-key:before,
+.fa-permissions:before {
+content: "\f084"; }
+
+.fa-language:before,
+.fa-languages:before {
+content: "\f1ab"; }
+
+.fa-life-ring:before,
+.fa-support:before,
+.fa-credits:before {
+content: "\f1cd"; }
+
+.fa-list:before,
+.fa-bulletlist:before {
+content: "\f03a"; }
+
+.fa-list-alt:before,
+.fa-boards:before,
+.fa-manageboards:before {
+content: "\f022"; }
+
+.fa-list-ol:before,
+.fa-orderedlist:before {
+content: "\f0cb"; }
+
+.fa-lock:before,
+.button_lock:before {
+content: "\f023"; }
+
+.fa-newspaper:before,
+.fa-news:before {
+content: "\f1ea"; }
+
+.fa-paint-brush:before,
+.fa-current_theme:before,
+.fa-themes:before,
+.fa-theme:before {
+content: "\f1fc"; }
+
+.fa-paperclip:before,
+.fa-attachment:before,
+.fa-manageattachments:before,
+.fa-post_moderation_attach:before {
+content: "\f0c6"; }
+
+.fa-pencil-alt:before,
+.fa-posts:before,
+.fa-postsettings:before,
+.fa-modify_button:before  {
+content: "\f303"; }
+
+.fa-print:before,
+.button_print:before {
+content: "\f02f"; }
+
+.fa-puzzle-piece:before,
+.fa-modifications:before,
+.fa-modsettings:before {
+content: "\f12e"; }
+
+.fa-quote-left:before,
+.fa-quote:before {
+content: "\f10d"; }
+
+.fa-random:before,
+.fa-split_button:before {
+content: "\f074"; }
+
+.fa-reply:before,
+.button_reply:before,
+.fa-reply_button:before {
+content: "\f3e5"; }
+
+.fa-search:before,
+.fa-managesearch:before {
+content: "\f002"; }
+
+.fa-server:before,
+.fa-serversettings:before {
+content: "\f233"; }
+
+.fa-sign-in-alt:before,
+.fa-regcenter:before,
+.fa-signup:before {
+content: "\f2f6"; }
+
+.fa-sign-out-alt:before,
+.fa-logout:before,
+.fa-exit:before,
+.fa-adminlogoff:before {
+content: "\f2f5"; }
+
+.fa-sitemap:before,
+.fa-engines:before,
+.fa-sengines:before {
+content: "\f0e8"; }
+
+.fa-smile:before,
+.fa-smiley:before,
+.fa-smileys:before {
+content: "\f118"; }
+
+.fa-sort-amount-down:before,
+.fa-topics_replies:before,
+.fa-topics_views:before {
+content: "\f160"; }
+
+.fa-star-half:before,
+.fa-frenemy:before {
+content: "\f089"; }
+
+.fa-strikethrough:before,
+.fa-strike:before {
+content: "\f0cc"; }
+
+.fa-suitcase:before,
+.fa-admin:before {
+content: "\f0f2"; }
+
+.fa-tags:before,
+.fa-manlabels:before {
+content: "\f02c"; }
+
+.fa-text-height:before,
+.fa-size:before {
+content: "\f034"; }
+
+.fa-thumbs-down:before,
+.fa-thumbdown:before {
+content: "\f165"; }
+
+.fa-thumbs-up:before,
+.fa-liked_messages:before,
+.fa-liked_users:before,
+.fa-thumbup:before {
+content: "\f164"; }
+
+.fa-thumbtack:before,
+.button_sticky:before,
+.fa-sticky:before {
+content: "\f08d"; }
+
+.fa-times:before,
+.button_delete:before,
+.fa-members_delete:before,
+.invalid:before {
+content: "\f00d"; }
+
+.fa-trash-alt:before,
+.fa-remove_button:before {
+content: "\f2ed"; }
+
+.fa-trophy:before,
+.fa-posters:before {
+content: "\f091"; }
+
+.fa-umbrella:before,
+.fa-security:before,
+.fa-antispam:before {
+content: "\f0e9"; }
+
+.fa-unlink:before,
+.fa-removeformat:before {
+content: "\f127"; }
+
+.fa-users:before,
+.fa-members:before,
+.fa-mlist:before,
+.fa-membergroups:before,
+.fa-starters:before,
+.fa-viewmembers:before,
+.fa-members_request:before {
+content: "\f0c0"; }
+
+.fa-wrench:before,
+.fa-source:before,
+.fa-maintain:before {
+content: "\f0ad"; }

@@ -1631,6 +1631,8 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 	text-shadow: 1px 1px rgba(255, 255, 255, .4);
 	display: inline-block;
 	padding: 0 5px;
+	color: #000000;
+	font-weight: 500;
 }
 .generic_bar .bar, .progress_bar .bar {
 	position: absolute;
