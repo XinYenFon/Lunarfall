@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2020 Simple Machines and individual contributors
+ * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC3
@@ -455,7 +455,8 @@ function template_extract_package()
 
 	elseif ($context['uninstalling'])
 		echo '
-			', $txt['package_uninstall_done'];
+			', $txt['package_uninstall_done'] .' <br>
+			', '<a href="', $context['keep_url'], '" class="button">', $txt['package_keep'], '</a>', '<a href="', $context['remove_url'], '" class="button">', $txt['package_delete2'], '</a>';
 
 	elseif ($context['install_finished'])
 	{
@@ -1316,9 +1317,11 @@ function template_view_operations()
 		<meta charset="', $context['character_set'], '">
 		<title>', $txt['operation_title'], '</title>
 		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $context['browser_cache'], '">
-		<link rel="stylesheet" href="', $settings['theme_url'], '/css/admin.css', $context['browser_cache'], '">
-		<script src="', $settings['default_theme_url'], '/scripts/script.js', $context['browser_cache'], '"></script>
-		<script src="', $settings['default_theme_url'], '/scripts/theme.js', $context['browser_cache'], '"></script>
+		<link rel="stylesheet" href="', $settings['theme_url'], '/css/admin.css', $context['browser_cache'], '">';
+
+	template_javascript();
+
+	echo '
 	</head>
 	<body>
 		<div class="padding windowbg">

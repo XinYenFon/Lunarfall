@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2020 Simple Machines and individual contributors
+ * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC3
@@ -43,11 +43,11 @@ function template_login()
 					<dl>
 						<dt>', $txt['username'], ':</dt>
 						<dd>
-							<input type="text" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginuser" name="user" size="20" value="', $context['default_username'], '">
+							<input type="text" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginuser" name="user" size="20" value="', $context['default_username'], '" required>
 						</dd>
 						<dt>', $txt['password'], ':</dt>
 						<dd>
-							<input type="password" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginpass" name="passwrd" value="', $context['default_password'], '" size="20">
+							<input type="password" id="', !empty($context['from_ajax']) ? 'ajax_' : '', 'loginpass" name="passwrd" value="', $context['default_password'], '" size="20" required>
 						</dd>
 					</dl>
 					<dl>
@@ -76,7 +76,13 @@ function template_login()
 					</p>
 					<p class="smalltext">
 						<a href="', $scripturl, '?action=reminder">', $txt['forgot_your_password'], '</a>
-					</p>
+					</p>';
+	if (!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 1)
+		echo '
+					<p class="smalltext">
+						', sprintf($txt['welcome_guest_activate'], $scripturl), '
+					</p>';
+	echo '
 					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 					<input type="hidden" name="', $context['login_token_var'], '" value="', $context['login_token'], '">
 					<script>
@@ -443,6 +449,34 @@ function template_resend()
 				<p><input type="submit" value="', $txt['invalid_activation_resend'], '" class="button"></p>
 			</div><!-- .roundframe -->
 		</form>';
+}
+
+/**
+ * Confirm a logout.
+ */
+function template_logout()
+{
+	global $context, $settings, $scripturl, $modSettings, $txt;
+
+	// This isn't that much... just like normal login but with a message at the top.
+	echo '
+	<form action="', $scripturl . '?action=logout;', $context['session_var'], '=', $context['session_id'], '" method="post" accept-charset="', $context['character_set'], '" name="frmLogout" id="frmLogout">
+		<div class="logout">
+			<div class="cat_bar">
+				<h3 class="catbg">', $txt['logout_confirm'], '</h3>
+			</div>
+			<div class="roundframe">
+				<p class="information centertext">
+					', $txt['logout_notice'], '
+				</p>
+
+				<p class="centertext">
+					<input type="submit" value="', $txt['logout'], '" class="button">
+					<input type="submit" name="cancel" value="', $txt['logout_return'], '" class="button">
+				</p>
+			</div>
+		</div><!-- .logout -->
+	</form>';
 }
 
 ?>

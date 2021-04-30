@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2020 Simple Machines and individual contributors
+ * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC3
@@ -86,7 +86,7 @@ function template_main()
 		{
 			if ($row_number == 0 && !empty($table['shading']['top']))
 				echo '
-				<tr class="windowbg">';
+				<tr class="windowbg table_caption">';
 			else
 				echo '
 				<tr class="', !empty($row[0]['separator']) ? 'title_bar' : 'windowbg', '">';
@@ -109,7 +109,7 @@ function template_main()
 				// Shaded?
 				if ($column_number == 0 && !empty($table['shading']['left']))
 					echo '
-					<td class="', $table['align']['shaded'], 'text"', $table['width']['shaded'] != 'auto' ? ' width="' . $table['width']['shaded'] . '"' : '', '>
+					<td class="table_caption ', $table['align']['shaded'], 'text"', $table['width']['shaded'] != 'auto' ? ' width="' . $table['width']['shaded'] . '"' : '', '>
 						', $data['v'] == $table['default_value'] ? '' : ($data['v'] . (empty($data['v']) ? '' : ':')), '
 					</td>';
 				else

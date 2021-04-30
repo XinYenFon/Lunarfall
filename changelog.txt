@@ -1,3 +1,7 @@
+0.7.2 (30 April 2021)
+* Sync with Curve2
+* RC3/4 ready
+
 0.7.0 (17 October 2020)
 * Sync with Curve2
 * RC3 ready

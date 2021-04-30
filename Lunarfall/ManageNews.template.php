@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2020 Simple Machines and individual contributors
+ * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC3
@@ -200,7 +200,7 @@ function template_email_members_compose()
 				</h3>
 			</div>
 			<div class="information">
-				', $txt['email_variables'], '
+				', sprintf($txt['email_variables'], $scripturl), '
 			</div>
 			<div class="windowbg">
 				<div class="', empty($context['error_type']) || $context['error_type'] != 'serious' ? 'noticebox' : 'errorbox', '"', empty($context['post_error']['messages']) ? ' style="display: none"' : '', ' id="errors">

@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2020 Simple Machines and individual contributors
+ * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC3
@@ -760,15 +760,13 @@ function template_single_post($message)
 	if (!empty($message['attachment']))
 	{
 		$last_approved_state = 1;
-		$attachments_per_line = 5;
-		$i = 0;
 		// Don't output the div unless we actually have something to show...
 		$div_output = false;
 
 		foreach ($message['attachment'] as $attachment)
 		{
 			// Do we want this attachment to not be showed here?
-			if (!empty($modSettings['dont_show_attach_under_post']) && !empty($context['show_attach_under_post'][$attachment['id']]))
+			if ($attachment['is_approved'] && !empty($modSettings['dont_show_attach_under_post']) && !empty($context['show_attach_under_post'][$attachment['id']]))
 				continue;
 			elseif (!$div_output)
 			{
@@ -798,7 +796,7 @@ function template_single_post($message)
 			echo '
 									<div class="attached">';
 
-			if ($attachment['is_image'])
+			if ($attachment['is_image'] && !empty($modSettings['attachmentShowImages']))
 			{
 				echo '
 										<div class="attachments_top">';
@@ -808,7 +806,7 @@ function template_single_post($message)
 											<a href="', $attachment['href'], ';image" id="link_', $attachment['id'], '" onclick="', $attachment['thumbnail']['javascript'], '"><img src="', $attachment['thumbnail']['href'], '" alt="" id="thumb_', $attachment['id'], '" class="atc_img"></a>';
 				else
 					echo '
-											<img src="' . $attachment['href'] . ';image" alt="" width="' . $attachment['width'] . '" height="' . $attachment['height'] . '" class="atc_img">';
+											<img src="' . $attachment['href'] . ';image" alt="" width="' . $attachment['width'] . '" height="' . $attachment['height'] . '" loading="lazy" class="atc_img">';
 
 				echo '
 										</div><!-- .attachments_top -->';
@@ -827,11 +825,6 @@ function template_single_post($message)
 
 			echo '
 									</div><!-- .attached -->';
-
-			// Next attachment line ?
-			if (++$i % $attachments_per_line === 0)
-				echo '
-									<br>';
 		}
 
 		// If we had unapproved attachments clean up.

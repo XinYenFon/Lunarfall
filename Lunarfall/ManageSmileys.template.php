@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2020 Simple Machines and individual contributors
+ * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC3
@@ -420,7 +420,7 @@ function template_editicon()
 
 	echo '
 				<dt>
-					<strong><label for="icon_filename">', $txt['smileys_filename'], '</label>: </strong><br><span class="smalltext">', $txt['icons_filename_all_png'], '</span>
+					<strong><label for="icon_filename">', $txt['smileys_filename'], '</label>: </strong><br><span class="smalltext">', sprintf($txt['icons_extension_must_be'], '.png'), '</span>
 				</dt>
 				<dd>
 					<input type="text" name="icon_filename" id="icon_filename" value="', !empty($context['icon']['filename']) ? $context['icon']['filename'] . '.png' : '', '">
