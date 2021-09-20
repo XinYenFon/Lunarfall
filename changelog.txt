@@ -1,3 +1,7 @@
+0.7.3 (20 September 2021)
+* Sync with Curve2
+* RC4 ready (Cutting Edge build)
+
 0.7.2 (30 April 2021)
 * Sync with Curve2
 * RC3/4 ready
