@@ -7,7 +7,7 @@
  * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC3
+ * @version 2.1 RC4
  */
 
 /**
@@ -60,6 +60,19 @@ function template_unread()
 {
 	global $context, $settings, $txt, $scripturl, $modSettings;
 
+	// User action pop on mobile screen (or actually small screen), this uses responsive css does not check mobile device.
+	if (!empty($context['recent_buttons']))
+		echo '
+	<div id="mobile_action" class="popup_container">
+		<div class="popup_window description">
+			<div class="popup_heading">
+				', $txt['mobile_action'], '
+				<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+			</div>
+			', template_button_strip($context['recent_buttons']), '
+		</div>
+	</div>';
+
 	echo '
 	<div id="recent" class="main_content">';
 
@@ -79,7 +92,16 @@ function template_unread()
 					<a href="#bot" class="button">', $txt['go_down'], '</a>
 					', $context['page_index'], '
 				</div>
-				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
+				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '';
+
+		// Mobile action (top)
+		if (!empty($context['recent_buttons']))
+			echo '
+				<div class="mobile_buttons floatright">
+					<a class="button mobile_act">', $txt['mobile_action'], '</a>
+				</div>';
+
+		echo '
 			</div>';
 
 		echo '
@@ -182,7 +204,16 @@ function template_unread()
 				<div class="pagelinks">
 					<a href="#recent" class="button">', $txt['go_up'], '</a>
 					', $context['page_index'], '
-				</div>
+				</div>';
+
+		// Mobile action (bottom)
+		if (!empty($context['recent_buttons']))
+		echo '
+				<div class="mobile_buttons floatright">
+					<a class="button mobile_act">', $txt['mobile_action'], '</a>
+				</div>';
+
+		echo '
 			</div>';
 	}
 	else
@@ -211,6 +242,19 @@ function template_replies()
 {
 	global $context, $settings, $txt, $scripturl, $modSettings;
 
+	// User action pop on mobile screen (or actually small screen), this uses responsive css does not check mobile device.
+	if (!empty($context['recent_buttons']))
+		echo '
+	<div id="mobile_action" class="popup_container">
+		<div class="popup_window description">
+			<div class="popup_heading">
+				', $txt['mobile_action'], '
+				<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+			</div>
+			', template_button_strip($context['recent_buttons']), '
+		</div>
+	</div>';
+
 	echo '
 	<div id="recent">';
 
@@ -230,7 +274,16 @@ function template_replies()
 					<a href="#bot" class="button">', $txt['go_down'], '</a>
 					', $context['page_index'], '
 				</div>
-				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
+				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '';
+
+		// Mobile action (top)
+		if (!empty($context['recent_buttons']))
+			echo '
+				<div class="mobile_buttons floatright">
+					<a class="button mobile_act">', $txt['mobile_action'], '</a>
+				</div>';
+
+		echo '
 			</div>';
 
 		echo '
@@ -327,7 +380,16 @@ function template_replies()
 				<div class="pagelinks">
 					<a href="#recent" class="button">', $txt['go_up'], '</a>
 					', $context['page_index'], '
-				</div>
+				</div>';
+
+		// Mobile action (bottom)
+		if (!empty($context['recent_buttons']))
+			echo '
+				<div class="mobile_buttons floatright">
+					<a class="button mobile_act">', $txt['mobile_action'], '</a>
+				</div>';
+
+		echo '
 			</div>';
 	}
 	else

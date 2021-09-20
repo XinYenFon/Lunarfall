@@ -507,6 +507,10 @@ h3.grid_header {
 }
 
 /* Styles for the Report generation */
+#report_buttons {
+	min-height: 2.4em;
+	padding: 3px 0;
+}
 #support_credits .sub_bar {
 	padding: 6px 0px 5px 0px;
 }

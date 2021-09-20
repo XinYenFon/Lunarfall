@@ -7,7 +7,7 @@
  * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC3
+ * @version 2.1 RC4
  */
 
 /**
@@ -1874,7 +1874,9 @@ function template_alert_configuration()
 			<div class="windowbg">
 				<dl class="settings">
 					<dt>
-						<label for="notify_announcements">', $txt['notify_important_email'], '</label>
+						<label for="notify_announcements">', $txt['notify_important_email'], '</label>', $context['id_member'] == 0 ? '
+						<br>
+						<span class="smalltext alert">' . $txt['notify_announcements_desc'] . '</span>' : '', '
 					</dt>
 					<dd>
 						<input type="hidden" name="notify_announcements" value="0">
@@ -2509,6 +2511,12 @@ function template_issueWarning()
 		{
 			$.ajax({
 				type: "POST",
+				headers: {
+					"X-SMF-AJAX": 1
+				},
+				xhrFields: {
+					withCredentials: allow_xhjr_credentials
+				},
 				url: "' . $scripturl . '?action=xmlhttp;sa=previews;xml",
 				data: {item: "warning_preview", title: $("#warn_sub").val(), body: $("#warn_body").val(), issuing: true},
 				context: document.body,
@@ -2778,7 +2786,7 @@ function template_profile_birthdate()
 	// Just show the pretty box!
 	echo '
 							<dt>
-								<strong>', $txt['dob'], ':</strong><br>
+								<strong>', $txt['dob'], '</strong><br>
 								<span class="smalltext">', $txt['dob_year'], ' - ', $txt['dob_month'], ' - ', $txt['dob_day'], '</span>
 							</dt>
 							<dd>
@@ -2804,7 +2812,7 @@ function template_profile_signature_modify()
 							</dd>
 
 							<dt id="preview_signature" style="display:none">
-								<strong>', $txt['signature_preview'], ':</strong>
+								<strong>', $txt['signature_preview'], '</strong>
 							</dt>
 							<dd id="preview_signature_display" style="display:none">
 								<hr>
@@ -2934,8 +2942,6 @@ function template_profile_avatar_select()
 										var avatardir = "' . $modSettings['avatar_url'] . '/";
 										var size = avatar.alt.substr(3, 2) + " " + avatar.alt.substr(0, 2) + String.fromCharCode(117, 98, 116);
 										var file = document.getElementById("file");
-										var maxHeight = ', !empty($modSettings['avatar_max_height_external']) ? $modSettings['avatar_max_height_external'] : 0, ';
-										var maxWidth = ', !empty($modSettings['avatar_max_width_external']) ? $modSettings['avatar_max_width_external'] : 0, ';
 
 										if (avatar.src.indexOf("blank.png") > -1)
 											changeSel(selavatar);
@@ -2950,9 +2956,9 @@ function template_profile_avatar_select()
 	if (!empty($context['member']['avatar']['allow_external']))
 		echo '
 								<div id="avatar_external">
-									', $context['member']['avatar']['choice'] == 'external' ? '<div class="edit_avatar_img"><img src="' . $context['member']['avatar']['href'] . '" alt=""></div>' : '', '
+									', $context['member']['avatar']['choice'] == 'external' ? '<div class="edit_avatar_img"><img src="' . $context['member']['avatar']['href'] . '" alt="" class="avatar"></div>' : '', '
 									<div class="smalltext">', $txt['avatar_by_url'], '</div>', !empty($modSettings['avatar_action_too_large']) && $modSettings['avatar_action_too_large'] == 'option_download_and_resize' ? template_max_size('external') : '', '
-									<input type="text" name="userpicpersonal" size="45" value="', ((stristr($context['member']['avatar']['external'], 'http://') || stristr($context['member']['avatar']['external'], 'https://')) ? $context['member']['avatar']['external'] : 'http://'), '" onfocus="selectRadioByName(document.forms.creator.avatar_choice, \'external\');" onchange="if (typeof(previewExternalAvatar) != \'undefined\') previewExternalAvatar(this.value);">
+									<input type="text" name="userpicpersonal" size="45" value="', ((stristr($context['member']['avatar']['external'], 'http://') || stristr($context['member']['avatar']['external'], 'https://')) ? $context['member']['avatar']['external'] : 'http://'), '" onfocus="selectRadioByName(document.forms.creator.avatar_choice, \'external\');" onchange="if (typeof(previewExternalAvatar) != \'undefined\') previewExternalAvatar(this.value);"><br>
 								</div>';
 
 	// If the user is able to upload avatars to the server show them an upload box.
@@ -3030,7 +3036,7 @@ function template_profile_avatar_select()
 												', !empty($context['member']['avatar']['allow_external']) ? 'document.getElementById("avatar_external").style.display = "none";' : '', '
 												', !empty($context['member']['avatar']['allow_upload']) ? 'document.getElementById("avatar_upload").style.display = "none";' : '', '
 												', !empty($context['member']['avatar']['allow_gravatar']) ? 'document.getElementById("avatar_gravatar").style.display = "";' : '', '
-												', ($context['member']['avatar']['external'] == $context['member']['email'] || strstr($context['member']['avatar']['external'], 'http://')) ?
+												', !empty($modSettings['gravatarAllowExtraEmail']) && ($context['member']['avatar']['external'] == $context['member']['email'] || strstr($context['member']['avatar']['external'], 'http://') || strstr($context['member']['avatar']['external'], 'https://')) ?
 												'document.getElementById("gravatarEmail").value = "";' : '', '
 												break;
 										}

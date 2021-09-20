@@ -91,7 +91,7 @@ textarea {
 }
 
 /* Use a consistent monospace font everywhere */
-.monospace, .bbc_code, .phpcode, pre, #error_log span.error_message, #backtrace span.error_message {
+.monospace, .bbc_code, .phpcode, pre {
 	font-family: "DejaVu Sans Mono", Menlo, Monaco, Consolas, monospace;
 }
 
@@ -225,7 +225,7 @@ body#help_popup {
 }
 
 /* The "new" button */
-.new_posts {
+.new_posts, a.new_posts {
 	color: #fff;
 	font-weight: bold;
 	line-height: 1.12px;
@@ -344,7 +344,7 @@ blockquote cite::before {
 	color: #aaa;
 	font-size: 22px;
 	font-style: normal;
-	content: '\275D';
+	content: "\275D";
 	margin-right: 3px;
 	vertical-align: middle;
 }
@@ -424,6 +424,9 @@ blockquote cite::before {
 	margin-left: 1em;
 	clear: right;
 }
+.bbc_img {
+	object-fit: contain;
+}
 .postarea .bbc_img.resized:hover {
 	cursor: pointer;
 }
@@ -452,6 +455,7 @@ a img {
 	font-weight: bold;
 	color: #A85400 !important;
 	font-size: 1.1em;
+	background-color: inherit;
 }
 
 /* the page navigation area */
@@ -740,11 +744,12 @@ img.sort, .sort {
 	display: block;
 }
 /* Level 1 active button. */
-.dropmenu li a.active, #top_info li a.active {
+.dropmenu a.active, #top_info a.active {
 	font-weight: bold;
 }
 /* Level 1 hover effects. */
-.dropmenu li a:hover, .dropmenu li:hover a, .dropmenu li a:focus, #top_info > li > a:hover, #top_info > li:hover > a, #top_info > li > a.open {
+.dropmenu > li:hover > a, .dropmenu > li > a:focus,
+#top_info > li:hover > a, #top_info > li > a:focus, #top_info > li > a.open {
 	background: #597b9f;
 	color: #fff;
 	cursor: pointer;
@@ -752,7 +757,7 @@ img.sort, .sort {
 }
 /* User information. */
 #profile_menu_top::after {
-	content: ' \25BC';
+	content: " \25BC";
 }
 .profile_user_info, .profile_user_avatar {
 	display: inline-block;
@@ -945,7 +950,7 @@ img.sort, .sort {
 	padding: 5px 0;
 	right: 10px;
 	font: 83.33%/150% Arial, sans-serif;
-	content: '\25ba';
+	content: "\25ba";
 }
 /* Highlighting of current section */
 .dropmenu li li a.chosen {
@@ -965,7 +970,7 @@ img.sort, .sort {
 	padding: 5px 0 5px 0;
 	margin: 5px 0 5px 0;
 }
-.button {
+.button, .quickbuttons > li > a, .inline_mod_check {
 	display: inline-block;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -1055,8 +1060,8 @@ img.sort, .sort {
 	width: auto;
 }
 #profile_menu_top > img.avatar {
-	max-height: 18px;
-	max-width: 18px;
+	height: 18px;
+	width: 18px;
 	margin: 2px 5px 0 0;
 	float: left;
 }
@@ -1325,7 +1330,7 @@ ul li.greeting {
 	clear: left;
 }
 #event_time_input input[type="text"] {
-	width: 80px;
+	width: 100px;
 	display: inline-block;
 }
 #post_event input[type="checkbox"] {
@@ -2216,7 +2221,7 @@ dl.addrules dt.floatleft {
 	width: 100%;
 	height: 100%;
 	background: rgba(40, 64, 80, 0.5);
-	z-index: 5;
+	z-index: 6;
 }
 .popup_window {
 	position: relative;
@@ -2248,7 +2253,7 @@ dl.addrules dt.floatleft {
 	display: none;
 }
 #genericmenu > .popup_container {
-	z-index: 1;
+	z-index: 5;
 }
 #main_menu .popup_container, #genericmenu > .popup_container {
 	display: block;
@@ -2773,10 +2778,10 @@ div#pollmoderation {
 	padding: 2px 4px 0 4px;
 }
 .mvisible::before {
-	content: "« ";
+	content: "\00ab ";
 }
 .mvisible::after {
-	content: " »";
+	content: " \00bb";
 }
 #reason::before {
 	content: " - ";
@@ -2897,7 +2902,7 @@ ul.post_options li {
 #post_settings, #postAttachment, #postAttachment2, #attachment_previews {
 	border-top: 1px solid #ddd;
 	margin: -1px 0 0 0;
-	padding: 10px;
+	padding: 10px 0;
 }
 #postAttachment dd, #postAttachment2 dd {
 	margin: 4px 0;
@@ -2988,6 +2993,8 @@ ul.post_options li {
 }
 .under_message {
 	overflow: visible;
+	border: none;
+	box-shadow: none;
 }
 /* Events */
 .edit_event {
@@ -3239,9 +3246,12 @@ span.member.hidden {
 
 /* Those classes are sharing exact same gradient. */
 /* Background of buttons */
-.button_submit, .button_reset, .button_link, .topbottom,
-.dropmenu li ul, .dropmenu li li:hover, .button,
-#search_form .button_submit, .popup_window, .qbuttons li {
+.dropmenu li ul, .top_menu, .dropmenu li li:hover, .button,
+.dropmenu li li:hover > a, .dropmenu li li a:focus, .dropmenu li li a:hover,
+#top_section, .quickbuttons > li,
+.quickbuttons li ul, .quickbuttons li ul li a:hover, .quickbuttons ul li a:focus,
+.inline_mod_check, .popup_window, #inner_section, .post_options ul,
+.post_options ul a:hover, .post_options ul a:focus, .notify_dropdown a:hover, .notify_dropdown a:focus {
 	background: rgba( 103, 193, 245, 0.1 );
 }
 /* Well some of them has different gradient effect on hover */
@@ -3266,7 +3276,7 @@ span.member.hidden {
 	display: block;
 	padding: 0.5em;
 }
-.notify_dropdown a:hover {
+.notify_dropdown a:hover, .notify_dropdown a:focus {
 	text-decoration: none;
 	background: #eee;
 }
@@ -3504,6 +3514,14 @@ tr[id^='list_news_lists_'] textarea {
 /* To break or not to break that is the question indeed */
 .word_break {
 	word-break: break-all;
+}
+
+div.sceditor-container:not(.sceditor-maximize) {
+	z-index: 4;
+}
+
+#attach_current_directory {
+	word-break: break-word;
 }
 
 /* Keep this here if I forgot something */

@@ -42,6 +42,12 @@ function getServerResponse(sUrl, funcCallback, sType, sDataType)
 	return oMyDoc = $.ajax({
 		type: sType,
 		url: sUrl,
+		headers: {
+			"X-SMF-AJAX": 1
+		},
+		xhrFields: {
+			withCredentials: allow_xhjr_credentials
+		},
 		cache: false,
 		dataType: sDataType,
 		success: function(response) {
@@ -61,6 +67,12 @@ function getXMLDocument(sUrl, funcCallback)
 	return $.ajax({
 		type: 'GET',
 		url: sUrl,
+		headers: {
+			"X-SMF-AJAX": 1
+		},
+		xhrFields: {
+			withCredentials: allow_xhjr_credentials
+		},
 		cache: false,
 		dataType: 'xml',
 		success: function(responseXML) {
@@ -79,6 +91,12 @@ function sendXMLDocument(sUrl, sContent, funcCallback)
 	var oSendDoc = $.ajax({
 		type: 'POST',
 		url: sUrl,
+		headers: {
+			"X-SMF-AJAX": 1
+		},
+		xhrFields: {
+			withCredentials: allow_xhjr_credentials
+		},
 		data: sContent,
 		beforeSend: function(xhr) {
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -329,7 +347,13 @@ function reqOverlayDiv(desktopURL, sHeader, sIcon)
 
 	// Load the help page content (we just want the text to show)
 	$.ajax({
-		url: desktopURL,
+		url: desktopURL + ';ajax',
+		headers: {
+			'X-SMF-AJAX': 1
+		},
+		xhrFields: {
+			withCredentials: allow_xhjr_credentials
+		},
 		type: "GET",
 		dataType: "html",
 		beforeSend: function () {
@@ -390,14 +414,32 @@ smc_PopupMenu.prototype.open = function (sItem)
 	if (!this.opt.menus[sItem].loaded)
 	{
 		this.opt.menus[sItem].menuObj.html('<div class="loading">' + (typeof(ajax_notification_text) != null ? ajax_notification_text : '') + '</div>');
-		this.opt.menus[sItem].menuObj.load(this.opt.menus[sItem].sUrl, function() {
-			if ($(this).hasClass('scrollable'))
-				$(this).customScrollbar({
-					skin: "default-skin",
-					hScroll: false,
-					updateOnWindowResize: true
-				});
+
+		$.ajax({
+			url: this.opt.menus[sItem].sUrl + ';ajax',
+			headers: {
+				'X-SMF-AJAX': 1
+			},
+			xhrFields: {
+				withCredentials: allow_xhjr_credentials
+			},
+			type: "GET",
+			dataType: "html",
+			beforeSend: function () {
+			},
+			context: this.opt.menus[sItem].menuObj,
+			success: function (data, textStatus, xhr) {
+				this.html(data);
+
+				if ($(this).hasClass('scrollable'))
+					$(this).customScrollbar({
+						skin: "default-skin",
+						hScroll: false,
+						updateOnWindowResize: true
+					});
+			}
 		});
+
 		this.opt.menus[sItem].loaded = true;
 	}
 
@@ -1700,7 +1742,7 @@ $(function() {
 
 		return typeof actOnElement !== "undefined" ? smfSelectText(actOnElement, true) : smfSelectText(this);
 	});
-	
+
 	// Show the Expand bbc button if needed
 	$('.bbc_code').each(function(index, item) {
 		if($(item).css('max-height') == 'none')
@@ -1714,7 +1756,7 @@ $(function() {
 		e.preventDefault();
 
 		var oCodeArea = this.parentNode.nextSibling;
-		
+
 		if(oCodeArea.classList.contains('expand_code')) {
 			$(oCodeArea).removeClass('expand_code');
 			$(this).html($(this).attr('data-expand-txt'));
@@ -1726,7 +1768,7 @@ $(function() {
 	});
 
 	// Expand quotes
-	if (smf_quote_expand)
+	if ((typeof(smf_quote_expand) != 'undefined') && (smf_quote_expand > 0))
 	{
 		$('blockquote').each(function(index, item) {
 
@@ -1790,8 +1832,7 @@ function expand_quote_parent(oElement)
 
 function avatar_fallback(e) {
     var e = window.e || e;
-	var default_avatar = '/avatars/default.png';
-	var default_url = document.URL.substr(0,smf_scripturl.lastIndexOf('/')) + default_avatar;
+	var default_url = smf_avatars_url + '/default.png';
 
     if (e.target.tagName !== 'IMG' || !e.target.classList.contains('avatar') || e.target.src === default_url )
         return;
@@ -1913,6 +1954,14 @@ smc_preview_post.prototype.onDocSent = function (XMLDoc)
 			bodyText += preview.getElementsByTagName('body')[0].childNodes[i].nodeValue;
 
 	setInnerHTML(document.getElementById(this.opts.sPreviewBodyContainerID), bodyText);
+	$('#' + this.opts.sPreviewBodyContainerID + ' .smf_select_text').on('click', function(e) {
+		e.preventDefault();
+
+		// Do you want to target yourself?
+		var actOnElement = $(this).attr('data-actonelement');
+
+		return typeof actOnElement !== "undefined" ? smfSelectText(actOnElement, true) : smfSelectText(this);
+	});
 	document.getElementById(this.opts.sPreviewBodyContainerID).className = 'windowbg';
 
 	// Show a list of errors (if any).

@@ -7,7 +7,7 @@
  * @copyright 2021 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC3
+ * @version 2.1 RC4
  */
 
 /**
@@ -642,6 +642,12 @@ function template_warn_template()
 		{
 			$.ajax({
 				type: "POST",
+				headers: {
+					"X-SMF-AJAX": 1
+				},
+				xhrFields: {
+					withCredentials: allow_xhjr_credentials
+				},
 				url: "' . $scripturl . '?action=xmlhttp;sa=previews;xml",
 				data: {item: "warning_preview", title: $("#template_title").val(), body: $("#template_body").val(), user: $(\'input[name="u"]\').attr("value")},
 				context: document.body,
