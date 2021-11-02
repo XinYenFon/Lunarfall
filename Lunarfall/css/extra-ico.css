@@ -358,3 +358,8 @@ content: "\f0c0"; }
 .fa-source:before,
 .fa-maintain:before {
 content: "\f0ad"; }
+
+.fa-video:before,
+.fa-youtube:before
+{content:"\f03d"}
+.fa-pre:before{content:"\f1e4"}

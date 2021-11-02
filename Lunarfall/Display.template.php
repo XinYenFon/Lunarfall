@@ -851,7 +851,7 @@ function template_single_post($message)
 		{
 			echo '
 									<li class="smflikebutton" id="msg_', $message['id'], '_likes"', $ignoring ? ' style="display:none;"' : '', '>
-										<a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><span class="main_icons ', $message['likes']['you'] ? 'unlike' : 'like', '"></span> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a>
+										<a href="', $scripturl, '?action=likes;ltype=msg;sa=like;like=', $message['id'], ';', $context['session_var'], '=', $context['session_id'], '" class="msg_like"><i class="fas fa-thumbs-', $message['likes']['you'] ? 'down' : 'up', '"></i> ', $message['likes']['you'] ? $txt['unlike'] : $txt['like'], '</a>
 									</li>';
 		}
 

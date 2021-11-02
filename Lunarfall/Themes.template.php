@@ -212,7 +212,7 @@ function template_list_themes()
 						', $theme['name'] . (!empty($theme['version']) ? ' <em>(' . $theme['version'] . ')</em>' : ''), '
 					</span>
 					<span class="floatright">
-						', (!empty($theme['enable']) || $theme['id'] == 1 ? '<a href="' . $scripturl . '?action=admin;area=theme;th=' . $theme['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . ';sa=list"><span class="main_icons settings"></span></a>' : ''), '';
+						', (!empty($theme['enable']) || $theme['id'] == 1 ? '<a href="' . $scripturl . '?action=admin;area=theme;th=' . $theme['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . ';sa=list"><i class="fas fa-cog fa-lg"></i></a>' : ''), '';
 
 		// You *cannot* disable/enable/delete the default theme. It's important!
 		if ($theme['id'] != 1)
@@ -223,7 +223,7 @@ function template_list_themes()
 
 			// Deleting.
 			echo '
-						<a href="', $scripturl, '?action=admin;area=theme;sa=remove;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tr_token_var'], '=', $context['admin-tr_token'], '" data-confirm="', $txt['theme_remove_confirm'], '" class="you_sure"><span class="main_icons delete" title="', $txt['theme_remove'], '"></span></a>';
+						<a href="', $scripturl, '?action=admin;area=theme;sa=remove;th=', $theme['id'], ';', $context['session_var'], '=', $context['session_id'], ';', $context['admin-tr_token_var'], '=', $context['admin-tr_token'], '" data-confirm="', $txt['theme_remove_confirm'], '" class="you_sure"><i class="fas fa-times fa-lg" title="', $txt['theme_remove'], '"></i></a>';
 		}
 
 		echo '

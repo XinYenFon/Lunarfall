@@ -1,4 +1,4 @@
-# Lunarfall 0.7.3 (20 September 2021)
+# Lunarfall 0.7.4 (02 NOV 2021)
 
 <img src="https://raw.githubusercontent.com/Antes/Lunarfall/master/Lunarfall/images/thumbnail.png" style="height: 750px;">
 

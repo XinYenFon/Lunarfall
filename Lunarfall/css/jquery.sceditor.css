@@ -382,8 +382,7 @@ div.sceditor-group {
 	cursor: default;
 	box-shadow: none;
 }
-.sceditor-button,
-.sceditor-button div {
+.sceditor-button {
 	display: block;
 }
 .sceditor-button svg {
@@ -405,6 +404,7 @@ div.sceditor-group {
 	line-height: 0;
 	font-size: 0;
 	color: transparent;
+	visibility: hidden;
 }
 .sceditor-button.has-icon div {
 	display: none;

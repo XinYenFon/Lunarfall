@@ -1,3 +1,9 @@
+0.7.4 (02 November 2021)
+* Sync with Curve2
+* RC4 ready (Cutting Edge build)
+* Fixed some issues not showing in FA
+[Known]! Currently editor buttons are bugged this is due to core software forcing CSS file from default theme.
+
 0.7.3 (20 September 2021)
 * Sync with Curve2
 * RC4 ready (Cutting Edge build)

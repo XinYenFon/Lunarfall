@@ -67,6 +67,9 @@ function template_profile_popup()
 	foreach ($context['profile_items'] as $item)
 	{
 		$area = &$menu_context['sections'][$item['menu']]['areas'][$item['area']];
+		echo '<pre>';
+		var_dump($area['plain_class']);
+		echo '</pre>';
 		$item_url = (isset($item['url']) ? $item['url'] : (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $item['area'])) . $menu_context['extra_parameters'];
 		echo '
 				<li>
@@ -2736,7 +2739,7 @@ function template_profile_group_manage()
 	echo '
 							<dt>
 								<strong>', $txt['primary_membergroup'], '</strong><br>
-								<span class="smalltext"><a href="', $scripturl, '?action=helpadmin;help=moderator_why_missing" onclick="return reqOverlayDiv(this.href);"><span class="main_icons help"></span> ', $txt['moderator_why_missing'], '</a></span>
+								<span class="smalltext"><a href="', $scripturl, '?action=helpadmin;help=moderator_why_missing" onclick="return reqOverlayDiv(this.href);"><i class="fas fa-question-circle fa-lg"></i> ', $txt['moderator_why_missing'], '</a></span>
 							</dt>
 							<dd>
 								<select name="id_group" ', ($context['user']['is_owner'] && $context['member']['group_id'] == 1 ? 'onchange="if (this.value != 1 &amp;&amp; !confirm(\'' . $txt['deadmin_confirm'] . '\')) this.value = 1;"' : ''), '>';
@@ -2906,7 +2909,7 @@ function template_profile_avatar_select()
 		echo '
 								<input type="radio" onclick="swap_avatar(this); return true;" name="avatar_choice" id="avatar_choice_gravatar" value="gravatar"' . ($context['member']['avatar']['choice'] == 'gravatar' ? ' checked="checked"' : '') . '>
 								<label for="avatar_choice_gravatar"' . (isset($context['modify_error']['bad_avatar']) ? ' class="error"' : '') . '>' . $txt['use_gravatar'] . '</label>
-								<span class="smalltext"><a href="', $scripturl, '?action=helpadmin;help=gravatar" onclick="return reqOverlayDiv(this.href);"><span class="main_icons help"></span></a></span>';
+								<span class="smalltext"><a href="', $scripturl, '?action=helpadmin;help=gravatar" onclick="return reqOverlayDiv(this.href);"><i class="fas fa-question-circle fa-lg"></i></a></span>';
 
 	echo '
 							</dt>

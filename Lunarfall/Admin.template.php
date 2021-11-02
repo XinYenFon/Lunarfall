@@ -1123,7 +1123,7 @@ function template_edit_profile_field()
 
 									<dl class="settings">
 										<dt>
-											<a id="field_name_help" href="', $scripturl, '?action=helpadmin;help=translatable_fields" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="', $txt['help'], '"></span></a>
+											<a id="field_name_help" href="', $scripturl, '?action=helpadmin;help=translatable_fields" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fas fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 											<strong><label for="field_name">', $txt['custom_edit_name'], ':</label></strong><br>
 											<span class="smalltext">', $txt['custom_edit_name_desc'], '</span>
 										</dt>
@@ -1132,7 +1132,7 @@ function template_edit_profile_field()
 										</dd>
 										<dt>
 											<a id="field_desc_help" href="', $scripturl, '?action=helpadmin;help=translatable_fields" onclick="return reqOverlayDiv(this.href);" class="help">
-												<span class="main_icons help" title="', $txt['help'], '"></span>
+												<i class="fas fa-question-circle fa-lg" title="', $txt['help'], '"></i>
 											</a>
 											<strong><label for="field_desc">', $txt['custom_edit_desc'], ':</label></strong><br>
 											<span class="smalltext">', $txt['custom_edit_name_desc'], '</span>

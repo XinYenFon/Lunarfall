@@ -111,9 +111,6 @@ body#chrome #quick_search form input {
 .search_results li:last-child {
 	border: none;
 }
-.search_results li a strong {
-	color: #346;
-}
 .search_results li p {
 	padding: 0 20px;
 	line-height: 1.7em;

@@ -267,7 +267,7 @@ function template_addsmiley()
 			<fieldset id="ul_settings" style="display: none;">
 				<dl class="settings">
 					<dt>
-						<a href="', $scripturl, '?action=helpadmin;help=smiley_sameall" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="', $txt['help'], '"></span></a>
+						<a href="', $scripturl, '?action=helpadmin;help=smiley_sameall" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fas fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
 						<strong><label for="sameall">', $txt['smileys_add_upload_all'], ':</label></strong>
 					</dt>
 					<dd>

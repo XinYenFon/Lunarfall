@@ -67,7 +67,7 @@ function template_unread()
 		<div class="popup_window description">
 			<div class="popup_heading">
 				', $txt['mobile_action'], '
-				<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+				<a href="javascript:void(0);" class="hide_popup"><i class="fas fa-times fa-lg red"></i></a>
 			</div>
 			', template_button_strip($context['recent_buttons']), '
 		</div>
@@ -249,7 +249,7 @@ function template_replies()
 		<div class="popup_window description">
 			<div class="popup_heading">
 				', $txt['mobile_action'], '
-				<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+				<a href="javascript:void(0);"><i class="fas fa-times fa-lg red"></i></a>
 			</div>
 			', template_button_strip($context['recent_buttons']), '
 		</div>

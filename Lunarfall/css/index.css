@@ -3250,7 +3250,7 @@ span.member.hidden {
 .dropmenu li li:hover > a, .dropmenu li li a:focus, .dropmenu li li a:hover,
 #top_section, .quickbuttons > li,
 .quickbuttons li ul, .quickbuttons li ul li a:hover, .quickbuttons ul li a:focus,
-.inline_mod_check, .popup_window, #inner_section, .post_options ul,
+.inline_mod_check, .popup_window, .post_options ul,
 .post_options ul a:hover, .post_options ul a:focus, .notify_dropdown a:hover, .notify_dropdown a:focus {
 	background: rgba( 103, 193, 245, 0.1 );
 }

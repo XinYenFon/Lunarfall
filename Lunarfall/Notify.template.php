@@ -64,7 +64,7 @@ function template_notify_announcements()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<span class="main_icons mail icon"></span>
+				<i class="fas fa-envelope fa-lg"></i>
 				', $txt['notify'], '
 			</h3>
 		</div>
@@ -86,7 +86,7 @@ function template_notify_pref_changed()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-				<span class="main_icons mail icon"></span>
+				<i class="fas fa-envelope fa-lg"></i>
 				', $txt['notify'], '
 			</h3>
 		</div>
