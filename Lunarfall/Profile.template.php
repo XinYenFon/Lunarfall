@@ -67,9 +67,6 @@ function template_profile_popup()
 	foreach ($context['profile_items'] as $item)
 	{
 		$area = &$menu_context['sections'][$item['menu']]['areas'][$item['area']];
-		echo '<pre>';
-		var_dump($area['plain_class']);
-		echo '</pre>';
 		$item_url = (isset($item['url']) ? $item['url'] : (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $item['area'])) . $menu_context['extra_parameters'];
 		echo '
 				<li>
