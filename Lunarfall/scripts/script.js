@@ -46,7 +46,7 @@ function getServerResponse(sUrl, funcCallback, sType, sDataType)
 			"X-SMF-AJAX": 1
 		},
 		xhrFields: {
-			withCredentials: allow_xhjr_credentials
+			withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
 		},
 		cache: false,
 		dataType: sDataType,
@@ -71,7 +71,7 @@ function getXMLDocument(sUrl, funcCallback)
 			"X-SMF-AJAX": 1
 		},
 		xhrFields: {
-			withCredentials: allow_xhjr_credentials
+			withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
 		},
 		cache: false,
 		dataType: 'xml',
@@ -95,7 +95,7 @@ function sendXMLDocument(sUrl, sContent, funcCallback)
 			"X-SMF-AJAX": 1
 		},
 		xhrFields: {
-			withCredentials: allow_xhjr_credentials
+			withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
 		},
 		data: sContent,
 		beforeSend: function(xhr) {
@@ -338,11 +338,16 @@ function reqOverlayDiv(desktopURL, sHeader, sIcon)
 {
 	// Set up our div details
 	var sAjax_indicator = '<div class="centertext"><img src="' + smf_images_url + '/loading_sm.gif"></div>';
-	var sIcon = smf_images_url + '/' + (typeof(sIcon) == 'string' ? sIcon : 'helptopics.png');
 	var sHeader = typeof(sHeader) == 'string' ? sHeader : help_popup_heading_text;
 
+	var containerOptions;
+	if (typeof(sIcon) == 'string' && sIcon.match(/\.(gif|png|jpe?g|svg|bmp|tiff)$/) != null)
+		containerOptions = {heading: sHeader, content: sAjax_indicator, icon: smf_images_url + '/' + sIcon};
+	else
+		containerOptions = {heading: sHeader, content: sAjax_indicator, icon_class: 'main_icons ' + (typeof(sIcon) != 'string' ? 'help' : sIcon)};
+
 	// Create the div that we are going to load
-	var oContainer = new smc_Popup({heading: sHeader, content: sAjax_indicator, icon: sIcon});
+	var oContainer = new smc_Popup(containerOptions);
 	var oPopup_body = $('#' + oContainer.popup_id).find('.popup_content');
 
 	// Load the help page content (we just want the text to show)
@@ -352,7 +357,7 @@ function reqOverlayDiv(desktopURL, sHeader, sIcon)
 			'X-SMF-AJAX': 1
 		},
 		xhrFields: {
-			withCredentials: allow_xhjr_credentials
+			withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
 		},
 		type: "GET",
 		dataType: "html",
@@ -421,7 +426,7 @@ smc_PopupMenu.prototype.open = function (sItem)
 				'X-SMF-AJAX': 1
 			},
 			xhrFields: {
-				withCredentials: allow_xhjr_credentials
+				withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
 			},
 			type: "GET",
 			dataType: "html",
@@ -1104,6 +1109,7 @@ function grabJumpToContent(elem)
 				isCategory: $(this).attr('type') == 'category',
 				name: this.firstChild.nodeValue.removeEntities(),
 				is_current: false,
+				isRedirect: parseInt($(this).attr('is_redirect')),
 				childLevel: parseInt($(this).attr('childlevel'))
 			}
 		});
@@ -1146,7 +1152,8 @@ JumpTo.prototype.showSelect = function ()
 // Fill the jump to box with entries. Method of the JumpTo class.
 JumpTo.prototype.fillSelect = function (aBoardsAndCategories)
 {
-	var iIndexPointer = 0;
+	// Don't do this twice.
+	$('#' + this.opt.sContainerId).off('mouseenter');
 
 	// Create an option that'll be above and below the category.
 	var oDashOption = document.createElement('option');
@@ -1190,7 +1197,7 @@ JumpTo.prototype.fillSelect = function (aBoardsAndCategories)
 			oOption.value = aBoardsAndCategories[i].isCategory ? '#c' + aBoardsAndCategories[i].id : '?board=' + aBoardsAndCategories[i].id + '.0';
 		else
 		{
-			if (aBoardsAndCategories[i].isCategory)
+			if (aBoardsAndCategories[i].isCategory || aBoardsAndCategories[i].isRedirect)
 				oOption.disabled = 'disabled';
 			else
 				oOption.value = aBoardsAndCategories[i].id;

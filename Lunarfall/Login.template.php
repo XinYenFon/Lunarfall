@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.0
  */
 
 /**
@@ -105,7 +105,7 @@ function template_login()
 									"X-SMF-AJAX": 1
 								},
 								xhrFields: {
-									withCredentials: allow_xhjr_credentials
+									withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
 								},
 								data: form.serialize(),
 								success: function(data) {';
@@ -146,6 +146,13 @@ function template_login()
 	echo '
 					</script>
 				</form>';
+
+	if (!empty($context['can_register']))
+		echo '
+				<hr>
+				<div class="centertext">
+					', sprintf($txt['register_prompt'], $scripturl), '
+				</div>';
 
 	// It is a long story as to why we have this when we're clearly not going to use it.
 	if (!empty($context['from_ajax']))

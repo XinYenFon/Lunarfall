@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.2
  */
 
 /**
@@ -67,6 +67,7 @@ function template_pm_popup()
 			</div>
 			<div class="pm_mailbox centertext">
 				<a href="', $scripturl, '?action=pm" class="button">', $txt['inbox'], '</a>
+				<a href="', $scripturl, '?action=pm;f=sent" class="button">', $txt['sent_items'], '</a>
 			</div>
 		</div>
 		<div class="pm_unread">';
@@ -233,7 +234,7 @@ function template_folder()
 		if (empty($context['display_mode']))
 			echo '
 			<div class="pagesection">
-				<div class="floatleft">', $context['page_index'], '</div>
+				<div class="pagelinks">', $context['page_index'], '</div>
 				<div class="floatright">
 					<input type="submit" name="del_selected" value="', $txt['quickmod_delete_selected'], '" onclick="if (!confirm(\'', $txt['delete_selected_confirm'], '\')) return false;" class="button">
 				</div>
@@ -327,6 +328,16 @@ function template_single_pm($message)
 	echo '
 				<ul class="user_info">';
 
+	// Show the member's custom title, if they have one.
+	if (isset($message['member']['title']) && $message['member']['title'] != '')
+		echo '
+					<li class="title">', $message['member']['title'], '</li>';
+
+	// Show the member's primary group (like 'Administrator') if they have one.
+	if (isset($message['member']['group']) && $message['member']['group'] != '')
+		echo '
+					<li class="membergroup">', $message['member']['group'], '</li>';
+
 	// Show the user's avatar.
 	if (!empty($modSettings['show_user_images']) && empty($options['show_no_avatars']) && !empty($message['member']['avatar']['image']))
 		echo '
@@ -340,22 +351,13 @@ function template_single_pm($message)
 			echo '
 					<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 
-	if (!$message['member']['is_guest'])
-		echo '
-					<li class="icons">', $message['member']['group_icons'], '</li>';
-	// Show the member's primary group (like 'Administrator') if they have one.
-	if (isset($message['member']['group']) && $message['member']['group'] != '')
-		echo '
-					<li class="membergroup">', $message['member']['group'], '</li>';
-
-	// Show the member's custom title, if they have one.
-	if (isset($message['member']['title']) && $message['member']['title'] != '')
-		echo '
-					<li class="title">', $message['member']['title'], '</li>';
-
 	// Don't show these things for guests.
 	if (!$message['member']['is_guest'])
 	{
+		// Show the post group icons
+		echo '
+					<li class="icons">', $message['member']['group_icons'], '</li>';
+
 		// Show the post group if and only if they have no other group or the option is on, and they are in a post group.
 		if ((empty($modSettings['hide_post_group']) || $message['member']['group'] == '') && $message['member']['post_group'] != '')
 			echo '
@@ -463,15 +465,15 @@ function template_single_pm($message)
 				</ul>
 			</div><!-- .poster -->
 			<div class="postarea">
-				<div class="flow_hidden">
-					<div class="keyinfo">
-						<h5 id="subject_', $message['id'], '">
-							', $message['subject'], '
-						</h5>';
+				<div class="keyinfo">
+					<div id="subject_', $message['id'], '" class="subject_title">
+						<h5>', $message['subject'], '</h5>
+					</div>
+					<div class="postinfo">';
 
 	// Show who the message was sent to.
 	echo '
-						<span class="smalltext">&#171; <strong> ', $txt['sent_to'], ':</strong> ';
+						<span class="smalltext"><strong> ', $txt['sent_to'], ':</strong> ';
 
 	// People it was sent directly to....
 	if (!empty($message['recipients']['to']))
@@ -482,21 +484,21 @@ function template_single_pm($message)
 		echo '(', $txt['pm_undisclosed_recipients'], ')';
 
 	echo '
-							<strong> ', $txt['on'], ':</strong> ', $message['time'], ' &#187;
+							<strong> ', $txt['on'], ':</strong> ', $message['time'], '
 						</span>';
 
 	// If we're in the sent items, show who it was sent to besides the "To:" people.
 	if (!empty($message['recipients']['bcc']))
-		echo '<br>
-						<span class="smalltext">&#171; <strong> ', $txt['pm_bcc'], ':</strong> ', implode(', ', $message['recipients']['bcc']), ' &#187;</span>';
+		echo '
+						<span class="smalltext"><strong> ', $txt['pm_bcc'], ':</strong> ', implode(', ', $message['recipients']['bcc']), ' </span>';
 
 	if (!empty($message['is_replied_to']))
-		echo '<br>
-						<span class="smalltext">&#171; ', $context['folder'] == 'sent' ? $txt['pm_sent_is_replied_to'] : $txt['pm_is_replied_to'], ' &#187;</span>';
+		echo '
+						<span class="smalltext">', $context['folder'] == 'sent' ? $txt['pm_sent_is_replied_to'] : $txt['pm_is_replied_to'], ' </span>';
 
 	echo '
-					</div><!-- .keyinfo -->
-				</div><!-- .flow_hidden -->
+					</div><!-- .postinfo -->
+				</div><!-- .keyinfo -->
 				<div class="post">
 					<div class="inner" id="msg_', $message['id'], '"', '>
 						', $message['body'], '
@@ -611,6 +613,11 @@ function template_subject_list()
 	global $context, $settings, $txt, $scripturl;
 
 	echo '
+	<div class="cat_bar">
+		<h3 class="catbg">
+			', $context['folder'] == 'sent' ? $txt['sent_items'] : $context['current_label'], '
+		</h3>
+	</div>
 	<table class="table_grid">
 		<thead>
 			<tr class="title_bar">
@@ -624,7 +631,7 @@ function template_subject_list()
 					<a href="', $scripturl, '?action=pm;f=', $context['folder'], ';start=', $context['start'], ';sort=subject', $context['sort_by'] == 'subject' && $context['sort_direction'] == 'up' ? ';desc' : '', $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', '">', $txt['subject'], $context['sort_by'] == 'subject' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
 				</th>
 				<th class="lefttext pm_from_to">
-					<a href="', $scripturl, '?action=pm;f=', $context['folder'], ';start=', $context['start'], ';sort=name', $context['sort_by'] == 'name' && $context['sort_direction'] == 'up' ? ';desc' : '', $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', '">', ($context['from_or_to'] == 'from' ? $txt['from'] : $txt['to']), $context['sort_by'] == 'name' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
+					<a href="', $scripturl, '?action=pm;f=', $context['folder'], ';start=', $context['start'], ';sort=name', $context['sort_by'] == 'name' && $context['sort_direction'] == 'up' ? ';desc' : '', $context['current_label_id'] != -1 ? ';l=' . $context['current_label_id'] : '', '">', ($context['from_or_to'] == 'from' ? $txt['from'] : $txt['pm_to']), $context['sort_by'] == 'name' ? ' <i class="fa fa-sort-' . $context['sort_direction'] . ' fa-lg"></i>' : '', '</a>
 				</th>
 				<th class="centercol table_icon pm_moderation">
 					<input type="checkbox" onclick="invertAll(this, this.form);">
@@ -689,7 +696,7 @@ function template_subject_list()
 		</tbody>
 	</table>
 	<div class="pagesection">
-		<div class="floatleft">', $context['page_index'], '</div>
+		<div class="pagelinks">', $context['page_index'], '</div>
 		<div class="floatright">&nbsp;';
 
 	if ($context['show_delete'])
@@ -897,7 +904,7 @@ function template_search_results()
 			', sprintf($txt['pm_search_results_info'], $context['num_results'], sentence_list($context['search_in'])), '
 		</div>
 		<div class="pagesection">
-			', $context['page_index'], '
+			<div class="pagelinks">', $context['page_index'], '</div>
 		</div>';
 
 	// Complete results?
@@ -946,7 +953,7 @@ function template_search_results()
 
 	echo '
 		<div class="pagesection">
-			', $context['page_index'], '
+			<div class="pagelinks">', $context['page_index'], '</div>
 		</div>';
 
 }
@@ -1924,9 +1931,9 @@ function template_showPMDrafts()
 				<i class="fa fa-inbox fa-lg"></i> ', $txt['drafts_show'], '
 			</h3>
 		</div>
-		<div class="pagesection">
-			<span>', $context['page_index'], '</span>
-		</div>';
+		<p class="information">
+			', $txt['drafts_show_desc'], '
+		</p>';
 
 	// No drafts? Just show an informative message.
 	if (empty($context['drafts']))
@@ -1936,26 +1943,33 @@ function template_showPMDrafts()
 		</div>';
 	else
 	{
+		echo '
+		<div class="pagesection">
+			<div class="pagelinks">', $context['page_index'], '</div>
+		</div>';
+
 		// For every draft to be displayed, give it its own div, and show the important details of the draft.
 		foreach ($context['drafts'] as $draft)
 		{
 			echo '
 		<div class="windowbg">
-			<div class="counter">', $draft['counter'], '</div>
+			<div class="page_number floatright"> #', $draft['counter'], '</div>
 			<div class="topic_details">
-				<div class="floatright smalltext righttext">
-					<div class="recipient_to">&#171;&nbsp;<strong>', $txt['to'], ':</strong> ', implode(', ', $draft['recipients']['to']), '&nbsp;&#187;</div>';
-
-			if(!empty($draft['recipients']['bcc']))
-				echo'
-					<div class="pm_bbc">&#171;&nbsp;<strong>', $txt['pm_bcc'], ':</strong> ', implode(', ', $draft['recipients']['bcc']), '&nbsp;&#187;</div>';
-
-			echo '
-				</div>
 				<h5>
 					<strong>', $draft['subject'], '</strong>
 				</h5>
-				<span class="smalltext">&#171;&nbsp;<strong>', $txt['draft_saved_on'], ':</strong> ', sprintf($txt['draft_days_ago'], $draft['age']), (!empty($draft['remaining']) ? ', ' . sprintf($txt['draft_retain'], $draft['remaining']) : ''), '&#187;</span><br>
+				<div class="smalltext">
+					<div class="recipient_to"><strong>', $txt['pm_to'], ':</strong> ', implode(', ', $draft['recipients']['to']), '</div>';
+
+			if(!empty($draft['recipients']['bcc']))
+				echo'
+					<div class="pm_bbc"><strong>', $txt['pm_bcc'], ':</strong> ', implode(', ', $draft['recipients']['bcc']), '</div>';
+
+			echo '
+				</div>
+				<div class="smalltext">
+					<strong>', $txt['draft_saved_on'], ':</strong> ', sprintf($txt['draft_days_ago'], $draft['age']), (!empty($draft['remaining']) ? ', ' . sprintf($txt['draft_retain'], $draft['remaining']) : ''), '
+				</div>
 			</div>
 			<div class="list_posts">
 				', $draft['body'], '
@@ -1967,13 +1981,13 @@ function template_showPMDrafts()
 			echo '
 		</div><!-- .windowbg -->';
 		}
-	}
 
-	// Show page numbers.
-	echo '
-	<div class="pagesection">
-		<span>', $context['page_index'], '</span>
-	</div>';
+		// Show page numbers.
+		echo '
+		<div class="pagesection">
+			<div class="pagelinks">', $context['page_index'], '</div>
+		</div>';
+	}
 }
 
 ?>

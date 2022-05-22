@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.2
  */
 
 /**
@@ -320,7 +320,7 @@ function template_main()
 		echo '
 						<dl id="postAttachment">
 							<dt>
-								', $txt['attached'], ':
+								', $txt['attachments'], ':
 							</dt>
 							<dd class="smalltext" style="width: 100%;">
 								<input type="hidden" name="attach_del[]" value="0">
@@ -349,7 +349,7 @@ function template_main()
 		echo '
 						<div class="files" id="attachment_previews">
 							<div>
-								<strong>', $txt['attached'], ':</strong>
+								<strong>', $txt['attachments'], ':</strong>
 							</div>
 							<div id="au-template">
 								<div class="attach-preview">
@@ -392,9 +392,6 @@ function template_main()
 
 		echo '
 						<dl id="postAttachment2">
-							<dt>
-								', $txt['attach'], ':
-							</dt>
 							<dd class="fallback">
 								<div id="attachment_upload" class="descbox">
 									<div id="drop_zone_ui">
@@ -524,7 +521,10 @@ function template_main()
 				<span>' . $txt['posted_by'] . '</span>
 				%PosterName%
 			</h5>
-			&nbsp;-&nbsp;%PostTime%&nbsp;&#187; <span class="new_posts" id="image_new_%PostID%">' . $txt['new'] . '</span>';
+			&nbsp;-&nbsp;%PostTime%&nbsp;&#187; <span class="new_posts" id="image_new_%PostID%">' . $txt['new'] . '</span>
+			<br class="clear">
+			<div id="msg_%PostID%_ignored_prompt" class="smalltext" style="display: none;">' . $txt['ignoring_user'] . '<a href="#" id="msg_%PostID%_ignored_link" style="%IgnoredStyle%">' . $txt['show_ignore_user_post'] . '</a></div>
+			<div class="list_posts smalltext" id="msg_%PostID%_body">%PostBody%</div>';
 
 	if ($context['can_quote'])
 		$newPostsHTML .= '
@@ -535,9 +535,6 @@ function template_main()
 			</ul>';
 
 	$newPostsHTML .= '
-			<br class="clear">
-			<div id="msg_%PostID%_ignored_prompt" class="smalltext" style="display: none;">' . $txt['ignoring_user'] . '<a href="#" id="msg_%PostID%_ignored_link" style="%IgnoredStyle%">' . $txt['show_ignore_user_post'] . '</a></div>
-			<div class="list_posts smalltext" id="msg_%PostID%_body">%PostBody%</div>
 		</div>';
 
 	// The functions used to preview a posts without loading a new page.
@@ -631,7 +628,7 @@ function template_main()
 	{
 		echo '
 		<div id="recent" class="flow_hidden main_section">
-			<div class="cat_bar">
+			<div class="cat_bar cat_bar_round">
 				<h3 class="catbg">', $txt['topic_summary'], '</h3>
 			</div>
 			<span id="new_replies"></span>';
@@ -646,20 +643,12 @@ function template_main()
 			echo '
 			<div class="windowbg">
 				<div id="msg', $post['id'], '">
-					<h5 class="floatleft">
-						<span>', $txt['posted_by'], '</span> ', $post['poster'], '
-					</h5>
-					&nbsp;-&nbsp;', $post['time'];
-
-			if ($context['can_quote'])
-				echo '
-					<ul class="qbuttons" id="msg_', $post['id'], '_quote">
-						<li style="display:none;" id="quoteSelected_', $post['id'], '" data-msgid="', $post['id'], '"><a href="javascript:void(0)"><i class="fa fa-quote-left fa-lg" title="', $txt['quote_selected_action'] ,'"></i> ', $txt['quote_selected_action'] ,'</a></li>
-						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');"><i class="fa fa-quote-left fa-lg" title="', $txt['quote'], '"></i></a></li>
-					</ul>';
-
-			echo '
-					<br class="clear">';
+					<div>
+						<h5 class="floatleft">
+							<span>', $txt['posted_by'], '</span> ', $post['poster'], '
+						</h5>
+						<span class="smalltext">&nbsp;-&nbsp;', $post['time'], '</span>
+					</div>';
 
 			if ($ignoring)
 				echo '
@@ -669,7 +658,16 @@ function template_main()
 					</div>';
 
 			echo '
-					<div class="list_posts smalltext" id="msg_', $post['id'], '_body" data-msgid="', $post['id'], '">', $post['message'], '</div>
+					<div class="list_posts smalltext" id="msg_', $post['id'], '_body" data-msgid="', $post['id'], '">', $post['message'], '</div>';
+
+			if ($context['can_quote'])
+				echo '
+					<ul class="quickbuttons" id="msg_', $post['id'], '_quote">
+						<li style="display:none;" id="quoteSelected_', $post['id'], '" data-msgid="', $post['id'], '"><a href="javascript:void(0)"><span class="main_icons quote_selected"></span>', $txt['quote_selected_action'], '</a></li>
+						<li id="post_modify"><a href="#postmodify" onclick="return insertQuoteFast(', $post['id'], ');"><span class="main_icons quote"></span>', $txt['quote'], '</a></li>
+					</ul>';
+
+			echo '
 				</div><!-- #msg[id] -->
 			</div><!-- .windowbg -->';
 		}

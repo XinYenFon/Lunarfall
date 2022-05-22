@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.0
  */
 
 /**
@@ -83,7 +83,7 @@ function template_main()
 				</h3>', !empty($category['description']) ? '
 				<div class="desc">' . $category['description'] . '</div>' : '', '
 			</div>
-			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), '>';
+			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
 
 		/* Each board in each category's boards has:
 		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),
@@ -108,7 +108,7 @@ function template_main()
 
 			// Show the last post if there is one.
 			echo'
-					<div class="lastpost lpr_border">
+					<div class="lastpost">
 						', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board), '
 					</div>';
 
@@ -360,7 +360,7 @@ function template_ic_block_recent()
 	echo '
 			<div class="sub_bar">
 				<h4 class="subbg">
-					<a href="', $scripturl, '?action=recent"><span class="xx"></span>', $txt['recent_posts'], '</a>
+					<a href="', $scripturl, '?action=recent"><span class="main_icons recent_posts"></span> ', $txt['recent_posts'], '</a>
 				</h4>
 			</div>
 			<div id="recent_posts_content">';
@@ -481,7 +481,7 @@ function template_ic_block_stats()
 }
 
 /**
- * The who's online section of the admin center
+ * The who's online section of the info center
  */
 function template_ic_block_online()
 {

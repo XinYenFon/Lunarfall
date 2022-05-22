@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.2
  */
 
 /**
@@ -107,7 +107,7 @@ function template_alerts_popup()
 		foreach ($context['unread_alerts'] as $id_alert => $details)
 		{
 			echo '
-			<', !$details['show_links'] ? 'a href="' . $details['target_href'] . '" onclick="this.classList.add(\'alert_read\')"' : 'div', ' class="unread_notify">
+			<', !$details['show_links'] ? 'a href="' . $scripturl . '?action=profile;area=showalerts;alert=' . $id_alert . '" onclick="this.classList.add(\'alert_read\')"' : 'div', ' class="unread_notify">
 				<div class="unread_notify_image">
 					', empty($details['sender']['avatar']['image']) ? '' : $details['sender']['avatar']['image'] . '
 					', $details['icon'], '
@@ -376,7 +376,7 @@ function template_summary()
 		if (!empty($context['activate_message']))
 			echo '
 				<dt class="clear">
-					<span class="alert">', $context['activate_message'], '</span> (<a href="', $context['activate_link'], '"', ($context['activate_type'] == 4 ? ' class="you_sure" data-confirm="' . $txt['profileConfirm'] . '"' : ''), '>', $context['activate_link_text'], '</a>)
+					<span class="alert">', $context['activate_message'], '</span> (<a href="', $context['activate_link'], '">', $context['activate_link_text'], '</a>)
 				</dt>';
 
 		// If the current member is banned, show a message and possibly a link to the ban.
@@ -489,9 +489,9 @@ function template_showPosts()
 	global $context, $scripturl, $txt;
 
 	echo '
-		<div class="cat_bar">
+		<div class="cat_bar', !isset($context['attachments']) ? ' cat_bar_round' : '', '">
 			<h3 class="catbg">
-				', (!isset($context['attachments']) && empty($context['is_topics']) ? $txt['showMessages'] : (!empty($context['is_topics']) ? $txt['showTopics'] : $txt['showAttachments'])), ' - ', $context['member']['name'], '
+				', (!isset($context['attachments']) && empty($context['is_topics']) ? $txt['showMessages'] : (!empty($context['is_topics']) ? $txt['showTopics'] : $txt['showAttachments'])), !$context['user']['is_owner'] ? ' - ' . $context['member']['name'] : '', '
 			</h3>
 		</div>', !empty($context['page_index']) ? '
 		<div class="pagesection">
@@ -506,7 +506,7 @@ function template_showPosts()
 		{
 			echo '
 		<div class="', $post['css_class'], ' nopad">
-			<div class="counter">', $post['counter'], '</div>
+			<div class="page_number floatright"> #', $post['counter'], '</div>
 			<div class="topic_details">
 				<h5>
 					<strong><a href="', $scripturl, '?board=', $post['board']['id'], '.0">', $post['board']['name'], '</a> / <a href="', $scripturl, '?topic=', $post['topic'], '.', $post['start'], '#msg', $post['id'], '">', $post['subject'], '</a></strong>
@@ -569,7 +569,7 @@ function template_showAlerts()
 	echo '
 		<div class="cat_bar">
 			<h3 class="catbg">
-			', $txt['alerts'], ' - ', $context['member']['name'], '
+			', $txt['alerts'], !$context['user']['is_owner'] ? ' - ' . $context['member']['name'] : '', '
 			</h3>
 		</div>';
 
@@ -619,9 +619,7 @@ function template_showAlerts()
 		echo '
 			</table>
 			<div class="pagesection">
-				<div class="floatleft">
-					', $context['pagination'], '
-				</div>
+				<div class="pagelinks">', $context['pagination'], '</div>
 				<div class="floatright">';
 
 		if ($context['showCheckboxes'])
@@ -655,9 +653,9 @@ function template_showDrafts()
 	global $context, $scripturl, $txt;
 
 	echo '
-		<div class="cat_bar">
+		<div class="cat_bar cat_bar_round">
 			<h3 class="catbg">
-				', $txt['drafts'], ' - ', $context['member']['name'], '
+				', $txt['drafts'], !$context['user']['is_owner'] ? ' - ' . $context['member']['name'] : '', '
 			</h3>
 		</div>', !empty($context['page_index']) ? '
 		<div class="pagesection">
@@ -677,7 +675,7 @@ function template_showDrafts()
 		{
 			echo '
 		<div class="windowbg">
-			<div class="counter">', $draft['counter'], '</div>
+			<div class="page_number floatright"> #', $draft['counter'], '</div>
 			<div class="topic_details">
 				<h5>
 					<strong><a href="', $scripturl, '?board=', $draft['board']['id'], '.0">', $draft['board']['name'], '</a> / ', $draft['topic']['link'], '</strong> &nbsp; &nbsp;';
@@ -692,7 +690,7 @@ function template_showDrafts()
 
 			echo '
 				</h5>
-				<span class="smalltext">&#171;&nbsp;<strong>', $txt['on'], ':</strong> ', $draft['time'], '&nbsp;&#187;</span>
+				<span class="smalltext"><strong>', $txt['draft_saved_on'], ':</strong> ', $draft['time'], '</span>
 			</div><!-- .topic_details -->
 			<div class="list_posts">
 				', $draft['body'], '
@@ -789,7 +787,7 @@ function template_editBuddies()
 			if (!empty($context['custom_pf']))
 				foreach ($context['custom_pf'] as $key => $column)
 					echo '
-					<td class="lefttext buddy_custom_fields">', $buddy['options'][$key], '</td>';
+					<td class="centertext buddy_custom_fields">', $buddy['options'][$key], '</td>';
 
 			echo '
 					<td class="centertext buddy_remove">
@@ -1527,7 +1525,7 @@ function template_edit_options()
 				$step = $field['type'] == 'float' ? ' step="0.1"' : '';
 
 				echo '
-						<input type="', $type, '" name="', $key, '" id="', $key, '" size="', empty($field['size']) ? 30 : $field['size'], '" value="', $field['value'], '" ', $field['input_attr'], ' ', $step, '>';
+						<input type="', $type, '" name="', $key, '" id="', $key, '" size="', empty($field['size']) ? 30 : $field['size'], '"', isset($field['min']) ? ' min="' . $field['min'] . '"' : '', isset($field['max']) ? ' max="' . $field['max'] . '"' : '', ' value="', $field['value'], '" ', $field['input_attr'], ' ', $step, '>';
 			}
 			// You "checking" me out? ;)
 			elseif ($field['type'] == 'check')
@@ -1865,7 +1863,7 @@ function template_alert_configuration()
 		<p class="information">
 			', (empty($context['description']) ? $txt['alert_prefs_desc'] : $context['description']), '
 		</p>
-		<form action="', $scripturl, '?', $context['action'], '" method="post" accept-charset="', $context['character_set'], '" id="notify_options" class="flow_hidden">
+		<form action="', $scripturl, '?', $context['action'], '" method="post" accept-charset="', $context['character_set'], '" id="notify_options" class="flow_auto">
 			<div class="cat_bar">
 				<h3 class="catbg">
 					', $txt['notification_general'], '
@@ -2224,12 +2222,39 @@ function template_ignoreboards()
 						<a href="javascript:void(0);" onclick="selectBoards([', implode(', ', $category['child_ids']), '], \'creator\'); return false;">', $category['name'], '</a>
 						<ul>';
 
-		foreach ($category['boards'] as $board)
+		$cat_boards = array_values($category['boards']);
+		foreach ($cat_boards as $key => $board)
 		{
 			echo '
-							<li style="margin-', $context['right_to_left'] ? 'right' : 'left', ': ', $board['child_level'], 'em;">
-								<label for="ignore_brd', $board['id'], '"><input type="checkbox" id="brd', $board['id'], '" name="ignore_brd[', $board['id'], ']" value="', $board['id'], '"', $board['selected'] ? ' checked' : '', '> ', $board['name'], '</label>
+							<li>
+								<label for="brd', $board['id'], '">
+									<input type="checkbox" id="brd', $board['id'], '" name="brd[', $board['id'], ']" value="', $board['id'], '"', $board['selected'] ? ' checked' : '', '>
+									', $board['name'], '
+								</label>';
+
+			// Nest child boards inside another list.
+			$curr_child_level = $board['child_level'];
+			$next_child_level = $cat_boards[$key + 1]['child_level'] ?? 0;
+
+			if ($next_child_level > $curr_child_level)
+			{
+				echo '
+								<ul style="margin-', $context['right_to_left'] ? 'right' : 'left', ': 2.5ch;">';
+			}
+			else
+			{
+				// Close child board lists until we reach a common level
+				// with the next board.
+				while ($next_child_level < $curr_child_level--)
+				{
+					echo '
+									</li>
+								</ul>';
+				}
+
+				echo '
 							</li>';
+			}
 		}
 
 		echo '
@@ -2515,7 +2540,7 @@ function template_issueWarning()
 					"X-SMF-AJAX": 1
 				},
 				xhrFields: {
-					withCredentials: allow_xhjr_credentials
+					withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
 				},
 				url: "' . $scripturl . '?action=xmlhttp;sa=previews;xml",
 				data: {item: "warning_preview", title: $("#warn_sub").val(), body: $("#warn_body").val(), issuing: true},

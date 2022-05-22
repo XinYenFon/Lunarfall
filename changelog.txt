@@ -1,3 +1,9 @@
+0.8.0 (22 May 2022)
+* Sync with Curve2
+* SMF 2.1 READY! :)
+* Likes reverted to original version
+[Known]! Some icons are missing... some parts are fugly :|
+
 0.7.4 (02 November 2021)
 * Sync with Curve2
 * RC4 ready (Cutting Edge build)

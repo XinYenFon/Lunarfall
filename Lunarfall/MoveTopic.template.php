@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.0
  */
 
 /**
@@ -232,7 +232,7 @@ function template_merge()
 	{
 		echo '
 				<div class="pagesection">
-					', $context['page_index'], '
+					<div class="pagelinks">', $context['page_index'], '</div>
 				</div>
 				<div class="windowbg">
 					<ul class="merge_topics">';
@@ -248,7 +248,7 @@ function template_merge()
 					</ul>
 				</div>
 				<div class="pagesection">
-					', $context['page_index'], '
+					<div class="pagelinks">', $context['page_index'], '</div>
 				</div>';
 	}
 	// Just a nice "There aren't any topics" message

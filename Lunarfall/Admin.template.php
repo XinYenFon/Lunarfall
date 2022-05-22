@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.0
  */
 
 /**
@@ -945,7 +945,7 @@ function template_show_settings()
 				{
 					echo '
 										<fieldset id="', $config_var['name'], '">
-											<legend>', $txt['enabled_bbc_select'], '</legend>
+											<legend>', $context['bbc_sections'][$config_var['name']]['title'], '</legend>
 											<ul>';
 
 					foreach ($context['bbc_sections'][$config_var['name']]['columns'] as $bbcColumn)
@@ -1153,7 +1153,7 @@ function template_edit_profile_field()
 											</select>
 										</dd>
 										<dt>
-											<a id="field_reg_require" href="', $scripturl, '?action=helpadmin;help=field_reg_require" onclick="return reqOverlayDiv(this.href);" class="help"><i class="fa fa-question-circle fa-lg" title="', $txt['help'], '"></i></a>
+											<a id="field_reg_require" href="', $scripturl, '?action=helpadmin;help=field_reg_require" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="', $txt['help'], '"></span></a>
 											<strong><label for="reg">', $txt['custom_edit_registration'], ':</label></strong>
 										</dt>
 										<dd>
@@ -1331,23 +1331,16 @@ function template_edit_profile_field()
  */
 function template_admin_search_results()
 {
-	global $context, $txt, $scripturl;
+	global $context, $txt;
 
 	echo '
 						<div id="section_header" class="cat_bar">
-							<form action="', $scripturl, '?action=admin;area=search" method="post" accept-charset="', $context['character_set'], '">
-								<h3 class="catbg">
-									<span id="quick_search" class="floatright">
-										<input type="search" name="search_term" value="', $context['search_term'], '">
-										<input type="hidden" name="search_type" value="', $context['search_type'], '">
-										<input type="submit" name="search_go" value="', $txt['admin_search_results_again'], '" class="button">
-									</span>
-									<i class="fa fa-search fa-lg"></i>
-									<span id="quick_search_results">
-										', sprintf($txt['admin_search_results_desc'], $context['search_term']), '
-									</span>
-								</h3>
-							</form>
+							', template_admin_quick_search(), '
+							<h3 class="catbg">
+								<span id="quick_search_results">
+									', sprintf($txt['admin_search_results_desc'], $context['search_term']), '
+								</span>
+							</h3>
 						</div><!-- #section_header -->
 						<div class="windowbg">';
 
@@ -1664,20 +1657,20 @@ function template_clean_cache_button_below()
  */
 function template_admin_quick_search()
 {
-	global $context, $txt;
+	global $context, $txt, $scripturl;
 
 	if ($context['user']['is_admin'])
 		echo '
-								<span class="floatright admin_search">
-									<i class="fa fa-search fa-fw"></i>
-									<input type="search" name="search_term" placeholder="', $txt['admin_search'], '">
+								<form action="' . $scripturl . '?action=admin;area=search" method="post" accept-charset="' . $context['character_set'] . '" class="admin_search">
+									<span class="main_icons filter centericon"></span>
+									<input type="search" name="search_term" placeholder="', $txt['admin_search'], '"', isset($context['search_term']) ? ' value="' . $context['search_term'] . '"' : '','>
 									<select name="search_type">
 										<option value="internal"', (empty($context['admin_preferences']['sb']) || $context['admin_preferences']['sb'] == 'internal' ? ' selected' : ''), '>', $txt['admin_search_type_internal'], '</option>
 										<option value="member"', (!empty($context['admin_preferences']['sb']) && $context['admin_preferences']['sb'] == 'member' ? ' selected' : ''), '>', $txt['admin_search_type_member'], '</option>
 										<option value="online"', (!empty($context['admin_preferences']['sb']) && $context['admin_preferences']['sb'] == 'online' ? ' selected' : ''), '>', $txt['admin_search_type_online'], '</option>
 									</select>
 									<input type="submit" name="search_go" id="search_go" value="', $txt['admin_search_go'], '" class="button">
-								</span>';
+								</form>';
 }
 
 ?>

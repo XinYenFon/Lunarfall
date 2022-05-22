@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.2
  */
 
 /**
@@ -553,6 +553,16 @@ function template_single_post($message)
 							</h4>
 							<ul class="user_info">';
 
+	// Show the member's custom title, if they have one.
+	if (!empty($message['member']['title']))
+		echo '
+								<li class="title">', $message['member']['title'], '</li>';
+
+	// Show the member's primary group (like 'Administrator') if they have one.
+	if (!empty($message['member']['group']))
+		echo '
+								<li class="membergroup">', $message['member']['group'], '</li>';
+
 	// Show the user's avatar.
 	if (!empty($modSettings['show_user_images']) && empty($options['show_no_avatars']) && !empty($message['member']['avatar']['image']))
 		echo '
@@ -566,24 +576,13 @@ function template_single_post($message)
 			echo '
 								<li class="custom ', $custom['col_name'], '">', $custom['value'], '</li>';
 
-	// Show the post group icons, but not for guests.
-	if (!$message['member']['is_guest'])
-		echo '
-								<li class="icons">', $message['member']['group_icons'], '</li>';
-
-	// Show the member's primary group (like 'Administrator') if they have one.
-	if (!empty($message['member']['group']))
-		echo '
-								<li class="membergroup">', $message['member']['group'], '</li>';
-
-	// Show the member's custom title, if they have one.
-	if (!empty($message['member']['title']))
-		echo '
-								<li class="title">', $message['member']['title'], '</li>';
-
 	// Don't show these things for guests.
 	if (!$message['member']['is_guest'])
 	{
+		// Show the post group icons
+		echo '
+								<li class="icons">', $message['member']['group_icons'], '</li>';
+
 		// Show the post group if and only if they have no other group or the option is on, and they are in a post group.
 		if ((empty($modSettings['hide_post_group']) || empty($message['member']['group'])) && !empty($message['member']['post_group']))
 			echo '
@@ -806,7 +805,7 @@ function template_single_post($message)
 											<a href="', $attachment['href'], ';image" id="link_', $attachment['id'], '" onclick="', $attachment['thumbnail']['javascript'], '"><img src="', $attachment['thumbnail']['href'], '" alt="" id="thumb_', $attachment['id'], '" class="atc_img"></a>';
 				else
 					echo '
-											<img src="' . $attachment['href'] . ';image" alt="" width="' . $attachment['width'] . '" height="' . $attachment['height'] . '" loading="lazy" class="atc_img">';
+											<img src="' . $attachment['href'] . ';image" alt="" loading="lazy" class="atc_img">';
 
 				echo '
 										</div><!-- .attachments_top -->';

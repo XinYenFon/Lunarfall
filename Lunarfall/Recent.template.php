@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.0
  */
 
 /**
@@ -15,16 +15,21 @@
  */
 function template_recent()
 {
-	global $context, $txt, $scripturl;
+	global $context, $txt;
 
 	echo '
 	<div id="recent" class="main_section">
-		<div class="cat_bar">
-			<h3 class="catbg">
-				<span class="xx"></span>', $txt['recent_posts'], '
-			</h3>
-		</div>
-		<div class="pagesection">', $context['page_index'], '</div>';
+		<div id="display_head" class="information">
+			<h2 class="display_title">
+				<span id="top_subject">', $txt['recent_posts'], '</span>
+			</h2>
+		</div>';
+
+	if (!empty($context['page_index']))
+		echo '
+		<div class="pagesection">
+			<div class="pagelinks">' . $context['page_index'] . '</div>
+		</div>';
 
 	if (empty($context['posts']))
 		echo '
@@ -34,7 +39,7 @@ function template_recent()
 	{
 		echo '
 		<div class="', $post['css_class'], '">
-			<div class="counter">', $post['counter'], '</div>
+			<div class="page_number floatright"> #', $post['counter'], '</div>
 			<div class="topic_details">
 				<h5>', $post['board']['link'], ' / ', $post['link'], '</h5>
 				<span class="smalltext">', $txt['last_poster'], ' <strong>', $post['poster']['link'], ' </strong> - ', $post['time'], '</span>
@@ -49,7 +54,9 @@ function template_recent()
 	}
 
 	echo '
-		<div class="pagesection">', $context['page_index'], '</div>
+		<div class="pagesection">
+			<div class="pagelinks">', $context['page_index'], '</div>
+		</div>
 	</div><!-- #recent -->';
 }
 
@@ -58,7 +65,7 @@ function template_recent()
  */
 function template_unread()
 {
-	global $context, $settings, $txt, $scripturl, $modSettings;
+	global $context, $txt, $scripturl, $modSettings, $board_info;
 
 	// User action pop on mobile screen (or actually small screen), this uses responsive css does not check mobile device.
 	if (!empty($context['recent_buttons']))
@@ -74,7 +81,12 @@ function template_unread()
 	</div>';
 
 	echo '
-	<div id="recent" class="main_content">';
+	<div id="recent" class="main_content">
+		<div id="display_head" class="information">
+			<h2 class="display_title">
+				<span>', (!empty($board_info['name']) ? $board_info['name'] . ' - ' : '') . $context['page_title'], '</span>
+			</h2>
+		</div>';
 
 	if ($context['showCheckboxes'])
 		echo '
@@ -135,7 +147,7 @@ function template_unread()
 					<div class="', $topic['css_class'], '">
 						<div class="board_icon">
 							<img src="', $topic['first_post']['icon_url'], '" alt="">
-							', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '', '
+							', $topic['is_posted_in'] ? '<span class="main_icons profile_sm"></span>' : '', '
 						</div>
 						<div class="info">';
 
@@ -201,7 +213,7 @@ function template_unread()
 			<div class="pagesection">
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
 				', $context['menu_separator'], '
-				<div class="pagelinks">
+				<div class="pagelinks floatleft">
 					<a href="#recent" class="button">', $txt['go_up'], '</a>
 					', $context['page_index'], '
 				</div>';
@@ -218,10 +230,10 @@ function template_unread()
 	}
 	else
 		echo '
-			<div class="cat_bar">
-				<h3 class="catbg centertext">
+			<div class="infobox">
+				<p class="centertext">
 					', $context['showing_all_topics'] ? $txt['topic_alert_none'] : sprintf($txt['unread_topics_visit_none'], $scripturl), '
-				</h3>
+				</p>
 			</div>';
 
 	if ($context['showCheckboxes'])
@@ -240,7 +252,7 @@ function template_unread()
  */
 function template_replies()
 {
-	global $context, $settings, $txt, $scripturl, $modSettings;
+	global $context, $txt, $scripturl, $modSettings, $board_info;
 
 	// User action pop on mobile screen (or actually small screen), this uses responsive css does not check mobile device.
 	if (!empty($context['recent_buttons']))
@@ -256,7 +268,12 @@ function template_replies()
 	</div>';
 
 	echo '
-	<div id="recent">';
+	<div id="recent">
+		<div id="display_head" class="information">
+			<h2 class="display_title">
+				<span>', (!empty($board_info['name']) ? $board_info['name'] . ' - ' : '') . $context['page_title'], '</span>
+			</h2>
+		</div>';
 
 	if ($context['showCheckboxes'])
 		echo '
@@ -317,7 +334,7 @@ function template_replies()
 					<div class="', $topic['css_class'], '">
 						<div class="board_icon">
 							<img src="', $topic['first_post']['icon_url'], '" alt="">
-							', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '', '
+							', $topic['is_posted_in'] ? '<span class="main_icons profile_sm"></span>' : '', '
 						</div>
 						<div class="info">';
 
@@ -377,7 +394,7 @@ function template_replies()
 			<div class="pagesection">
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
 				', $context['menu_separator'], '
-				<div class="pagelinks">
+				<div class="pagelinks floatleft">
 					<a href="#recent" class="button">', $txt['go_up'], '</a>
 					', $context['page_index'], '
 				</div>';
@@ -394,10 +411,10 @@ function template_replies()
 	}
 	else
 		echo '
-			<div class="cat_bar">
-				<h3 class="catbg centertext">
+			<div class="infobox">
+				<p class="centertext">
 					', $context['showing_all_topics'] ? $txt['topic_alert_none'] : $txt['updated_topics_visit_none'], '
-				</h3>
+				</p>
 			</div>';
 
 	if ($context['showCheckboxes'])

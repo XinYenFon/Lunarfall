@@ -4,10 +4,10 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1 RC4
+ * @version 2.1.0
  */
 
 /**
@@ -59,8 +59,8 @@ function template_show_list($list_id = null)
 		// Show the page index (if this list doesn't intend to show all items).
 		if (!empty($cur_list['items_per_page']) && !empty($cur_list['page_index']))
 			echo '
-		<div class="floatleft">
-			<div class="pagesection">', $cur_list['page_index'], '</div>
+		<div class="pagesection">
+			<div class="pagelinks">', $cur_list['page_index'], '</div>
 		</div>';
 
 		if (isset($cur_list['additional_rows']['above_column_headers']))
@@ -134,13 +134,13 @@ function template_show_list($list_id = null)
 		// Show the page index (if this list doesn't intend to show all items).
 		if (!empty($cur_list['items_per_page']) && !empty($cur_list['page_index']))
 			echo '
-			<div class="floatleft">
-				<div class="pagesection">', $cur_list['page_index'], '</div>
+			<div class="pagesection floatleft">
+				<div class="pagelinks">', $cur_list['page_index'], '</div>
 			</div>';
+
 
 		if (isset($cur_list['additional_rows']['below_table_data']))
 			template_additional_rows('below_table_data', $cur_list);
-
 		echo '
 		</div>';
 	}

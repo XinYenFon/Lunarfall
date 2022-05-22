@@ -464,6 +464,10 @@ a img {
 	overflow: hidden;
 	clear: both;
 }
+.pagesection .pagelinks {
+	display: inline-block;
+	float: left;
+}
 .pages::after, .jump_to::after, .code::after,
 strong[id^='child_list_']::after {
 	content: ": ";
@@ -678,7 +682,6 @@ img.sort, .sort {
 	width: 100%;
 }
 .dropmenu, #top_info {
-	width: 100%;
 	position: relative;
 	box-sizing: border-box;
 }
@@ -782,7 +785,9 @@ img.sort, .sort {
 	display: inline-block;
 }
 /* Fixes bug with border-box on scrollable js */
-.scrollable, .scrollable * {
+.scrollable,
+.scrollable *,
+#profile_menu {
 	box-sizing: content-box;
 }
 .top_menu.scrollable {
@@ -1054,16 +1059,24 @@ img.sort, .sort {
 	clear: both;
 }
 #top_info {
-	margin: 0;
-	padding: 5px 9px 4px 9px;
+	padding: 5px 0;
 	line-height: 1.3em;
-	width: auto;
+	max-width: 100%;
+}
+#pm_menu, #alerts_menu, #profile_menu {
+	left: 0;
+	right: 0;
+	padding-right: 10px;
 }
 #profile_menu_top > img.avatar {
 	height: 18px;
 	width: 18px;
 	margin: 2px 5px 0 0;
 	float: left;
+}
+#pm_menu_top .main_icons,
+#alerts_menu_top .main_icons {
+	display: none;
 }
 .notice {
 	font-weight: bold;
@@ -1121,16 +1134,24 @@ img#smflogo {
 }
 /* The upper_section, float the two each way */
 .user {
-	width: 50%;
-	float: left;
-	overflow: auto;
-	padding: 0 4px 6px 4px;
+	padding: 0 4px 8px 4px;
 	font-size: 0.9em;
+	white-space: nowrap;
 }
-.user ul {
-	padding: 0 0 5px 0;
-	font-size: 0.9em;
-	line-height: 1.8em;
+.user:only-child {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.user time,
+.user .unread_links,
+.user .unread_links li {
+	display: inline-block;
+}
+.user:not(:last-child) time:not(:last-child)::after,
+.user .unread_links li:not(:last-child)::after {
+	content: " � ";
+	margin: 0 1ch;
 }
 ul li.greeting {
 	font-weight: bold;
@@ -1274,6 +1295,18 @@ ul li.greeting {
 	padding: 11px 0 5px 0;
 	float: right;
 	font-size: 1em;
+}
+#topic_icons #message_index_jump_to {
+	padding: 0;
+	float: right;
+}
+
+/* The category separator string is 29 dashes */
+#display_jump_to_select,
+#message_index_jump_to_select,
+#search_jump_to_select,
+#quick_mod_jump_to_select {
+	width: 29ch;
 }
 
 .quickModifyMargin {
@@ -1450,6 +1483,9 @@ fieldset.merge_options {
 
 .login input[type="submit"] {
 	margin: 1em 0 0 1em;
+}
+.login p:not(:last-of-type) input[type="submit"] {
+	margin-bottom: 1em;
 }
 
 /* Additional register fields */
@@ -1714,7 +1750,7 @@ dl {
 }
 #basicinfo h4 {
 	font-size: 1.4em;
-	font-weight: 100;
+	font-weight: normal;
 	-webkit-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
@@ -1723,7 +1759,6 @@ dl {
 }
 #basicinfo h4 span.position {
 	font-size: 0.8em;
-	font-weight: 100;
 	display: block;
 }
 #basicinfo img.avatar, dl.settings img.avatar {
@@ -1842,6 +1877,9 @@ dl {
 .topic_details {
 	padding: 0 4px 4px 4px;
 }
+.counter + .topic_details {
+	margin-left: 25px;
+}
 .list_posts {
 	border-top: 1px solid #ddd;
 	box-shadow: 0 1px 0 #2E3E4C inset;
@@ -1880,6 +1918,18 @@ dl {
 	height: 16px;
 }
 
+.boardslist > ul > li {
+	margin: 12px;
+}
+.boardslist > ul > li > ul {
+	columns: 2 250px;
+}
+.boardslist > ul > li > ul > li {
+	break-inside: avoid;
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+}
 .boardslist a {
 	font-weight: bold;
 	border-bottom: 1px solid #c4c4c4;
@@ -1887,6 +1937,11 @@ dl {
 .boardslist a:hover {
 	text-decoration: none;
 	border-bottom: 1px solid #334466;
+}
+.boardslist label {
+	display: inline-block;
+	text-indent: -3ch;
+	margin: 0 3ch;
 }
 
 #theme_settings {
@@ -2223,17 +2278,29 @@ dl.addrules dt.floatleft {
 	background: rgba(40, 64, 80, 0.5);
 	z-index: 6;
 }
-.popup_window {
+#genericmenu > .popup_container {
+	z-index: 5;
+}
+#adm_submenus > .popup_container {
+	z-index: 4;
+}
+.popup_window,
+#main_menu .popup_window,
+#genericmenu .popup_window,
+#adm_submenus .popup_window {
 	position: relative;
-	width: 480px;
+	width: auto;
 	z-index: 99;
-	padding: 0 6px 6px 6px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 	border: 1px solid #777;
-	overflow: visible !important;
-	background: #fff;
-	top: 15%;
+	border-radius: 7px 7px 3px 3px;
 	margin: 0 auto;
+	padding: 0;
+}
+.popup_window {
+	top: 15%;
+	width: 480px;
+	padding: 0 6px 6px 6px;
 }
 .popup_heading {
 	padding: 10px 8px;
@@ -2249,13 +2316,14 @@ dl.addrules dt.floatleft {
 	border-bottom: 1px solid #ddd;
 	box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.2);
 }
-#main_menu .popup_heading, #genericmenu .popup_heading {
+#main_menu .popup_heading,
+#genericmenu .popup_heading,
+#adm_submenus .popup_heading {
 	display: none;
 }
-#genericmenu > .popup_container {
-	z-index: 5;
-}
-#main_menu .popup_container, #genericmenu > .popup_container {
+#main_menu .popup_container,
+#genericmenu > .popup_container,
+#adm_submenus > .popup_container {
 	display: block;
 	position: relative;
 	background: none;
@@ -2371,6 +2439,9 @@ div#manage_boards dl dd textarea[name=desc] {
 
 /* BoardIndex */
 /* This place covers board places (boardindex/messageindex/recent) */
+.boardindex_table:not(:last-child) {
+	margin-bottom: 15px;
+}
 h3 .collapse {
 	float: right;
 	margin: 4px 4px 0 0;
@@ -2393,9 +2464,6 @@ h3 .collapse {
 .boardindex_table .board_stats p {
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
-}
-.boardindex_table .board_stats:last-child p {
-	border-right: none;
 }
 .info {
 	overflow: hidden;
@@ -2737,6 +2805,9 @@ div#pollmoderation {
 .poster img {
 	vertical-align: middle;
 }
+img.avatar {
+	object-fit: scale-down;
+}
 .poster img.avatar {
 	max-width: 100%;
 }
@@ -2755,33 +2826,38 @@ div#pollmoderation {
 .messageicon img, #iconList img {
 	vertical-align: middle;
 }
-.keyinfo h5 {
+.keyinfo .postinfo {
 	padding: 1px 0 5px 0;
 	line-height: 1.5em;
 	font-size: 0.9em;
+	font-weight: bold;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
 }
-.keyinfo h5::after, .under_message::after {
+.keyinfo .postinfo::after, .under_message::after {
 	content: "";
 	clear: right;
 	display: block;
 }
-.keyinfo h5 a, .keyinfo h5 a strong {
+.keyinfo .postinfo a, .keyinfo .postinfo a strong {
 	color: #A85400;
 }
-.keyinfo h5 a.floatright {
-	padding: 0 12px 0 0; /* Deprecated? */
+.keyinfo .postinfo .spacer {
+	flex: 1 1 auto;
 }
-.keyinfo h5 .modified {
+.keyinfo .postinfo .modified {
 	color: #333;
 	font-weight: normal;
 	font-style: italic;
 	padding: 2px 4px 0 4px;
 }
-.mvisible::before {
-	content: "\00ab ";
-}
-.mvisible::after {
-	content: " \00bb";
+/* PMs postinfo */
+#personal_messages .keyinfo .postinfo {
+	flex-direction: column;
+	align-items: flex-start;
+	font-weight: normal;
 }
 #reason::before {
 	content: " - ";
@@ -2996,6 +3072,13 @@ ul.post_options li {
 	border: none;
 	box-shadow: none;
 }
+.smflikebutton {
+	margin-top: 4px;
+}
+.like_count,
+.smflikebutton:last-child {
+	margin-bottom: 4px;
+}
 /* Events */
 .edit_event {
 	margin: 0 10px;
@@ -3123,7 +3206,7 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 .generic_list_wrapper .information div {
 	background: none;
 }
-.information a {
+.information a:not(.button) {
 	font-weight: bold;
 }
 p.information img {
@@ -3419,7 +3502,7 @@ input[name="attachBBC"] {
 }
 
 /* Hide this from desktop users sshh... our little sekrit */
-.mobile_buttons, .mobile_display {
+.mobile_buttons, .mobile_display, .mobile_user_menu {
 	display: none;
 }
 
@@ -3503,6 +3586,7 @@ tr[id^='list_news_lists_'] textarea {
 .videocontainer video {
 	object-fit: contain;
 	background: black;
+	max-width: 100%;
 }
 
 .backtrace:not(:last-child) {
@@ -3706,4 +3790,7 @@ div.sceditor-group {
 }
 .sceditor-button i {
 	margin: 5px 0;
+}
+.sceditor-button div {
+	visibility: hidden;
 }
