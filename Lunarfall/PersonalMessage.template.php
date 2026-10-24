@@ -425,7 +425,7 @@ function template_single_pm($message)
 			// Don't show an icon if they haven't specified a website.
 			if ($message['member']['website']['url'] != '' && !isset($context['disabled_fields']['website']))
 				echo '
-							<li><a href="', $message['member']['website']['url'], '" title="' . $message['member']['website']['title'] . '" target="_blank" rel="noopener"><span class="fas fa-globe fa-lg" title="' . $message['member']['website']['title'] . '"></span></a></li>';
+							<li><a href="', htmlspecialchars($message['member']['website']['url'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '" target="_blank" rel="noopener"><span class="fas fa-globe fa-lg" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '"></span></a></li>';
 
 			// Don't show the email address if they want it hidden.
 			if ($message['member']['show_email'])

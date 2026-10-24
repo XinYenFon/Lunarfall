@@ -1,4 +1,4 @@
-# Lunarfall v0.8.3 (24 OCTOBER 2026 — DEVELOPMENT)
+# Lunarfall v0.8.4 (25 OCTOBER 2026 — DEVELOPMENT)
 
 <img src="https://raw.githubusercontent.com/Antes/Lunarfall/master/Lunarfall/images/thumbnail.png" style="height: 750px;">
 
@@ -14,9 +14,9 @@ Lunarfall uses **X.Y.Z**, displayed as **vX.Y.Z**:
 - **Y (FEATURE):** a new feature; resets Z to zero.
 - **Z (HOTFIX):** any bug fix, security fix or compatibility repair, regardless of size; changes only Z.
 
-Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.3); user-facing release labels use v0.8.3. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
+Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.4); user-facing release labels use v0.8.4. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
 
-The latest published release is **v0.8.0**. The current development sources are **v0.8.3**, including the SMF 2.1.8 structural fixes, Font Awesome maintenance, targeted theme-administration tab styling, removal of the administration donation block, visible icon-and-text profile shortcuts and readable unread-topic notices; this does not mark a publication or deployment.
+The latest published release is **v0.8.3**. The current development sources are **v0.8.4**, a hotfix based on that release: remove unintended italic spacing, improve standard/alternate quote contrast, repair and escape affected HTML attributes, and prevent float utility classes from overriding popup-close and category-toggle icons. The original popup href and close-handler fixes are retained and regression checked. This does not mark a publication or deployment.
 
 ### Source version and installed version
 

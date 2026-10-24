@@ -284,7 +284,9 @@ h3.largetext {
 .xlargetext {
 	font-size: x-large;
 }
-.centertext, .centercol {
+.centertext, .centercol,
+.title_bar th.centertext, .windowbg th.centertext,
+.title_bar th.centercol, .windowbg th.centercol {
 	margin: 0 auto;
 	text-align: center;
 }
@@ -349,10 +351,14 @@ blockquote cite::before {
 	vertical-align: middle;
 }
 .bbc_standard_quote {
-	background-color: #e0e6f6;
+	color: #d6d7d8;
+	background-color: #1b2b3a;
+	border-color: #40576b;
 }
 .bbc_alternate_quote {
-	background-color: #ebf4f8;
+	color: #d6d7d8;
+	background-color: #24384b;
+	border-color: #496278;
 }
 
 /* A code block - maybe PHP ;). */
@@ -627,6 +633,7 @@ table.table_grid td {
 
 .title_bar th, .windowbg th {
 	padding: 4px 8px;
+	text-align: left;
 }
 
 /* GenericList */
@@ -2313,7 +2320,6 @@ dl.addrules dt.floatleft {
 	width: auto;
 	z-index: 99;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-	border: 1px solid #777;
 	border-radius: 7px 7px 3px 3px;
 	margin: 0 auto;
 	padding: 0;
@@ -2627,6 +2633,9 @@ span.postby {
 	margin: 0;
 	border-radius: 0;
 	display: flex;
+	align-items: center;
+	min-height: 36px;
+	padding: 6px 0;
 }
 #topic_header div {
 	font-weight: bold;
@@ -2634,7 +2643,24 @@ span.postby {
 	padding: 0;
 }
 #topic_header input {
-	margin-top: 5px !important;
+	margin: 0;
+}
+#topic_header a {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+#topic_header .main_icons.sort_up,
+#topic_header .main_icons.sort_down {
+	margin: 0;
+	vertical-align: middle;
+}
+/* FA sort glyphs occupy opposite halves of their em box. */
+#topic_header .main_icons.sort_up::before {
+	transform: translateY(.28em);
+}
+#topic_header .main_icons.sort_down::before {
+	transform: translateY(-.28em);
 }
 #topic_container .windowbg {
 	border: 1px solid #2E3E4C;
@@ -3682,7 +3708,7 @@ div.sceditor-container:not(.sceditor-maximize) {
 }
 
 /* Lunarfall special */
-i {
+:where(i.fa, i.fas, i.far, i.fab, i.fa-solid, i.fa-regular, i.fa-brands) {
 	margin: 5px;
 }
 .profile_user_links a {

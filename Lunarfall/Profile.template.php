@@ -226,12 +226,12 @@ function template_summary()
 	// Email is only visible if it's your profile or you have the moderate_forum permission
 	if ($context['member']['show_email'])
 		echo '
-				<li><a href="mailto:', $context['member']['email'], '" title="', $context['member']['email'], '" rel="nofollow" title="' . $txt['email'] . '"><i class="fa fa-envelope fa-lg"></i></a></li>';
+				<li><a href="mailto:', htmlspecialchars($context['member']['email'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" title="', htmlspecialchars($context['member']['email'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" rel="nofollow"><i class="fa fa-envelope fa-lg"></i></a></li>';
 
 	// Don't show an icon if they haven't specified a website.
 	if ($context['member']['website']['url'] !== '' && !isset($context['disabled_fields']['website']))
 		echo '
-				<li><a href="', $context['member']['website']['url'], '" title="' . $context['member']['website']['title'] . '" target="_blank" rel="noopener" title="' . $context['member']['website']['title'] . '">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg"></i>' : $txt['www']), '</a></li>';
+				<li><a href="', htmlspecialchars($context['member']['website']['url'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" title="', htmlspecialchars($context['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" target="_blank" rel="noopener">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg"></i>' : $txt['www']), '</a></li>';
 
 	// Are there any custom profile fields as icons?
 	if (!empty($context['print_custom_fields']['icons']))

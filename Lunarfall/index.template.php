@@ -785,17 +785,21 @@ function template_quickbuttons($list_items, $list_class = null, $output_method =
 		<ul class="qbuttons' . (!empty($list_class) ? ' quickbuttons_' . $list_class : '') . '">';
 
 	// This is used for a list item or a sublist item
-	$list_item_format = function($li)
+	$escape_attribute = function($value)
+	{
+		return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+	};
+	$list_item_format = function($li) use ($escape_attribute)
 	{
 		$html = '
-			<li' . (!empty($li['class']) ? ' class="' . $li['class'] . '"' : '') . (!empty($li['id']) ? ' id="' . $li['id'] . '"' : '') . (!empty($li['custom']) ? ' ' . $li['custom'] : '') . '>';
+			<li' . (!empty($li['class']) ? ' class="' . $escape_attribute($li['class']) . '"' : '') . (!empty($li['id']) ? ' id="' . $escape_attribute($li['id']) . '"' : '') . (!empty($li['custom']) ? ' ' . $li['custom'] : '') . '>';
 
 		if (isset($li['content']))
 			$html .= $li['content'];
 		else
 			$html .= '
-				<a href="' . (!empty($li['href']) ? $li['href'] : 'javascript:void(0);') . '"' . (!empty($li['javascript']) ? ' ' . $li['javascript'] : '') . (!empty($li['label']) ? 'title="' . $li['label'] . '"' : '') .'>
-					' . (!empty($li['icon']) ? '<i class="fas fa-' . $li['icon'] . ' fa-fw"></i> ' : '') . (!empty($li['label']) ? $li['label'] : '') . '
+				<a href="' . (!empty($li['href']) ? $escape_attribute($li['href']) : 'javascript:void(0);') . '"' . (!empty($li['javascript']) ? ' ' . $li['javascript'] : '') . (!empty($li['label']) ? ' title="' . $escape_attribute(strip_tags($li['label'])) . '"' : '') . '>
+					' . (!empty($li['icon']) ? '<i class="fas fa-' . $escape_attribute($li['icon']) . ' fa-fw"></i> ' : '') . (!empty($li['label']) ? $li['label'] : '') . '
 				</a>';
 
 		$html .= '

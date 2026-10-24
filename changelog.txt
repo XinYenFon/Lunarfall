@@ -1,3 +1,13 @@
+v0.8.4 (25 October 2026) - Development
+* #6: Restrict icon spacing to Font Awesome i elements so ordinary italic text has no extra margin; preserve FA7 styles and existing spacing overrides.
+* #7: Give standard and alternate quotes distinct dark backgrounds, light text and matching borders.
+* #8: Repair quickbutton title attribute separation, escape structured attributes, and remove duplicate profile email/website titles; protect website attributes in topic, PM and member-list templates. The originally reported popup href is already fixed in v0.8.3.
+* #9: Retain and regression-test existing popup hide_popup handlers; remove generic float utility glyph mappings that override close X and category/Info Center toggle icons.
+* Remove the shared popup window outer border that also frames administration submenus; retain popup content borders, shadows, spacing and close behavior.
+* Left-align table headers in title_bar and windowbg containers while preserving explicit centertext/centercol alignment on header cells.
+* Give the topic-list title bar a 36px minimum height and vertical spacing; center sorting links, both sort glyph directions and quick-moderation checkboxes without changing other title bars.
+- HOTFIX based on published v0.8.3. Source/package preparation only; no commit, tag, push, issue closure, publication or installed-theme deployment.
+
 v0.8.3 (24 October 2026) - Development
 * Show the Lunarfall footer version inline after SMF credits with a # separator, directly from local theme_info.xml and independently of SMF's stored theme version; read once per request, reject unsafe/invalid metadata and preserve footer links.
 * Remove popup border, shadow, rounding and surplus spacing from desktop Themes and Layout and Logs administration tabs; preserve tab colors and active states.

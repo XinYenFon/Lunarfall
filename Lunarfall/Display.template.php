@@ -624,7 +624,7 @@ function template_single_post($message)
 			// Don't show an icon if they haven't specified a website.
 			if (!empty($message['member']['website']['url']) && !isset($context['disabled_fields']['website']))
 				echo '
-										<li><a href="', $message['member']['website']['url'], '" title="' . $message['member']['website']['title'] . '" target="_blank" rel="noopener">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg" title="' . $message['member']['website']['title'] . '"></i>' : $txt['www']), '</a></li>';
+										<li><a href="', htmlspecialchars($message['member']['website']['url'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '" target="_blank" rel="noopener">', ($settings['use_image_buttons'] ? '<i class="fa fa-globe fa-lg" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '"></i>' : $txt['www']), '</a></li>';
 
 			// Since we know this person isn't a guest, you *can* message them.
 			if ($context['can_send_pm'])
