@@ -24,10 +24,6 @@ function template_admin()
 	echo '
 						<div id="admin_main_section">';
 
-	// Sellout
-	echo '
-						<div id="donate_cat" class="block"><a href="https://www.patreon.com/XinYenFon" id="donate_cat"><i class="fab fa-patreon fa-3x"></i></a></div>';
-
 	// Display the "live news" from simplemachines.org.
 	echo '
 							<div id="live_news" class="floatleft">
@@ -983,7 +979,7 @@ function template_show_settings()
 					$max = isset($config_var['max']) ? ' max="' . $config_var['max'] . '"' : '';
 
 					echo '
-										<input type="', $type, '"', $javascript, $disabled, ' name="', $config_var['name'], '" id="', $config_var['name'], '" value="', $config_var['value'], '"', ($config_var['size'] ? ' size="' . $config_var['size'] . '"' : ''), '', $min . $max . $step, '>';
+										<input type="', $type, '"', $javascript, $disabled, ' name="', $config_var['name'], '" id="', $config_var['name'], '" value="', $config_var['value'], '"', ($config_var['size'] ? ' size="' . $config_var['size'] . '"' : ''), '', $min . $max . $step, (!empty($config_var['multiple']) ? ' multiple="multiple"' : ''), '>';
 				}
 
 				echo isset($config_var['postinput']) ? '

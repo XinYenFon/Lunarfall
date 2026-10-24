@@ -1,3 +1,26 @@
+v0.8.3 (24 October 2026) - Development
+* Show the Lunarfall footer version inline after SMF credits with a # separator, directly from local theme_info.xml and independently of SMF's stored theme version; read once per request, reject unsafe/invalid metadata and preserve footer links.
+* Remove popup border, shadow, rounding and surplus spacing from desktop Themes and Layout and Logs administration tabs; preserve tab colors and active states.
+* Improve administration code-block readability with a dark background, light text, clearer headers and larger monospace text; preserve code selection and expansion controls.
+* Hide generic mobile-menu launchers on desktop while retaining mobile controls and the desktop menu/tab content.
+* Remove the administration home Consider Helping donation block and its dedicated styles.
+* Show profile popup shortcuts as icons with visible SMF labels in two columns, without separator dashes or link underlines; retain URLs and accessible names, remove CSS tooltip bubbles, and prevent mobile overflow.
+* Use a dark Lunarfall palette, readable text, underlined links and visible keyboard focus for empty unread-topic/reply notices.
+- HOTFIX package; source version only. No installed-theme deploy, SMF core change or database access.
+
+v0.8.2 (24 October 2026) - Development
+* Upgrade local Font Awesome Free assets from 5.15.1 to 7.3.1 with upstream license/attribution and three WOFF2 fonts.
+* Centralize SMF main_icons, button, state and legacy aliases in css/extra-ico.css; correct invalid/missing icons and font-family/style selection.
+* Honor disable_fa_icons without loading vendor fonts; retain meaningful text labels and accessible icon-only controls.
+* Repair PM icon markup, calendar edit and split-selection icons; preserve native custom post icons and the Lunarfall design.
+- Maintenance/compatibility HOTFIX; source version only. No installed-theme deploy or database change.
+
+v0.8.1 (24 October 2026) - Development
+* SMF 2.1.8 structural compatibility fixes, including security, AJAX/TFA, calendar and template contract repairs.
+* Preserve Lunarfall design customizations and the existing Font Awesome version.
+* Adopt X.Y.Z versioning: MAJOR / FEATURE / HOTFIX; compatibility and security repairs count as HOTFIX.
+- Source version only; not published or deployed to the running SMF installation by this task.
+
 0.8.0 (22 May 2022)
 * Sync with Curve2
 * SMF 2.1 READY! :)

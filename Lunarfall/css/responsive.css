@@ -57,6 +57,8 @@
 	}
 	#profile_menu {
 		width: 100%;
+		box-sizing: border-box;
+		min-width: 0;
 	}
 	#pm_menu, #alerts_menu {
 		padding-right: 9px;
@@ -758,6 +760,22 @@
 }
 /* Tricky menu */
 @media (min-width: 481px) {
+	/* Generic-menu launchers belong only to the mobile layout. */
+	a[class^="mobile_generic_menu_"] {
+		display: none;
+	}
+	/* Theme and log administration tabs are inline menus, not popup dialogs. */
+	#adm_submenus.lf_inline_admin_tabs > .popup_container > .popup_window {
+		box-shadow: none;
+		border: 0;
+		border-radius: 0;
+		background: none;
+		margin: 0;
+		top: 0;
+	}
+	#adm_submenus.lf_inline_admin_tabs > .popup_container > .popup_window > .generic_menu {
+		margin: 0;
+	}
 	#mobile_user_menu.popup_container {
 		display: block !important;
 	}

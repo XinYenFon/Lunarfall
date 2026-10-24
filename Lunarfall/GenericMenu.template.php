@@ -216,12 +216,9 @@ function template_generic_menu_tabs(&$menu_context)
 		// Show an icon and/or a help item?
 		if (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class']) || !empty($selected_tab['icon']) || !empty($tab_context['icon']) || !empty($selected_tab['help']) || !empty($tab_context['help']))
 		{
-			if (empty($settings['disable_fa_icons']) & (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class'])))
+			if (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class']))
 				echo '
-								<i class="fa fa-', !empty($selected_tab['icon_class']) ? $selected_tab['icon_class'] : $tab_context['icon_class'], ' fa-lg"></i>';
-			elseif (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class']))
-				echo '
-								<span class="', !empty($selected_tab['icon_class']) ? $selected_tab['icon_class'] : $tab_context['icon_class'], ' icon"></span>';
+								<i class="fa ', !empty($selected_tab['icon_class']) ? $selected_tab['icon_class'] : $tab_context['icon_class'], ' fa-lg"></i>';
 			elseif (!empty($selected_tab['icon']) || !empty($tab_context['icon']))
 				echo '
 								<img src="', $settings['images_url'], '/icons/', !empty($selected_tab['icon']) ? $selected_tab['icon'] : $tab_context['icon'], '" alt="" class="icon">';
@@ -257,7 +254,7 @@ function template_generic_menu_tabs(&$menu_context)
 						<span class="menu_icon"></span>
 						<span class="text_menu">', sprintf($txt['mobile_generic_menu'], $tab_context['title']), '</span>
 					</a>
-					<div id="adm_submenus">
+					<div id="adm_submenus"', isset($menu_context['current_action'], $menu_context['current_area']) && $menu_context['current_action'] === 'admin' && in_array($menu_context['current_area'], array('theme', 'logs'), true) ? ' class="lf_inline_admin_tabs"' : '', '>
 						<div id="mobile_generic_menu_', $context['cur_menu_id'], '_tabs" class="popup_container">
 							<div class="popup_window description">
 								<div class="popup_heading">

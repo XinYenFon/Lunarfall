@@ -221,7 +221,7 @@ function template_credits()
 			<dl>
 				<dt><strong>Theme</strong></dt>
 				<dd><a href="https://github.com/Antes/Lunarfall">Lunarfall</a> | Licensed under <a href="https://github.com/Antes/Lunarfall/blob/master/LICENSE">The MIT License (MIT)</a></dd>
-				<dd><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> | This font is licensed under the <a href="http://scripts.sil.org/OFL">SIL Open Font License</a>, Version 1.1</dd>
+				<dd><a href="https://fontawesome.com/">Font Awesome Free 7.3.1</a> | Fonts: <a href="https://openfontlicense.org/">SIL OFL 1.1</a>; code: MIT; icons: CC BY 4.0. See FONT-AWESOME-LICENSE.txt.</dd>
 				<dd><a href="http://store.steampowered.com">Steam</a> for background image and inspiration</dd>
 			</dl>
 		</div>';

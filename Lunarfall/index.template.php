@@ -42,8 +42,19 @@ function template_init()
 {
 	global $settings, $txt;
 
-	loadCSSFile('all.min.css');
-	loadCSSFile('extra-ico.css');
+	// The adapter is also used for text fallback; font assets are optional.
+	if (empty($settings['disable_fa_icons']))
+		loadCSSFile('all.min.css', array('order_pos' => 3000));
+	loadCSSFile('extra-ico.css', array('order_pos' => 3100));
+	if (!empty($settings['disable_fa_icons']))
+		loadCSSFile('icons-disabled.css', array('order_pos' => 3200), 'lunarfall_icons_disabled');
+	loadJavaScriptFile('icons.js', array('defer' => true, 'minimize' => true), 'lunarfall_icons');
+	addJavaScriptVar('lunarfall_icon_labels', array(
+		'xmark' => isset($txt['close']) ? $txt['close'] : 'Close',
+		'circle-question' => isset($txt['help']) ? $txt['help'] : 'Help',
+		'user' => isset($txt['profile']) ? $txt['profile'] : 'Profile',
+		'envelope' => isset($txt['email']) ? $txt['email'] : 'Email',
+	), true);
 	/* $context, $options and $txt may be available for use, but may not be fully populated yet. */
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
@@ -406,7 +417,7 @@ function template_body_above()
 					<div id="mobile_user_menu" class="popup_container">
 						<div class="popup_window description">
 							<div class="popup_heading">', $txt['mobile_user_menu'], '
-								<a href="javascript:void(0);><i class="fa fa-times fa-lg floatright red"></i></a>
+								<a href="javascript:void(0);" class="hide_popup"><i class="fa fa-times fa-lg floatright red"></i></a>
 							</div>
 							', template_menu(), '
 						</div>
@@ -423,6 +434,66 @@ function template_body_above()
 	echo '
 		<div id="content_section">
 			<div id="main_content_section">';
+}
+
+/**
+ * Read this theme's local metadata once per request, without persistent caching.
+ * Return null when the active theme or metadata cannot be verified.
+ */
+function lunarfall_theme_version()
+{
+	global $settings;
+	static $loaded = false, $version = null;
+
+	// Do not label another theme when this template is used as a fallback.
+	if (empty($settings['theme_dir']) || realpath($settings['theme_dir']) !== __DIR__)
+		return null;
+
+	if ($loaded)
+		return $version;
+	$loaded = true;
+
+	if (!class_exists('DOMDocument'))
+		return null;
+
+	$previous_errors = libxml_use_internal_errors(true);
+	try
+	{
+		// Bound the read; never resolve DTDs, entities or external resources.
+		$xml = @file_get_contents(__DIR__ . '/theme_info.xml', false, null, 0, 65537);
+		if ($xml === false || strlen($xml) > 65536 || stripos($xml, '<!DOCTYPE') !== false)
+			return null;
+
+		$document = new DOMDocument();
+		$document->resolveExternals = false;
+		$document->substituteEntities = false;
+		if (!$document->loadXML($xml, LIBXML_NONET) || $document->doctype !== null)
+			return null;
+
+		$root = $document->documentElement;
+		$namespace = 'http://www.simplemachines.org/xml/theme-info';
+		if ($root === null || $root->localName !== 'theme-info' || $root->namespaceURI !== $namespace)
+			return null;
+
+		$nodes = $root->getElementsByTagNameNS($namespace, 'version');
+		if ($nodes->length !== 1 || $nodes->item(0)->parentNode !== $root || $nodes->item(0)->getElementsByTagName('*')->length !== 0)
+			return null;
+
+		$value = trim($nodes->item(0)->textContent);
+		if (strlen($value) <= 32 && preg_match('/\A[0-9]+\.[0-9]+\.[0-9]+\z/', $value))
+			$version = $value;
+	}
+	catch (Throwable $error)
+	{
+		// Metadata must never prevent the forum footer from rendering.
+	}
+	finally
+	{
+		libxml_clear_errors();
+		libxml_use_internal_errors($previous_errors);
+	}
+
+	return $version;
 }
 
 /**
@@ -446,7 +517,14 @@ function template_body_below()
 	echo '
 		<ul>
 			<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
-			<li class="copyright">', theme_copyright(), '</li>
+			<li class="copyright">', theme_copyright();
+
+	$theme_version = lunarfall_theme_version();
+	if ($theme_version !== null)
+			echo ' <span class="lunarfall_version"># ', htmlspecialchars('Lunarfall v' . $theme_version, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '</span>';
+
+	echo '
+			</li>
 		</ul>';
 
 	// Show the load time?
@@ -551,7 +629,7 @@ function template_menu()
 	{
 		echo '
 						<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
-							<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', '>
+							<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', isset($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : '', '>
 								<i class="fa fa-', $act, ' fa-lg"></i>', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '
 							</a>';
 

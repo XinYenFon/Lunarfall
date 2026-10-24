@@ -214,7 +214,7 @@ function template_unread()
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
 				', $context['menu_separator'], '
 				<div class="pagelinks floatleft">
-					<a href="#recent" class="button">', $txt['go_up'], '</a>
+					<a href="#recent" class="button" id="bot">', $txt['go_up'], '</a>
 					', $context['page_index'], '
 				</div>';
 
@@ -261,7 +261,7 @@ function template_replies()
 		<div class="popup_window description">
 			<div class="popup_heading">
 				', $txt['mobile_action'], '
-				<a href="javascript:void(0);"><i class="fas fa-times fa-lg red"></i></a>
+				<a href="javascript:void(0);" class="hide_popup"><i class="fas fa-times fa-lg red"></i></a>
 			</div>
 			', template_button_strip($context['recent_buttons']), '
 		</div>
@@ -395,7 +395,7 @@ function template_replies()
 				', !empty($context['recent_buttons']) ? template_button_strip($context['recent_buttons'], 'right') : '', '
 				', $context['menu_separator'], '
 				<div class="pagelinks floatleft">
-					<a href="#recent" class="button">', $txt['go_up'], '</a>
+					<a href="#recent" class="button" id="bot">', $txt['go_up'], '</a>
 					', $context['page_index'], '
 				</div>';
 

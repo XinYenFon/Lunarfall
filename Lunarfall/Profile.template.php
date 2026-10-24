@@ -70,7 +70,7 @@ function template_profile_popup()
 		$item_url = (isset($item['url']) ? $item['url'] : (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $item['area'])) . $menu_context['extra_parameters'];
 		echo '
 				<li>
-					<a href="', $item_url, '" title="', !empty($item['title']) ? $item['title'] : $area['label'], '"><i class="fa fa-', $area['plain_class'] ,' fa-fw"></i></a>
+					<a href="', $item_url, '" title="', !empty($item['title']) ? $item['title'] : $area['label'], '"><i class="fa fa-', $area['plain_class'] ,' fa-fw" aria-hidden="true"></i><span>', !empty($item['title']) ? $item['title'] : $area['label'], '</span></a>
 				</li>';
 	}
 
@@ -1887,7 +1887,7 @@ function template_alert_configuration()
 						<label for="notify_send_body">', $txt['notify_alert_timeout'], '</label>
 					</dt>
 					<dd>
-						<input type="number" size="4" id="notify_alert_timeout" name="opt_alert_timeout" min="0" value="', $context['member']['alert_timeout'], '">
+						<input type="number" size="4" id="notify_alert_timeout" name="opt_alert_timeout" min="0" max="127" value="', $context['member']['alert_timeout'], '">
 					</dd>';
 
 	echo '
@@ -2382,7 +2382,7 @@ function template_issueWarning()
 	foreach ($context['notification_templates'] as $k => $type)
 		echo '
 			if (index == ', $k, ')
-				document.getElementById(\'warn_body\').value = "', strtr($type['body'], array('"' => "'", "\n" => '\\n', "\r" => '')), '";';
+				document.getElementById(\'warn_body\').value = ', JavaScriptEscape($type['body']), ';';
 
 	echo '
 		}
@@ -2968,7 +2968,7 @@ function template_profile_avatar_select()
 										var size = avatar.alt.substr(3, 2) + " " + avatar.alt.substr(0, 2) + String.fromCharCode(117, 98, 116);
 										var file = document.getElementById("file");
 
-										if (avatar.src.indexOf("blank.png") > -1)
+										if (avatar.src.indexOf("blank.png") > -1 || selavatar.indexOf("blank.png") == -1)
 											changeSel(selavatar);
 										else
 											previewExternalAvatar(avatar.src)
@@ -2991,7 +2991,7 @@ function template_profile_avatar_select()
 		echo '
 								<div id="avatar_upload">
 									', $context['member']['avatar']['choice'] == 'upload' ? '<div class="edit_avatar_img"><img src="' . $context['member']['avatar']['href'] . '" alt=""></div>' : '', '
-									<input type="file" size="44" name="attachment" id="avatar_upload_box" value="" onchange="readfromUpload(this)"  onfocus="selectRadioByName(document.forms.creator.avatar_choice, \'upload\');" accept="image/gif, image/jpeg, image/jpg, image/png">', template_max_size('upload'), '
+									<input type="file" size="44" name="attachment" id="avatar_upload_box" value="" onchange="readfromUpload(this)"  onfocus="selectRadioByName(document.forms.creator.avatar_choice, \'upload\');" accept="image/gif, image/jpeg, image/jpg, image/png, image/webp, image/svg+xml">', template_max_size('upload'), '
 									', (!empty($context['member']['avatar']['id_attach']) ? '<br><img src="' . $context['member']['avatar']['href'] . (strpos($context['member']['avatar']['href'], '?') === false ? '?' : '&amp;') . 'time=' . time() . '" alt="" id="attached_image"><input type="hidden" name="id_attach" value="' . $context['member']['avatar']['id_attach'] . '">' : ''), '
 								</div>';
 

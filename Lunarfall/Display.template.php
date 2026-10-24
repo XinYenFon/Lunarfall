@@ -325,7 +325,7 @@ function template_main()
 			<div class="popup_window description">
 				<div class="popup_heading">
 					', $txt['mobile_action'], '
-					<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a>
+					<a href="javascript:void(0);" class="hide_popup"><i class="fa fa-times fa-lg floatright"></i></a>
 				</div>
 				', template_button_strip($context['normal_buttons']), '
 			</div>
@@ -338,7 +338,7 @@ function template_main()
 			<div class="popup_window description">
 				<div class="popup_heading">
 					', $txt['mobile_moderation'], '
-					<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a>
+					<a href="javascript:void(0);" class="hide_popup"><i class="fa fa-times fa-lg floatright"></i></a>
 				</div>
 				<div id="moderationbuttons_mobile">
 					', template_button_strip($context['mod_buttons'], 'bottom', array('id' => 'moderationbuttons_strip_mobile')), '
@@ -483,7 +483,7 @@ function template_main()
  */
 function template_single_post($message)
 {
-	global $context, $settings, $options, $txt, $scripturl, $modSettings;
+	global $context, $settings, $options, $txt, $scripturl, $modSettings, $user_info;
 
 	$ignoring = false;
 
@@ -629,7 +629,7 @@ function template_single_post($message)
 			// Since we know this person isn't a guest, you *can* message them.
 			if ($context['can_send_pm'])
 				echo '
-										<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<i class="fab fa-facebook-messenger ' . ($message['member']['online']['is_online'] ? 'online' : 'offline') . ' fa-lg"></i> ' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
+										<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<i class="fas fa-envelope ' . ($message['member']['online']['is_online'] ? 'online' : 'offline') . ' fa-lg"></i> ' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
 
 			// Show the email if necessary
 			if (!empty($message['member']['email']) && $message['member']['show_email'])
@@ -710,7 +710,7 @@ function template_single_post($message)
 	echo '
 								<h5>
 									<span class="messageicon">
-										<i ', $message['can_modify'] ? ' id="msg_icon_' . $message['id'] . '"' : '', ' class="fa-' . $message['icon'] . ' fas fa-lg"></i>
+										<i ', $message['can_modify'] ? ' id="msg_icon_' . $message['id'] . '"' : '', ' class="fa-' . $message['icon'] . ' fas fa-lg" data-lf-icon-url="', $message['icon_url'], '"></i>
 									</span>
 									<a href="', $message['href'], '" rel="nofollow" title="', !empty($message['counter']) ? sprintf($txt['reply_number'], $message['counter'], ' - ') : '', $message['subject'], '" class="smalltext">', $message['time'], '</a>
 									<span class="page_number floatright">
@@ -868,9 +868,12 @@ function template_single_post($message)
 
 			$base .= (isset($txt[$base . $count])) ? $count : 'n';
 
+			// The likes popup needs a member session and cookies.
+			$likes_text = empty($_COOKIE) || !empty($user_info['is_guest']) ? preg_replace('~</?a\b[^>]*>~', '', $txt[$base]) : $txt[$base];
+
 			echo '
 									<li class="like_count smalltext">
-										', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=msg;like=' . $message['id'] . ';' . $context['session_var'] . '=' . $context['session_id'], comma_format($count)), '
+										', sprintf($likes_text, $scripturl . '?action=likes;sa=view;ltype=msg;like=' . $message['id'] . ';' . $context['session_var'] . '=' . $context['session_id'], comma_format($count)), '
 									</li>';
 		}
 

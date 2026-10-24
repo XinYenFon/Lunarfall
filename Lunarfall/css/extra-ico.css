@@ -1,365 +1,2678 @@
-.fa-align-center:before,
-.fa-center:before {
-content: "\f037"; }
-
-.fa-align-justify:before,
-.fa-justify:before {
-content: "\f039"; }
-
-.fa-align-left:before,
-.fa-left:before {
-content: "\f036"; }
-
-.fa-align-right:before,
-.fa-right:before {
-content: "\f038"; }
-
-.fa-arrow-left:before,
-.fa-floatleft:before {
-content: "\f060"; }
-
-.fa-arrow-right:before,
-.fa-floatright:before {
-content: "\f061"; }
-
-.fa-arrows-alt-v:before,
-.fa-horizontalrule:before {
-content: "\f338"; }
-
-.fa-ban:before,
-.fa-disable:before {
-content: "\f05e"; }
-
-.fa-bell:before,
-.button_notify:before {
-content: "\f0f3"; }
-
-.fa-book:before,
-.fa-reports:before {
-content: "\f02d"; }
-
-.fa-calendar:before,
-.fa-managecalendar:before {
-content: "\f133"; }
-
-.fa-caret-square-down:before,
-.toggle_down:before {
-content: "\f150"; }
-
-.fa-caret-square-up:before,
-.toggle_up:before {
-content: "\f151"; }
-
-.fa-chart-area:before,
-.fa-stats:before,
-.fa-statistics:before {
-content: "\f1fe"; }
-
-.fa-chart-bar:before,
-.button_add_poll:before,
-.fa-poll:before {
-content: "\f080"; }
-
-.fa-check:before,
-.valid:before,
-.fa-enable:before {
-content: "\f00c"; }
-
-.fa-clipboard-list:before,
-.fa-manrules:before {
-content: "\f46d"; }
-
-.fa-clock:before,
-.fa-time_online:before {
-content: "\f017"; }
-
-.fa-cogs:before,
-.fa-features:before,
-.fa-settings:before,
-.fa-featuresettings:before {
-content: "\f085"; }
-
-.fa-comment:before,
-.fa-board_off:before {
-content: "\f075"; }
-
-.fa-comment-alt:before,
-.fa-board_on:before {
-content: "\f27a"; }
-
-.fa-comments:before,
-.fa-board_on2:before {
-content: "\f086"; }
-
-.fa-compass:before,
-.button_merge:before {
-content: "\f14e"; }
-
-.fa-cubes:before,
-.fa-packages:before {
-content: "\f1b3"; }
-
-.fa-database:before,
-.fa-scheduled:before,
-.fa-scheduledtasks:before {
-content: "\f1c0"; }
-
-.fa-dollar-sign:before,
-.fa-paid:before,
-.fa-paidsubscribe:before {
-content: "\f155"; }
-
-.fa-drafting-compass:before,
-.fa-drafts:before,
-.fa-showdrafts:before {
-content: "\f568"; }
-
-.fa-edit:before,
-.fa-quick_edit_button:before {
-content: "\f044"; }
-
-.fa-envelope:before,
-.fa-mail:before,
-.fa-mailqueue:before,
-.fa-send:before,
-.fa-email:before {
-content: "\f0e0"; }
-
-.fa-envelope-open:before,
-.fa-sent:before {
-content: "\f2b6"; }
-
-.fa-eraser:before,
-.fa-prune:before {
-content: "\f12d"; }
-
-.fa-exclamation:before,
-.fa-alerts:before,
-.fa-showalerts:before {
-content: "\f12a"; }
-
-.fa-exclamation-triangle:before,
-.fa-members_watched:before,
-.lf-check:before,
-.fa-warning:before,
-.fa-warnings:before {
-content: "\f071"; }
-
-.fa-expand-arrows-alt:before,
-.fa-maximize:before {
-content: "\f31e"; }
-
-.fa-file-alt:before,
-.fa-xx:before {
-content: "\f15c"; }
-
-.fa-fire-extinguisher:before,
-.fa-moderate:before {
-content: "\f134"; }
-
-.fa-flag:before,
-.fa-error:before {
-content: "\f024"; }
-
-.fa-font:before,
-.fa-color:before {
-content: "\f031"; }
-
-.fa-forward:before,
-.fa-board_redirect:before,
-.button_move:before {
-content: "\f04e"; }
-
-.fa-history:before,
-.fa-logs:before {
-content: "\f1da"; }
-
-.fa-home:before,
-.fa-administration:before,
-.fa-index:before {
-content: "\f015"; }
-
-.fa-key:before,
-.fa-permissions:before {
-content: "\f084"; }
-
-.fa-language:before,
-.fa-languages:before {
-content: "\f1ab"; }
-
-.fa-life-ring:before,
-.fa-support:before,
-.fa-credits:before {
-content: "\f1cd"; }
-
-.fa-list:before,
-.fa-bulletlist:before {
-content: "\f03a"; }
-
-.fa-list-alt:before,
-.fa-boards:before,
-.fa-manageboards:before {
-content: "\f022"; }
-
-.fa-list-ol:before,
-.fa-orderedlist:before {
-content: "\f0cb"; }
-
-.fa-lock:before,
-.button_lock:before {
-content: "\f023"; }
-
-.fa-newspaper:before,
-.fa-news:before {
-content: "\f1ea"; }
-
-.fa-paint-brush:before,
-.fa-current_theme:before,
-.fa-themes:before,
-.fa-theme:before {
-content: "\f1fc"; }
-
-.fa-paperclip:before,
-.fa-attachment:before,
-.fa-manageattachments:before,
-.fa-post_moderation_attach:before {
-content: "\f0c6"; }
-
-.fa-pencil-alt:before,
-.fa-posts:before,
-.fa-postsettings:before,
-.fa-modify_button:before  {
-content: "\f303"; }
-
-.fa-print:before,
-.button_print:before {
-content: "\f02f"; }
-
-.fa-puzzle-piece:before,
-.fa-modifications:before,
-.fa-modsettings:before {
-content: "\f12e"; }
-
-.fa-quote-left:before,
-.fa-quote:before {
-content: "\f10d"; }
-
-.fa-random:before,
-.fa-split_button:before {
-content: "\f074"; }
-
-.fa-reply:before,
-.button_reply:before,
-.fa-reply_button:before {
-content: "\f3e5"; }
-
-.fa-search:before,
-.fa-managesearch:before {
-content: "\f002"; }
-
-.fa-server:before,
-.fa-serversettings:before {
-content: "\f233"; }
-
-.fa-sign-in-alt:before,
-.fa-regcenter:before,
-.fa-signup:before {
-content: "\f2f6"; }
-
-.fa-sign-out-alt:before,
-.fa-logout:before,
-.fa-exit:before,
-.fa-adminlogoff:before {
-content: "\f2f5"; }
-
-.fa-sitemap:before,
-.fa-engines:before,
-.fa-sengines:before {
-content: "\f0e8"; }
-
-.fa-smile:before,
-.fa-smiley:before,
-.fa-smileys:before {
-content: "\f118"; }
-
-.fa-sort-amount-down:before,
-.fa-topics_replies:before,
-.fa-topics_views:before {
-content: "\f160"; }
-
-.fa-star-half:before,
-.fa-frenemy:before {
-content: "\f089"; }
-
-.fa-strikethrough:before,
-.fa-strike:before {
-content: "\f0cc"; }
-
-.fa-suitcase:before,
-.fa-admin:before {
-content: "\f0f2"; }
-
-.fa-tags:before,
-.fa-manlabels:before {
-content: "\f02c"; }
-
-.fa-text-height:before,
-.fa-size:before {
-content: "\f034"; }
-
-.fa-thumbs-down:before,
-.fa-thumbdown:before {
-content: "\f165"; }
-
-.fa-thumbs-up:before,
-.fa-liked_messages:before,
-.fa-liked_users:before,
-.fa-thumbup:before {
-content: "\f164"; }
-
-.fa-thumbtack:before,
-.button_sticky:before,
-.fa-sticky:before {
-content: "\f08d"; }
-
-.fa-times:before,
-.button_delete:before,
-.fa-members_delete:before,
-.invalid:before {
-content: "\f00d"; }
-
-.fa-trash-alt:before,
-.fa-remove_button:before {
-content: "\f2ed"; }
-
-.fa-trophy:before,
-.fa-posters:before {
-content: "\f091"; }
-
-.fa-umbrella:before,
-.fa-security:before,
-.fa-antispam:before {
-content: "\f0e9"; }
-
-.fa-unlink:before,
-.fa-removeformat:before {
-content: "\f127"; }
-
-.fa-users:before,
-.fa-members:before,
-.fa-mlist:before,
-.fa-membergroups:before,
-.fa-starters:before,
-.fa-viewmembers:before,
-.fa-members_request:before {
-content: "\f0c0"; }
-
-.fa-wrench:before,
-.fa-source:before,
-.fa-maintain:before {
-content: "\f0ad"; }
-
-.fa-video:before,
-.fa-youtube:before
-{content:"\f03d"}
-.fa-pre:before{content:"\f1e4"}
+/* Lunarfall icon adapter — Font Awesome Free 7.3.1.
+ * Central SMF/legacy mappings; vendor CSS and three WOFF2 fonts are local.
+ * Canonical targets and Free availability verified against upstream metadata.
+ * Existing .fa/.fas/.far/.fab, main_icons and action classes remain supported.
+ */
+
+/* Keep FA 5's intrinsic widths and the theme's existing sizing/margins. */
+.fa, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands { width: auto; }
+.fa-fw { width: 1.25em; text-align: center; }
+.fa-lg { font-size: 1.33333em; line-height: .75em; vertical-align: -.0667em; }
+.main_icons { display: inline-block; font-size: 16px; line-height: 1; vertical-align: middle; }
+.main_icons.fa-lg { font-size: 1.33333em; }
+.main_icons::before { display: inline-block; width: 1em; text-align: center; }
+.button .main_icons::before { margin-inline-end: .35em; }
+:is(.fa, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands, .main_icons)::before {
+	content: var(--lf-icon-code, var(--fa, ""));
+	font-family: var(--lf-icon-family, inherit);
+	font-weight: var(--lf-icon-weight, inherit);
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	background: none;
+	-webkit-font-smoothing: antialiased;
+}
+.main_icons::before { font-family: var(--lf-icon-family, "Font Awesome 7 Free"); font-weight: var(--lf-icon-weight, 900); }
+.main_icons.gender_None::before, .main_icons.gender_0::before { content: none; display: none; }
+
+/* align-center — solid (Free). */
+.fa-align-center,
+.main_icons.align-center,
+:is(.fa, .fas, .far, .fa-main_icons).align-center,
+.fa-center,
+.main_icons.center,
+:is(.fa, .fas, .far, .fa-main_icons).center {
+	--lf-icon-code: "\f037";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "align-center";
+	--lf-icon-label: "Align Center";
+}
+
+/* align-justify — solid (Free). */
+.fa-align-justify,
+.main_icons.align-justify,
+:is(.fa, .fas, .far, .fa-main_icons).align-justify,
+.fa-justify,
+.main_icons.justify,
+:is(.fa, .fas, .far, .fa-main_icons).justify {
+	--lf-icon-code: "\f039";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "align-justify";
+	--lf-icon-label: "Align Justify";
+}
+
+/* align-left — solid (Free). */
+.fa-align-left,
+.main_icons.align-left,
+:is(.fa, .fas, .far, .fa-main_icons).align-left,
+.fa-left,
+.main_icons.left,
+:is(.fa, .fas, .far, .fa-main_icons).left {
+	--lf-icon-code: "\f036";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "align-left";
+	--lf-icon-label: "Align Left";
+}
+
+/* align-right — solid (Free). */
+.fa-align-right,
+.main_icons.align-right,
+:is(.fa, .fas, .far, .fa-main_icons).align-right,
+.fa-right,
+.main_icons.right,
+:is(.fa, .fas, .far, .fa-main_icons).right {
+	--lf-icon-code: "\f038";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "align-right";
+	--lf-icon-label: "Align Right";
+}
+
+/* arrow-left — solid (Free). */
+.fa-arrow-left,
+.main_icons.arrow-left,
+:is(.fa, .fas, .far, .fa-main_icons).arrow-left,
+.fa-floatleft,
+.main_icons.floatleft,
+:is(.fa, .fas, .far, .fa-main_icons).floatleft,
+.fa-previous_page,
+.main_icons.previous_page,
+:is(.fa, .fas, .far, .fa-main_icons).previous_page,
+.fa-left_arrow,
+.main_icons.left_arrow,
+:is(.fa, .fas, .far, .fa-main_icons).left_arrow {
+	--lf-icon-code: "\f060";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "arrow-left";
+	--lf-icon-label: "Arrow Left";
+}
+
+/* arrow-right — solid (Free). */
+.fa-arrow-right,
+.main_icons.arrow-right,
+:is(.fa, .fas, .far, .fa-main_icons).arrow-right,
+.fa-floatright,
+.main_icons.floatright,
+:is(.fa, .fas, .far, .fa-main_icons).floatright,
+.fa-next_page,
+.main_icons.next_page,
+:is(.fa, .fas, .far, .fa-main_icons).next_page,
+.fa-right_arrow,
+.main_icons.right_arrow,
+:is(.fa, .fas, .far, .fa-main_icons).right_arrow {
+	--lf-icon-code: "\f061";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "arrow-right";
+	--lf-icon-label: "Arrow Right";
+}
+
+/* up-down — solid (Free). */
+.fa-arrows-alt-v,
+.main_icons.arrows-alt-v,
+:is(.fa, .fas, .far, .fa-main_icons).arrows-alt-v,
+.fa-horizontalrule,
+.main_icons.horizontalrule,
+:is(.fa, .fas, .far, .fa-main_icons).horizontalrule {
+	--lf-icon-code: "\f338";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "up-down";
+	--lf-icon-label: "Up Down";
+}
+
+/* ban — solid (Free). */
+.fa-ban,
+.main_icons.ban,
+:is(.fa, .fas, .far, .fa-main_icons).ban,
+.fa-disable,
+.main_icons.disable,
+:is(.fa, .fas, .far, .fa-main_icons).disable,
+.fa-warning_mute,
+.main_icons.warning_mute,
+:is(.fa, .fas, .far, .fa-main_icons).warning_mute,
+.fa-ignore,
+.main_icons.ignore,
+:is(.fa, .fas, .far, .fa-main_icons).ignore,
+.fa-ignoreboards,
+.main_icons.ignoreboards,
+:is(.fa, .fas, .far, .fa-main_icons).ignoreboards,
+.fa-mute,
+.main_icons.mute,
+:is(.fa, .fas, .far, .fa-main_icons).mute,
+.fa-banuser,
+.main_icons.banuser,
+:is(.fa, .fas, .far, .fa-main_icons).banuser {
+	--lf-icon-code: "\f05e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "ban";
+	--lf-icon-label: "Ban";
+}
+
+/* bell — solid (Free). */
+.fa-bell,
+.main_icons.bell,
+:is(.fa, .fas, .far, .fa-main_icons).bell,
+.fa-alerts,
+.main_icons.alerts,
+:is(.fa, .fas, .far, .fa-main_icons).alerts,
+.fa-showalerts,
+.main_icons.showalerts,
+:is(.fa, .fas, .far, .fa-main_icons).showalerts,
+.fa-notify_button,
+.main_icons.notify_button,
+:is(.fa, .fas, .far, .fa-main_icons).notify_button,
+.fa-notification,
+.main_icons.notification,
+:is(.fa, .fas, .far, .fa-main_icons).notification,
+.fa-alerts_popup,
+.main_icons.alerts_popup,
+:is(.fa, .fas, .far, .fa-main_icons).alerts_popup,
+.fa-notify,
+.main_icons.notify,
+:is(.fa, .fas, .far, .fa-main_icons).notify {
+	--lf-icon-code: "\f0f3";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "bell";
+	--lf-icon-label: "Bell";
+}
+.far.fa-bell,
+.fa-regular.fa-bell,
+.far.fa-alerts,
+.fa-regular.fa-alerts,
+.far.fa-showalerts,
+.fa-regular.fa-showalerts,
+.far.fa-notify_button,
+.fa-regular.fa-notify_button,
+.far.fa-notification,
+.fa-regular.fa-notification,
+.far.fa-alerts_popup,
+.fa-regular.fa-alerts_popup,
+.far.fa-notify,
+.fa-regular.fa-notify { --lf-icon-weight: 400; }
+
+/* book — solid (Free). */
+.fa-book,
+.main_icons.book,
+:is(.fa, .fas, .far, .fa-main_icons).book,
+.fa-reports,
+.main_icons.reports,
+:is(.fa, .fas, .far, .fa-main_icons).reports {
+	--lf-icon-code: "\f02d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "book";
+	--lf-icon-label: "Book";
+}
+
+/* calendar — solid (Free). */
+.fa-calendar,
+.main_icons.calendar,
+:is(.fa, .fas, .far, .fa-main_icons).calendar,
+.fa-managecalendar,
+.main_icons.managecalendar,
+:is(.fa, .fas, .far, .fa-main_icons).managecalendar,
+.fa-link_to_calendar,
+.main_icons.link_to_calendar,
+:is(.fa, .fas, .far, .fa-main_icons).link_to_calendar {
+	--lf-icon-code: "\f133";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "calendar";
+	--lf-icon-label: "Calendar";
+}
+.far.fa-calendar,
+.fa-regular.fa-calendar,
+.far.fa-managecalendar,
+.fa-regular.fa-managecalendar,
+.far.fa-link_to_calendar,
+.fa-regular.fa-link_to_calendar { --lf-icon-weight: 400; }
+
+/* square-caret-down — solid (Free). */
+.fa-caret-square-down,
+.main_icons.caret-square-down,
+:is(.fa, .fas, .far, .fa-main_icons).caret-square-down {
+	--lf-icon-code: "\f150";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "square-caret-down";
+	--lf-icon-label: "Square Caret Down";
+}
+.far.fa-caret-square-down,
+.fa-regular.fa-caret-square-down { --lf-icon-weight: 400; }
+
+/* square-caret-up — solid (Free). */
+.fa-caret-square-up,
+.main_icons.caret-square-up,
+:is(.fa, .fas, .far, .fa-main_icons).caret-square-up {
+	--lf-icon-code: "\f151";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "square-caret-up";
+	--lf-icon-label: "Square Caret Up";
+}
+.far.fa-caret-square-up,
+.fa-regular.fa-caret-square-up { --lf-icon-weight: 400; }
+
+/* chart-area — solid (Free). */
+.fa-chart-area,
+.main_icons.chart-area,
+:is(.fa, .fas, .far, .fa-main_icons).chart-area,
+.fa-stats,
+.main_icons.stats,
+:is(.fa, .fas, .far, .fa-main_icons).stats,
+.fa-statistics,
+.main_icons.statistics,
+:is(.fa, .fas, .far, .fa-main_icons).statistics {
+	--lf-icon-code: "\f1fe";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "chart-area";
+	--lf-icon-label: "Chart Area";
+}
+
+/* chart-bar — solid (Free). */
+.fa-chart-bar,
+.main_icons.chart-bar,
+:is(.fa, .fas, .far, .fa-main_icons).chart-bar,
+.fa-poll,
+.main_icons.poll,
+:is(.fa, .fas, .far, .fa-main_icons).poll,
+.fa-add_poll,
+.main_icons.add_poll,
+:is(.fa, .fas, .far, .fa-main_icons).add_poll,
+.fa-post_poll,
+.main_icons.post_poll,
+:is(.fa, .fas, .far, .fa-main_icons).post_poll,
+.fa-viewresults,
+.main_icons.viewresults,
+:is(.fa, .fas, .far, .fa-main_icons).viewresults,
+.fa-bar-chart,
+.main_icons.bar-chart,
+:is(.fa, .fas, .far, .fa-main_icons).bar-chart {
+	--lf-icon-code: "\f080";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "chart-bar";
+	--lf-icon-label: "Chart Bar";
+}
+.far.fa-chart-bar,
+.fa-regular.fa-chart-bar,
+.far.fa-poll,
+.fa-regular.fa-poll,
+.far.fa-add_poll,
+.fa-regular.fa-add_poll,
+.far.fa-post_poll,
+.fa-regular.fa-post_poll,
+.far.fa-viewresults,
+.fa-regular.fa-viewresults,
+.far.fa-bar-chart,
+.fa-regular.fa-bar-chart { --lf-icon-weight: 400; }
+
+/* check — solid (Free). */
+.fa-check,
+.main_icons.check,
+:is(.fa, .fas, .far, .fa-main_icons).check,
+.fa-enable,
+.main_icons.enable,
+:is(.fa, .fas, .far, .fa-main_icons).enable,
+.fa-valid,
+.main_icons.valid,
+:is(.fa, .fas, .far, .fa-main_icons).valid,
+.fa-post_moderation_allow,
+.main_icons.post_moderation_allow,
+:is(.fa, .fas, .far, .fa-main_icons).post_moderation_allow,
+.fa-approve,
+.main_icons.approve,
+:is(.fa, .fas, .far, .fa-main_icons).approve,
+.fa-approve_button,
+.main_icons.approve_button,
+:is(.fa, .fas, .far, .fa-main_icons).approve_button,
+.fa-read_button,
+.main_icons.read_button,
+:is(.fa, .fas, .far, .fa-main_icons).read_button,
+.fa-markread,
+.main_icons.markread,
+:is(.fa, .fas, .far, .fa-main_icons).markread,
+.fa-return_vote,
+.main_icons.return_vote,
+:is(.fa, .fas, .far, .fa-main_icons).return_vote {
+	--lf-icon-code: "\f00c";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "check";
+	--lf-icon-label: "Check";
+}
+
+/* clipboard-list — solid (Free). */
+.fa-clipboard-list,
+.main_icons.clipboard-list,
+:is(.fa, .fas, .far, .fa-main_icons).clipboard-list,
+.fa-manrules,
+.main_icons.manrules,
+:is(.fa, .fas, .far, .fa-main_icons).manrules {
+	--lf-icon-code: "\f46d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "clipboard-list";
+	--lf-icon-label: "Clipboard List";
+}
+
+/* clock — solid (Free). */
+.fa-clock,
+.main_icons.clock,
+:is(.fa, .fas, .far, .fa-main_icons).clock,
+.fa-time_online,
+.main_icons.time_online,
+:is(.fa, .fas, .far, .fa-main_icons).time_online {
+	--lf-icon-code: "\f017";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "clock";
+	--lf-icon-label: "Clock";
+}
+.far.fa-clock,
+.fa-regular.fa-clock,
+.far.fa-time_online,
+.fa-regular.fa-time_online { --lf-icon-weight: 400; }
+
+/* gears — solid (Free). */
+.fa-cogs,
+.main_icons.cogs,
+:is(.fa, .fas, .far, .fa-main_icons).cogs,
+.fa-features,
+.main_icons.features,
+:is(.fa, .fas, .far, .fa-main_icons).features,
+.fa-settings,
+.main_icons.settings,
+:is(.fa, .fas, .far, .fa-main_icons).settings,
+.fa-featuresettings,
+.main_icons.featuresettings,
+:is(.fa, .fas, .far, .fa-main_icons).featuresettings,
+.fa-corefeatures,
+.main_icons.corefeatures,
+:is(.fa, .fas, .far, .fa-main_icons).corefeatures {
+	--lf-icon-code: "\f085";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "gears";
+	--lf-icon-label: "Gears";
+}
+
+/* comment — solid (Free). */
+.fa-comment,
+.main_icons.comment,
+:is(.fa, .fas, .far, .fa-main_icons).comment,
+.fa-board_off,
+.main_icons.board_off,
+:is(.fa, .fas, .far, .fa-main_icons).board_off {
+	--lf-icon-code: "\f075";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "comment";
+	--lf-icon-label: "Comment";
+}
+.far.fa-comment,
+.fa-regular.fa-comment,
+.far.fa-board_off,
+.fa-regular.fa-board_off { --lf-icon-weight: 400; }
+
+/* message — solid (Free). */
+.fa-comment-alt,
+.main_icons.comment-alt,
+:is(.fa, .fas, .far, .fa-main_icons).comment-alt,
+.fa-board_on,
+.main_icons.board_on,
+:is(.fa, .fas, .far, .fa-main_icons).board_on {
+	--lf-icon-code: "\f27a";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "message";
+	--lf-icon-label: "Message";
+}
+.far.fa-comment-alt,
+.fa-regular.fa-comment-alt,
+.far.fa-board_on,
+.fa-regular.fa-board_on { --lf-icon-weight: 400; }
+
+/* comments — solid (Free). */
+.fa-comments,
+.main_icons.comments,
+:is(.fa, .fas, .far, .fa-main_icons).comments,
+.fa-board_on2,
+.main_icons.board_on2,
+:is(.fa, .fas, .far, .fa-main_icons).board_on2 {
+	--lf-icon-code: "\f086";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "comments";
+	--lf-icon-label: "Comments";
+}
+.far.fa-comments,
+.fa-regular.fa-comments,
+.far.fa-board_on2,
+.fa-regular.fa-board_on2 { --lf-icon-weight: 400; }
+
+/* compass — solid (Free). */
+.fa-compass,
+.main_icons.compass,
+:is(.fa, .fas, .far, .fa-main_icons).compass {
+	--lf-icon-code: "\f14e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "compass";
+	--lf-icon-label: "Compass";
+}
+.far.fa-compass,
+.fa-regular.fa-compass { --lf-icon-weight: 400; }
+
+/* cubes — solid (Free). */
+.fa-cubes,
+.main_icons.cubes,
+:is(.fa, .fas, .far, .fa-main_icons).cubes,
+.fa-packages,
+.main_icons.packages,
+:is(.fa, .fas, .far, .fa-main_icons).packages {
+	--lf-icon-code: "\f1b3";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "cubes";
+	--lf-icon-label: "Cubes";
+}
+
+/* database — solid (Free). */
+.fa-database,
+.main_icons.database,
+:is(.fa, .fas, .far, .fa-main_icons).database,
+.fa-scheduled,
+.main_icons.scheduled,
+:is(.fa, .fas, .far, .fa-main_icons).scheduled,
+.fa-scheduledtasks,
+.main_icons.scheduledtasks,
+:is(.fa, .fas, .far, .fa-main_icons).scheduledtasks {
+	--lf-icon-code: "\f1c0";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "database";
+	--lf-icon-label: "Database";
+}
+
+/* dollar-sign — solid (Free). */
+.fa-dollar-sign,
+.main_icons.dollar-sign,
+:is(.fa, .fas, .far, .fa-main_icons).dollar-sign,
+.fa-paid,
+.main_icons.paid,
+:is(.fa, .fas, .far, .fa-main_icons).paid,
+.fa-paidsubscribe,
+.main_icons.paidsubscribe,
+:is(.fa, .fas, .far, .fa-main_icons).paidsubscribe,
+.fa-subscriptions,
+.main_icons.subscriptions,
+:is(.fa, .fas, .far, .fa-main_icons).subscriptions {
+	--lf-icon-code: "\24";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "dollar-sign";
+	--lf-icon-label: "Dollar Sign";
+}
+
+/* compass-drafting — solid (Free). */
+.fa-drafting-compass,
+.main_icons.drafting-compass,
+:is(.fa, .fas, .far, .fa-main_icons).drafting-compass,
+.fa-drafts,
+.main_icons.drafts,
+:is(.fa, .fas, .far, .fa-main_icons).drafts,
+.fa-showdrafts,
+.main_icons.showdrafts,
+:is(.fa, .fas, .far, .fa-main_icons).showdrafts {
+	--lf-icon-code: "\f568";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "compass-drafting";
+	--lf-icon-label: "Compass Drafting";
+}
+
+/* pen-to-square — solid (Free). */
+.fa-edit,
+.main_icons.edit,
+:is(.fa, .fas, .far, .fa-main_icons).edit,
+.fa-quick_edit_button,
+.main_icons.quick_edit_button,
+:is(.fa, .fas, .far, .fa-main_icons).quick_edit_button,
+.fa-new_topic,
+.main_icons.new_topic,
+:is(.fa, .fas, .far, .fa-main_icons).new_topic {
+	--lf-icon-code: "\f044";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "pen-to-square";
+	--lf-icon-label: "Pen To Square";
+}
+.far.fa-edit,
+.fa-regular.fa-edit,
+.far.fa-quick_edit_button,
+.fa-regular.fa-quick_edit_button,
+.far.fa-new_topic,
+.fa-regular.fa-new_topic { --lf-icon-weight: 400; }
+
+/* envelope — solid (Free). */
+.fa-envelope,
+.main_icons.envelope,
+:is(.fa, .fas, .far, .fa-main_icons).envelope,
+.fa-mail,
+.main_icons.mail,
+:is(.fa, .fas, .far, .fa-main_icons).mail,
+.fa-mailqueue,
+.main_icons.mailqueue,
+:is(.fa, .fas, .far, .fa-main_icons).mailqueue,
+.fa-send,
+.main_icons.send,
+:is(.fa, .fas, .far, .fa-main_icons).send,
+.fa-email,
+.main_icons.email,
+:is(.fa, .fas, .far, .fa-main_icons).email,
+.fa-im_on,
+.main_icons.im_on,
+:is(.fa, .fas, .far, .fa-main_icons).im_on,
+.fa-mail_new,
+.main_icons.mail_new,
+:is(.fa, .fas, .far, .fa-main_icons).mail_new,
+.fa-personal_message,
+.main_icons.personal_message,
+:is(.fa, .fas, .far, .fa-main_icons).personal_message,
+.fa-unread_button,
+.main_icons.unread_button,
+:is(.fa, .fas, .far, .fa-main_icons).unread_button,
+.fa-pm,
+.main_icons.pm,
+:is(.fa, .fas, .far, .fa-main_icons).pm,
+.fa-postbyemail,
+.main_icons.postbyemail,
+:is(.fa, .fas, .far, .fa-main_icons).postbyemail,
+.fa-envolope,
+.main_icons.envolope,
+:is(.fa, .fas, .far, .fa-main_icons).envolope,
+.fa-sendpm,
+.main_icons.sendpm,
+:is(.fa, .fas, .far, .fa-main_icons).sendpm,
+.fa-mark_unread,
+.main_icons.mark_unread,
+:is(.fa, .fas, .far, .fa-main_icons).mark_unread {
+	--lf-icon-code: "\f0e0";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "envelope";
+	--lf-icon-label: "Envelope";
+}
+.far.fa-envelope,
+.fa-regular.fa-envelope,
+.far.fa-mail,
+.fa-regular.fa-mail,
+.far.fa-mailqueue,
+.fa-regular.fa-mailqueue,
+.far.fa-send,
+.fa-regular.fa-send,
+.far.fa-email,
+.fa-regular.fa-email,
+.far.fa-im_on,
+.fa-regular.fa-im_on,
+.far.fa-mail_new,
+.fa-regular.fa-mail_new,
+.far.fa-personal_message,
+.fa-regular.fa-personal_message,
+.far.fa-unread_button,
+.fa-regular.fa-unread_button,
+.far.fa-pm,
+.fa-regular.fa-pm,
+.far.fa-postbyemail,
+.fa-regular.fa-postbyemail,
+.far.fa-envolope,
+.fa-regular.fa-envolope,
+.far.fa-sendpm,
+.fa-regular.fa-sendpm,
+.far.fa-mark_unread,
+.fa-regular.fa-mark_unread { --lf-icon-weight: 400; }
+
+/* envelope-open — solid (Free). */
+.fa-envelope-open,
+.main_icons.envelope-open,
+:is(.fa, .fas, .far, .fa-main_icons).envelope-open,
+.fa-sent,
+.main_icons.sent,
+:is(.fa, .fas, .far, .fa-main_icons).sent,
+.fa-im_off,
+.main_icons.im_off,
+:is(.fa, .fas, .far, .fa-main_icons).im_off {
+	--lf-icon-code: "\f2b6";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "envelope-open";
+	--lf-icon-label: "Envelope Open";
+}
+.far.fa-envelope-open,
+.fa-regular.fa-envelope-open,
+.far.fa-sent,
+.fa-regular.fa-sent,
+.far.fa-im_off,
+.fa-regular.fa-im_off { --lf-icon-weight: 400; }
+
+/* eraser — solid (Free). */
+.fa-eraser,
+.main_icons.eraser,
+:is(.fa, .fas, .far, .fa-main_icons).eraser,
+.fa-prune,
+.main_icons.prune,
+:is(.fa, .fas, .far, .fa-main_icons).prune {
+	--lf-icon-code: "\f12d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "eraser";
+	--lf-icon-label: "Eraser";
+}
+
+/* exclamation — solid (Free). */
+.fa-exclamation,
+.main_icons.exclamation,
+:is(.fa, .fas, .far, .fa-main_icons).exclamation,
+.fa-excalamation-point,
+.main_icons.excalamation-point,
+:is(.fa, .fas, .far, .fa-main_icons).excalamation-point {
+	--lf-icon-code: "\21";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "exclamation";
+	--lf-icon-label: "Exclamation";
+}
+
+/* triangle-exclamation — solid (Free). */
+.fa-exclamation-triangle,
+.main_icons.exclamation-triangle,
+:is(.fa, .fas, .far, .fa-main_icons).exclamation-triangle,
+.fa-members_watched,
+.main_icons.members_watched,
+:is(.fa, .fas, .far, .fa-main_icons).members_watched,
+.fa-warning,
+.main_icons.warning,
+:is(.fa, .fas, .far, .fa-main_icons).warning,
+.fa-warnings,
+.main_icons.warnings,
+:is(.fa, .fas, .far, .fa-main_icons).warnings,
+.fa-warn_button,
+.main_icons.warn_button,
+:is(.fa, .fas, .far, .fa-main_icons).warn_button,
+.fa-warning_moderate,
+.main_icons.warning_moderate,
+:is(.fa, .fas, .far, .fa-main_icons).warning_moderate,
+.fa-post_moderation_moderate,
+.main_icons.post_moderation_moderate,
+:is(.fa, .fas, .far, .fa-main_icons).post_moderation_moderate,
+.fa-issuewarning,
+.main_icons.issuewarning,
+:is(.fa, .fas, .far, .fa-main_icons).issuewarning,
+.fa-viewwarning,
+.main_icons.viewwarning,
+:is(.fa, .fas, .far, .fa-main_icons).viewwarning {
+	--lf-icon-code: "\f071";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "triangle-exclamation";
+	--lf-icon-label: "Triangle Exclamation";
+}
+
+/* maximize — solid (Free). */
+.fa-expand-arrows-alt,
+.main_icons.expand-arrows-alt,
+:is(.fa, .fas, .far, .fa-main_icons).expand-arrows-alt,
+.fa-maximize,
+.main_icons.maximize,
+:is(.fa, .fas, .far, .fa-main_icons).maximize {
+	--lf-icon-code: "\f31e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "maximize";
+	--lf-icon-label: "Maximize";
+}
+
+/* file-lines — solid (Free). */
+.fa-file-alt,
+.main_icons.file-alt,
+:is(.fa, .fas, .far, .fa-main_icons).file-alt,
+.fa-xx,
+.main_icons.xx,
+:is(.fa, .fas, .far, .fa-main_icons).xx,
+.fa-last_post,
+.main_icons.last_post,
+:is(.fa, .fas, .far, .fa-main_icons).last_post,
+.fa-recent_posts,
+.main_icons.recent_posts,
+:is(.fa, .fas, .far, .fa-main_icons).recent_posts,
+.fa-unread,
+.main_icons.unread,
+:is(.fa, .fas, .far, .fa-main_icons).unread,
+.fa-showposts,
+.main_icons.showposts,
+:is(.fa, .fas, .far, .fa-main_icons).showposts,
+.fa-topics,
+.main_icons.topics,
+:is(.fa, .fas, .far, .fa-main_icons).topics,
+.fa-notice,
+.main_icons.notice,
+:is(.fa, .fas, .far, .fa-main_icons).notice,
+.fa-readall,
+.main_icons.readall,
+:is(.fa, .fas, .far, .fa-main_icons).readall {
+	--lf-icon-code: "\f15c";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "file-lines";
+	--lf-icon-label: "File Lines";
+}
+.far.fa-file-alt,
+.fa-regular.fa-file-alt,
+.far.fa-xx,
+.fa-regular.fa-xx,
+.far.fa-last_post,
+.fa-regular.fa-last_post,
+.far.fa-recent_posts,
+.fa-regular.fa-recent_posts,
+.far.fa-unread,
+.fa-regular.fa-unread,
+.far.fa-showposts,
+.fa-regular.fa-showposts,
+.far.fa-topics,
+.fa-regular.fa-topics,
+.far.fa-notice,
+.fa-regular.fa-notice,
+.far.fa-readall,
+.fa-regular.fa-readall { --lf-icon-weight: 400; }
+
+/* fire-extinguisher — solid (Free). */
+.fa-fire-extinguisher,
+.main_icons.fire-extinguisher,
+:is(.fa, .fas, .far, .fa-main_icons).fire-extinguisher,
+.fa-moderate,
+.main_icons.moderate,
+:is(.fa, .fas, .far, .fa-main_icons).moderate,
+.fa-moderation,
+.main_icons.moderation,
+:is(.fa, .fas, .far, .fa-main_icons).moderation {
+	--lf-icon-code: "\f134";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "fire-extinguisher";
+	--lf-icon-label: "Fire Extinguisher";
+}
+
+/* flag — solid (Free). */
+.fa-flag,
+.main_icons.flag,
+:is(.fa, .fas, .far, .fa-main_icons).flag,
+.fa-error,
+.main_icons.error,
+:is(.fa, .fas, .far, .fa-main_icons).error,
+.fa-reportedposts,
+.main_icons.reportedposts,
+:is(.fa, .fas, .far, .fa-main_icons).reportedposts,
+.fa-reportedmembers,
+.main_icons.reportedmembers,
+:is(.fa, .fas, .far, .fa-main_icons).reportedmembers,
+.fa-report,
+.main_icons.report,
+:is(.fa, .fas, .far, .fa-main_icons).report {
+	--lf-icon-code: "\f024";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "flag";
+	--lf-icon-label: "Flag";
+}
+.far.fa-flag,
+.fa-regular.fa-flag,
+.far.fa-error,
+.fa-regular.fa-error,
+.far.fa-reportedposts,
+.fa-regular.fa-reportedposts,
+.far.fa-reportedmembers,
+.fa-regular.fa-reportedmembers,
+.far.fa-report,
+.fa-regular.fa-report { --lf-icon-weight: 400; }
+
+/* font — solid (Free). */
+.fa-font,
+.main_icons.font,
+:is(.fa, .fas, .far, .fa-main_icons).font,
+.fa-color,
+.main_icons.color,
+:is(.fa, .fas, .far, .fa-main_icons).color {
+	--lf-icon-code: "\f031";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "font";
+	--lf-icon-label: "Font";
+}
+
+/* forward — solid (Free). */
+.fa-forward,
+.main_icons.forward,
+:is(.fa, .fas, .far, .fa-main_icons).forward,
+.fa-board_redirect,
+.main_icons.board_redirect,
+:is(.fa, .fas, .far, .fa-main_icons).board_redirect,
+.fa-move,
+.main_icons.move,
+:is(.fa, .fas, .far, .fa-main_icons).move,
+.fa-moved,
+.main_icons.moved,
+:is(.fa, .fas, .far, .fa-main_icons).moved {
+	--lf-icon-code: "\f04e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "forward";
+	--lf-icon-label: "Forward";
+}
+
+/* clock-rotate-left — solid (Free). */
+.fa-history,
+.main_icons.history,
+:is(.fa, .fas, .far, .fa-main_icons).history,
+.fa-logs,
+.main_icons.logs,
+:is(.fa, .fas, .far, .fa-main_icons).logs,
+.fa-tracking,
+.main_icons.tracking,
+:is(.fa, .fas, .far, .fa-main_icons).tracking,
+.fa-modlog,
+.main_icons.modlog,
+:is(.fa, .fas, .far, .fa-main_icons).modlog {
+	--lf-icon-code: "\f1da";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "clock-rotate-left";
+	--lf-icon-label: "Clock Rotate Left";
+}
+
+/* house — solid (Free). */
+.fa-home,
+.main_icons.home,
+:is(.fa, .fas, .far, .fa-main_icons).home,
+.fa-administration,
+.main_icons.administration,
+:is(.fa, .fas, .far, .fa-main_icons).administration,
+.fa-index,
+.main_icons.index,
+:is(.fa, .fas, .far, .fa-main_icons).index {
+	--lf-icon-code: "\f015";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "house";
+	--lf-icon-label: "House";
+}
+.far.fa-home,
+.fa-regular.fa-home,
+.far.fa-administration,
+.fa-regular.fa-administration,
+.far.fa-index,
+.fa-regular.fa-index { --lf-icon-weight: 400; }
+
+/* key — solid (Free). */
+.fa-key,
+.main_icons.key,
+:is(.fa, .fas, .far, .fa-main_icons).key,
+.fa-permissions,
+.main_icons.permissions,
+:is(.fa, .fas, .far, .fa-main_icons).permissions,
+.fa-tfasetup,
+.main_icons.tfasetup,
+:is(.fa, .fas, .far, .fa-main_icons).tfasetup,
+.fa-showpermissions,
+.main_icons.showpermissions,
+:is(.fa, .fas, .far, .fa-main_icons).showpermissions,
+.fa-tfadisable,
+.main_icons.tfadisable,
+:is(.fa, .fas, .far, .fa-main_icons).tfadisable {
+	--lf-icon-code: "\f084";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "key";
+	--lf-icon-label: "Key";
+}
+
+/* language — solid (Free). */
+.fa-language,
+.main_icons.language,
+:is(.fa, .fas, .far, .fa-main_icons).language,
+.fa-languages,
+.main_icons.languages,
+:is(.fa, .fas, .far, .fa-main_icons).languages {
+	--lf-icon-code: "\f1ab";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "language";
+	--lf-icon-label: "Language";
+}
+
+/* life-ring — solid (Free). */
+.fa-life-ring,
+.main_icons.life-ring,
+:is(.fa, .fas, .far, .fa-main_icons).life-ring,
+.fa-support,
+.main_icons.support,
+:is(.fa, .fas, .far, .fa-main_icons).support,
+.fa-credits,
+.main_icons.credits,
+:is(.fa, .fas, .far, .fa-main_icons).credits {
+	--lf-icon-code: "\f1cd";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "life-ring";
+	--lf-icon-label: "Life Ring";
+}
+.far.fa-life-ring,
+.fa-regular.fa-life-ring,
+.far.fa-support,
+.fa-regular.fa-support,
+.far.fa-credits,
+.fa-regular.fa-credits { --lf-icon-weight: 400; }
+
+/* list — solid (Free). */
+.fa-list,
+.main_icons.list,
+:is(.fa, .fas, .far, .fa-main_icons).list,
+.fa-bulletlist,
+.main_icons.bulletlist,
+:is(.fa, .fas, .far, .fa-main_icons).bulletlist {
+	--lf-icon-code: "\f03a";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "list";
+	--lf-icon-label: "List";
+}
+
+/* rectangle-list — solid (Free). */
+.fa-list-alt,
+.main_icons.list-alt,
+:is(.fa, .fas, .far, .fa-main_icons).list-alt {
+	--lf-icon-code: "\f022";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "rectangle-list";
+	--lf-icon-label: "Rectangle List";
+}
+.far.fa-list-alt,
+.fa-regular.fa-list-alt { --lf-icon-weight: 400; }
+
+/* table-list — solid (Free). */
+.fa-boards,
+.main_icons.boards,
+:is(.fa, .fas, .far, .fa-main_icons).boards,
+.fa-manageboards,
+.main_icons.manageboards,
+:is(.fa, .fas, .far, .fa-main_icons).manageboards,
+.fa-general,
+.main_icons.general,
+:is(.fa, .fas, .far, .fa-main_icons).general {
+	--lf-icon-code: "\f00b";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "table-list";
+	--lf-icon-label: "Table List";
+}
+
+/* list-ol — solid (Free). */
+.fa-list-ol,
+.main_icons.list-ol,
+:is(.fa, .fas, .far, .fa-main_icons).list-ol,
+.fa-orderedlist,
+.main_icons.orderedlist,
+:is(.fa, .fas, .far, .fa-main_icons).orderedlist {
+	--lf-icon-code: "\f0cb";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "list-ol";
+	--lf-icon-label: "List Ol";
+}
+
+/* lock — solid (Free). */
+.fa-lock,
+.main_icons.lock,
+:is(.fa, .fas, .far, .fa-main_icons).lock,
+.fa-lock_poll,
+.main_icons.lock_poll,
+:is(.fa, .fas, .far, .fa-main_icons).lock_poll {
+	--lf-icon-code: "\f023";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "lock";
+	--lf-icon-label: "Lock";
+}
+
+/* newspaper — solid (Free). */
+.fa-newspaper,
+.main_icons.newspaper,
+:is(.fa, .fas, .far, .fa-main_icons).newspaper,
+.fa-news,
+.main_icons.news,
+:is(.fa, .fas, .far, .fa-main_icons).news {
+	--lf-icon-code: "\f1ea";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "newspaper";
+	--lf-icon-label: "Newspaper";
+}
+.far.fa-newspaper,
+.fa-regular.fa-newspaper,
+.far.fa-news,
+.fa-regular.fa-news { --lf-icon-weight: 400; }
+
+/* paintbrush — solid (Free). */
+.fa-paint-brush,
+.main_icons.paint-brush,
+:is(.fa, .fas, .far, .fa-main_icons).paint-brush,
+.fa-current_theme,
+.main_icons.current_theme,
+:is(.fa, .fas, .far, .fa-main_icons).current_theme,
+.fa-themes,
+.main_icons.themes,
+:is(.fa, .fas, .far, .fa-main_icons).themes,
+.fa-theme,
+.main_icons.theme,
+:is(.fa, .fas, .far, .fa-main_icons).theme {
+	--lf-icon-code: "\f1fc";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "paintbrush";
+	--lf-icon-label: "Paintbrush";
+}
+
+/* paperclip — solid (Free). */
+.fa-paperclip,
+.main_icons.paperclip,
+:is(.fa, .fas, .far, .fa-main_icons).paperclip,
+.fa-attachment,
+.main_icons.attachment,
+:is(.fa, .fas, .far, .fa-main_icons).attachment,
+.fa-manageattachments,
+.main_icons.manageattachments,
+:is(.fa, .fas, .far, .fa-main_icons).manageattachments,
+.fa-post_moderation_attach,
+.main_icons.post_moderation_attach,
+:is(.fa, .fas, .far, .fa-main_icons).post_moderation_attach,
+.fa-clip,
+.main_icons.clip,
+:is(.fa, .fas, .far, .fa-main_icons).clip,
+.fa-attachmod,
+.main_icons.attachmod,
+:is(.fa, .fas, .far, .fa-main_icons).attachmod {
+	--lf-icon-code: "\f0c6";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "paperclip";
+	--lf-icon-label: "Paperclip";
+}
+
+/* pencil — solid (Free). */
+.fa-pencil-alt,
+.main_icons.pencil-alt,
+:is(.fa, .fas, .far, .fa-main_icons).pencil-alt,
+.fa-posts,
+.main_icons.posts,
+:is(.fa, .fas, .far, .fa-main_icons).posts,
+.fa-postsettings,
+.main_icons.postsettings,
+:is(.fa, .fas, .far, .fa-main_icons).postsettings,
+.fa-modify_button,
+.main_icons.modify_button,
+:is(.fa, .fas, .far, .fa-main_icons).modify_button {
+	--lf-icon-code: "\f303";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "pencil";
+	--lf-icon-label: "Pencil";
+}
+
+/* print — solid (Free). */
+.fa-print,
+.main_icons.print,
+:is(.fa, .fas, .far, .fa-main_icons).print {
+	--lf-icon-code: "\f02f";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "print";
+	--lf-icon-label: "Print";
+}
+
+/* puzzle-piece — solid (Free). */
+.fa-puzzle-piece,
+.main_icons.puzzle-piece,
+:is(.fa, .fas, .far, .fa-main_icons).puzzle-piece,
+.fa-modifications,
+.main_icons.modifications,
+:is(.fa, .fas, .far, .fa-main_icons).modifications,
+.fa-modsettings,
+.main_icons.modsettings,
+:is(.fa, .fas, .far, .fa-main_icons).modsettings {
+	--lf-icon-code: "\f12e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "puzzle-piece";
+	--lf-icon-label: "Puzzle Piece";
+}
+
+/* quote-left — solid (Free). */
+.fa-quote-left,
+.main_icons.quote-left,
+:is(.fa, .fas, .far, .fa-main_icons).quote-left,
+.fa-quote,
+.main_icons.quote,
+:is(.fa, .fas, .far, .fa-main_icons).quote {
+	--lf-icon-code: "\f10d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "quote-left";
+	--lf-icon-label: "Quote Left";
+}
+
+/* shuffle — solid (Free). */
+.fa-random,
+.main_icons.random,
+:is(.fa, .fas, .far, .fa-main_icons).random,
+.fa-split_button,
+.main_icons.split_button,
+:is(.fa, .fas, .far, .fa-main_icons).split_button {
+	--lf-icon-code: "\f074";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "shuffle";
+	--lf-icon-label: "Shuffle";
+}
+
+/* reply — solid (Free). */
+.fa-reply,
+.main_icons.reply,
+:is(.fa, .fas, .far, .fa-main_icons).reply,
+.fa-reply_button,
+.main_icons.reply_button,
+:is(.fa, .fas, .far, .fa-main_icons).reply_button,
+.fa-topics_replies,
+.main_icons.topics_replies,
+:is(.fa, .fas, .far, .fa-main_icons).topics_replies,
+.fa-replies,
+.main_icons.replies,
+:is(.fa, .fas, .far, .fa-main_icons).replies,
+.fa-unreadreplies,
+.main_icons.unreadreplies,
+:is(.fa, .fas, .far, .fa-main_icons).unreadreplies {
+	--lf-icon-code: "\f3e5";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "reply";
+	--lf-icon-label: "Reply";
+}
+
+/* magnifying-glass — solid (Free). */
+.fa-search,
+.main_icons.search,
+:is(.fa, .fas, .far, .fa-main_icons).search,
+.fa-managesearch,
+.main_icons.managesearch,
+:is(.fa, .fas, .far, .fa-main_icons).managesearch,
+.fa-filter,
+.main_icons.filter,
+:is(.fa, .fas, .far, .fa-main_icons).filter,
+.fa-search2,
+.main_icons.search2,
+:is(.fa, .fas, .far, .fa-main_icons).search2 {
+	--lf-icon-code: "\f002";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "magnifying-glass";
+	--lf-icon-label: "Magnifying Glass";
+}
+
+/* server — solid (Free). */
+.fa-server,
+.main_icons.server,
+:is(.fa, .fas, .far, .fa-main_icons).server,
+.fa-serversettings,
+.main_icons.serversettings,
+:is(.fa, .fas, .far, .fa-main_icons).serversettings {
+	--lf-icon-code: "\f233";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "server";
+	--lf-icon-label: "Server";
+}
+
+/* right-to-bracket — solid (Free). */
+.fa-sign-in-alt,
+.main_icons.sign-in-alt,
+:is(.fa, .fas, .far, .fa-main_icons).sign-in-alt,
+.fa-regcenter,
+.main_icons.regcenter,
+:is(.fa, .fas, .far, .fa-main_icons).regcenter,
+.fa-signup,
+.main_icons.signup,
+:is(.fa, .fas, .far, .fa-main_icons).signup,
+.fa-login,
+.main_icons.login,
+:is(.fa, .fas, .far, .fa-main_icons).login,
+.fa-register,
+.main_icons.register,
+:is(.fa, .fas, .far, .fa-main_icons).register {
+	--lf-icon-code: "\f2f6";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "right-to-bracket";
+	--lf-icon-label: "Right To Bracket";
+}
+
+/* right-from-bracket — solid (Free). */
+.fa-sign-out-alt,
+.main_icons.sign-out-alt,
+:is(.fa, .fas, .far, .fa-main_icons).sign-out-alt,
+.fa-logout,
+.main_icons.logout,
+:is(.fa, .fas, .far, .fa-main_icons).logout,
+.fa-exit,
+.main_icons.exit,
+:is(.fa, .fas, .far, .fa-main_icons).exit,
+.fa-adminlogoff,
+.main_icons.adminlogoff,
+:is(.fa, .fas, .far, .fa-main_icons).adminlogoff,
+.fa-modlogoff,
+.main_icons.modlogoff,
+:is(.fa, .fas, .far, .fa-main_icons).modlogoff {
+	--lf-icon-code: "\f2f5";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "right-from-bracket";
+	--lf-icon-label: "Right From Bracket";
+}
+
+/* sitemap — solid (Free). */
+.fa-sitemap,
+.main_icons.sitemap,
+:is(.fa, .fas, .far, .fa-main_icons).sitemap,
+.fa-engines,
+.main_icons.engines,
+:is(.fa, .fas, .far, .fa-main_icons).engines,
+.fa-sengines,
+.main_icons.sengines,
+:is(.fa, .fas, .far, .fa-main_icons).sengines,
+.fa-searchengines,
+.main_icons.searchengines,
+:is(.fa, .fas, .far, .fa-main_icons).searchengines {
+	--lf-icon-code: "\f0e8";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "sitemap";
+	--lf-icon-label: "Sitemap";
+}
+
+/* face-smile — solid (Free). */
+.fa-smile,
+.main_icons.smile,
+:is(.fa, .fas, .far, .fa-main_icons).smile,
+.fa-smiley,
+.main_icons.smiley,
+:is(.fa, .fas, .far, .fa-main_icons).smiley,
+.fa-smileys,
+.main_icons.smileys,
+:is(.fa, .fas, .far, .fa-main_icons).smileys {
+	--lf-icon-code: "\f118";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "face-smile";
+	--lf-icon-label: "Face Smile";
+}
+.far.fa-smile,
+.fa-regular.fa-smile,
+.far.fa-smiley,
+.fa-regular.fa-smiley,
+.far.fa-smileys,
+.fa-regular.fa-smileys { --lf-icon-weight: 400; }
+
+/* arrow-down-wide-short — solid (Free). */
+.fa-sort-amount-down,
+.main_icons.sort-amount-down,
+:is(.fa, .fas, .far, .fa-main_icons).sort-amount-down {
+	--lf-icon-code: "\f160";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "arrow-down-wide-short";
+	--lf-icon-label: "Arrow Down Wide Short";
+}
+
+/* eye — solid (Free). */
+.fa-topics_views,
+.main_icons.topics_views,
+:is(.fa, .fas, .far, .fa-main_icons).topics_views,
+.fa-views,
+.main_icons.views,
+:is(.fa, .fas, .far, .fa-main_icons).views {
+	--lf-icon-code: "\f06e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "eye";
+	--lf-icon-label: "Eye";
+}
+.far.fa-topics_views,
+.fa-regular.fa-topics_views,
+.far.fa-views,
+.fa-regular.fa-views { --lf-icon-weight: 400; }
+
+/* star-half — solid (Free). */
+.fa-star-half,
+.main_icons.star-half,
+:is(.fa, .fas, .far, .fa-main_icons).star-half,
+.fa-frenemy,
+.main_icons.frenemy,
+:is(.fa, .fas, .far, .fa-main_icons).frenemy {
+	--lf-icon-code: "\f089";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "star-half";
+	--lf-icon-label: "Star Half";
+}
+.far.fa-star-half,
+.fa-regular.fa-star-half,
+.far.fa-frenemy,
+.fa-regular.fa-frenemy { --lf-icon-weight: 400; }
+
+/* strikethrough — solid (Free). */
+.fa-strikethrough,
+.main_icons.strikethrough,
+:is(.fa, .fas, .far, .fa-main_icons).strikethrough,
+.fa-strike,
+.main_icons.strike,
+:is(.fa, .fas, .far, .fa-main_icons).strike {
+	--lf-icon-code: "\f0cc";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "strikethrough";
+	--lf-icon-label: "Strikethrough";
+}
+
+/* suitcase — solid (Free). */
+.fa-suitcase,
+.main_icons.suitcase,
+:is(.fa, .fas, .far, .fa-main_icons).suitcase,
+.fa-admin,
+.main_icons.admin,
+:is(.fa, .fas, .far, .fa-main_icons).admin {
+	--lf-icon-code: "\f0f2";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "suitcase";
+	--lf-icon-label: "Suitcase";
+}
+
+/* tags — solid (Free). */
+.fa-tags,
+.main_icons.tags,
+:is(.fa, .fas, .far, .fa-main_icons).tags,
+.fa-manlabels,
+.main_icons.manlabels,
+:is(.fa, .fas, .far, .fa-main_icons).manlabels {
+	--lf-icon-code: "\f02c";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "tags";
+	--lf-icon-label: "Tags";
+}
+
+/* text-height — solid (Free). */
+.fa-text-height,
+.main_icons.text-height,
+:is(.fa, .fas, .far, .fa-main_icons).text-height,
+.fa-size,
+.main_icons.size,
+:is(.fa, .fas, .far, .fa-main_icons).size {
+	--lf-icon-code: "\f034";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "text-height";
+	--lf-icon-label: "Text Height";
+}
+
+/* thumbs-down — solid (Free). */
+.fa-thumbs-down,
+.main_icons.thumbs-down,
+:is(.fa, .fas, .far, .fa-main_icons).thumbs-down,
+.fa-thumbdown,
+.main_icons.thumbdown,
+:is(.fa, .fas, .far, .fa-main_icons).thumbdown,
+.fa-unlike,
+.main_icons.unlike,
+:is(.fa, .fas, .far, .fa-main_icons).unlike {
+	--lf-icon-code: "\f165";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "thumbs-down";
+	--lf-icon-label: "Thumbs Down";
+}
+.far.fa-thumbs-down,
+.fa-regular.fa-thumbs-down,
+.far.fa-thumbdown,
+.fa-regular.fa-thumbdown,
+.far.fa-unlike,
+.fa-regular.fa-unlike { --lf-icon-weight: 400; }
+
+/* thumbs-up — solid (Free). */
+.fa-thumbs-up,
+.main_icons.thumbs-up,
+:is(.fa, .fas, .far, .fa-main_icons).thumbs-up,
+.fa-liked_messages,
+.main_icons.liked_messages,
+:is(.fa, .fas, .far, .fa-main_icons).liked_messages,
+.fa-liked_users,
+.main_icons.liked_users,
+:is(.fa, .fas, .far, .fa-main_icons).liked_users,
+.fa-thumbup,
+.main_icons.thumbup,
+:is(.fa, .fas, .far, .fa-main_icons).thumbup,
+.fa-like,
+.main_icons.like,
+:is(.fa, .fas, .far, .fa-main_icons).like {
+	--lf-icon-code: "\f164";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "thumbs-up";
+	--lf-icon-label: "Thumbs Up";
+}
+.far.fa-thumbs-up,
+.fa-regular.fa-thumbs-up,
+.far.fa-liked_messages,
+.fa-regular.fa-liked_messages,
+.far.fa-liked_users,
+.fa-regular.fa-liked_users,
+.far.fa-thumbup,
+.fa-regular.fa-thumbup,
+.far.fa-like,
+.fa-regular.fa-like { --lf-icon-weight: 400; }
+
+/* thumbtack — solid (Free). */
+.fa-thumbtack,
+.main_icons.thumbtack,
+:is(.fa, .fas, .far, .fa-main_icons).thumbtack,
+.fa-sticky,
+.main_icons.sticky,
+:is(.fa, .fas, .far, .fa-main_icons).sticky,
+.fa-thumb-tack,
+.main_icons.thumb-tack,
+:is(.fa, .fas, .far, .fa-main_icons).thumb-tack {
+	--lf-icon-code: "\f08d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "thumbtack";
+	--lf-icon-label: "Thumbtack";
+}
+
+/* xmark — solid (Free). */
+.fa-times,
+.main_icons.times,
+:is(.fa, .fas, .far, .fa-main_icons).times,
+.fa-invalid,
+.main_icons.invalid,
+:is(.fa, .fas, .far, .fa-main_icons).invalid,
+.fa-hide_popup,
+.main_icons.hide_popup,
+:is(.fa, .fas, .far, .fa-main_icons).hide_popup,
+.fa-close,
+.main_icons.close,
+:is(.fa, .fas, .far, .fa-main_icons).close {
+	--lf-icon-code: "\f00d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "xmark";
+	--lf-icon-label: "Xmark";
+}
+
+/* user-minus — solid (Free). */
+.fa-members_delete,
+.main_icons.members_delete,
+:is(.fa, .fas, .far, .fa-main_icons).members_delete,
+.fa-deleteaccount,
+.main_icons.deleteaccount,
+:is(.fa, .fas, .far, .fa-main_icons).deleteaccount,
+.fa-user-minus,
+.main_icons.user-minus,
+:is(.fa, .fas, .far, .fa-main_icons).user-minus {
+	--lf-icon-code: "\f503";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "user-minus";
+	--lf-icon-label: "User Minus";
+}
+
+/* trash-can — solid (Free). */
+.fa-trash-alt,
+.main_icons.trash-alt,
+:is(.fa, .fas, .far, .fa-main_icons).trash-alt,
+.fa-remove_button,
+.main_icons.remove_button,
+:is(.fa, .fas, .far, .fa-main_icons).remove_button,
+.fa-remove_poll,
+.main_icons.remove_poll,
+:is(.fa, .fas, .far, .fa-main_icons).remove_poll {
+	--lf-icon-code: "\f2ed";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "trash-can";
+	--lf-icon-label: "Trash Can";
+}
+.far.fa-trash-alt,
+.fa-regular.fa-trash-alt,
+.far.fa-remove_button,
+.fa-regular.fa-remove_button,
+.far.fa-remove_poll,
+.fa-regular.fa-remove_poll { --lf-icon-weight: 400; }
+
+/* trophy — solid (Free). */
+.fa-trophy,
+.main_icons.trophy,
+:is(.fa, .fas, .far, .fa-main_icons).trophy,
+.fa-posters,
+.main_icons.posters,
+:is(.fa, .fas, .far, .fa-main_icons).posters {
+	--lf-icon-code: "\f091";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "trophy";
+	--lf-icon-label: "Trophy";
+}
+
+/* umbrella — solid (Free). */
+.fa-umbrella,
+.main_icons.umbrella,
+:is(.fa, .fas, .far, .fa-main_icons).umbrella,
+.fa-security,
+.main_icons.security,
+:is(.fa, .fas, .far, .fa-main_icons).security,
+.fa-antispam,
+.main_icons.antispam,
+:is(.fa, .fas, .far, .fa-main_icons).antispam {
+	--lf-icon-code: "\f0e9";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "umbrella";
+	--lf-icon-label: "Umbrella";
+}
+
+/* link-slash — solid (Free). */
+.fa-unlink,
+.main_icons.unlink,
+:is(.fa, .fas, .far, .fa-main_icons).unlink,
+.fa-removeformat,
+.main_icons.removeformat,
+:is(.fa, .fas, .far, .fa-main_icons).removeformat {
+	--lf-icon-code: "\f127";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "link-slash";
+	--lf-icon-label: "Link Slash";
+}
+
+/* users — solid (Free). */
+.fa-users,
+.main_icons.users,
+:is(.fa, .fas, .far, .fa-main_icons).users,
+.fa-members,
+.main_icons.members,
+:is(.fa, .fas, .far, .fa-main_icons).members,
+.fa-mlist,
+.main_icons.mlist,
+:is(.fa, .fas, .far, .fa-main_icons).mlist,
+.fa-membergroups,
+.main_icons.membergroups,
+:is(.fa, .fas, .far, .fa-main_icons).membergroups,
+.fa-starters,
+.main_icons.starters,
+:is(.fa, .fas, .far, .fa-main_icons).starters,
+.fa-viewmembers,
+.main_icons.viewmembers,
+:is(.fa, .fas, .far, .fa-main_icons).viewmembers,
+.fa-members_request,
+.main_icons.members_request,
+:is(.fa, .fas, .far, .fa-main_icons).members_request,
+.fa-people,
+.main_icons.people,
+:is(.fa, .fas, .far, .fa-main_icons).people,
+.fa-groupmembership,
+.main_icons.groupmembership,
+:is(.fa, .fas, .far, .fa-main_icons).groupmembership,
+.fa-viewgroups,
+.main_icons.viewgroups,
+:is(.fa, .fas, .far, .fa-main_icons).viewgroups,
+.fa-requests,
+.main_icons.requests,
+:is(.fa, .fas, .far, .fa-main_icons).requests,
+.fa-online,
+.main_icons.online,
+:is(.fa, .fas, .far, .fa-main_icons).online,
+.fa-groups,
+.main_icons.groups,
+:is(.fa, .fas, .far, .fa-main_icons).groups {
+	--lf-icon-code: "\f0c0";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "users";
+	--lf-icon-label: "Users";
+}
+
+/* wrench — solid (Free). */
+.fa-wrench,
+.main_icons.wrench,
+:is(.fa, .fas, .far, .fa-main_icons).wrench,
+.fa-source,
+.main_icons.source,
+:is(.fa, .fas, .far, .fa-main_icons).source,
+.fa-maintain,
+.main_icons.maintain,
+:is(.fa, .fas, .far, .fa-main_icons).maintain,
+.fa-repairboards,
+.main_icons.repairboards,
+:is(.fa, .fas, .far, .fa-main_icons).repairboards {
+	--lf-icon-code: "\f0ad";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "wrench";
+	--lf-icon-label: "Wrench";
+}
+
+/* video — solid (Free). */
+.fa-video,
+.main_icons.video,
+:is(.fa, .fas, .far, .fa-main_icons).video,
+.fa-youtube:not(.fab):not(.fa-brands),
+.main_icons.youtube,
+:is(.fa, .fas, .far, .fa-main_icons).youtube {
+	--lf-icon-code: "\f03d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "video";
+	--lf-icon-label: "Video";
+}
+
+/* tty — solid (Free). */
+.fa-pre,
+.main_icons.pre,
+:is(.fa, .fas, .far, .fa-main_icons).pre {
+	--lf-icon-code: "\f1e4";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "tty";
+	--lf-icon-label: "Tty";
+}
+
+/* circle-question — solid (Free). */
+.fa-help,
+.main_icons.help,
+:is(.fa, .fas, .far, .fa-main_icons).help,
+.fa-helpadmin,
+.main_icons.helpadmin,
+:is(.fa, .fas, .far, .fa-main_icons).helpadmin,
+.fa-question-circle,
+.main_icons.question-circle,
+:is(.fa, .fas, .far, .fa-main_icons).question-circle {
+	--lf-icon-code: "\f059";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-question";
+	--lf-icon-label: "Circle Question";
+}
+.far.fa-help,
+.fa-regular.fa-help,
+.far.fa-helpadmin,
+.fa-regular.fa-helpadmin,
+.far.fa-question-circle,
+.fa-regular.fa-question-circle { --lf-icon-weight: 400; }
+
+/* mars — solid (Free). */
+.fa-gender_1,
+.main_icons.gender_1,
+:is(.fa, .fas, .far, .fa-main_icons).gender_1 {
+	--lf-icon-code: "\f222";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "mars";
+	--lf-icon-label: "Mars";
+}
+
+/* venus — solid (Free). */
+.fa-gender_2,
+.main_icons.gender_2,
+:is(.fa, .fas, .far, .fa-main_icons).gender_2 {
+	--lf-icon-code: "\f221";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "venus";
+	--lf-icon-label: "Venus";
+}
+
+/* binoculars — solid (Free). */
+.fa-watch,
+.main_icons.watch,
+:is(.fa, .fas, .far, .fa-main_icons).watch,
+.fa-warning_watch,
+.main_icons.warning_watch,
+:is(.fa, .fas, .far, .fa-main_icons).warning_watch,
+.fa-watched_users,
+.main_icons.watched_users,
+:is(.fa, .fas, .far, .fa-main_icons).watched_users,
+.fa-userwatch,
+.main_icons.userwatch,
+:is(.fa, .fas, .far, .fa-main_icons).userwatch,
+.fa-binoculars,
+.main_icons.binoculars,
+:is(.fa, .fas, .far, .fa-main_icons).binoculars {
+	--lf-icon-code: "\f1e5";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "binoculars";
+	--lf-icon-label: "Binoculars";
+}
+
+/* inbox — solid (Free). */
+.fa-inbox,
+.main_icons.inbox,
+:is(.fa, .fas, .far, .fa-main_icons).inbox {
+	--lf-icon-code: "\f01c";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "inbox";
+	--lf-icon-label: "Inbox";
+}
+
+/* globe — solid (Free). */
+.fa-www,
+.main_icons.www,
+:is(.fa, .fas, .far, .fa-main_icons).www,
+.fa-globe,
+.main_icons.globe,
+:is(.fa, .fas, .far, .fa-main_icons).globe {
+	--lf-icon-code: "\f0ac";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "globe";
+	--lf-icon-label: "Globe";
+}
+
+/* arrows-rotate — solid (Free). */
+.fa-switch,
+.main_icons.switch,
+:is(.fa, .fas, .far, .fa-main_icons).switch,
+.fa-sync,
+.main_icons.sync,
+:is(.fa, .fas, .far, .fa-main_icons).sync {
+	--lf-icon-code: "\f021";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "arrows-rotate";
+	--lf-icon-label: "Arrows Rotate";
+}
+
+/* envelope-open-text — solid (Free). */
+.fa-replied,
+.main_icons.replied,
+:is(.fa, .fas, .far, .fa-main_icons).replied,
+.fa-envelope-open-text,
+.main_icons.envelope-open-text,
+:is(.fa, .fas, .far, .fa-main_icons).envelope-open-text {
+	--lf-icon-code: "\f658";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "envelope-open-text";
+	--lf-icon-label: "Envelope Open Text";
+}
+
+/* minus — solid (Free). */
+.fa-split_desel,
+.main_icons.split_desel,
+:is(.fa, .fas, .far, .fa-main_icons).split_desel,
+.fa-minus,
+.main_icons.minus,
+:is(.fa, .fas, .far, .fa-main_icons).minus {
+	--lf-icon-code: "\f068";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "minus";
+	--lf-icon-label: "Minus";
+}
+
+/* plus — solid (Free). */
+.fa-split_sel,
+.main_icons.split_sel,
+:is(.fa, .fas, .far, .fa-main_icons).split_sel,
+.fa-plus,
+.main_icons.plus,
+:is(.fa, .fas, .far, .fa-main_icons).plus {
+	--lf-icon-code: "\2b";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "plus";
+	--lf-icon-label: "Plus";
+}
+
+/* reply-all — solid (Free). */
+.fa-reply_all_button,
+.main_icons.reply_all_button,
+:is(.fa, .fas, .far, .fa-main_icons).reply_all_button {
+	--lf-icon-code: "\f122";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "reply-all";
+	--lf-icon-label: "Reply All";
+}
+
+/* file-export — solid (Free). */
+.fa-calendar_export,
+.main_icons.calendar_export,
+:is(.fa, .fas, .far, .fa-main_icons).calendar_export,
+.fa-export,
+.main_icons.export,
+:is(.fa, .fas, .far, .fa-main_icons).export,
+.fa-file-export,
+.main_icons.file-export,
+:is(.fa, .fas, .far, .fa-main_icons).file-export {
+	--lf-icon-code: "\f56e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "file-export";
+	--lf-icon-label: "File Export";
+}
+
+/* pen — solid (Free). */
+.fa-calendar_modify,
+.main_icons.calendar_modify,
+:is(.fa, .fas, .far, .fa-main_icons).calendar_modify,
+.fa-edit_poll,
+.main_icons.edit_poll,
+:is(.fa, .fas, .far, .fa-main_icons).edit_poll,
+.fa-pen,
+.main_icons.pen,
+:is(.fa, .fas, .far, .fa-main_icons).pen {
+	--lf-icon-code: "\f304";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "pen";
+	--lf-icon-label: "Pen";
+}
+
+/* sort-down — solid (Free). */
+.fa-sort_down,
+.main_icons.sort_down,
+:is(.fa, .fas, .far, .fa-main_icons).sort_down,
+.fa-sort-down,
+.main_icons.sort-down,
+:is(.fa, .fas, .far, .fa-main_icons).sort-down {
+	--lf-icon-code: "\f0dd";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "sort-down";
+	--lf-icon-label: "Sort Down";
+}
+
+/* sort-up — solid (Free). */
+.fa-sort_up,
+.main_icons.sort_up,
+:is(.fa, .fas, .far, .fa-main_icons).sort_up,
+.fa-sort-up,
+.main_icons.sort-up,
+:is(.fa, .fas, .far, .fa-main_icons).sort-up {
+	--lf-icon-code: "\f0de";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "sort-up";
+	--lf-icon-label: "Sort Up";
+}
+
+/* bars — solid (Free). */
+.fa-change_menu2,
+.main_icons.change_menu2,
+:is(.fa, .fas, .far, .fa-main_icons).change_menu2,
+.fa-change_menu,
+.main_icons.change_menu,
+:is(.fa, .fas, .far, .fa-main_icons).change_menu,
+.fa-bars,
+.main_icons.bars,
+:is(.fa, .fas, .far, .fa-main_icons).bars {
+	--lf-icon-code: "\f0c9";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "bars";
+	--lf-icon-label: "Bars";
+}
+
+/* circle-minus — solid (Free). */
+.fa-post_moderation_deny,
+.main_icons.post_moderation_deny,
+:is(.fa, .fas, .far, .fa-main_icons).post_moderation_deny,
+.fa-unapprove_button,
+.main_icons.unapprove_button,
+:is(.fa, .fas, .far, .fa-main_icons).unapprove_button,
+.fa-minus-circle,
+.main_icons.minus-circle,
+:is(.fa, .fas, .far, .fa-main_icons).minus-circle {
+	--lf-icon-code: "\f056";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-minus";
+	--lf-icon-label: "Circle Minus";
+}
+
+/* scroll — solid (Free). */
+.fa-package_ops,
+.main_icons.package_ops,
+:is(.fa, .fas, .far, .fa-main_icons).package_ops,
+.fa-scroll,
+.main_icons.scroll,
+:is(.fa, .fas, .far, .fa-main_icons).scroll {
+	--lf-icon-code: "\f70e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "scroll";
+	--lf-icon-label: "Scroll";
+}
+
+/* trash — solid (Free). */
+.fa-delete,
+.main_icons.delete,
+:is(.fa, .fas, .far, .fa-main_icons).delete,
+.fa-trash,
+.main_icons.trash,
+:is(.fa, .fas, .far, .fa-main_icons).trash {
+	--lf-icon-code: "\f1f8";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "trash";
+	--lf-icon-label: "Trash";
+}
+
+/* circle-info — solid (Free). */
+.fa-details,
+.main_icons.details,
+:is(.fa, .fas, .far, .fa-main_icons).details {
+	--lf-icon-code: "\f05a";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-info";
+	--lf-icon-label: "Circle Info";
+}
+
+/* object-ungroup — solid (Free). */
+.fa-merge,
+.main_icons.merge,
+:is(.fa, .fas, .far, .fa-main_icons).merge,
+.fa-object-ungroup,
+.main_icons.object-ungroup,
+:is(.fa, .fas, .far, .fa-main_icons).object-ungroup {
+	--lf-icon-code: "\f248";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "object-ungroup";
+	--lf-icon-label: "Object Ungroup";
+}
+.far.fa-merge,
+.fa-regular.fa-merge,
+.far.fa-object-ungroup,
+.fa-regular.fa-object-ungroup { --lf-icon-weight: 400; }
+
+/* folder — solid (Free). */
+.fa-folder,
+.main_icons.folder,
+:is(.fa, .fas, .far, .fa-main_icons).folder {
+	--lf-icon-code: "\f07b";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "folder";
+	--lf-icon-label: "Folder";
+}
+.far.fa-folder,
+.fa-regular.fa-folder { --lf-icon-weight: 400; }
+
+/* recycle — solid (Free). */
+.fa-restore_button,
+.main_icons.restore_button,
+:is(.fa, .fas, .far, .fa-main_icons).restore_button,
+.fa-recycled,
+.main_icons.recycled,
+:is(.fa, .fas, .far, .fa-main_icons).recycled,
+.fa-restore_topic,
+.main_icons.restore_topic,
+:is(.fa, .fas, .far, .fa-main_icons).restore_topic {
+	--lf-icon-code: "\f1b8";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "recycle";
+	--lf-icon-label: "Recycle";
+}
+
+/* quote-right — solid (Free). */
+.fa-quote_selected,
+.main_icons.quote_selected,
+:is(.fa, .fas, .far, .fa-main_icons).quote_selected,
+.fa-quote-right,
+.main_icons.quote-right,
+:is(.fa, .fas, .far, .fa-main_icons).quote-right {
+	--lf-icon-code: "\f10e";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "quote-right";
+	--lf-icon-label: "Quote Right";
+}
+
+/* circle-arrow-up — solid (Free). */
+.fa-select_above,
+.main_icons.select_above,
+:is(.fa, .fas, .far, .fa-main_icons).select_above,
+.fa-arrow-circle-above,
+.main_icons.arrow-circle-above,
+:is(.fa, .fas, .far, .fa-main_icons).arrow-circle-above,
+.fa-arrow-circle-up,
+.main_icons.arrow-circle-up,
+:is(.fa, .fas, .far, .fa-main_icons).arrow-circle-up {
+	--lf-icon-code: "\f0aa";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-arrow-up";
+	--lf-icon-label: "Circle Arrow Up";
+}
+
+/* circle-arrow-right — solid (Free). */
+.fa-select_here,
+.main_icons.select_here,
+:is(.fa, .fas, .far, .fa-main_icons).select_here,
+.fa-arrow-circle-here,
+.main_icons.arrow-circle-here,
+:is(.fa, .fas, .far, .fa-main_icons).arrow-circle-here {
+	--lf-icon-code: "\f0a9";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-arrow-right";
+	--lf-icon-label: "Circle Arrow Right";
+}
+
+/* circle-arrow-down — solid (Free). */
+.fa-select_below,
+.main_icons.select_below,
+:is(.fa, .fas, .far, .fa-main_icons).select_below,
+.fa-arrow-circle-below,
+.main_icons.arrow-circle-below,
+:is(.fa, .fas, .far, .fa-main_icons).arrow-circle-below {
+	--lf-icon-code: "\f0ab";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-arrow-down";
+	--lf-icon-label: "Circle Arrow Down";
+}
+
+/* user — solid (Free). */
+.fa-profile_hd,
+.main_icons.profile_hd,
+:is(.fa, .fas, .far, .fa-main_icons).profile_hd,
+.fa-profile_sm,
+.main_icons.profile_sm,
+:is(.fa, .fas, .far, .fa-main_icons).profile_sm,
+.fa-profile,
+.main_icons.profile,
+:is(.fa, .fas, .far, .fa-main_icons).profile,
+.fa-summary,
+.main_icons.summary,
+:is(.fa, .fas, .far, .fa-main_icons).summary,
+.fa-user,
+.main_icons.user,
+:is(.fa, .fas, .far, .fa-main_icons).user,
+.fa-popup,
+.main_icons.popup,
+:is(.fa, .fas, .far, .fa-main_icons).popup {
+	--lf-icon-code: "\f007";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "user";
+	--lf-icon-label: "User";
+}
+.far.fa-profile_hd,
+.fa-regular.fa-profile_hd,
+.far.fa-profile_sm,
+.fa-regular.fa-profile_sm,
+.far.fa-profile,
+.fa-regular.fa-profile,
+.far.fa-summary,
+.fa-regular.fa-summary,
+.far.fa-user,
+.fa-regular.fa-user,
+.far.fa-popup,
+.fa-regular.fa-popup { --lf-icon-weight: 400; }
+
+/* question — solid (Free). */
+.fa-question,
+.main_icons.question,
+:is(.fa, .fas, .far, .fa-main_icons).question {
+	--lf-icon-code: "\3f";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "question";
+	--lf-icon-label: "Question";
+}
+
+/* lightbulb — solid (Free). */
+.fa-lamp,
+.main_icons.lamp,
+:is(.fa, .fas, .far, .fa-main_icons).lamp {
+	--lf-icon-code: "\f0eb";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "lightbulb";
+	--lf-icon-label: "Lightbulb";
+}
+.far.fa-lamp,
+.fa-regular.fa-lamp { --lf-icon-weight: 400; }
+
+/* face-angry — solid (Free). */
+.fa-angry,
+.main_icons.angry,
+:is(.fa, .fas, .far, .fa-main_icons).angry {
+	--lf-icon-code: "\f556";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "face-angry";
+	--lf-icon-label: "Face Angry";
+}
+.far.fa-angry,
+.fa-regular.fa-angry { --lf-icon-weight: 400; }
+
+/* face-grin — solid (Free). */
+.fa-cheesy,
+.main_icons.cheesy,
+:is(.fa, .fas, .far, .fa-main_icons).cheesy {
+	--lf-icon-code: "\f580";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "face-grin";
+	--lf-icon-label: "Face Grin";
+}
+.far.fa-cheesy,
+.fa-regular.fa-cheesy { --lf-icon-weight: 400; }
+
+/* face-grin-wide — solid (Free). */
+.fa-grin,
+.main_icons.grin,
+:is(.fa, .fas, .far, .fa-main_icons).grin {
+	--lf-icon-code: "\f581";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "face-grin-wide";
+	--lf-icon-label: "Face Grin Wide";
+}
+.far.fa-grin,
+.fa-regular.fa-grin { --lf-icon-weight: 400; }
+
+/* face-frown — solid (Free). */
+.fa-sad,
+.main_icons.sad,
+:is(.fa, .fas, .far, .fa-main_icons).sad {
+	--lf-icon-code: "\f119";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "face-frown";
+	--lf-icon-label: "Face Frown";
+}
+.far.fa-sad,
+.fa-regular.fa-sad { --lf-icon-weight: 400; }
+
+/* face-grin-wink — solid (Free). */
+.fa-wink,
+.main_icons.wink,
+:is(.fa, .fas, .far, .fa-main_icons).wink {
+	--lf-icon-code: "\f58c";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "face-grin-wink";
+	--lf-icon-label: "Face Grin Wink";
+}
+.far.fa-wink,
+.fa-regular.fa-wink { --lf-icon-weight: 400; }
+
+/* user-gear — solid (Free). */
+.fa-account,
+.main_icons.account,
+:is(.fa, .fas, .far, .fa-main_icons).account {
+	--lf-icon-code: "\f4fe";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "user-gear";
+	--lf-icon-label: "User Gear";
+}
+
+/* user-pen — solid (Free). */
+.fa-forumprofile,
+.main_icons.forumprofile,
+:is(.fa, .fas, .far, .fa-main_icons).forumprofile {
+	--lf-icon-code: "\f4ff";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "user-pen";
+	--lf-icon-label: "User Pen";
+}
+
+/* user-group — solid (Free). */
+.fa-buddies,
+.main_icons.buddies,
+:is(.fa, .fas, .far, .fa-main_icons).buddies,
+.fa-lists,
+.main_icons.lists,
+:is(.fa, .fas, .far, .fa-main_icons).lists {
+	--lf-icon-code: "\f500";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "user-group";
+	--lf-icon-label: "User Group";
+}
+
+/* shield-halved — solid (Free). */
+.fa-securitysettings,
+.main_icons.securitysettings,
+:is(.fa, .fas, .far, .fa-main_icons).securitysettings {
+	--lf-icon-code: "\f3ed";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "shield-halved";
+	--lf-icon-label: "Shield Halved";
+}
+
+/* calculator — solid (Free). */
+.fa-boardrecount,
+.main_icons.boardrecount,
+:is(.fa, .fas, .far, .fa-main_icons).boardrecount {
+	--lf-icon-code: "\f1ec";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "calculator";
+	--lf-icon-label: "Calculator";
+}
+
+/* lock-open — solid (Free). */
+.fa-lock-open,
+.main_icons.lock-open,
+:is(.fa, .fas, .far, .fa-main_icons).lock-open {
+	--lf-icon-code: "\f3c1";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "lock-open";
+	--lf-icon-label: "Lock Open";
+}
+
+/* file-arrow-down — solid (Free). */
+.fa-getprofiledata,
+.main_icons.getprofiledata,
+:is(.fa, .fas, .far, .fa-main_icons).getprofiledata,
+.fa-download,
+.main_icons.download,
+:is(.fa, .fas, .far, .fa-main_icons).download,
+.fa-dlattach,
+.main_icons.dlattach,
+:is(.fa, .fas, .far, .fa-main_icons).dlattach {
+	--lf-icon-code: "\f56d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "file-arrow-down";
+	--lf-icon-label: "File Arrow Down";
+}
+
+/* user-check — solid (Free). */
+.fa-activateaccount,
+.main_icons.activateaccount,
+:is(.fa, .fas, .far, .fa-main_icons).activateaccount {
+	--lf-icon-code: "\f4fc";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "user-check";
+	--lf-icon-label: "User Check";
+}
+
+/* circle-check — solid (Free). */
+.fa-postmod,
+.main_icons.postmod,
+:is(.fa, .fas, .far, .fa-main_icons).postmod {
+	--lf-icon-code: "\f058";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-check";
+	--lf-icon-label: "Circle Check";
+}
+.far.fa-postmod,
+.fa-regular.fa-postmod { --lf-icon-weight: 400; }
+
+/* check-double — solid (Free). */
+.fa-markselectread,
+.main_icons.markselectread,
+:is(.fa, .fas, .far, .fa-main_icons).markselectread {
+	--lf-icon-code: "\f560";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "check-double";
+	--lf-icon-label: "Check Double";
+}
+
+/* calendar-plus — solid (Free). */
+.fa-post_event,
+.main_icons.post_event,
+:is(.fa, .fas, .far, .fa-main_icons).post_event {
+	--lf-icon-code: "\f271";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "calendar-plus";
+	--lf-icon-label: "Calendar Plus";
+}
+.far.fa-post_event,
+.fa-regular.fa-post_event { --lf-icon-weight: 400; }
+
+/* bell-slash — solid (Free). */
+.fa-unwatch,
+.main_icons.unwatch,
+:is(.fa, .fas, .far, .fa-main_icons).unwatch {
+	--lf-icon-code: "\f1f6";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "bell-slash";
+	--lf-icon-label: "Bell Slash";
+}
+.far.fa-unwatch,
+.fa-regular.fa-unwatch { --lf-icon-weight: 400; }
+
+/* patreon — brands (Free). */
+.fa-patreon,
+.main_icons.patreon,
+:is(.fa, .fas, .far, .fa-main_icons).patreon {
+	--lf-icon-code: "\f3d9";
+	--lf-icon-family: "Font Awesome 7 Brands";
+	--lf-icon-weight: 400;
+	--lf-icon-name: "patreon";
+	--lf-icon-label: "Patreon";
+}
+
+/* facebook-messenger — brands (Free). */
+.fa-facebook-messenger,
+.main_icons.facebook-messenger,
+:is(.fa, .fas, .far, .fa-main_icons).facebook-messenger {
+	--lf-icon-code: "\f39f";
+	--lf-icon-family: "Font Awesome 7 Brands";
+	--lf-icon-weight: 400;
+	--lf-icon-name: "facebook-messenger";
+	--lf-icon-label: "Facebook Messenger";
+}
+
+/* facebook-f — brands (Free). */
+.fa-facebook-f,
+.main_icons.facebook-f,
+:is(.fa, .fas, .far, .fa-main_icons).facebook-f {
+	--lf-icon-code: "\f39e";
+	--lf-icon-family: "Font Awesome 7 Brands";
+	--lf-icon-weight: 400;
+	--lf-icon-name: "facebook-f";
+	--lf-icon-label: "Facebook F";
+}
+
+/* twitter — brands (Free). */
+.fa-twitter,
+.main_icons.twitter,
+:is(.fa, .fas, .far, .fa-main_icons).twitter {
+	--lf-icon-code: "\f099";
+	--lf-icon-family: "Font Awesome 7 Brands";
+	--lf-icon-weight: 400;
+	--lf-icon-name: "twitter";
+	--lf-icon-label: "Twitter";
+}
+
+/* arrow-right-to-bracket — solid (Free). */
+.fa-sign-in,
+.main_icons.sign-in,
+:is(.fa, .fas, .far, .fa-main_icons).sign-in {
+	--lf-icon-code: "\f090";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "arrow-right-to-bracket";
+	--lf-icon-label: "Arrow Right To Bracket";
+}
+
+/* hand-point-down — solid (Free). */
+.fa-hand-point-down,
+.main_icons.hand-point-down,
+:is(.fa, .fas, .far, .fa-main_icons).hand-point-down {
+	--lf-icon-code: "\f0a7";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "hand-point-down";
+	--lf-icon-label: "Hand Point Down";
+}
+.far.fa-hand-point-down,
+.fa-regular.fa-hand-point-down { --lf-icon-weight: 400; }
+
+/* up-down-left-right — solid (Free). */
+.fa-arrows-alt,
+.main_icons.arrows-alt,
+:is(.fa, .fas, .far, .fa-main_icons).arrows-alt {
+	--lf-icon-code: "\f0b2";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "up-down-left-right";
+	--lf-icon-label: "Up Down Left Right";
+}
+
+/* circle-right — solid (Free). */
+.fa-arrow-alt-circle-right,
+.main_icons.arrow-alt-circle-right,
+:is(.fa, .fas, .far, .fa-main_icons).arrow-alt-circle-right {
+	--lf-icon-code: "\f35a";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "circle-right";
+	--lf-icon-label: "Circle Right";
+}
+.far.fa-arrow-alt-circle-right,
+.fa-regular.fa-arrow-alt-circle-right { --lf-icon-weight: 400; }
+
+/* person — solid (Free). */
+.fa-person,
+.main_icons.person,
+:is(.fa, .fas, .far, .fa-main_icons).person {
+	--lf-icon-code: "\f183";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "person";
+	--lf-icon-label: "Person";
+}
+
+/* arrow-down-short-wide — solid (Free). */
+.fa-sort-amount-desc,
+.main_icons.sort-amount-desc,
+:is(.fa, .fas, .far, .fa-main_icons).sort-amount-desc {
+	--lf-icon-code: "\f884";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "arrow-down-short-wide";
+	--lf-icon-label: "Arrow Down Short Wide";
+}
+
+/* gear — solid (Free). */
+.fa-cog,
+.main_icons.cog,
+:is(.fa, .fas, .far, .fa-main_icons).cog {
+	--lf-icon-code: "\f013";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "gear";
+	--lf-icon-label: "Gear";
+}
+
+.toggle_up {
+	--lf-icon-code: "\f151";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "square-caret-up";
+	--lf-icon-label: "Square Caret Up";
+}
+.toggle_up::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+.toggle_down {
+	--lf-icon-code: "\f150";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "square-caret-down";
+	--lf-icon-label: "Square Caret Down";
+}
+.toggle_down::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+i.valid {
+	--lf-icon-code: "\f00c";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "check";
+	--lf-icon-label: "Check";
+}
+i.valid::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+span.valid {
+	--lf-icon-code: "\f00c";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "check";
+	--lf-icon-label: "Check";
+}
+span.valid::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+i.invalid {
+	--lf-icon-code: "\f00d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "xmark";
+	--lf-icon-label: "Xmark";
+}
+i.invalid::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+span.invalid {
+	--lf-icon-code: "\f00d";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "xmark";
+	--lf-icon-label: "Xmark";
+}
+span.invalid::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+.lf-check {
+	--lf-icon-code: "\f071";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "triangle-exclamation";
+	--lf-icon-label: "Triangle Exclamation";
+}
+.lf-check::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+.warning .fa-moderate {
+	--lf-icon-code: "\f071";
+	--lf-icon-family: "Font Awesome 7 Free";
+	--lf-icon-weight: 900;
+	--lf-icon-name: "triangle-exclamation";
+	--lf-icon-label: "Triangle Exclamation";
+}
+.warning .fa-moderate::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: var(--lf-icon-weight); font-style: normal; }
+
+.button_reply, .button_strip_reply { --lf-icon-code: "\f3e5"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "reply"; --lf-icon-label: "Reply"; }
+.button_reply::before, .button_strip_reply::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_add_poll, .button_strip_add_poll { --lf-icon-code: "\f080"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "chart-bar"; --lf-icon-label: "Chart Bar"; }
+.button_add_poll::before, .button_strip_add_poll::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_mark_unread, .button_strip_mark_unread { --lf-icon-code: "\f0e0"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "envelope"; --lf-icon-label: "Envelope"; }
+.button_mark_unread::before, .button_strip_mark_unread::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_print, .button_strip_print { --lf-icon-code: "\f02f"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "print"; --lf-icon-label: "Print"; }
+.button_print::before, .button_strip_print::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_notify, .button_strip_notify { --lf-icon-code: "\f0f3"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "bell"; --lf-icon-label: "Bell"; }
+.button_notify::before, .button_strip_notify::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_new_topic, .button_strip_new_topic { --lf-icon-code: "\f044"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "pen-to-square"; --lf-icon-label: "Pen To Square"; }
+.button_new_topic::before, .button_strip_new_topic::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_post_poll, .button_strip_post_poll { --lf-icon-code: "\f080"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "chart-bar"; --lf-icon-label: "Chart Bar"; }
+.button_post_poll::before, .button_strip_post_poll::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_markread, .button_strip_markread { --lf-icon-code: "\f00c"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "check"; --lf-icon-label: "Check"; }
+.button_markread::before, .button_strip_markread::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_markselectread, .button_strip_markselectread { --lf-icon-code: "\f560"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "check-double"; --lf-icon-label: "Check Double"; }
+.button_markselectread::before, .button_strip_markselectread::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_readall, .button_strip_readall { --lf-icon-code: "\f15c"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "file-lines"; --lf-icon-label: "File Lines"; }
+.button_readall::before, .button_strip_readall::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_post_event, .button_strip_post_event { --lf-icon-code: "\f271"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "calendar-plus"; --lf-icon-label: "Calendar Plus"; }
+.button_post_event::before, .button_strip_post_event::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_move, .button_strip_move { --lf-icon-code: "\f04e"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "forward"; --lf-icon-label: "Forward"; }
+.button_move::before, .button_strip_move::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_delete, .button_strip_delete { --lf-icon-code: "\f1f8"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "trash"; --lf-icon-label: "Trash"; }
+.button_delete::before, .button_strip_delete::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_lock, .button_strip_lock { --lf-icon-code: "\f023"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "lock"; --lf-icon-label: "Lock"; }
+.button_lock::before, .button_strip_lock::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_sticky, .button_strip_sticky { --lf-icon-code: "\f08d"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "thumbtack"; --lf-icon-label: "Thumbtack"; }
+.button_sticky::before, .button_strip_sticky::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_merge, .button_strip_merge { --lf-icon-code: "\f248"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "object-ungroup"; --lf-icon-label: "Object Ungroup"; }
+.button_merge::before, .button_strip_merge::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_remove_poll, .button_strip_remove_poll { --lf-icon-code: "\f2ed"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "trash-can"; --lf-icon-label: "Trash Can"; }
+.button_remove_poll::before, .button_strip_remove_poll::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_edit_poll, .button_strip_edit_poll { --lf-icon-code: "\f304"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "pen"; --lf-icon-label: "Pen"; }
+.button_edit_poll::before, .button_strip_edit_poll::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_lock_poll, .button_strip_lock_poll { --lf-icon-code: "\f023"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "lock"; --lf-icon-label: "Lock"; }
+.button_lock_poll::before, .button_strip_lock_poll::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_viewresults, .button_strip_viewresults { --lf-icon-code: "\f080"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "chart-bar"; --lf-icon-label: "Chart Bar"; }
+.button_viewresults::before, .button_strip_viewresults::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_return_vote, .button_strip_return_vote { --lf-icon-code: "\f00c"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "check"; --lf-icon-label: "Check"; }
+.button_return_vote::before, .button_strip_return_vote::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_restore_topic, .button_strip_restore_topic { --lf-icon-code: "\f1b8"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "recycle"; --lf-icon-label: "Recycle"; }
+.button_restore_topic::before, .button_strip_restore_topic::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_link_to_calendar, .button_strip_link_to_calendar { --lf-icon-code: "\f133"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "calendar"; --lf-icon-label: "Calendar"; }
+.button_link_to_calendar::before, .button_strip_link_to_calendar::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_unwatch, .button_strip_unwatch { --lf-icon-code: "\f1f6"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "bell-slash"; --lf-icon-label: "Bell Slash"; }
+.button_unwatch::before, .button_strip_unwatch::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+.button_watch, .button_strip_watch { --lf-icon-code: "\f0f3"; --lf-icon-family: "Font Awesome 7 Free"; --lf-icon-weight: 900; --lf-icon-name: "bell"; --lf-icon-label: "Bell"; }
+.button_watch::before, .button_strip_watch::before { content: var(--lf-icon-code); font-family: var(--lf-icon-family); font-weight: 900; margin-inline-end: .35em; }
+
+/* Core may provide a child icon for the same strip action. Render it once. */
+.button:has(.main_icons)::before { content: none; }
+/* A mod-supplied post icon keeps its native SMF image when it has no FA mapping. */
+.lf-icon-native::before { content: none !important; }
+.lf-icon-native > img { width: 1em; height: 1em; object-fit: contain; vertical-align: baseline; }
+.lf-icon-unmapped::before { content: "[" var(--lf-icon-label, "Icon") "]"; font: normal .75em/1 sans-serif; width: auto; }

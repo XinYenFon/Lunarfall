@@ -1,4 +1,18 @@
 /* Start with most common */
+.action_admin .bbc_code {
+	color: #d6d7d8;
+	background: #0d1822;
+	border: 1px solid #2e3e4c;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	padding: 10px 12px;
+}
+.action_admin .codeheader {
+	color: #d6d7d8;
+}
+.action_admin .codeheader .codeoperation {
+	color: #67c1f5;
+}
 .action_admin .generic_list {
 	overflow: auto;
 }
@@ -507,22 +521,4 @@ ul.moderation_notes li {
 
 .fa-trash, .fa-forward {
 	color: #FFF;
-}
-/* Sellout */
-.fa-patreon {
-	color: #F96854;
-}
-#donate_cat {
-	color: #FFF;
-	padding: 5px;
-	text-decoration: none;
-	text-align: right;
-}
-#donate_cat a:hover {
-	text-decoration: none;
-}
-#donate_cat a:after {
-	content: "Consider Helping?";
-	font-size: 2em;
-	vertical-align: super;
 }

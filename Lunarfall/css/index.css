@@ -776,13 +776,16 @@ img.sort, .sort {
 }
 .profile_user_links ol {
 	clear: both;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .profile_user_links li {
+	min-width: 0;
 	font-size: .8rem;
 	line-height: 2em;
 	-webkit-hyphens: auto;
 	hyphens: auto;
-	display: inline-block;
+	display: block;
 }
 /* Fixes bug with border-box on scrollable js */
 .scrollable,
@@ -1648,6 +1651,24 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 	background: #cfc;
 	border-top: 1px solid green;
 	border-bottom: 1px solid green;
+}
+/* Empty unread-topic and unread-reply notices use the Lunarfall palette. */
+#recent > .infobox {
+	color: #d6d7d8;
+	background: #1b2b3a;
+	border-color: #2e3e4c;
+}
+#recent > .infobox a {
+	color: #67c1f5;
+	text-decoration: underline;
+}
+#recent > .infobox a:hover,
+#recent > .infobox a:focus {
+	color: #fff;
+}
+#recent > .infobox a:focus-visible {
+	outline: 2px solid #67c1f5;
+	outline-offset: 2px;
 }
 .descbox {
 	padding: 7px 10px 7px 10px;
@@ -3666,6 +3687,17 @@ i {
 }
 .profile_user_links a {
 	padding: 5px;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	text-decoration: none;
+}
+.profile_user_links a > i {
+	flex-shrink: 0;
+}
+.profile_user_links a > span {
+	min-width: 0;
+	overflow-wrap: anywhere;
 }
 .notify_dropdown a:hover,
 #pm_menu .unread:hover, #alerts_menu .unread:hover {
@@ -3748,12 +3780,11 @@ div.sceditor-group {
 	color: grey;
 }
 /* Icon title-pop */
-.qbuttons a, .profile_user_links a {
+.qbuttons a {
     display: inline;
 	position: relative;
 }
-.qbuttons a::after,
-.profile_user_links a::after {
+.qbuttons a::after {
 	border: 1px solid #2E3E4C;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
     border-radius: 3px;
@@ -3767,12 +3798,7 @@ div.sceditor-group {
 	display: none;
 	right: 0;
 }
-/* Small change since this part is in top-left */
-.profile_user_links a::after {
-	left: 0;
-}
-.qbuttons a:hover::after,
-.profile_user_links a:hover::after {
+.qbuttons a:hover::after {
 	display: block;
 }
 

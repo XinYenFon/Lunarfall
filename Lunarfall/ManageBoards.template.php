@@ -58,7 +58,7 @@ function template_main()
 			echo '
 					<li><a href="', $category['move_link']['href'], '" title="', $category['move_link']['label'], '"><i class="fa fa-arrow-circle-up fa-lg"></i></a></li>';
 
-		$recycle_board = '<a href="' . $scripturl . '?action=admin;area=manageboards;sa=settings"></a> <i class="fa fa-trash fa-lg" title="' . $txt['recycle_board'] . '"></i>';
+		$recycle_board = '<a href="' . $scripturl . '?action=admin;area=manageboards;sa=settings"> <i class="fa fa-trash fa-lg" title="' . $txt['recycle_board'] . '"></i></a>';
 		$redirect_board = '<i class="fa fa-forward fa-lg" title="' . $txt['redirect_board_desc'] . '"></i>';
 
 		// List through every board in the category, printing its name and link to modify the board.

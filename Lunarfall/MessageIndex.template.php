@@ -178,7 +178,7 @@ function template_main()
 			echo '
 				<div class="', $topic['css_class'], '">
 					<div class="board_icon">
-						<i class="fa fa-', $topic['first_post']['icon'], ' fa-lg fa-fw" title="', $topic['first_post']['icon'], '"></i>
+						<i class="fa fa-', $topic['first_post']['icon'], ' fa-lg fa-fw" data-lf-icon-url="', $topic['first_post']['icon_url'], '" title="', $topic['first_post']['icon'], '"></i>
 						', $topic['is_posted_in'] ? '<i class="fa fa-user fa-lg fa-fw"></i>' : '', '
 					</div>
 					<div class="info', !empty($context['can_quick_mod']) ? '' : ' info_block', '">
@@ -361,7 +361,7 @@ function template_main()
 	<div id="mobile_action" class="popup_container">
 		<div class="popup_window description">
 			<div class="popup_heading">', $txt['mobile_action'], '
-				<a href="javascript:void(0);"><i class="fa fa-times fa-lg floatright"></i></a>
+				<a href="javascript:void(0);" class="hide_popup"><i class="fa fa-times fa-lg floatright"></i></a>
 			</div>
 			', template_button_strip($context['normal_buttons']), '
 		</div>
