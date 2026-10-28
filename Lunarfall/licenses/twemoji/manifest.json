@@ -1,0 +1,240 @@
+{
+  "project": "https://github.com/jdecked/twemoji",
+  "version": "v17.0.3",
+  "commit": "b6b55fef1e8636b540a6d016a4729ca8cdf2e60b",
+  "changes": "Selected original 72x72 PNG assets; no artwork modifications.",
+  "mapping": [
+    {
+      "code": ":)",
+      "filename": "smiley",
+      "asset": "1f642.png"
+    },
+    {
+      "code": ";)",
+      "filename": "wink",
+      "asset": "1f609.png"
+    },
+    {
+      "code": ":D",
+      "filename": "cheesy",
+      "asset": "1f603.png"
+    },
+    {
+      "code": ";D",
+      "filename": "grin",
+      "asset": "1f601.png"
+    },
+    {
+      "code": ">:(",
+      "filename": "angry",
+      "asset": "1f620.png"
+    },
+    {
+      "code": ":(",
+      "filename": "sad",
+      "asset": "1f641.png"
+    },
+    {
+      "code": ":o",
+      "filename": "shocked",
+      "asset": "1f62e.png"
+    },
+    {
+      "code": "8)",
+      "filename": "cool",
+      "asset": "1f60e.png"
+    },
+    {
+      "code": "???",
+      "filename": "huh",
+      "asset": "1f615.png"
+    },
+    {
+      "code": "::)",
+      "filename": "rolleyes",
+      "asset": "1f644.png"
+    },
+    {
+      "code": ":P",
+      "filename": "tongue",
+      "asset": "1f61b.png"
+    },
+    {
+      "code": ":-[",
+      "filename": "embarrassed",
+      "asset": "1f633.png"
+    },
+    {
+      "code": ":-X",
+      "filename": "lipsrsealed",
+      "asset": "1f910.png"
+    },
+    {
+      "code": ":-\\",
+      "filename": "undecided",
+      "asset": "1f615.png"
+    },
+    {
+      "code": ":-*",
+      "filename": "kiss",
+      "asset": "1f618.png"
+    },
+    {
+      "code": ":'(",
+      "filename": "cry",
+      "asset": "1f622.png"
+    },
+    {
+      "code": ">:D",
+      "filename": "evil",
+      "asset": "1f608.png"
+    },
+    {
+      "code": ":))",
+      "filename": "laugh",
+      "asset": "1f606.png"
+    },
+    {
+      "code": "C:-)",
+      "filename": "police",
+      "asset": "1f46e.png"
+    },
+    {
+      "code": "O:-)",
+      "filename": "angel",
+      "asset": "1f607.png"
+    }
+  ],
+  "unmapped": {
+    "^-^": "Ambiguous legacy azn appearance",
+    "O0": "No unambiguous afro equivalent"
+  },
+  "files": [
+    {
+      "path": "images/twemoji/1f46e.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f46e.png",
+      "bytes": 1169,
+      "sha256": "530e041f4d4a6f09fe427026e7b1f4e7bc8b42252051d101a7b7672d3ab45731"
+    },
+    {
+      "path": "images/twemoji/1f601.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f601.png",
+      "bytes": 866,
+      "sha256": "ed2d1ae8dcdaf6a12e9af7d7bced25db2c3e8f38e624f930d13ff697e3285e7b"
+    },
+    {
+      "path": "images/twemoji/1f603.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f603.png",
+      "bytes": 825,
+      "sha256": "771063f3b2b4950334f4d187069c87041036842149b3e4268221db325b6bde0e"
+    },
+    {
+      "path": "images/twemoji/1f606.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f606.png",
+      "bytes": 913,
+      "sha256": "0d46390df7858374bd26a539915193d11a6bfb5fef11ff8e7572a1d32851b126"
+    },
+    {
+      "path": "images/twemoji/1f607.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f607.png",
+      "bytes": 1112,
+      "sha256": "872aa7cb9054653cf230e04ce27232d9322b3f93c911e7ee8e7fe4d19bce50e6"
+    },
+    {
+      "path": "images/twemoji/1f608.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f608.png",
+      "bytes": 784,
+      "sha256": "13f3065da3da99b36f3035fa3bd7285197ff0e6d754b099726b94f471ed37c51"
+    },
+    {
+      "path": "images/twemoji/1f609.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f609.png",
+      "bytes": 760,
+      "sha256": "f6b86554472159b74d0ab91b2cb3cd75cf361ccf96a141a4ebd3363c38e7f8eb"
+    },
+    {
+      "path": "images/twemoji/1f60e.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f60e.png",
+      "bytes": 871,
+      "sha256": "0e96db4df869e8e4a38a76b7be66ebb1d80af768e193fcbb7e29abde3980af2a"
+    },
+    {
+      "path": "images/twemoji/1f615.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f615.png",
+      "bytes": 592,
+      "sha256": "5dc1ca61bbc8cd4bf02bc0d192e798628af5c2b64f08d0179d7a828a9527ec33"
+    },
+    {
+      "path": "images/twemoji/1f618.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f618.png",
+      "bytes": 1030,
+      "sha256": "cfed922412955d0a799efd8a55c27bd26423db41334d429ce3e037d726545a22"
+    },
+    {
+      "path": "images/twemoji/1f61b.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f61b.png",
+      "bytes": 846,
+      "sha256": "3163a5e255227b243910497d540132fb6658b673e5dce9a6039c26309d51eb0f"
+    },
+    {
+      "path": "images/twemoji/1f620.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f620.png",
+      "bytes": 683,
+      "sha256": "0242dfe442531236e973a437c02a6b1280c27e6bd220d7d4352b2daef6a1880b"
+    },
+    {
+      "path": "images/twemoji/1f622.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f622.png",
+      "bytes": 904,
+      "sha256": "077de4b040aec6cc02d33b34881425cb6576e677da9dbaa6010706d4010b6e65"
+    },
+    {
+      "path": "images/twemoji/1f62e.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f62e.png",
+      "bytes": 591,
+      "sha256": "0fc5cd0fa11b6a4acdc3a7bac6d3f6118169a00f26434a5143becef960b3010d"
+    },
+    {
+      "path": "images/twemoji/1f633.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f633.png",
+      "bytes": 974,
+      "sha256": "7356090df6d9c7a423495be295b2ceca90afeb0e6c2805e03dbd4b01d1753191"
+    },
+    {
+      "path": "images/twemoji/1f641.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f641.png",
+      "bytes": 609,
+      "sha256": "62519e66efce1c4eda4bf0d9f5ef691270f58a2baff0794d8f01c82dd0ac19af"
+    },
+    {
+      "path": "images/twemoji/1f642.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f642.png",
+      "bytes": 620,
+      "sha256": "c7a2c052f383509ac9ec9da7f34cccc4c1d35040799426588c54a0d83cd9628f"
+    },
+    {
+      "path": "images/twemoji/1f644.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f644.png",
+      "bytes": 772,
+      "sha256": "8c5956f266757c1dff82ed1440caaf3c3896972f8983f1310fca911898225d3d"
+    },
+    {
+      "path": "images/twemoji/1f910.png",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/assets/72x72/1f910.png",
+      "bytes": 883,
+      "sha256": "4e228f9b42c1add6661a0c5f28766fd11462c0d14b94cfb0297738d0253a76aa"
+    },
+    {
+      "path": "licenses/twemoji/LICENSE-GRAPHICS",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/LICENSE-GRAPHICS",
+      "bytes": 18524,
+      "sha256": "8ae9438818c26e4873b91d8c6ad620526c011e27e125677f13031eda903f007c"
+    },
+    {
+      "path": "licenses/twemoji/LICENSE",
+      "source": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/LICENSE",
+      "bytes": 1134,
+      "sha256": "5076b7ec0f98f95aa87a3103bebdcd3852acd88d61fbd99307b8d953024acb67"
+    }
+  ]
+}

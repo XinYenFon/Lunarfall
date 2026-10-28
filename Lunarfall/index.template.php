@@ -41,6 +41,8 @@
 function template_init()
 {
 	global $settings, $txt;
+	require_once __DIR__ . '/Twemoji.php';
+	lunarfall_twemoji_init();
 
 	// The adapter is also used for text fallback; font assets are optional.
 	if (empty($settings['disable_fa_icons']))

@@ -1,17 +1,22 @@
 /* Start with most common */
+.move_smileys a img {
+	border-color: var(--lf-border);
+}
+
 .action_admin .bbc_code {
-	color: #d6d7d8;
-	background: #0d1822;
 	border: 1px solid #2e3e4c;
 	font-size: 0.9rem;
 	line-height: 1.6;
 	padding: 10px 12px;
+	background: var(--lf-bg);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 .action_admin .codeheader {
-	color: #d6d7d8;
+	color: var(--lf-muted);
 }
 .action_admin .codeheader .codeoperation {
-	color: #67c1f5;
+	color: var(--lf-link);
 }
 .action_admin .generic_list {
 	overflow: auto;
@@ -40,16 +45,19 @@
 	margin-top: 0;
 	margin-bottom: 0;
 }
-.table_caption, tr.table_caption td {
-	color: #000;
+tr.table_caption td, .table_caption {
 	font-size: 10px;
 	font-weight: bold;
+	color: var(--lf-strong);
 }
 .additional_row div.floatleft {
 	padding: 0 10px;
 }
 fieldset {
 	padding: 6px;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 fieldset dl {
 	margin: 0;
@@ -148,11 +156,12 @@ legend {
 }
 
 fieldset.admin_group legend {
-	color: #555;
-	background: #eaf1f4;
 	border: 1px solid #cacdd3;
 	padding: 1px 5px;
 	border-radius: 3px;
+	background: var(--lf-raised);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 fieldset.admin_group a {
 	display: inline-block;
@@ -233,22 +242,34 @@ pre.file_content {
 .perm_read {
 	background-color: #d1f7bf;
 	width: 8%;
+	background: var(--lf-success-bg);
+	color: var(--lf-success);
 }
 .perm_writable {
 	background-color: #ffbbbb;
 	width: 8%;
+	background: var(--lf-danger-bg);
+	color: var(--lf-danger);
 }
 .perm_execute {
 	background-color: #fdd7af;
 	width: 8%;
+	background: var(--lf-warning-bg);
+	color: var(--lf-warning);
 }
 .perm_custom {
 	background-color: #c2c6c0;
 	width: 8%;
+	background: var(--lf-raised);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 .perm_no_change {
 	background-color: #eee;
 	width: 8%;
+	background: var(--lf-raised);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 
 /* Styles for the BBC permissions */
@@ -274,9 +295,10 @@ pre.file_content {
 }
 #manage_boards li.windowbg:last-child {
 	border-bottom: 1px solid #ddd;
+	border-color: var(--lf-border);
 }
 #manage_boards li.windowbg:hover {
-	background: #d0e7f8;
+	background: var(--lf-hover);
 }
 #manage_boards li .floatleft {
 	font-weight: bold;
@@ -284,9 +306,11 @@ pre.file_content {
 }
 #manage_boards li#recycle_board {
 	background-color: #dee;
+	background: var(--lf-success-bg);
 }
-#manage_boards li.redirect_board, #manage_boards li.redirect_board:hover {
+#manage_boards li.redirect_board:hover, #manage_boards li.redirect_board {
 	background-color: #eed;
+	background: var(--lf-warning-bg);
 }
 .move_links {
 	padding: 0 13px 0 0;
@@ -379,12 +403,16 @@ span.search_weight {
 	border: 1px solid #cacdd3;
 	border-top: 0;
 	padding: 0.2em;
+	border-color: var(--lf-border);
 }
 .perm_boards li:first-child {
 	border-top: 1px solid #cacdd3;
 }
 .perm_groups {
 	background-color: #fff;
+	background: var(--lf-raised);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 .perms {
 	width: 20px;
@@ -465,6 +493,7 @@ ul.moderation_notes li {
 .report_results th {
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
+	border-color: var(--lf-border);
 }
 
 #support_credits .sub_bar {
@@ -485,7 +514,7 @@ ul.moderation_notes li {
 }
 
 .windowbg.highlight2 {
-	background: #d0e7f8;
+	background: var(--lf-hover);
 }
 
 /* Css edit page */
@@ -505,11 +534,11 @@ ul.moderation_notes li {
 }
 
 .move_smileys a:hover img {
-	border-color: #71a0c8;
+	border-color: var(--lf-border);
 }
 
 .move_smileys .selected_item {
-	border-color: #FFB42D;
+	border-color: var(--lf-link);
 }
 
 /* Progress bars */

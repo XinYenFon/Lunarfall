@@ -1,38 +1,47 @@
-/* iPhone Tests */
-@media (max-width: 320px) {
-
-}
-
 /* Entry level phones */
 @media (max-width: 480px) {
 	/* This is general */
-	#main_menu .popup_container, #genericmenu .popup_container {
+	#main_menu .popup_container,
+	#genericmenu .popup_container,
+	#adm_submenus .popup_container {
 		display: none;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100%;
-		background: rgba(40, 64, 80, 0.5);
+		height: 100% !important; /* Override the desktop inline-menu height. */
 		z-index: 5;
+		background: var(--lf-overlay);
 	}
-	#main_menu .popup_heading, #genericmenu .popup_heading {
+	#genericmenu .popup_heading,
+	#main_menu .popup_heading,
+	#adm_submenus .popup_heading {
 		display: block;
+		color: var(--lf-strong);
 	}
 	#main_menu {
 		margin: 0;
 	}
-	.popup_window, #main_menu .popup_window, #genericmenu .popup_window {
+	.popup_window,
+	#main_menu .popup_window,
+	#genericmenu .popup_window,
+	#adm_submenus .popup_window {
 		position: relative;
 		z-index: 99;
+		top: 5vh;
+		top: 5dvh;
 		width: 90%;
-		min-height: 285px !important;
-		max-height: 5em;
-		overflow-x: hidden !important;
-		overflow-y: scroll !important;
+		min-height: 0;
+		max-height: 90vh;
+		max-height: 90dvh;
+		overflow-x: hidden;
+		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 		padding: 0;
 		margin: 0 auto;
+		background-color: var(--lf-surface);
+		color: var(--lf-text);
+		border-color: var(--lf-border);
 	}
 	#mobile_user_menu a {
 		padding: 15px 0 !important;
@@ -93,13 +102,15 @@
 		text-indent: 10px;
 		border-radius: 0;
 	}
-	.dropmenu li a, .dropmenu li:hover a,
-	.dropmenu li a.active, .dropmenu li a.active:hover,
-	.dropmenu ul li a:hover, .dropmenu li li a:hover,
-	.dropmenu ul li li:hover, .dropmenu li ul,
-	.dropmenu li li:hover ul, .dropmenu li li ul {
+	.dropmenu li a, .dropmenu li:hover a, .dropmenu li a.active, .dropmenu li a.active:hover, .dropmenu ul li a:hover, .dropmenu ul li li:hover, .dropmenu li ul, .dropmenu li li:hover ul, .dropmenu li li ul {
 		border-left: 0;
 		border-right: 0;
+	}
+	.dropmenu li li a:hover {
+		border-left: 0;
+		border-right: 0;
+		background: var(--lf-hover);
+		color: var(--lf-strong);
 	}
 	.dropmenu ul li a {
 		width: auto !important;
@@ -136,7 +147,7 @@
 		display: block;
 		font-weight: normal;
 		font-size: 0.9em;
-		color: #222;
+		color: var(--lf-muted);
 	}
 	.board_description {
 		display: none;
@@ -144,16 +155,15 @@
 	fieldset {
 		max-width: 100%;
 		min-width: unset;
+		background-color: var(--lf-surface);
+		color: var(--lf-text);
+		border-color: var(--lf-border);
 	}
 	/* Register Page */
 	#registration .button {
 		font-size: 0.67em;
 	}
-	dl.register_form {
-		float: none !important;
-		width: 100% !important;
-	}
-	dl.register_form dt, dl.register_form dd {
+	dl.register_form, dl.register_form dt, dl.register_form dd {
 		float: none !important;
 		width: 100% !important;
 	}
@@ -163,18 +173,21 @@
 		width: 100% !important;
 		text-align: left;
 	}
-	.login #ajax_loginuser, .login #ajax_loginpass, .login #loginuser, .login #loginpass, select {
+	.login #ajax_loginuser, .login #ajax_loginpass, .login #loginuser, .login #loginpass {
 		width: 100%;
+	}
+	select {
+		width: 100%;
+		color: var(--lf-text);
+		background: var(--lf-surface);
+		border-color: var(--lf-border-strong);
 	}
 
 	/* Display (Topic View) */
 	.poster {
 		float: none !important;
 	}
-	.postarea {
-		margin: 0 !important;
-	}
-	.moderatorbar {
+	.postarea, .moderatorbar {
 		margin: 0 !important;
 	}
 	img.bbc_img.resized {
@@ -222,10 +235,7 @@
 		width: 100%;
 		float: none;
 	}
-	dl.settings dd textarea, #report_comment {
-		width: 100%;
-	}
-	.move_topic {
+	dl.settings dd textarea, #report_comment, .move_topic {
 		width: 100%;
 	}
 	.bbc_float {
@@ -543,9 +553,11 @@
 		border-right: 0;
 		border-radius: 0;
 	}
-	#top_section, #footer {
+	#footer, #top_section {
 		padding-left: 0;
 		padding-right: 0;
+		background: var(--lf-nav);
+		border-color: var(--lf-border);
 	}
 	#header {
 		margin-left: 0;
@@ -677,6 +689,8 @@
 	}
 	.sceditor-container {
 		width: 100% !important;
+		color: var(--lf-text);
+		border-color: var(--lf-border);
 	}
 	ul.post_options {
 		padding: 0;
@@ -687,15 +701,12 @@
 		width: 48%;
 	}
 	/* Hide me */
-	#inner_wrap, #search_form, #smflogo, #message_index_jump_to, .nextlinks, #display_jump_to,
-	#siteslogan, th.id_group, th.registered, th.posts, th.reg_group, th.reg_date, td.reg_group, td.reg_date,
-	td.id_group, td.registered, td.posts:not(.unique), td.statsbar.posts,
-	#member_list .ip, #member_list .last_active, #member_list .user_name,
-	#approve_list .ip, #approve_list .date_registered,
-	#main_content_section .navigate_section, .pagesection.top, .time,
-	#header_custom_profile_fields_field_type, #header_custom_profile_fields_active,
-	#header_custom_profile_fields_placement, #custom_profile_fields .active, #custom_profile_fields .field_type, #custom_profile_fields .placement {
+	#inner_wrap, #search_form, #smflogo, #message_index_jump_to, .nextlinks, #display_jump_to, th.id_group, th.registered, th.posts, th.reg_group, th.reg_date, td.reg_group, td.reg_date, td.id_group, td.registered, td.posts:not(.unique), td.statsbar.posts, #member_list .ip, #member_list .last_active, #member_list .user_name, #approve_list .ip, #approve_list .date_registered, #main_content_section .navigate_section, .pagesection.top, .time, #header_custom_profile_fields_field_type, #header_custom_profile_fields_active, #header_custom_profile_fields_placement, #custom_profile_fields .active, #custom_profile_fields .field_type, #custom_profile_fields .placement {
 		display: none !important;
+	}
+	#siteslogan {
+		display: none !important;
+		color: var(--lf-strong);
 	}
 	/* Generic Lists */
 	#topic_notification_list .last_post, #topic_notification_list .started_by,

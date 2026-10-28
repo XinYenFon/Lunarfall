@@ -1,4 +1,4 @@
-# Lunarfall v0.8.4 (25 OCTOBER 2026 — DEVELOPMENT)
+# Lunarfall v0.8.5 (28 OCTOBER 2026 — DEVELOPMENT)
 
 <img src="https://raw.githubusercontent.com/Antes/Lunarfall/master/Lunarfall/images/thumbnail.png" style="height: 750px;">
 
@@ -14,9 +14,17 @@ Lunarfall uses **X.Y.Z**, displayed as **vX.Y.Z**:
 - **Y (FEATURE):** a new feature; resets Z to zero.
 - **Z (HOTFIX):** any bug fix, security fix or compatibility repair, regardless of size; changes only Z.
 
-Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.4); user-facing release labels use v0.8.4. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
+Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.5); user-facing release labels use v0.8.5. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
 
-The latest published release is **v0.8.3**. The current development sources are **v0.8.4**, a hotfix based on that release: remove unintended italic spacing, improve standard/alternate quote contrast, repair and escape affected HTML attributes, and prevent float utility classes from overriding popup-close and category-toggle icons. The original popup href and close-handler fixes are retained and regression checked. This does not mark a publication or deployment.
+The latest confirmed published release is **v0.8.3**. The current development sources are **v0.8.5**, adapting the openVectra Dark Mode palette while retaining Lunarfall's existing SMF layout and the v0.8.4 fixes. This does not mark a publication or deployment.
+
+### Twemoji smiley artwork (optional)
+
+The theme includes 19 original Twemoji v17.0.3 PNGs for 20 SMF smiley codes. Enable **Use Twemoji artwork for default smileys in Lunarfall** in Lunarfall's Theme Settings and save using SMF's normal administrator form. No separate smiley ZIP or global set registration is needed. The adapter is off until enabled; explicit member set choices and `none` are preserved. Unknown/custom images, `^-^` and `O0` retain SMF artwork. JavaScript-disabled message views retain native artwork. Code insertion and serialization stay with SMF/SCEditor. Graphics are CC BY 4.0; see the distributed `Lunarfall/licenses/twemoji/ATTRIBUTION.md`, license and pinned manifest.
+
+### Dark palette
+
+Color tokens are centralized in the :root block of Lunarfall/css/index.css. Component colors live beside their original selectors in index.css and the relevant administration, calendar and responsive stylesheets; no additional palette stylesheet is loaded. Values were taken from openVectra's resources/css/app.css: navy backgrounds, layered blue surfaces, light text, blue links and distinct status colors. The isolated editor iframe uses the corresponding color values in its local jquery.sceditor.default.css skin. No theme switcher or external stylesheet/font service is added; Font Awesome mappings and disable_fa_icons remain independent of the palette.
 
 ### Source version and installed version
 

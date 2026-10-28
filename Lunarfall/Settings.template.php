@@ -197,6 +197,11 @@ function template_settings()
 			'options' => $context['smiley_sets'],
 			'type' => 'text',
 		),
+		array(
+			'id' => 'lunarfall_twemoji',
+			'label' => $txt['lunarfall_twemoji'],
+			'description' => $txt['lunarfall_twemoji_desc'],
+		),
 		'',
 		array(
 			'id' => 'enable_news',

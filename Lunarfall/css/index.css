@@ -1,23 +1,68 @@
+/* openVectra Dark Mode: logistica/resources/css/app.css.
+ * Keep Lunarfall's semantic palette here; no font/glyph or layout settings. */
+:root {
+	color-scheme: dark;
+	--lf-bg: #101c2d;
+	--lf-surface: #17263a;
+	--lf-raised: #1d3046;
+	--lf-subtle: #25394f;
+	--lf-border: #3b5168;
+	--lf-strong: #f0f5fb;
+	--lf-text: #dce6f1;
+	--lf-muted: #b1c3d6;
+	--lf-link: #93c5fd;
+	--lf-link-hover: #bfdbfe;
+	--lf-hover: #2b4057;
+	--lf-active: #314760;
+	--lf-accent-surface: #1b3655;
+	--lf-accent-hover: #25476a;
+	--lf-border-strong: #5886b8;
+	--lf-placeholder: #9db1c7;
+	--lf-disabled-bg: #25364a;
+	--lf-disabled-text: #9cadc0;
+	--lf-danger-bg: #402b38;
+	--lf-danger: #fcb4b4;
+	--lf-danger-border: #9d6670;
+	--lf-warning-bg: #3c3540;
+	--lf-warning: #f6d99b;
+	--lf-warning-border: #9c805a;
+	--lf-success-bg: #1d3b3b;
+	--lf-success: #a5e4ce;
+	--lf-success-border: #508b7e;
+	--lf-nav: #101d30;
+	--lf-overlay: rgb(15 23 42 / 50%);
+}
+
 /* You can find detailed information at https://wiki.simplemachines.org/smf/Curve2_CSS
 /* Index */
 html {
-	background: #2A3F5A;
+	background: var(--lf-bg);
+	color: var(--lf-text);
 }
 body {
-	background: url(../images/blue_body_darker_repeat.jpg) repeat-y fixed #010101;
 	background-position: center top;
 	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
-	color: #8F98A0;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	background: var(--lf-bg);
+	color: var(--lf-text);
 }
 ::selection {
 	text-shadow: none;
-	background: #99d4ff;
-	color: rgba(0, 0, 0, 0.6);
+	background: var(--lf-accent-hover);
+	color: var(--lf-strong);
 }
 /* General reset */
+img.smiley.lf-twemoji,
+.sceditor-insertemoticon img[src*="/images/twemoji/"],
+.sceditor-smileyPopup img[src*="/images/twemoji/"] {
+	width: 1.25em;
+	height: 1.25em;
+	max-width: 100%;
+	object-fit: contain;
+	vertical-align: middle;
+}
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -35,6 +80,7 @@ table {
 }
 abbr {
 	border-bottom: 0.1em dotted;
+	border-color: var(--lf-border);
 }
 input, button, select, textarea {
 	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
@@ -45,17 +91,42 @@ input, button, select, textarea {
 	box-shadow: 0 2px 5px rgba(0,0,0,0.05) inset;
 	padding: 0.3em 0.4em;
 }
-input:hover, textarea:hover, button:hover, select:hover {
+button:disabled, select:disabled, textarea:disabled, input:disabled {
+	background: var(--lf-disabled-bg);
+	color: var(--lf-disabled-text);
+	border-color: var(--lf-border);
+}
+textarea::placeholder, input::placeholder {
+	color: var(--lf-placeholder);
+	opacity: 1;
+}
+textarea:hover {
 	outline: none;
 	border-color: #82a2bc;
 }
-textarea:hover {
-	background: #fbfbfb;
+select:hover, button:hover, input:hover {
+	outline: none;
+	border-color: var(--lf-link);
 }
-input:focus, textarea:focus, button:focus, select:focus {
+textarea:hover {
+	background: var(--lf-raised);
+	color: var(--lf-text);
+	border-color: var(--lf-link);
+}
+button:focus {
 	outline: none;
 	border-color: #7fb0d8;
 	background: #fff;
+}
+select:focus, textarea:focus, input:focus {
+	outline: none;
+	background: var(--lf-raised);
+	color: var(--lf-text);
+	border-color: var(--lf-link);
+}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible, summary:focus-visible {
+	outline: 2px solid var(--lf-link);
+	outline-offset: 2px;
 }
 input, button, select {
 	padding: 0 0.4em;
@@ -88,6 +159,9 @@ img, input, select, textarea {
 /* The following is necessary */
 textarea {
 	font-size: 1em;
+	color: var(--lf-text);
+	background: var(--lf-surface);
+	border-color: var(--lf-border-strong);
 }
 
 /* Use a consistent monospace font everywhere */
@@ -105,8 +179,17 @@ dd textarea {
 	min-height: 100px;
 }
 /* Apply the font only to these elements */
-input, button, select {
+select {
 	font-size: 0.75rem;
+	color: var(--lf-text);
+	background: var(--lf-surface);
+	border-color: var(--lf-border-strong);
+}
+button, input {
+	font-size: 0.75rem;
+	color: var(--lf-text);
+	background: var(--lf-surface);
+	border-color: var(--lf-border-strong);
 }
 /* Number inputs don't support size nor width, so add some common ones here and set a default... */
 input[type="number"] {
@@ -133,6 +216,9 @@ fieldset {
 	padding: 18px;
 	margin: 0 0 6px 0;
 	border: 1px solid #2E3E4C;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 fieldset legend {
 	font-weight: bold;
@@ -152,6 +238,13 @@ strong, .strong {
 .cat_bar strong {
 	color: #fff;
 }
+.cat_bar {
+	background-color: var(--lf-raised);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+	box-shadow: none;
+	text-shadow: none;
+}
 em, .em {
 	font-style: italic;
 }
@@ -160,20 +253,29 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 1em;
 }
 /* All input elements that are checkboxes or radio buttons shouldn't have a border around them */
-input[type="checkbox"], input[type="radio"] {
+input[type="radio"] {
 	border: none;
 	background: none;
 	vertical-align: middle;
 	box-shadow: none;
 	margin: 0 3px;
+	accent-color: var(--lf-link);
+}
+input[type="checkbox"] {
+	border: none;
+	background: none;
+	vertical-align: middle;
+	box-shadow: none;
+	margin: 0 3px;
+	accent-color: var(--lf-link);
 }
 .moderationbuttons_mobile_check {
 	display: none;
 }
 /* Give disabled input elements a different style */
 input[disabled], textarea[disabled], select[disabled], .button.disabled, .button[disabled]:hover {
-	background: #eee;
-	color: #999;
+	background: var(--lf-disabled-bg);
+	color: var(--lf-disabled-text);
 	opacity: 0.8;
 	cursor: default;
 }
@@ -182,17 +284,28 @@ hr {
 	border: none;
 	margin: 12px 0;
 	height: 2px;
-	background: #777777;
 	box-shadow: 0 1px 0 #777 inset;
+	border-color: var(--lf-border);
+	background: var(--lf-border);
 }
 /* This is about links */
-a, a:visited {
-	color: #FFF;
+a:visited {
 	text-decoration: none;
+	color: var(--lf-link);
+}
+a {
+	text-decoration: none;
+	color: var(--lf-link);
+}
+a:focus-visible {
+	color: var(--lf-link-hover);
+	outline: 2px solid var(--lf-link);
+	outline-offset: 2px;
 }
 a:hover {
 	text-decoration: underline;
 	cursor: pointer;
+	color: var(--lf-link-hover);
 }
 
 /* Help popups require a different styling of the body element. */
@@ -222,6 +335,11 @@ body#help_popup {
 	opacity: 0.4;
 	font-size: 0.9em;
 	display: block;
+}
+.description {
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 
 /* The "new" button */
@@ -272,8 +390,12 @@ body#help_popup {
 }
 
 /* Default font sizes: small (8pt), normal (10pt), and large (14pt). */
-.smalltext, tr.smalltext th {
+tr.smalltext th {
 	font-size: 0.9em;
+}
+.smalltext {
+	font-size: 0.9em;
+	color: var(--lf-muted);
 }
 .largetext {
 	font-size: 1.4em;
@@ -341,31 +463,33 @@ blockquote cite {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	font-size: 0.9em;
 	margin-bottom: 3px;
+	border-color: var(--lf-border);
 }
 blockquote cite::before {
-	color: #aaa;
 	font-size: 22px;
 	font-style: normal;
 	content: "\275D";
 	margin-right: 3px;
 	vertical-align: middle;
+	color: var(--lf-muted);
 }
 .bbc_standard_quote {
-	color: #d6d7d8;
 	background-color: #1b2b3a;
-	border-color: #40576b;
+	background: var(--lf-raised);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 .bbc_alternate_quote {
-	color: #d6d7d8;
 	background-color: #24384b;
-	border-color: #496278;
+	background: var(--lf-subtle);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 
 /* A code block - maybe PHP ;). */
 .bbc_code {
 	display: block;
 	font-size: 0.78rem;
-	background: #f3f3f3;
 	border: 1px solid #dfdfdf;
 	border-top: 2px solid #bbb;
 	border-bottom: 3px solid #aaa;
@@ -374,16 +498,25 @@ blockquote cite::before {
 	overflow: auto;
 	white-space: nowrap;
 	max-height: 25em;
+	background: var(--lf-bg);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 /* The "Quote:" and "Code:" header parts... */
-.codeheader, .quoteheader {
-	color: #666;
+.quoteheader {
 	font-size: 0.9em;
 	padding: 0 2px;
+	color: var(--lf-muted);
+}
+.codeheader {
+	font-size: 0.9em;
+	padding: 0 2px;
+	color: var(--lf-muted);
 }
 /* For links to change the code stuff... */
 .codeoperation {
 	font-weight: normal;
+	color: var(--lf-link);
 }
 /* Expand code bbc */
 .expand_code {
@@ -459,7 +592,7 @@ a img {
 /* Highlighted text - such as search results. */
 .highlight {
 	font-weight: bold;
-	color: #A85400 !important;
+	color: var(--lf-warning) !important;
 	font-size: 1.1em;
 	background-color: inherit;
 }
@@ -497,9 +630,10 @@ strong[id^='child_list_']::after {
 }
 .current_page {
 	padding: 0 4px 0 2px;
-	color: #A85400;
 	font-family: verdana, sans-serif;
 	font-weight: bold;
+	background: var(--lf-active);
+	color: var(--lf-strong);
 }
 .current_page::before, .codeoperation::before {
 	content: "[";
@@ -539,11 +673,14 @@ strong[id^='child_list_']::after {
 }
 
 .warn_moderate {
-	color: #ffa500;
+	color: var(--lf-warning);
 }
 
-.warn_watch, .success {
+.success {
 	color: green;
+}
+.warn_watch {
+	color: var(--lf-warning);
 }
 
 a.moderation_link, a.moderation_link:visited {
@@ -610,6 +747,17 @@ table.table_grid {
 	border-collapse: collapse;
 	margin: 1px 0 5px 0;
 	width: 100%;
+}
+.table_grid .title_bar, .table_grid thead {
+	background-color: var(--lf-raised);
+}
+.table_grid th {
+	border-color: var(--lf-border);
+	color: var(--lf-strong);
+	background-color: var(--lf-raised);
+}
+.table_grid td, .table_grid {
+	border-color: var(--lf-border);
 }
 table.table_grid td {
 	padding: 3px;
@@ -692,11 +840,18 @@ img.sort, .sort {
 	position: relative;
 	box-sizing: border-box;
 }
+#top_info a.open {
+	background: var(--lf-active);
+	color: var(--lf-strong);
+}
+.dropmenu > li > a {
+	color: var(--lf-link);
+}
 .dropmenu {
-	background-image: linear-gradient(to bottom, #1B2734 0%, #1F3954 50%) !important;
+	background-image: linear-gradient(to bottom, var(--lf-raised), var(--lf-surface)) !important;
 	border: 1px solid #2E3E4C;
-	border-bottom: none;
 	box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.08);
+	border-bottom: 1px solid var(--lf-border);
 }
 /* Level 1 button background. */
 .dropmenu > li, #top_info > li {
@@ -706,18 +861,16 @@ img.sort, .sort {
 	font-size: 0.9em;
 	line-height: 1.9em;
 }
-/* Disable default focus outlines */
-.dropmenu a {
-	outline: 0;
+/* Keep keyboard focus visible on navigation links. */
+.dropmenu a:focus-visible {
+	outline: 2px solid var(--lf-link);
+	outline-offset: 2px;
 }
 .dropmenu li {
 	margin: 0;
 	padding: 0;
 }
-.dropmenu li li {
-	border-right: none;
-}
-.dropmenu li:last-child {
+.dropmenu li li, .dropmenu li:last-child {
 	border-right: none;
 }
 .dropmenu li a {
@@ -748,24 +901,46 @@ img.sort, .sort {
 	color: #333;
 }
 
-.dropmenu li a, #top_info > li > a {
+.dropmenu li a {
 	padding: 0 7px 0 7px;
 	margin: 0;
 	display: block;
 }
+#top_info > li > a {
+	padding: 0 7px 0 7px;
+	margin: 0;
+	display: block;
+	color: var(--lf-link);
+}
 /* Level 1 active button. */
-.dropmenu a.active, #top_info a.active {
+#top_info a.active {
 	font-weight: bold;
+	background: var(--lf-active);
+	color: var(--lf-strong);
+}
+.dropmenu a.active {
+	font-weight: bold;
+	background: var(--lf-active);
+	color: var(--lf-strong);
 }
 /* Level 1 hover effects. */
-.dropmenu > li:hover > a, .dropmenu > li > a:focus,
-#top_info > li:hover > a, #top_info > li > a:focus, #top_info > li > a.open {
+#top_info > li > a.open {
 	background: #597b9f;
 	color: #fff;
 	cursor: pointer;
 	text-decoration: none;
 }
+#top_info > li > a:focus, #top_info > li:hover > a, .dropmenu > li > a:focus, .dropmenu > li:hover > a {
+	cursor: pointer;
+	text-decoration: none;
+	background: var(--lf-active);
+	color: var(--lf-strong);
+}
 /* User information. */
+
+.profile_group {
+	color: var(--lf-muted);
+}
 #profile_menu_top::after {
 	content: " \25BC";
 }
@@ -780,6 +955,9 @@ img.sort, .sort {
 .profile_username {
 	font-size: 150%;
 	display: block;
+}
+.profile_username a {
+	color: var(--lf-strong);
 }
 .profile_user_links ol {
 	clear: both;
@@ -803,9 +981,10 @@ img.sort, .sort {
 .top_menu.scrollable {
 	max-height: 30em;
 }
-.pm_unread, .alerts_unread {
+.alerts_unread, .pm_unread {
 	margin-top: 5px;
 	border-top: 1px solid #ddd;
+	border-color: var(--lf-border);
 }
 .unread_notify {
 	border-bottom: 1px solid #ddd;
@@ -815,8 +994,10 @@ img.sort, .sort {
 	text-align: center;
 }
 .unread_notify:hover {
-	background: #eee;
 	text-decoration: none;
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
 }
 .unread_notify:last-child {
 	border-bottom: none;
@@ -826,6 +1007,7 @@ img.sort, .sort {
 	align-items: center;
 	padding: 6px 5px;
 	line-height: 20px;
+	border-color: var(--lf-border);
 }
 .unread_notify.alert_read {
 	opacity: 0.5;
@@ -889,11 +1071,21 @@ img.sort, .sort {
 	font-size: 1em;
 }
 /* Necessary to allow highlighting of 1st level while hovering over submenu. */
-.dropmenu li:hover li a, .dropmenu li li a {
+.dropmenu li:hover li a {
 	background: none;
 	padding: 3px 9px !important;
 	border: none;
 	line-height: 2.2em;
+}
+.dropmenu li li a {
+	background: none;
+	padding: 3px 9px !important;
+	border: none;
+	line-height: 2.2em;
+	color: var(--lf-text);
+}
+.dropmenu li li a:visited {
+	color: var(--lf-text);
 }
 
 .dropmenu li li a > img {
@@ -985,7 +1177,11 @@ img.sort, .sort {
 	padding: 5px 0 5px 0;
 	margin: 5px 0 5px 0;
 }
-.button, .quickbuttons > li > a, .inline_mod_check {
+.buttonlist .active {
+	background: var(--lf-active);
+	color: var(--lf-strong);
+}
+.button, .inline_mod_check {
 	display: inline-block;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -997,21 +1193,50 @@ img.sort, .sort {
 	height: calc(2em + 2em * (0.9 - 0.85)); /* "input" font size minus ".button" font size */
 	line-height: 2em;
 }
+.quickbuttons > li > a {
+	display: inline-block;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+	padding: 0 0.7em;
+	overflow: visible;
+	font-size: 0.85em;
+	height: calc(2em + 2em * (0.9 - 0.85)); /* "input" font size minus ".button" font size */
+	line-height: 2em;
+	background: var(--lf-subtle);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+}
+.quickbuttons li ul a:hover {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+}
+.quickbuttons > li > a:hover {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+}
 .button:not(:first-child) {
 	margin-left: 4px;
 }
-.button:hover, .button:focus {
+.button:hover {
 	color: #FFF;
 	text-decoration: none;
 	box-shadow: -1px -1px 2px rgba(0,0,0,0.07), -1px -2px 4px rgba(255,255,255,0.33) inset;
 }
+.button:focus {
+	text-decoration: none;
+	box-shadow: -1px -1px 2px rgba(0,0,0,0.07), -1px -2px 4px rgba(255,255,255,0.33) inset;
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+}
 /* the active one */
 .button.active {
-	background: #557ea0;
-	color: #fff;
 	font-weight: bold;
 	border: 1px solid #558080;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+	background: var(--lf-active);
+	color: var(--lf-strong);
 }
 .button.active:hover {
 	color: #ffc187;
@@ -1099,6 +1324,10 @@ img.sort, .sort {
 	margin: 0 0 0 10px;
 }
 /* The logo and slogan. */
+
+#forum_name a {
+	color: var(--lf-strong);
+}
 #header {
 	padding: 2px 2px 12px 2px;
 	width: 90%;
@@ -1123,9 +1352,14 @@ h1.forumtitle a {
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 /* Float these items to the right */
-#siteslogan, img#smflogo {
+img#smflogo {
 	padding-right: 2px;
 	font-size: 1.4em;
+}
+#siteslogan {
+	padding-right: 2px;
+	font-size: 1.4em;
+	color: var(--lf-strong);
 }
 /* Tweak the SMF logo */
 img#smflogo {
@@ -1199,12 +1433,15 @@ ul li.greeting {
 	padding: 0 10px;
 	font-size: 0.9em;
 	overflow: hidden;
-	box-shadow: 0 -2px 2px rgba(0,0,0,0.08);
 	box-sizing: border-box;
-	background-image: linear-gradient(to bottom, #1F3954 0%, #1B2734 100%) !important;
-	color: #9099A1;
+	background-image: linear-gradient(to bottom, var(--lf-surface), var(--lf-raised)) !important;
 	border: 1px solid #2E3E4C;
-	border-top: none;
+	background-color: var(--lf-raised);
+	border-color: var(--lf-border);
+	box-shadow: none;
+	text-shadow: none;
+	color: var(--lf-strong);
+	border-top: 1px solid var(--lf-border);
 }
 .navigate_section ul li {
 	float: left;
@@ -1257,13 +1494,21 @@ ul li.greeting {
 #footer {
 	margin: 4em 0 0 0;
 	padding: 10px 5%;
-	background: #2A3F5A;
 	border-top: 3px solid #b2b6bd;
 	flex: none;
+	background: var(--lf-nav);
+	border-color: var(--lf-border);
 }
-#footer li, #footer p, #footer a {
+#footer a {
 	font-size: 0.9em;
-	color: #fff;
+	color: var(--lf-muted);
+}
+#footer a:focus-visible, #footer a:hover {
+	color: var(--lf-link-hover);
+}
+#footer p, #footer li {
+	font-size: 0.9em;
+	color: var(--lf-muted);
 }
 #footer li.copyright {
 	display: block;
@@ -1609,6 +1854,10 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 	top: 50%;
 	margin-top: -8px;
 }
+.infobox a, .noticebox a, .errorbox a {
+	color: inherit;
+	text-decoration: underline;
+}
 .errorbox, .noticebox, .infobox {
 	padding: 7px 10px 7px 35px;
 	margin-bottom: 12px;
@@ -1618,6 +1867,9 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 	background-color: #fee;
 	border-top: 2px solid #c34;
 	border-bottom: 2px solid #c34;
+	background: var(--lf-danger-bg);
+	color: var(--lf-danger);
+	border-color: var(--lf-danger-border);
 }
 .errorbox h3 {
 	padding: 0;
@@ -1649,38 +1901,44 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 	background-position: -161px -83px;
 }
 .noticebox {
-	color: #666;
-	background: #fff6ca;
 	border-top: 1px solid #ffd324;
 	border-bottom: 1px solid #ffd324;
+	background: var(--lf-warning-bg);
+	color: var(--lf-warning);
+	border-color: var(--lf-warning-border);
 }
 .infobox {
-	background: #cfc;
 	border-top: 1px solid green;
 	border-bottom: 1px solid green;
+	background: var(--lf-success-bg);
+	color: var(--lf-success);
+	border-color: var(--lf-success-border);
 }
 /* Empty unread-topic and unread-reply notices use the Lunarfall palette. */
 #recent > .infobox {
-	color: #d6d7d8;
-	background: #1b2b3a;
-	border-color: #2e3e4c;
+	background: var(--lf-accent-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 #recent > .infobox a {
-	color: #67c1f5;
 	text-decoration: underline;
+	color: var(--lf-link);
 }
-#recent > .infobox a:hover,
-#recent > .infobox a:focus {
-	color: #fff;
+#recent > .infobox a:focus, #recent > .infobox a:hover {
+	color: var(--lf-link-hover);
 }
 #recent > .infobox a:focus-visible {
 	outline: 2px solid #67c1f5;
 	outline-offset: 2px;
+	outline-color: var(--lf-link);
 }
 .descbox {
 	padding: 7px 10px 7px 10px;
 	border: 1px solid #c5c5c5;
 	margin: 6px 0;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 
 /* Styles for stats bars and progress bars.
@@ -1904,6 +2162,10 @@ dl {
 }
 .topic_details {
 	padding: 0 4px 4px 4px;
+	color: var(--lf-muted);
+}
+.topic_details hr {
+	border-color: var(--lf-border);
 }
 .counter + .topic_details {
 	margin-left: 25px;
@@ -2157,6 +2419,9 @@ dl.addrules dt.floatleft {
 #alerts .quickbuttons li, #alerts .alert_time {
 	white-space: nowrap;
 }
+.alert_time {
+	color: var(--lf-muted);
+}
 #alerts .alert_image {
 	width: 65px;
 	padding: 6px 0;
@@ -2303,8 +2568,8 @@ dl.addrules dt.floatleft {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(40, 64, 80, 0.5);
 	z-index: 6;
+	background: var(--lf-overlay);
 }
 #genericmenu > .popup_container {
 	z-index: 5;
@@ -2331,7 +2596,7 @@ dl.addrules dt.floatleft {
 }
 .popup_heading {
 	padding: 10px 8px;
-	color: #bf6900;
+	color: var(--lf-strong);
 }
 .popup_content {
 	color: #222;
@@ -2343,10 +2608,12 @@ dl.addrules dt.floatleft {
 	border-bottom: 1px solid #ddd;
 	box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.2);
 }
-#main_menu .popup_heading,
-#genericmenu .popup_heading,
 #adm_submenus .popup_heading {
 	display: none;
+}
+#genericmenu .popup_heading, #main_menu .popup_heading {
+	display: none;
+	color: var(--lf-strong);
 }
 #main_menu .popup_container,
 #genericmenu > .popup_container,
@@ -2374,19 +2641,32 @@ dl.addrules dt.floatleft {
 	margin: -4px 4px 0 0;
 }
 
-.generic_list_wrapper, .windowbg, .approvebg, .approvebg2 {
+.approvebg, .approvebg2 {
 	margin: 12px 0 0 0;
 	padding: 12px 16px;
 	border: 1px solid #2E3E4C;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
 	overflow: auto;
 }
-/* Here comes the glory... */
-.windowbg:nth-of-type(even), .bg.even {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 100%, rgba(0, 0, 0, 0.5) 0%) repeat scroll 100% 100% transparent;
+.windowbg, .generic_list_wrapper {
+	margin: 12px 0 0 0;
+	padding: 12px 16px;
+	border: 1px solid #2E3E4C;
+	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
+	overflow: auto;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
-.windowbg:nth-of-type(odd), .bg.odd {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 0%) repeat scroll 100% 100% transparent;
+/* Here comes the glory... */
+.bg.even {
+	background: var(--lf-raised);
+}
+.windowbg:nth-of-type(even) {
+	background: var(--lf-raised);
+}
+.bg.odd, .windowbg:nth-of-type(odd) {
+	background: var(--lf-surface);
 }
 
 /* Special treatment for #forumposts area */
@@ -2395,19 +2675,22 @@ dl.addrules dt.floatleft {
 }
 /* Nobody wants locked topics to stand out much. */
 .windowbg.locked {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 95%, rgba(0, 0, 0, 0.7) 95%) repeat scroll 0% 0% transparent;
+	background: var(--lf-bg);
 }
 /* Sticky topics get a different background */
 .windowbg.sticky {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 5%, rgba(0, 0, 0, 0.2) 95%) repeat scroll 0% 0% transparent;
+	background: var(--lf-accent-surface);
 }
 /* Locked AND sticky are a bit more technical */
 .windowbg.sticky.locked {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 95%) repeat scroll 0% 0% transparent;
+	background: var(--lf-accent-surface);
 }
 /* Awaiting approval is a bit special, topics first */
-.windowbg.approvetopic, .windowbg.approvepost {
-	background: #597B9F;
+.windowbg.approvepost {
+	background: var(--lf-warning-bg);
+}
+.windowbg.approvetopic {
+	background: var(--lf-warning-bg);
 }
 
 div#editlang_desc {
@@ -2428,13 +2711,22 @@ tr.windowbg {
 #postmodify .lastedit {
 	font-weight: bold;
 }
+.lastedit {
+	color: var(--lf-muted);
+}
 
 /* Colors for background of posts requiring approval */
 .approvebg {
-	background: #ffeaea;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
+	background: var(--lf-warning-bg);
 }
 .approvebg2 {
-	background: #fff2f2;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
+	background: var(--lf-warning-bg);
 }
 
 div#manage_boards dl dd textarea[name=desc] {
@@ -2514,9 +2806,14 @@ h3 .collapse {
 	font-size: 0.9em;
 	padding-top: 3px;
 }
-.board_icon, .info, .board_stats, .lastpost {
+.board_icon, .info, .board_stats {
 	display: inline-block;
 	align-self: center;
+}
+.lastpost {
+	display: inline-block;
+	align-self: center;
+	color: var(--lf-muted);
 }
 .main_container {
 	margin-bottom: 20px;
@@ -2787,6 +3084,13 @@ div#pollmoderation {
 /* Topic information */
 #forumposts .catbg img {
 	margin: 0 4px -2px 0;
+}
+.catbg {
+	background-color: var(--lf-raised);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+	box-shadow: none;
+	text-shadow: none;
 }
 #forumposts .catbg span {
 	white-space: pre;
@@ -3168,8 +3472,12 @@ div.cat_bar {
 	background: #0E151E;
 	border-bottom: 1px solid #777;
 	padding: 0;
-	box-shadow: 0 16px 20px rgba(255, 255, 255, 0.15) inset;
-	text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+	background-color: var(--lf-raised);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+	box-shadow: none;
+	text-shadow: none;
+	background-image: linear-gradient(to bottom, var(--lf-raised), var(--lf-surface));
 }
 .cat_bar h3 {
 	padding: 8px 12px 6px 12px;
@@ -3187,12 +3495,16 @@ h3.catbg {
 	font-size: 1.1em;
 	font-family: "Tahoma", sans-serif;
 }
-h3.catbg, h3.catbg a, h3.catbg a:hover {
+h3.catbg a:hover {
 	color: #fff;
+}
+h3.catbg a, h3.catbg {
+	color: var(--lf-strong);
 }
 h3.catbg a:hover {
 	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	text-decoration: none;
+	color: var(--lf-strong);
 }
 .cat_bar + .windowbg, .cat_bar + .roundframe {
 	margin-top: -1px;
@@ -3214,14 +3526,23 @@ h3.catbg a:hover {
 	border: 1px solid #2E3E4C;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 100%, rgba(0, 0, 0, 0.7) 0%) repeat scroll 0% 0% transparent;
 	margin: 5px 0 0 0;
+	background-color: var(--lf-raised);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+	box-shadow: none;
+	text-shadow: none;
+	background-image: linear-gradient(to bottom, var(--lf-raised), var(--lf-surface));
 }
 .sub_bar {
-	text-shadow: none;
 	background: #2A3F5A;
-	box-shadow: 0 -1px 0 #999 inset;
 	clear: both;
+	background-color: var(--lf-raised);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+	box-shadow: none;
+	text-shadow: none;
 }
-h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
+h3.titlebg, h4.titlebg, h3.subbg, h4.subbg {
 	background: none;
 	font-family: "Tahoma", sans-serif;
 	font-weight: bold;
@@ -3229,9 +3550,31 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 	padding: 6px 12px 5px 12px;
 	text-shadow: none;
 }
-.titlebg a, .subbg a {
+.titlebg {
+	background: none;
+	font-family: "Tahoma", sans-serif;
+	font-weight: bold;
+	overflow: hidden;
+	padding: 6px 12px 5px 12px;
+	text-shadow: none;
+	color: var(--lf-strong);
+}
+.subbg {
+	background: none;
+	font-family: "Tahoma", sans-serif;
+	font-weight: bold;
+	overflow: hidden;
+	padding: 6px 12px 5px 12px;
+	background-color: var(--lf-raised);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+	box-shadow: none;
+	text-shadow: none;
+}
+.subbg a, .titlebg a {
 	background: none;
 	text-decoration: none;
+	color: var(--lf-strong);
 }
 .title_bar + .windowbg, .title_bar + .roundframe {
 	margin-top: -1px;
@@ -3249,12 +3592,17 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 	border-top: none;
 	margin: 0 0 10px 0;
 	padding: 12px 9px 8px 9px;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
+	background-image: none;
 }
 .generic_list_wrapper .information div {
 	background: none;
 }
 .information a:not(.button) {
 	font-weight: bold;
+	color: var(--lf-link);
 }
 p.information img {
 	vertical-align: middle;
@@ -3376,26 +3724,68 @@ span.member.hidden {
 
 /* Those classes are sharing exact same gradient. */
 /* Background of buttons */
-.dropmenu li ul, .top_menu, .dropmenu li li:hover, .button,
-.dropmenu li li:hover > a, .dropmenu li li a:focus, .dropmenu li li a:hover,
-#top_section, .quickbuttons > li,
-.quickbuttons li ul, .quickbuttons li ul li a:hover, .quickbuttons ul li a:focus,
-.inline_mod_check, .popup_window, .post_options ul,
-.post_options ul a:hover, .post_options ul a:focus, .notify_dropdown a:hover, .notify_dropdown a:focus {
+.dropmenu li ul, .top_menu, .dropmenu li li:hover, .quickbuttons > li, .quickbuttons li ul li a:hover, .quickbuttons ul li a:focus, .post_options ul a:focus, .notify_dropdown a:hover, .notify_dropdown a:focus {
 	background: rgba( 103, 193, 245, 0.1 );
 }
+.post_options ul a:hover {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+}
+.inline_mod_check, .button {
+	background: var(--lf-subtle);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+}
+.quickbuttons li ul, .post_options ul {
+	background: rgba( 103, 193, 245, 0.1 );
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
+}
+.popup_window {
+	background: rgba( 103, 193, 245, 0.1 );
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
+}
+.dropmenu li li a:focus {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+}
+.dropmenu li li a:hover, .dropmenu li li:hover > a {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+}
+#top_section {
+	background: var(--lf-nav);
+	border-color: var(--lf-border);
+}
 /* Well some of them has different gradient effect on hover */
-.button:hover, .button_submit:hover, .button_reset:hover, .button_link:hover,
-.topbottom:hover,#search_form .button_submit:hover, .qbuttons li:hover {
-	color: #FFF;
-	background: #67C1F5;
+.qbuttons li:hover {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+}
+#search_form .button_submit:hover, .topbottom:hover {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+}
+.button_link:hover, .button_reset:hover, .button_submit:hover, .button:hover {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
 }
 /* If it fits I sits... */
-.popup_content, .up_contain, .top_menu, 
-.dropmenu li ul, .roundframe, .notify_dropdown {
-	background-image: linear-gradient(to bottom, #1B2734 0%, #1F3954 50%) !important;
+.dropmenu li ul {
+	background-image: linear-gradient(to bottom, var(--lf-raised), var(--lf-surface)) !important;
 	color: #9099A1;
 	border: 1px solid #2E3E4C;
+}
+.notify_dropdown, .top_menu, .up_contain, .popup_content, .roundframe {
+	background-image: linear-gradient(to bottom, var(--lf-raised), var(--lf-surface)) !important;
+	border: 1px solid #2E3E4C;
+	background-color: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 
 /* Topic/Board follow-alert menu */
@@ -3406,9 +3796,15 @@ span.member.hidden {
 	display: block;
 	padding: 0.5em;
 }
-.notify_dropdown a:hover, .notify_dropdown a:focus {
+.notify_dropdown a:hover {
 	text-decoration: none;
 	background: #eee;
+}
+.notify_dropdown a:focus {
+	text-decoration: none;
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
 }
 .notify_dropdown span {
 	font-size: 0.9em;
@@ -3418,9 +3814,11 @@ span.member.hidden {
 #display_head {
 	clear: both;
 	margin: -7px 0 15px 0;
+	color: var(--lf-text);
+	border-top: 1px solid var(--lf-border);
 }
 #display_head p {
-	color: #959595;
+	color: var(--lf-muted);
 }
 #display_head span {
 	margin: -4px 0 0 0;
@@ -3431,6 +3829,7 @@ span.member.hidden {
 	margin-bottom: 0.25em;
 	line-height: 1.05em;
 	overflow-wrap: break-word;
+	color: var(--lf-text);
 }
 #reported_posts .quickbuttons li a,
 #reported_members .quickbuttons li a {
@@ -3440,18 +3839,20 @@ span.member.hidden {
 /* Some colors for generic usage */
 /* Sometimes there will be an error when you post */
 /* Messages that somehow need to attract the attention. */
-.red, .meaction,
-.error, .alert, .warn_mute {
-	color: red;
+.warn_mute {
+	color: var(--lf-danger);
+}
+.alert, .error, .meaction, .red {
+	color: var(--lf-danger);
 }
 .blue {
-	color: blue;
+	color: var(--lf-link);
 }
-.green, .valid {
-	color: green;
+.valid, .green {
+	color: var(--lf-success);
 }
-.yellow, .check {
-	color: yellow;
+.check, .yellow {
+	color: var(--lf-warning);
 }
 /* Adding some classes for generic usage and JS rules */
 .hidden {
@@ -3468,15 +3869,19 @@ span.member.hidden {
 /* Alternating colors */
 .stripes:nth-of-type(even) {
 	background-color: #f2f2f2;
+	background: var(--lf-raised);
 }
 .stripes:nth-of-type(odd) {
 	background-color: #f0f4f7;
+	background: var(--lf-surface);
 }
 .alternative {
 	background-color: #f2f2f2;
+	background: var(--lf-surface);
 }
 .alternative2 {
 	background-color: #e8edf0;
+	background: var(--lf-raised);
 }
 
 .centerbox {
@@ -3717,6 +4122,7 @@ div.sceditor-container:not(.sceditor-maximize) {
 	align-items: center;
 	gap: 4px;
 	text-decoration: none;
+	color: var(--lf-strong);
 }
 .profile_user_links a > i {
 	flex-shrink: 0;
@@ -3725,12 +4131,16 @@ div.sceditor-container:not(.sceditor-maximize) {
 	min-width: 0;
 	overflow-wrap: anywhere;
 }
-.notify_dropdown a:hover,
 #pm_menu .unread:hover, #alerts_menu .unread:hover {
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0.4) 95%) repeat scroll 0% 0% transparent;
 }
+.notify_dropdown a:hover {
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+}
 .notify_dropdown a:hover span {
-	color: #9099A1;
+	color: var(--lf-text);
 }
 .display_title i {
 	font-size: 23px;
@@ -3768,18 +4178,37 @@ div.sceditor-container:not(.sceditor-maximize) {
 #f_buttons a {
 	margin: 0 0 0 7px;
 }
+
+body div.sceditor-dropdown {
+	border-color: var(--lf-border);
+	background: var(--lf-raised);
+	color: var(--lf-text);
+}
+
+body div.sceditor-dropdown textarea, body div.sceditor-dropdown input {
+	background: var(--lf-surface);
+	color: var(--lf-text);
+	border-color: var(--lf-border-strong);
+}
+
+body div.sceditor-dropdown label {
+	background: var(--lf-raised);
+	color: var(--lf-text);
+}
 /* Lunarfall SCEditor */
 .sceditor-container iframe, .sceditor-container textarea {
-	background-color: #222b35 !important;
-	color: #d6d7d8 !important;
+	background-color: var(--lf-bg) !important;
+	color: var(--lf-text) !important;
 }
-.sceditor-container {
+div.sceditor-container {
 	border-radius: 0 !important;
 	background: none !important;
-	border: 1px solid #233c51 !important;
+	border: 1px solid var(--lf-border) !important;
+	color: var(--lf-text);
+	border-color: var(--lf-border);
 }
 .sceditor-toolbar {
-	background: rgba( 0, 0, 0, 0.2 ) !important;
+	background: var(--lf-raised) !important;
 }
 div.sceditor-group {
 	background: none !important;
@@ -3787,7 +4216,7 @@ div.sceditor-group {
 }
 .sceditor-button:hover, .sceditor-button:active, .sceditor-button.active,
 .profile_user_links a:hover {
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.2) 5%) repeat scroll 0% 0% transparent !important;
+	background: var(--lf-hover) !important;
 }
 
 
@@ -3807,15 +4236,23 @@ div.sceditor-group {
 }
 /* Icon title-pop */
 .qbuttons a {
-    display: inline;
+	display: inline;
 	position: relative;
+	background: var(--lf-subtle);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
+}
+/* Message actions and sharing links sit directly on the post surface. */
+.qbuttons.quickbuttons_post > li,
+.qbuttons.post_socialshare > li,
+.qbuttons.quickbuttons_post > li > a,
+.qbuttons.post_socialshare > li > a {
+	background: none;
 }
 .qbuttons a::after {
 	border: 1px solid #2E3E4C;
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%) repeat scroll 0% 0% transparent;
     border-radius: 3px;
     bottom: 30px;
-    color: #fff;
     content: attr(title);
     padding: 5px 15px;
     position: absolute;
@@ -3823,17 +4260,26 @@ div.sceditor-group {
 	width: 150px;
 	display: none;
 	right: 0;
+	background: var(--lf-hover);
+	color: var(--lf-strong);
+	border-color: var(--lf-border);
 }
 .qbuttons a:hover::after {
 	display: block;
 }
 
 /* Flex more */
-#topic_header,
+#topic_header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-color: var(--lf-border);
+}
 #topic_container .windowbg {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	border-color: var(--lf-border);
 }
 /* a drity fix */
 .board_icon i {

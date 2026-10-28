@@ -15,9 +15,13 @@
 .calendar_week tr.days_wrapper td.calendar_today:first-child {
 	font-weight: bold;
 }
-.calendar_today,
 td.days:hover {
-	background: #fff;
+	background: var(--lf-surface);
+	border-color: var(--lf-border);
+}
+.calendar_today {
+	background: var(--lf-surface);
+	border-color: var(--lf-border);
 }
 #month_grid {
 	width: 214px;
@@ -33,8 +37,9 @@ td.days:hover {
 	width: 100%;
 	margin-bottom: 12px;
 	border-collapse: collapse;
-	background: #f0f4f7;
 	border: 1px solid #ddd;
+	background: var(--lf-surface);
+	border-color: var(--lf-border);
 }
 #main_grid {
 	overflow: auto;
@@ -51,21 +56,28 @@ td.days:hover {
 	border-radius: 5px 5px 0 0;
 }
 #month_grid th:first-child {
-	background: #e7eaef;
+	background: var(--lf-raised);
+	color: var(--lf-text);
 }
 #month_grid th.days {
 	background: #e7eaef;
 	font-size: smaller;
 }
-#month_grid th.days,
 #month_grid td.weeks {
 	padding: 2px;
 	text-align: center;
 }
+#month_grid th.days {
+	padding: 2px;
+	text-align: center;
+	background: var(--lf-raised);
+	color: var(--lf-text);
+}
 #month_grid td.weeks {
 	font-size: large;
-	background: #e7eaef;
 	width: 5%;
+	background: var(--lf-raised);
+	color: var(--lf-text);
 }
 #month_grid td.weeks a:hover {
 	text-decoration: underline;
@@ -80,29 +92,39 @@ td.days:hover {
 	margin: -3px 4px 0 4px;
 }
 #main_grid th:first-child {
-	background: #e7eaef;
+	background: var(--lf-raised);
+	color: var(--lf-text);
 }
 #main_grid th.days {
 	width: 14%;
 	padding: 5px 10px;
 	text-align: left;
-	background: #e7eaef;
+	background: var(--lf-raised);
+	color: var(--lf-text);
 }
 #main_grid td.weeks {
 	text-align: center;
 	font-weight: bold;
 	font-size: 1.8em;
-	background: #e7eaef;
 	padding: 5px;
+	background: var(--lf-raised);
+	color: var(--lf-text);
 }
 #main_grid td.weeks a:hover {
 	text-decoration: none;
 }
 /* Main Highlighting */
-#main_grid td.disabled,
 #month_grid td.disabled {
-	background: #eee;
 	border: 1px solid #ddd;
+	background: var(--lf-disabled-bg);
+	color: var(--lf-disabled-text);
+	border-color: var(--lf-border);
+}
+#main_grid td.disabled {
+	border: 1px solid #ddd;
+	background: var(--lf-disabled-bg);
+	color: var(--lf-disabled-text);
+	border-color: var(--lf-border);
 }
 #main_grid td.events,
 #month_grid td.events {
@@ -265,9 +287,10 @@ span.hidelink {
 /* Small screens get the calendar in a vertical list */
 @media (max-width: 665px) {
 	#main_grid table {
-		border: none;
-		background: none;
-	}
+	border: none;
+	background: var(--lf-surface);
+	border-color: var(--lf-border);
+}
 	#main_grid tr {
 		margin-bottom: 1em;
 	}
@@ -311,10 +334,7 @@ span.hidelink {
 	#main_grid .calendar_week .birthday_col::before {
 		content: attr(data-css-prefix);
 	}
-	#main_grid .calendar_week .holiday_col:empty {
-		display: none;
-	}
-	#main_grid .calendar_week .birthday_col:empty {
+	#main_grid .calendar_week .holiday_col:empty, #main_grid .calendar_week .birthday_col:empty {
 		display: none;
 	}
 	div.week_add_event {

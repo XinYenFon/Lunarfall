@@ -1,3 +1,15 @@
+v0.8.5 (28 October 2026) - Development
+* Remove normal/hover backgrounds from post quick-action and social-share buttons while retaining borders, tooltips and keyboard focus.
+* Bundle pinned Twemoji v17.0.3 artwork and attribution; add an opt-in Lunarfall-only appearance adapter for 20 legacy smiley codes, including editor pickers and dynamic previews. Preserve explicit set preferences, unknown images and original message codes without registering a global set.
+* Fix mobile administration submenu overlays and visible close headings; size mobile dialogs to the viewport instead of a fixed minimum height, and use the dark palette's readable mobile board-description color.
+* Restore the main navigation bottom border and breadcrumb/topic-heading top borders; integrate dark palette tokens and component colors into the original stylesheets and remove the extra palette stylesheet loads.
+* Remove the legacy black gradient from information panels, including topic headings, so their background matches the dark palette surface.
+* Adapt the openVectra Dark Mode palette from its source tokens: navy background, layered surfaces, readable text, blue links and semantic notification colors.
+* Centralize palette tokens and color-only overrides; retain SMF markup, navigation, geometry, responsive behavior and Font Awesome 7 mappings.
+* Improve form boundaries and keyboard focus, darken tables/dropdowns/modals and keep standard/alternate quotes distinct.
+* Apply the same palette to administration components and the local SCEditor iframe skin without changing SMF core or Default Theme.
+- Targeted palette/contrast/layout checks only; full suite not run. Source and local theme-only ZIP preparation, no commit, tag, push, release or installed-theme deployment.
+
 v0.8.4 (25 October 2026) - Development
 * #6: Restrict icon spacing to Font Awesome i elements so ordinary italic text has no extra margin; preserve FA7 styles and existing spacing overrides.
 * #7: Give standard and alternate quotes distinct dark backgrounds, light text and matching borders.
