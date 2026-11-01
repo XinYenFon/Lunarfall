@@ -629,10 +629,16 @@ function template_menu()
 	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
 	foreach ($context['menu_buttons'] as $act => $button)
 	{
+		$icon = '';
+		if (isset($button['icon']) && strpos($button['icon'], '<img') !== false)
+			$icon = $button['icon'];
+		elseif (isset($button['icon']) && preg_match('/main_icons\s+([a-z0-9_-]+)/', $button['icon'], $matches))
+			$icon = '<i class="fa fa-' . $matches[1] . ' fa-lg"></i>';
+
 		echo '
 						<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
 							<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', isset($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : '', '>
-								<i class="fa fa-', $act, ' fa-lg"></i>', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '
+								', $icon, $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '
 							</a>';
 
 		// 2nd level menus
