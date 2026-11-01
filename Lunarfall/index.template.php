@@ -51,6 +51,11 @@ function template_init()
 	if (!empty($settings['disable_fa_icons']))
 		loadCSSFile('icons-disabled.css', array('order_pos' => 3200), 'lunarfall_icons_disabled');
 	loadJavaScriptFile('icons.js', array('defer' => true, 'minimize' => true), 'lunarfall_icons');
+	loadLanguage('ImageControls');
+	addJavaScriptVar('lunarfall_image_labels', array(
+		'expand' => isset($txt['lunarfall_image_expand']) ? $txt['lunarfall_image_expand'] : 'Expand image',
+		'reduce' => isset($txt['lunarfall_image_reduce']) ? $txt['lunarfall_image_reduce'] : 'Reduce image',
+	), true);
 	addJavaScriptVar('lunarfall_icon_labels', array(
 		'xmark' => isset($txt['close']) ? $txt['close'] : 'Close',
 		'circle-question' => isset($txt['help']) ? $txt['help'] : 'Help',
@@ -86,9 +91,12 @@ function template_init()
 	);
 
 	// Allow css/js files to be disabled for this specific theme.
-	// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
+	// Use identifier values, including SMF's _js/_css suffixes.
 	if (!isset($settings['disable_files']))
 		$settings['disable_files'] = array();
+
+	// BoardIndex still queues the Default Theme's Slippry; replace it only in Lunarfall.
+	$settings['disable_files'][] = 'smf_jquery_slippry_js';
 }
 
 /**

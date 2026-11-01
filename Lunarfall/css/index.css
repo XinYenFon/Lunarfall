@@ -8,6 +8,7 @@
 	--lf-subtle: #25394f;
 	--lf-border: #3b5168;
 	--lf-strong: #f0f5fb;
+	--lf-author: #e8a15d;
 	--lf-text: #dce6f1;
 	--lf-muted: #b1c3d6;
 	--lf-link: #93c5fd;
@@ -2972,6 +2973,9 @@ span.postby {
 #topic_container .lastpost, #topic_header .lastpost {
 	width: 20%;
 }
+#topic_container .lastpost {
+	overflow-wrap: anywhere;
+}
 #topic_container .lastpost, #topic_container .board_stats {
 	flex-shrink: 0;
 }
@@ -3122,7 +3126,7 @@ div#pollmoderation {
 .poster h4, .poster h4 a, .poster li:hover h4 a, .poster h4 a:hover .poster li h4 a, .poster h4 a:focus {
 	margin: 0;
 	padding: 0;
-	color: #A85400;
+	color: var(--lf-author);
 }
 
 .poster .profile .profile_icons li, .poster .im_icons li {
@@ -3215,7 +3219,7 @@ img.avatar {
 }
 .subject_title a {
 	font-size: 0.9em;
-	color: #333;
+	color: var(--lf-link);
 	font-weight: bold;
 }
 .subject_hidden a {
@@ -4079,7 +4083,7 @@ div.sceditor-container:not(.sceditor-maximize) {
 	opacity: 0.3;
 	transition: 1s;
 }
-.qbuttons:hover {
+.qbuttons:hover, .qbuttons:focus-within {
 	opacity: 1;
 }
 .qbuttons li {
@@ -4110,6 +4114,9 @@ div.sceditor-container:not(.sceditor-maximize) {
 .post_socialshare.qbuttons {
 	clear: left;
 	float: left;
+}
+.qbuttons.quickbuttons_post, .qbuttons.post_socialshare {
+	opacity: 1;
 }
 
 /* Lunarfall special */

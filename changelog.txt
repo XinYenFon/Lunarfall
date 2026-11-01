@@ -1,4 +1,16 @@
+v0.8.6 (1 November 2026) - Release candidate
+* B1: Improve ordinary author-link and visible message-subject contrast on dark post surfaces; preserve member-group color overrides and the existing typography.
+* B2: Keep post actions and social-share links readable without hover, and restore full group visibility during keyboard focus without adding button backgrounds.
+* B3: Wrap long last-poster names within topic-list columns while preserving desktop/tablet widths and mobile column visibility.
+* B4: Add keyboard-operable image-size toggles with accessible labels/state for plain resized post images; preserve linked-image navigation, support AJAX-added images and avoid duplicate event bindings.
+* Replace the board-index Slippry dependency with a local native JavaScript/CSS news fader; preserve SMF-parsed rich content, links, configured reading intervals, the 800 ms fade, pagination and responsive/RTL layout.
+* Add named keyboard controls and pause/resume, focus/hover and hidden-page rotation pauses, reduced-motion support, safe repeated initialization/cleanup and a readable JavaScript-disabled fallback. Keep SMF core, Default Theme assets and other themes unchanged.
+* Integrate PR #10's menu-icon selection: use SMF's declared main-menu icon and administration plain_class for mapped aliases, and preserve native main-menu image icons.
+- Known PR #10 limitations: custom CSS icon classes and administration image filenames are not fully supported, and icons embedded only in menu titles can still be duplicated. These cases are documented without further changes in this release candidate.
+- Targeted B1-B4 and native news-fader regressions, responsive geometry, keyboard and SMF minifier checks only; full suite not run. Source preparation only; no commit, tag, push, release or deployment. Published v0.8.5 remains unchanged.
+
 v0.8.5 (28 October 2026) - Development
+* Audit theme images and remove the unused legacy body background (46,411 bytes); preserve active assets, smiley images and uncertain dynamic fallbacks.
 * Remove normal/hover backgrounds from post quick-action and social-share buttons while retaining borders, tooltips and keyboard focus.
 * Bundle pinned Twemoji v17.0.3 artwork and attribution; add an opt-in Lunarfall-only appearance adapter for 20 legacy smiley codes, including editor pickers and dynamic previews. Preserve explicit set preferences, unknown images and original message codes without registering a global set.
 * Fix mobile administration submenu overlays and visible close headings; size mobile dialogs to the viewport instead of a fixed minimum height, and use the dark palette's readable mobile board-description color.

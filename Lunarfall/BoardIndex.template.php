@@ -10,6 +10,14 @@
  * @version 2.1.0
  */
 
+// SMF calls this template-specific hook before outputting the document head.
+function template_BoardIndex_init()
+{
+	global $settings;
+	if (!empty($settings['show_newsfader']))
+		loadJavaScriptFile('news-fader.js', array('defer' => true, 'minimize' => true), 'lunarfall_news_fader');
+}
+
 /**
  * The top part of the outer layer of the boardindex
  */
@@ -23,13 +31,24 @@ function template_boardindex_outer_above()
  */
 function template_newsfader()
 {
-	global $context, $settings;
+	global $context, $settings, $txt;
 
 	// Show the news fader?  (assuming there are things to show...)
 	if (!empty($settings['show_newsfader']) && !empty($context['news_lines']))
 	{
+		loadLanguage('NewsFader');
+		$escape = function ($value) { return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); };
+		$interval = is_numeric($settings['newsfader_time'] ?? null) ? max(0, min(2147482847, (int) $settings['newsfader_time'])) : 4000;
+		static $instance = 0;
+		$instance++;
 		echo '
-		<ul id="smf_slider" class="roundframe">';
+		<div class="lf-news" data-lf-news data-interval="', $interval, '"
+			data-label="', $escape($txt['lf_news_label']), '"
+			data-pause="', $escape($txt['lf_news_pause']), '"
+			data-play="', $escape($txt['lf_news_play']), '"
+			data-item="', $escape($txt['lf_news_item']), '"
+			data-reduced="', $escape($txt['lf_news_reduced']), '">
+		<ul id="smf_slider', $instance > 1 ? '_' . $instance : '', '" class="roundframe">';
 
 		foreach ($context['news_lines'] as $news)
 			echo '
@@ -37,14 +56,7 @@ function template_newsfader()
 
 		echo '
 		</ul>
-		<script>
-			jQuery("#smf_slider").slippry({
-				pause: ', $settings['newsfader_time'], ',
-				adaptiveHeight: 0,
-				captions: 0,
-				controls: 0,
-			});
-		</script>';
+		</div>';
 	}
 }
 

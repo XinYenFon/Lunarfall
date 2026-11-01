@@ -1,4 +1,4 @@
-# Lunarfall v0.8.5 (28 OCTOBER 2026 — DEVELOPMENT)
+# Lunarfall v0.8.6 (1 NOVEMBER 2026 — RELEASE CANDIDATE)
 
 <img src="https://raw.githubusercontent.com/Antes/Lunarfall/master/Lunarfall/images/thumbnail.png" style="height: 750px;">
 
@@ -14,9 +14,13 @@ Lunarfall uses **X.Y.Z**, displayed as **vX.Y.Z**:
 - **Y (FEATURE):** a new feature; resets Z to zero.
 - **Z (HOTFIX):** any bug fix, security fix or compatibility repair, regardless of size; changes only Z.
 
-Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.5); user-facing release labels use v0.8.5. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
+Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.6); user-facing release labels use v0.8.6. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
 
-The latest confirmed published release is **v0.8.3**. The current development sources are **v0.8.5**, adapting the openVectra Dark Mode palette while retaining Lunarfall's existing SMF layout and the v0.8.4 fixes. This does not mark a publication or deployment.
+The latest confirmed stable published release is **v0.8.5**. The **v0.8.6 release candidate** includes the UI Architecture Audit B1–B4 fixes, the native news fader and PR #10's menu-icon selection changes while preserving Lunarfall's existing layout and responsive behavior. The published v0.8.5 commit, tag and release remain unchanged. Release preparation does not mark a publication or deployment.
+
+### Native news fader
+
+The board-index news fader uses local JavaScript and CSS without a slider library or jQuery dependency. SMF still parses and supplies the rich news content and controls the news-fader setting and reading interval. The existing fade and pagination are retained, with named keyboard-accessible controls, pause/resume, focus/hover and hidden-page pauses, and reduced-motion support. Keyboard focus and manual selection stop automatic rotation until it is explicitly started again. Without JavaScript, news remains an ordinary readable list. The Default Theme's Slippry asset is suppressed only for Lunarfall; SMF's shared jQuery and other themes are unaffected.
 
 ### Twemoji smiley artwork (optional)
 
@@ -30,7 +34,7 @@ Color tokens are centralized in the :root block of Lunarfall/css/index.css. Comp
 
 The footer displays Lunarfall vX.Y.Z from the active Lunarfall directory's theme_info.xml, read at most once per request without persistent caching. Invalid or unreadable metadata hides the indicator. The XML is the source of truth for Lunarfall's file version; SMF's administration theme list uses separately stored database metadata and can show an older version after a manual file deployment. Routine deployment does not require updating that database version. Package-based updates will be addressed separately.
 
-Read the source version from Lunarfall/theme_info.xml. Separately read theme_info.xml from the installed theme directory (currently D:\PersonalProjects\smf21\Themes\Lunarfall). Never infer the installed version from the source version. As rechecked on 24 October 2026 during the two-column profile-menu revision, the installed file reports **v0.8.3**. This revision was not deployed by this task; matching version labels do not prove that its latest source changes are installed or which theme is active in SMF.
+Read the source version from Lunarfall/theme_info.xml. Separately read theme_info.xml from the installed theme directory (currently D:\PersonalProjects\smf21\Themes\Lunarfall). Never infer the installed version from the source version. The separately checked local installation reports **v0.8.5**; the prepared sources report **v0.8.6**. This release candidate has not been deployed by this task. Matching version labels do not prove that the latest changes are installed or which theme is active in SMF.
 
 For future patch checks, compare the two numeric XML version values first. Then compare SHA-256 hashes of every distributable source file against the same relative path in the installed theme, recording missing, different and installation-only files separately. Matching version labels alone do not prove that patches are installed; matching source files verifies content parity only for those files. Recheck the installed version and hashes after an explicitly authorized deployment.
 
@@ -44,9 +48,13 @@ Keep SMF/legacy aliases and glyph/font-family mappings in Lunarfall/css/extra-ic
 
 The disable_fa_icons option skips vendor CSS and font loading and uses text labels through icons-disabled.css and scripts/icons.js. The icon helper also supplies accessible names for icon-only controls and native-image fallback for custom SMF post icons.
 
+PR #10 uses SMF's declared main-menu icon and administration plain_class for mapped aliases, and preserves native main-menu image icons. Known limitations remain: custom SMF CSS icon classes are rewritten to FA classes, administration icon filenames can become unmapped FA names, and icons embedded only in a menu title can still appear beside an extra fallback icon. These extension-specific cases are not fixed in v0.8.6.
+
 ### How to Install/Upgrade
 
-For general users releases will be done in SMorg. For bit more advanced testers you can grab a copy of the repository and upload Lunarfall folder to Themes folder.
+Upload the prepared Lunarfall.zip through SMF's Administration Center > Themes and Layout > Manage and Install. Its archive root contains theme_info.xml, templates and asset directories directly, as required by the SMF 2.1.8 installer; it includes only the contents of the distributable Lunarfall/ source directory. Repository files, reports and local project rules are excluded.
+
+For a manual file deployment, copy the repository's Lunarfall/ directory into the forum's Themes/ directory. Verify the installed XML/footer version and file hashes separately. Back up the existing theme and use SMF's normal administrator workflow for installation; no automatic database update or deployment is performed by preparing the archive.
 
 There will be no upgrade pack for this theme so you have to do the standard ways to upgrade your theme.
 

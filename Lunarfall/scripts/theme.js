@@ -38,13 +38,43 @@ if (is_ie || is_webkit || is_ff)
 // Toggles the element height and width styles of an image.
 function smc_toggleImageDimensions()
 {
-	$('.postarea .bbc_img.resized').each(function(index, item)
-	{
-		$(item).click(function(e)
-		{
-			$(item).toggleClass('original_size');
+	var selector = '.postarea img.bbc_img.resized';
+	var labels = window.lunarfall_image_labels || {expand: 'Expand image', reduce: 'Reduce image'};
+	function prepare(item) {
+		if ($(item).closest('a, button, [contenteditable="true"]').length ||
+			(!item.hasAttribute('data-lf-image-toggle') && (item.hasAttribute('role') || item.hasAttribute('tabindex'))))
+			return false;
+		item.setAttribute('data-lf-image-toggle', '1');
+		item.setAttribute('tabindex', '0');
+		item.setAttribute('role', 'button');
+		var expanded = $(item).hasClass('original_size');
+		item.setAttribute('aria-pressed', expanded ? 'true' : 'false');
+		item.setAttribute('aria-label', (expanded ? labels.reduce : labels.expand) + (item.alt ? ': ' + item.alt : ''));
+		return true;
+	}
+	function scan(root) {
+		if (root.nodeType !== 1 && root.nodeType !== 9) return;
+		if ($(root).is(selector)) prepare(root);
+		$(root).find(selector).each(function() { prepare(this); });
+	}
+	scan(document);
+	// Namespaced delegation covers AJAX posts and avoids duplicate bindings.
+	$(document).off('.lunarfallImageSize')
+		.on('click.lunarfallImageSize keydown.lunarfallImageSize', selector, function(e) {
+			if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+			if (!prepare(this)) return;
+			e.preventDefault();
+			if (e.type === 'keydown' && e.originalEvent && e.originalEvent.repeat) return;
+			$(this).toggleClass('original_size');
+			prepare(this);
+		});
+	if (smc_toggleImageDimensions.observer) smc_toggleImageDimensions.observer.disconnect();
+	smc_toggleImageDimensions.observer = new MutationObserver(function(changes) {
+		changes.forEach(function(change) {
+			change.addedNodes.forEach(scan);
 		});
 	});
+	smc_toggleImageDimensions.observer.observe(document.documentElement, {childList: true, subtree: true});
 }
 
 // Add a load event for the function above.
