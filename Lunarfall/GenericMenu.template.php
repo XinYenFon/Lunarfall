@@ -25,10 +25,10 @@ function template_generic_menu_dropdown_above()
 	// Load the menu
 	// Add mobile menu as well
 	echo '
-	<a class="mobile_generic_menu_', $context['cur_menu_id'], '">
-		<span class="menu_icon"></span>
-		<span class="text_menu">', sprintf($txt['mobile_generic_menu'], $menu_label), '</span>
-	</a>
+	<button type="button" class="mobile_generic_menu_', $context['cur_menu_id'], ' lf-mobile-menu-trigger" aria-label="', htmlspecialchars(sprintf($txt['mobile_generic_menu'], $menu_label), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '">
+		<i class="fas fa-cogs fa-lg" aria-hidden="true"></i>
+		<span>', htmlspecialchars(sprintf($txt['mobile_generic_menu'], $menu_label), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '</span>
+	</button>
 	<div id="genericmenu">
 		<div id="mobile_generic_menu_', $context['cur_menu_id'], '" class="popup_container">
 			<div class="popup_window description">
@@ -250,10 +250,10 @@ function template_generic_menu_tabs(&$menu_context)
 	{
 		// The admin tabs.
 		echo '
-					<a class="mobile_generic_menu_', $context['cur_menu_id'], '_tabs">
-						<span class="menu_icon"></span>
-						<span class="text_menu">', sprintf($txt['mobile_generic_menu'], $tab_context['title']), '</span>
-					</a>
+					<button type="button" class="mobile_generic_menu_', $context['cur_menu_id'], '_tabs lf-mobile-menu-trigger" aria-label="', htmlspecialchars(sprintf($txt['mobile_generic_menu'], $tab_context['title']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '">
+						<i class="fas fa-list fa-lg" aria-hidden="true"></i>
+						<span>', htmlspecialchars(sprintf($txt['mobile_generic_menu'], $tab_context['title']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '</span>
+					</button>
 					<div id="adm_submenus"', isset($menu_context['current_action'], $menu_context['current_area']) && $menu_context['current_action'] === 'admin' && in_array($menu_context['current_area'], array('theme', 'logs'), true) ? ' class="lf_inline_admin_tabs"' : '', '>
 						<div id="mobile_generic_menu_', $context['cur_menu_id'], '_tabs" class="popup_container">
 							<div class="popup_window description">

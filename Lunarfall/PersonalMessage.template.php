@@ -420,22 +420,22 @@ function template_single_pm($message)
 			// Show the profile button
 			if ($message['member']['can_view_profile'])
 				echo '
-							<li><a href="', $message['member']['href'], '"><i class="fa fa-person fa-lg" title="' . $txt['view_profile'] . '"></i></a></li>';
+							<li><a href="', $message['member']['href'], '" title="', $txt['view_profile'], '">', $settings['use_image_buttons'] ? '<i class="fa fa-person fa-lg" title="' . $txt['view_profile'] . '"></i>' : $txt['view_profile'], '</a></li>';
 
 			// Don't show an icon if they haven't specified a website.
 			if ($message['member']['website']['url'] != '' && !isset($context['disabled_fields']['website']))
 				echo '
-							<li><a href="', htmlspecialchars($message['member']['website']['url'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '" target="_blank" rel="noopener"><span class="fas fa-globe fa-lg" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '"></span></a></li>';
+							<li><a href="', htmlspecialchars($message['member']['website']['url'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false), '" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '" target="_blank" rel="noopener">', $settings['use_image_buttons'] ? '<span class="fas fa-globe fa-lg" title="' . htmlspecialchars($message['member']['website']['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false) . '"></span>' : $txt['www'], '</a></li>';
 
 			// Don't show the email address if they want it hidden.
 			if ($message['member']['show_email'])
 				echo '
-							<li><a href="mailto:', $message['member']['email'], '" rel="nofollow"><i class="fas fa-envelope fa-lg"></i></a></li>';
+							<li><a href="mailto:', $message['member']['email'], '" rel="nofollow" title="', $txt['email'], '">', $settings['use_image_buttons'] ? '<i class="fas fa-envelope fa-lg"></i>' : $txt['email'], '</a></li>';
 
 			// Since we know this person isn't a guest, you *can* message them.
 			if ($context['can_send_pm'] && $message['member']['id'] != 0)
 				echo '
-							<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '"><span class="main_icons im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . ' ' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '" title="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '"></span></a></li>';
+							<li><a href="', $scripturl, '?action=pm;sa=send;u=', $message['member']['id'], '" title="', $message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline'], '">', $settings['use_image_buttons'] ? '<span class="main_icons im_' . ($message['member']['online']['is_online'] ? 'on' : 'off') . ' ' . ($message['member']['online']['is_online'] ? 'on' : 'off') . '" title="' . ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']) . '"></span>' : ($message['member']['online']['is_online'] ? $txt['pm_online'] : $txt['pm_offline']), '</a></li>';
 
 			echo '
 						</ol>

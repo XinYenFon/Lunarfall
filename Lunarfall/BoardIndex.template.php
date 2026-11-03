@@ -186,10 +186,10 @@ function template_bi_board_info($board)
 	global $context, $scripturl, $txt;
 
 	echo '
-		<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
-			', $board['name'], '
-			<p class="board_description mobile_display">', $board['description'], '</p>
-		</a>';
+		<div class="mobile_subject">
+			<a class="subject" href="', $board['href'], '" id="b', $board['id'], '">', $board['name'], '</a>
+			<div class="board_description mobile_display">', $board['description'], '</div>
+		</div>';
 
 	// Has it outstanding posts for approval?
 	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))

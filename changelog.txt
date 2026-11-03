@@ -1,3 +1,18 @@
+v0.8.7 - Development
+* Align mobile administration popup icons and labels with scoped flex spacing instead of inherited text indentation; preserve desktop menus and icon mappings.
+* Make the mobile main-menu launcher a native button; align only the mobile admin quick-search controls and remove the legacy dark override from search-result link text.
+* Show localized labels beside icons on mobile main, administration and section-menu launchers; retain accessible names, native administration-button keyboard activation, SMF popup handlers and desktop navigation.
+* Restore the main-menu launcher's visibility at widths of 480px and below using SMF's existing mobile popup architecture.
+* Encode social-share query values before escaping href attributes, preserving full post URLs and subjects containing ampersands, quotes, Unicode and other reserved characters.
+* Restore normal profile-link navigation when popup handlers are unavailable; retain SMF's initialized popup behavior.
+* Close the agreement editor's Save-button wrapper while preserving form boundaries and CSRF/session fields.
+* Reset the font-size selector's inline line-height when returning to smaller sizes.
+* Restore the existing text/icon preference for private-message member controls without changing icon mappings or access gates.
+* Keep linked board descriptions outside the board-title anchor while preserving desktop/mobile description styling.
+* Restore sibling message-header/body containers in split-topic AJAX updates and give the mobile menu its localized accessible name.
+* Remove the obsolete auto_notify member theme option to prevent an undefined language-key warning in SMF 2.1.8 theme/member options. Automatic topic-following remains managed by SMF's notification preferences.
+- Functional Audit B1 (custom/mod menu icon contracts) is excluded. Calendar trim divergence was not reproduced in the normal SMF datetime path and remains unchanged. Source preparation only; no publication, packaging or deployment.
+
 v0.8.6 (1 November 2026) - Release candidate
 * B1: Improve ordinary author-link and visible message-subject contrast on dark post surfaces; preserve member-group color overrides and the existing typography.
 * B2: Keep post actions and social-share links readable without hover, and restore full group visibility during keyboard focus without adding button backgrounds.

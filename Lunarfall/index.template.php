@@ -232,7 +232,7 @@ function template_body_above()
 		echo '
 			<ul class="floatleft" id="top_info">
 				<li>
-					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">';
+					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top">';
 
 		if (!empty($context['user']['avatar']))
 			echo $context['user']['avatar']['image'];
@@ -420,9 +420,10 @@ function template_body_above()
 	// Show the menu here, according to the menu sub template, followed by the navigation tree.
 	// Load mobile menu here
 	echo '
-				<a class="mobile_user_menu">
+				<button type="button" class="mobile_user_menu lf-mobile-menu-trigger" aria-label="', htmlspecialchars($txt['mobile_user_menu'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '">
 					<i class="fas fa-bars fa-lg"></i>
-				</a>
+					<span>', htmlspecialchars($txt['mobile_user_menu'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '</span>
+				</button>
 				<div id="main_menu">
 					<div id="mobile_user_menu" class="popup_container">
 						<div class="popup_window description">

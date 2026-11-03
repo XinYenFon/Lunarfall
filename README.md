@@ -1,4 +1,4 @@
-# Lunarfall v0.8.6 (1 NOVEMBER 2026 — RELEASE CANDIDATE)
+# Lunarfall v0.8.7 (DEVELOPMENT)
 
 <img src="https://raw.githubusercontent.com/Antes/Lunarfall/master/Lunarfall/images/thumbnail.png" style="height: 750px;">
 
@@ -14,9 +14,9 @@ Lunarfall uses **X.Y.Z**, displayed as **vX.Y.Z**:
 - **Y (FEATURE):** a new feature; resets Z to zero.
 - **Z (HOTFIX):** any bug fix, security fix or compatibility repair, regardless of size; changes only Z.
 
-Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.6); user-facing release labels use v0.8.6. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
+Version a completed logical change package, not every small edit. Several fixes may share one version. Keep theme metadata and changelog.txt synchronized whenever the version changes. SMF's theme_info.xml keeps the existing numeric format (currently 0.8.7); user-facing release labels use v0.8.7. PHP theme_version and upstream SMF @version comments describe SMF compatibility/source versions, not the Lunarfall release.
 
-The latest confirmed stable published release is **v0.8.5**. The **v0.8.6 release candidate** includes the UI Architecture Audit B1–B4 fixes, the native news fader and PR #10's menu-icon selection changes while preserving Lunarfall's existing layout and responsive behavior. The published v0.8.5 commit, tag and release remain unchanged. Release preparation does not mark a publication or deployment.
+The latest user-confirmed published release is **v0.8.6**. The **v0.8.7 development sources** fix social-share parameter encoding, profile-link fallback, agreement-editor markup, font-size line-height reset, PM text/icon preferences, linked board descriptions, split-topic AJAX markup and the localized mobile-menu name. They also retain the local obsolete auto_notify option removal. Native news, Twemoji, responsive styling and existing FA7/PR #10 behavior are preserved. Functional Audit B1 (custom/mod menu icon contracts) is explicitly excluded and awaits separate approval. Published v0.8.6 history and release assets remain unchanged; these sources have not been published or deployed by this task.
 
 ### Native news fader
 
@@ -34,7 +34,7 @@ Color tokens are centralized in the :root block of Lunarfall/css/index.css. Comp
 
 The footer displays Lunarfall vX.Y.Z from the active Lunarfall directory's theme_info.xml, read at most once per request without persistent caching. Invalid or unreadable metadata hides the indicator. The XML is the source of truth for Lunarfall's file version; SMF's administration theme list uses separately stored database metadata and can show an older version after a manual file deployment. Routine deployment does not require updating that database version. Package-based updates will be addressed separately.
 
-Read the source version from Lunarfall/theme_info.xml. Separately read theme_info.xml from the installed theme directory (currently D:\PersonalProjects\smf21\Themes\Lunarfall). Never infer the installed version from the source version. The separately checked local installation reports **v0.8.5**; the prepared sources report **v0.8.6**. This release candidate has not been deployed by this task. Matching version labels do not prove that the latest changes are installed or which theme is active in SMF.
+Read the source version from Lunarfall/theme_info.xml. Separately read theme_info.xml from the installed theme directory (currently D:\PersonalProjects\smf21\Themes\Lunarfall). Never infer the installed version from the source version. The separately checked local installation reports **v0.8.6**; the development sources report **v0.8.7**. This hotfix has not been deployed by this task. Matching version labels do not prove that the latest changes are installed or which theme is active in SMF.
 
 For future patch checks, compare the two numeric XML version values first. Then compare SHA-256 hashes of every distributable source file against the same relative path in the installed theme, recording missing, different and installation-only files separately. Matching version labels alone do not prove that patches are installed; matching source files verifies content parity only for those files. Recheck the installed version and hashes after an explicitly authorized deployment.
 

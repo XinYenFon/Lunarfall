@@ -264,6 +264,8 @@ function template_main()
 					$(".inner").css("line-height", "1.2em");
 				else if ($(this).val() == "xx-large")
 					$(".inner").css("line-height", "1.3em");
+				else
+					$(".inner").css("line-height", "");
 			});
 		</script>';
 
@@ -926,10 +928,12 @@ function template_single_post($message)
 	}
 
 	// Share this post! I order no?
+	$share_url = rawurlencode($scripturl . '?topic=' . $context['current_topic'] . '.' . $context['start'] . ';msg=' . $message['id']);
+	$share_subject = rawurlencode(html_entity_decode(strip_tags($message['subject']), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 	echo '
 	<ul class="post_socialshare qbuttons">
-		<li><a href="//facebook.com/sharer/sharer.php?u=', $scripturl, '?topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], '" target="_blank" title="', $txt['lunarfall_facebook'],'"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a></li>
-		<li><a href="//twitter.com/share?text='. $message['subject'].'&url=', $scripturl, '?topic=', $context['current_topic'], '.', $context['start'], ';msg=', $message['id'], '" title="', $txt['lunarfall_twitter'],'"><i class="fab fa-twitter fa-lg fa-fw"></i></a></li>
+		<li><a href="', htmlspecialchars('//facebook.com/sharer/sharer.php?u=' . $share_url, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '" target="_blank" title="', $txt['lunarfall_facebook'],'"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a></li>
+		<li><a href="', htmlspecialchars('//twitter.com/share?text=' . $share_subject . '&url=' . $share_url, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), '" title="', $txt['lunarfall_twitter'],'"><i class="fab fa-twitter fa-lg fa-fw"></i></a></li>
 	</ul>';
 
 	// Show the quickbuttons, for various operations on posts.

@@ -79,6 +79,31 @@
 	div[id^="mobile_generic_menu_"] .generic_menu {
 		display: block;
 	}
+	.mobile_user_menu {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0 0 4px 0;
+	}
+	.lf-mobile-menu-trigger {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		justify-content: center;
+		min-width: 44px;
+		min-height: 44px;
+		margin: 0 0 4px 0;
+		padding: 8px;
+		border: 0;
+		background: transparent;
+		color: var(--lf-link);
+		font: inherit;
+		cursor: pointer;
+	}
+	.lf-mobile-menu-trigger:focus-visible {
+		outline: 2px solid var(--lf-link);
+		outline-offset: 2px;
+	}
 	.menu_icon {
 		display: inline-block;
 		background: url(../images/icons/menu.svg) no-repeat;
@@ -101,6 +126,21 @@
 	.dropmenu li a, .dropmenu li a:hover {
 		text-indent: 10px;
 		border-radius: 0;
+	}
+	/* Keep admin popup glyphs out of the inherited text indentation. */
+	#genericmenu .generic_menu .dropmenu li a {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		text-indent: 0;
+		padding-inline: 10px;
+	}
+	#genericmenu .generic_menu .dropmenu li a > i {
+		flex: 0 0 1.25em;
+		width: 1.25em;
+		margin: 0;
+		text-indent: 0;
+		text-align: center;
 	}
 	.dropmenu li a, .dropmenu li:hover a, .dropmenu li a.active, .dropmenu li a.active:hover, .dropmenu ul li a:hover, .dropmenu ul li li:hover, .dropmenu li ul, .dropmenu li li:hover ul, .dropmenu li li ul {
 		border-left: 0;
@@ -342,9 +382,24 @@
 	}
 	.admin_search {
 		float: none;
-		display: block;
+		display: grid;
+		grid-template-columns: 24px minmax(0, 1fr) auto;
+		gap: 6px;
 		width: 100%;
 		margin-bottom: 10px;
+	}
+	.admin_search input, .admin_search select, .admin_search .button {
+		min-width: 0;
+		max-width: 100%;
+		margin: 0;
+	}
+	.admin_search input[type="search"] {
+		grid-column: 2 / -1;
+		width: 100%;
+	}
+	.admin_search select {
+		grid-column: 1 / 3;
+		width: 100%;
 	}
 	.admin_group a {
 		width: 50% !important;
@@ -772,7 +827,7 @@
 /* Tricky menu */
 @media (min-width: 481px) {
 	/* Generic-menu launchers belong only to the mobile layout. */
-	a[class^="mobile_generic_menu_"] {
+	:is(a, button)[class^="mobile_generic_menu_"] {
 		display: none;
 	}
 	/* Theme and log administration tabs are inline menus, not popup dialogs. */
